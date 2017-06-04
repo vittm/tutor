@@ -863,7 +863,7 @@ figcaption:hover div {
         right: inherit;
         left: -8px;
     }
-    
+
     .by-user {
         margin-top: 30px;
     }
@@ -11606,7 +11606,8 @@ blockquote .small:before {
         border-radius: 0;
     }
     .edit-profile__form > .col-md-12 > .col-md-8 > img,
-    .edit-profile__form > .col-md-12 > .col-md-8 > input {
+    .edit-profile__form > .col-md-12 > .col-md-8 > input,
+    .edit-profile__form > .col-md-12 > .col-md-8 > textarea {
         display: inline;
     }
     .edit-profile__form > .col-md-12 > .col-md-3 {
@@ -11614,12 +11615,20 @@ blockquote .small:before {
         top: 5px;
         font-size: 13px;
     }
-    .edit-profile__form > .col-md-12 > .col-md-8 > input {
+    .edit-couser .edit-profile__form > .col-md-12 > .col-md-8 > img {
+      top: -10px;
+    }
+    .edit-profile__form > .col-md-12 > .col-md-8 > textarea {
+      margin-bottom: 0;
+    }
+    .edit-profile__form > .col-md-12 > .col-md-8 > input,
+    .edit-profile__form > .col-md-12 > .col-md-8 > textarea {
         width: 90%;
         margin-top: 0;
         padding: 5px;
         border: none;
     }
+
     .edit-profile__form > .col-md-12 > .col-md-8 > input:focus {
         transition: none;
     }
@@ -11649,6 +11658,14 @@ blockquote .small:before {
     .gender__edit li input[type=radio] {
         position: absolute;
         visibility: hidden;
+    }
+    .gender__edit li input[type=checkbox] {
+        position: absolute;
+        visibility: hidden;
+        margin: 0;
+    }
+    .couser-time li label {
+      margin: 21px auto;
     }
     .gender__edit li label {
         display: block;
@@ -11699,6 +11716,15 @@ blockquote .small:before {
         background: #aaaaaa;
     }
     input[type=radio]:checked ~ label {
+        color: #000000;
+    }
+    input[type=checkbox]:checked ~ .check {
+        border: 2px solid #aaaaaa;
+    }
+    input[type=checkbox]:checked ~ .check::before {
+        background: #aaaaaa;
+    }
+    input[type=checkbox]:checked ~ label {
         color: #000000;
     }
     .save_edit-profile .btn-5 {
@@ -11902,3 +11928,12 @@ blockquote .small:before {
         width: 33.33%!important;
         border-left: 1px solid #eeeeee!important;
     }
+.couser-time {
+  margin-top: 15px;
+}
+.couser-time li {
+  height: 31px;
+}
+.couser-time > .col-md-3 > p {
+  margin-top:30px;
+}

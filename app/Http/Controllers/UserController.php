@@ -96,25 +96,15 @@ class UserController extends Controller
           $file = $input['coverMain'];
           $filename = $file->getClientOriginalName();
           $nameConvert = date('H-i-sYmd').$filename;
-          $file->move(public_path().'/img/cover', $nameConvert);
+          $file->move(public_path().'/img/couser', $nameConvert);
       }else{
           $nameConvert=$input['cover'];
       }
-      if($request->hasFile('avatarMain')){
-          $file1 = $input['avatarMain'];
-          $filename1 = $file1->getClientOriginalName();
-          $nameConvert1 = date('H-i-sYmd').$filename1;
-          $file1->move(public_path().'/img/avatar', $nameConvert1);
-      }else{
-          $nameConvert1 =$input['avatar'];
-      }
-
         $profile= ([
-          'cover' => $nameConvert,
-          'avatar' => $nameConvert1
+          'picture' => $nameConvert
         ]);
 
-        DB::table('users')->where('id', $id)->update($profile);
+        DB::table('couser')->where('id', $id)->update($profile);
         return redirect('/chinh-sua-ca-nhan-'.$id);
     }
     public function editing_picture(Request $request, $id){
