@@ -54,6 +54,9 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::post('editing/level-{id}', 'UserController@editing_level');
 		Route::post('editing/password-{id}', 'UserController@editing_password');
 
+		Route::get('couser/add-{id}', 'CouserController@look');
+		Route::post('couser/adding-{id}', 'CouserController@addingcouser');
+
     Route::get('danh-sach-tin-nhan-{id}', 'UserController@listing_message');
     Route::get('chi-tiet-tin-nhan-{watch}', 'UserController@detail_message');
     Route::get('xoa-tin-nhan-{id}', 'UserController@delete_message');

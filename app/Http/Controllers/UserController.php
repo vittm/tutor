@@ -95,23 +95,23 @@ class UserController extends Controller
       if($files=$request->file('coverMain')){
           $file = $input['coverMain'];
           $filename = $file->getClientOriginalName();
-          $nameConvert = date('H-i-s==Y-m-d==').'-'.$filename;
+          $nameConvert = date('H-i-sYmd').$filename;
           $file->move(public_path().'/img/cover', $nameConvert);
       }else{
           $nameConvert=$input['cover'];
       }
       if($request->hasFile('avatarMain')){
-          $file = $input['avatarMain'];
-          $filename1 = $file->getClientOriginalName();
-          $nameConvert1 = date('H-i-s==Y-m-d==').'-'.$filename1;
-          $file->move(public_path().'/img/avatar', $nameConvert1);
+          $file1 = $input['avatarMain'];
+          $filename1 = $file1->getClientOriginalName();
+          $nameConvert1 = date('H-i-sYmd').$filename1;
+          $file1->move(public_path().'/img/avatar', $nameConvert1);
       }else{
           $nameConvert1 =$input['avatar'];
       }
 
         $profile= ([
-          'avatar' => $nameConvert,
-          'cover' => $nameConvert1
+          'cover' => $nameConvert,
+          'avatar' => $nameConvert1
         ]);
 
         DB::table('users')->where('id', $id)->update($profile);

@@ -5,15 +5,15 @@
     <title>Wiss</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <link rel="stylesheet" type="text/css" href="css/style.css">  <!-- Link css tự style -->
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.css"> <!-- link css font-face -->
-    <link rel="stylesheet" type="text/css" href="css/time.css">  <!-- Link css tự style -->
-    <link rel="stylesheet" href="css\bootstrap.css">
-    <link rel="stylesheet" href="css/test.css">
+    <link rel="stylesheet" type="text/css" href="{{ URL::to('css/style.css') }}">  <!-- Link css tự style -->
+    <link rel="stylesheet" type="text/css" href="{{ URL::to('css/font-awesome.css') }}"> <!-- link css font-face -->
+    <link rel="stylesheet" type="text/css" href="{{ URL::to('css/time.css') }}">  <!-- Link css tự style -->
+    <link rel="stylesheet" href="{{ URL::to('css\bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ URL::to('css/test.css') }}">
     <!-- <link rel="stylesheet" href="css/main.css"> -->
     <!--[if gt IE 8]><!-->
-    <link rel="stylesheet" href="css/tablet.css" media="screen and (min-width: 768px)">
-    <link rel="stylesheet" href="css/desktop.css" media="screen and (min-width: 992px)">
+    <link rel="stylesheet" href="{{ URL::to('css/tablet.css') }}" media="screen and (min-width: 768px)">
+    <link rel="stylesheet" href="{{ URL::to('css/desktop.css') }}" media="screen and (min-width: 992px)">
 
 
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
@@ -109,18 +109,18 @@
     <div class="footer-home"></div>
 
 </div>
-    <script type="text/javascript" src="js/jquery-1.10.2.js"></script> <!-- Link thư viện jquery -->
+    <script type="text/javascript" src="{{ URL::to('js/jquery-1.10.2.js') }}"></script> <!-- Link thư viện jquery -->
 
-     <script type="text/javascript" src="js/jquery.slidizle.js"></script> <!-- Link thư viện jquery -->
+     <script type="text/javascript" src="{{ URL::to('js/jquery.slidizle.js') }}"></script> <!-- Link thư viện jquery -->
 
-    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="{{ URL::to('js/angular.min.js') }}"></script>
      <!-- <script type="text/javascript" src="js/jquery.autocomplete.min.js"></script>
       <script type="text/javascript" src="js/currency-autocomplete.js"></script> -->
-     <script type="text/javascript" src="js/kendo.all.min.js"></script> <!-- Link thư viện jquery -->
+     <script type="text/javascript" src="{{ URL::to('js/kendo.all.min.js') }}"></script> <!-- Link thư viện jquery -->
 
-    <script type="text/javascript" src="js/scripts.js"></script>   <!--- Link jquery tự viết-->
-    <script type="text/javascript" src="js/bootstrap.js"></script>   <!--- Link jquery tự viết-->
-    <script src="js/drop_uploader.js"></script>
+    <script type="text/javascript" src="{{ URL::to('js/scripts.js') }}"></script>   <!--- Link jquery tự viết-->
+    <script type="text/javascript" src="{{ URL::to('js/bootstrap.js') }}"></script>   <!--- Link jquery tự viết-->
+    <script src="{{ URL::to('js/drop_uploader.js') }}"></script>
     <script>
        $(document).ready(function(){
            $('.multiple-flie').drop_uploader({
