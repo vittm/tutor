@@ -15,6 +15,8 @@ use Illuminate\Http\Request;
 use File;
 use Validator;
 use Hash;
+use App\Registercousers;
+
 class CouserController extends Controller
 {
 
@@ -38,22 +40,6 @@ class CouserController extends Controller
       }else{
           $nameConvert= 'couser.jpg';
       }
-      if($input['night'] != null ){
-        $night= $input['night'];
-      }else {
-        $night= 0;
-      }
-      if($input['morning'] != null ){
-        $morning= $input['morning'];
-      }else {
-        $morning= 0;
-      }
-      if($input['afternoon'] != null ){
-        $afternoon= $input['afternoon'];
-      }else {
-        $afternoon= 0;
-      }
-      $arr1=array('morning'=>$morning,'afternoon'=>$afternoon, 'night'=> $night );
           $db->id_user = $id;
           $db->picture = $nameConvert;
           $db->title = $input['title'];
@@ -62,7 +48,7 @@ class CouserController extends Controller
           $db->study = $input['study'];
           $db->type = $input['type'];
           $db->program = $input['program'];
-          $db->timetype1 = json_encode($arr1);
+          $db->timetype1 = json_encode($input['morning']);
           $db->price = $input['id_user'];
           $db->typeCourse = '1';
           $db->save();
@@ -96,56 +82,67 @@ class CouserController extends Controller
           $db->save();
           return redirect('/trang-ca-nhan-'.$id);
       }
-      public function editing_couser(Request $request, $id){
+      public function editing_couser(Request $request, $couserid){
         $input = $request->all();
-        $id = $input['id_user'];
+        $id_user = DB::table('cousers')->where('id', '=', $couserid)->get();
+        if($files=$request->file('coverMain')){
+            $file = $input['coverMain'];
+            $filename = $file->getClientOriginalName();
+            $nameConvert = date('H-i-sYmd').$filename;
+            $file->move(public_path().'/img/couser', $nameConvert);
+        }else{
+            $nameConvert= 'couser.jpg';
+        }
 
+        if($id_user[0]->typeCouser == '1') {
+          $profile= ([
+              'picture' => $nameConvert,
+              'title' => $input['title'],
+              'who' => $input['who'],
+              'information' => $input['information'],
+              'study' => $input['study'],
+              'type' => $input['type'],
+              'program' => $input['program'],
+              'timetype1' => json_encode($input['morning']),
+              'price' =>  $input['price']
+          ]);
+        }else if($id_user[0]->typeCourse == '2') {
+          $arr1=array('morning'=>$morning,'afternoon'=>$afternoon, 'night'=> $night );
+          $profile= ([
+              'picture' => $nameConvert,
+              'title' => $input['title'],
+              'who' => $input['who'],
+              'information' => $input['information'],
+              'study' => $input['study'],
+              'type' => $input['type'],
+              'program' => $input['program'],
+              'opentime' =>  $input['opentime'],
+              'price' =>  $input['price'],
+              'closetime' => $input['closetime']
+          ]);
+        }
 
-        $profile= ([
-            'name' => $input['name'],
-            'title' => $input['title-profile'],
-            'field' => $input['edit-profile__field'],
-            'subjects' => $input['filed-subject'],
-            'date' => $input['edit-profile__date'],
-            'gender' => $input['gender'],
-            'ward' => $input['ward'],
-            'district' =>  $input['distric'],
-            'city' =>  $input['city'],
-            'expericen' => $input['edit-profile__exper'],
-            'jobs' => $input['edit-profile__jobs'],
-            'subjects' => $input['filed-subject']
-        ]);
-
-        DB::table('couser')->where('id', $id)->update($profile);
-        return redirect('/trang-ca-nhan-'.$id);
-      }
-      public function editing_opening(Request $request, $id){
-        $input = $request->all();
-        $id = $input['id_user'];
-
-
-        $profile= ([
-            'name' => $input['name'],
-            'title' => $input['title-profile'],
-            'field' => $input['edit-profile__field'],
-            'subjects' => $input['filed-subject'],
-            'date' => $input['edit-profile__date'],
-            'gender' => $input['gender'],
-            'ward' => $input['ward'],
-            'district' =>  $input['distric'],
-            'city' =>  $input['city'],
-            'expericen' => $input['edit-profile__exper'],
-            'jobs' => $input['edit-profile__jobs'],
-            'subjects' => $input['filed-subject']
-        ]);
-
-        DB::table('couser')->where('id', $id)->update($profile);
-        return redirect('/trang-ca-nhan-'.$id);
+        DB::table('cousers')->where('id', $couserid)->update($profile);
+        return redirect('/trang-ca-nhan-'.$couserid);
       }
 
       public function edit_couser($couserid){
-          $couser = DB::table('cousers')->where('id', '=', $couserid)->get(); 
+          $couser = DB::table('cousers')->where('id', '=', $couserid)->get();
           return view('couser.edit', ['couser' => $couser ]);
       }
 
+      public function register_couser(Request $request){
+        $input = $request->all();
+        $id = $input['user_login'];
+        $db = new Registercousers;
+
+        $db->id_user = $id;
+        $db->planmemter = $input['planmoment'];
+        $db->planetime = $input['planetime'];
+        $db->price = $input['price'];
+        $db->couser = $input['selectCouser'];
+
+        $db->save();
+        return redirect('/');
+      }
 }

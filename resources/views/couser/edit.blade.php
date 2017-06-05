@@ -14,6 +14,7 @@
 <!-- Tab panes -->
 <div class="tab-content edit-profile edit-couser">
   <div role="tabpanel" class="tab-pane active" id="add">
+
     <form name="update-information" class="form-horizontal  edit-profile__form col-md-offset-1 col-md-11 pd0" role="form" method="POST" action="{{ url('/couser/editing')}}-{{ $couser[0]->id }}" enctype='multipart/form-data'>
                       {{ csrf_field() }}
       <input type="hidden" name="id_user" value="{{ $couser[0]->id_user}}">
@@ -22,13 +23,13 @@
 
       <div class="col-md-12 pd0 top10">
          <div class="col-md-3 "> Tiêu đề</div>
-         <div class="col-md-8"><textarea class="form-control" type="text" name="title" value=""></textarea><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"></div>
+         <div class="col-md-8"><textarea class="form-control" type="text" name="title" value="">{{ $couser[0]->title}}</textarea><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"></div>
       </div>
-      <div class="col-md-12 pd0">
+      <div class="col-md-12 pd0 top15">
          <div class="col-md-3 "> Hình ảnh</div>
          <div class="col-md-7">
            @if($couser[0]->picture != null)
- 						<img class="col-md-12 top30" src="{{ URL::to('/img/couser')}}/{{$couser[0]->picture}}" alt="..." class="img-thumbnail">
+ 						<img class="top30" src="{{ URL::to('/img/couser')}}/{{$couser[0]->picture}}" alt="..." class="img-thumbnail" height="200" width="200" style="margin: auto; display: block;">
  					 @endif
            <input class="multiple-flie" type="file" name="imgCouser" >
          </div>
@@ -75,134 +76,36 @@
             </div>
           </div>
           <ul class="col-md-12 top30 pd0 gender__edit couser-time" >
-             <li class="col-md-3">
+             <div class="col-md-3">
                 <p>Thứ Hai</p>
-             </li>
-             <li class="col-md-3">
-               <input name="morning[]" type="checkbox" id="morning" value="1">
-               <label for="morning"></label>
-               <div class="check"></div>
-             </li>
-
-             <li class="col-md-3"> <input name="afternoon[]" type="checkbox" id="afternoon" value="2">
-              <label for="afternoon"></label>
-               <div class="check"><div class="inside"></div></div>
-             </li>
-             <li class="col-md-3"> <input name="night[]" type="checkbox" id="night" value="3">
-                              <label for="night"></label>
-               <div class="check"><div class="inside"></div></div>
-             </li>
-
-             <li class="col-md-3">
-
                 <p>Thứ Ba</p>
-             </li>
-             <li class="col-md-3">
-               <input name="morning[]" type="checkbox" id="morning3" value="1">
-               <label for="morning3"></label>
-               <div class="check"></div>
-             </li>
-
-             <li class="col-md-3"> <input name="afternoon[]" type="checkbox" id="afternoon3" value="2">
-              <label for="afternoon3"></label>
-               <div class="check"><div class="inside"></div></div>
-             </li>
-             <li class="col-md-3"> <input name="night[]" type="checkbox" id="night3" value="3">
-                              <label for="night3"></label>
-               <div class="check"><div class="inside"></div></div>
-             </li>
-
-             <li class="col-md-3">
-
                 <p>Thứ Tư</p>
-             </li>
-             <li class="col-md-3">
-               <input name="morning[]" type="checkbox" id="morning4" value="1">
-               <label for="morning4"></label>
-               <div class="check"></div>
-             </li>
-
-             <li class="col-md-3"> <input name="afternoon[]" type="checkbox" id="afternoon4" value="2">
-              <label for="afternoon4"></label>
-               <div class="check"><div class="inside"></div></div>
-             </li>
-             <li class="col-md-3"> <input name="night[]" type="checkbox" id="night4" value="3">
-                              <label for="night4"></label>
-               <div class="check"><div class="inside"></div></div>
-             </li>
-
-             <li class="col-md-3">
-
                 <p>Thứ Năm</p>
-             </li>
-             <li class="col-md-3">
-               <input name="morning[]" type="checkbox" id="morning5" value="1">
-               <label for="morning5"></label>
-               <div class="check"></div>
-             </li>
-
-             <li class="col-md-3"> <input name="afternoon[]" type="checkbox" id="afternoon5" value="2">
-              <label for="afternoon5"></label>
-               <div class="check"><div class="inside"></div></div>
-             </li>
-             <li class="col-md-3"> <input name="night[]" type="checkbox" id="night5" value="3">
-                              <label for="night5"></label>
-               <div class="check"><div class="inside"></div></div>
-             </li>
-             <li class="col-md-3">
-
                 <p>Thứ Sáu</p>
-             </li>
-             <li class="col-md-3">
-               <input name="morning[]" type="checkbox" id="morning6" value="1">
-               <label for="morning6"></label>
-               <div class="check"></div>
-             </li>
-
-             <li class="col-md-3"> <input name="afternoon[]" type="checkbox" id="afternoon6" value="2">
-              <label for="afternoon6"></label>
-               <div class="check"><div class="inside"></div></div>
-             </li>
-             <li class="col-md-3"> <input name="night[]" type="checkbox" id="night6" value="3">
-                              <label for="night6"></label>
-               <div class="check"><div class="inside"></div></div>
-             </li>
-             <li class="col-md-3">
-
                 <p>Thứ Bảy</p>
-             </li>
-             <li class="col-md-3">
-               <input name="morning[]" type="checkbox" id="morning7" value="1">
-               <label for="morning7"></label>
-               <div class="check"></div>
-             </li>
-
-             <li class="col-md-3"> <input name="afternoon[]" type="checkbox" id="afternoon7" value="2">
-              <label for="afternoon7"></label>
-               <div class="check"><div class="inside"></div></div>
-             </li>
-             <li class="col-md-3"> <input name="night[]" type="checkbox" id="night7" value="3">
-                              <label for="night7"></label>
-               <div class="check"><div class="inside"></div></div>
-             </li>
-             <li class="col-md-3">
-
-                <p>Thứ Chủ Nhật</p>
-             </li>
-             <li class="col-md-3">
-               <input name="morning[]" type="checkbox" id="morning8" value="1">
-               <label for="morning8"></label>
-               <div class="check"></div>
-             </li>
-
-             <li class="col-md-3"> <input name="afternoon[]" type="checkbox" id="afternoon8" value="2">
-              <label for="afternoon8"></label>
-               <div class="check"><div class="inside"></div></div>
-             </li>
-             <li class="col-md-3"> <input name="night[]" type="checkbox" id="night8" value="3">
-                              <label for="night8"></label>
-               <div class="check"><div class="inside"></div></div>
-             </li>
+                <p>Chủ Nhật</p>
+             </div>
+            <div class="col-md-8 pd0">
+              @if(json_decode($couser[0]->timetype1) != null)
+                @foreach( json_decode($couser[0]->timetype1) as $key => $value )
+                   <li class="col-md-3">
+                     {{ Form::hidden('morning[]', 0, false) }}
+                     <input type="checkbox" name="morning[]" value="1" id="morning{{$key}}" @if($value == '1') checked @endif >
+                     <label for="morning{{$key}}"></label>
+                     <div class="check"></div>
+                   </li>
+                @endforeach
+                @else
+                @for( $i = 0; $i <= 21 ; $i++ )
+                  <li class="col-md-3">
+                    {{ Form::hidden('morning[]', 0, false) }}
+                    {{ Form::checkbox('morning[]', 1, false, array('id'=>'morning'.$i)) }}
+                    <label for="morning{{$i}}"></label>
+                    <div class="check"></div>
+                  </li>
+                @endfor
+              @endif
+            </div>
           </ul>
         </div>
       </div>
@@ -227,79 +130,7 @@
       @endif
       <div class="col-md-12 pd0 top30">
         <div class="col-md-3">Học phí</div>
-        <div class="col-md-8"><textarea class="form-control" name="price" value="">{{$couser[0]->price}} VNĐ</textarea><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"></div>
-      </div>
-    <div class="col-md-offset-6 col-md-4 pd0 top30">
-        <div class="col-md-8 pd0 btn-edit save_edit-profile">
-            <button class="btn btn-5 btn-5a fa icon-right"><span>Lưu lại</span></button>
-        </div>
-        <div class="col-md-3">
-          <button href=" " class="btn fa icon-right"><span> Hủy</span></button>
-        </div>
-    </div>
-    </form>
-  </div>
-  <div role="tabpanel" class="tab-pane active" id="add">
-    <form name="update-information" class="form-horizontal  edit-profile__form col-md-offset-1 col-md-11 pd0" role="form" method="POST" action="{{ url('/couser/adding') }}-{{ $id_user[0]->id }}" enctype='multipart/form-data'>
-                      {{ csrf_field() }}
-      <input type="hidden" name="id_user" value="{{ $id_user[0]->id}}">
-      <input type="hidden" name="picture" value="{{ $id_user[0]->avatar}}">
-      <div class="col-md-12 pd0 top10">
-         <div class="col-md-3 "> Tiêu đề</div>
-         <div class="col-md-8"><textarea class="form-control" type="text" name="title" value=""></textarea><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"></div>
-      </div>
-      <div class="col-md-12 pd0">
-         <div class="col-md-3 "> Hình ảnh</div>
-         <div class="col-md-7">
-           <input class="multiple-flie" type="file" name="imgCouser" >
-         </div>
-      </div>
-      <div class="col-md-12 pd0">
-         <div class="col-md-3 "> Giới thiệu tổng quát</div>
-         <div class="col-md-8"> <textarea class="form-control" name="information" value=""></textarea><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"> </div>
-      </div>
-      <div class="col-md-12 pd0 top10">
-        <div class="col-md-3">Bạn sẽ học được gì</div>
-        <div class="col-md-8"><textarea class="form-control" name="study" value=""></textarea><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"></div>
-      </div>
-      <div class="col-md-12 pd0 top10">
-        <div class="col-md-3">Ai nên tham gia</div>
-        <div class="col-md-8">
-            <input class="col-md-4" type="text" name="who" value="">
-        </div>
-      </div>
-      <div class="col-md-12 pd0 top10">
-        <div class="col-md-3"> Phương pháp giảng</div>
-        <div class="col-md-8"><textarea class="form-control" name="type"></textarea><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"></div>
-      </div>
-      <div class="col-md-12 pd0 top10">
-        <div class="col-md-3">Chương trình học</div>
-        <div class="col-md-8"><textarea class="form-control" name="program" ></textarea><img src="{{ URL::to('img/icon/inclined-pencil.png')}}">
-        </div>
-      </div>
-      <div class="col-md-12 pd0 top10">
-        <div class="col-md-3">Chương trình học</div>
-        <div class="col-md-8"><textarea class="form-control" name="program" ></textarea><img src="{{ URL::to('img/icon/inclined-pencil.png')}}">
-        </div>
-      </div>
-      <div class="col-md-12 pd0 top10">
-        <div class="col-md-3">Thời gian bắt đầu</div>
-        <div class="col-md-8"><input type="date" class="form-control" name="opentime" ></input><img src="{{ URL::to('img/icon/inclined-pencil.png')}}">
-        </div>
-      </div>
-      <div class="col-md-12 pd0 top10">
-        <div class="col-md-3">Dự kiến thời gian</div>
-        <div class="col-md-8"><input type="date" class="form-control" name="plantime" ></input><img src="{{ URL::to('img/icon/inclined-pencil.png')}}">
-        </div>
-      </div>
-      <div class="col-md-12 pd0 top10">
-        <div class="col-md-3">Thời gian kết thúc</div>
-        <div class="col-md-8"><input type="date" class="form-control" name="closetime" ></input><img src="{{ URL::to('img/icon/inclined-pencil.png')}}">
-        </div>
-      </div>
-      <div class="col-md-12 pd0 top30">
-        <div class="col-md-3">Học phí</div>
-        <div class="col-md-8"><textarea class="form-control" name="price" value=""></textarea><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"></div>
+        <div class="col-md-8"><textarea class="form-control" name="price" value="">{{$couser[0]->price}}</textarea><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"></div>
       </div>
     <div class="col-md-offset-6 col-md-4 pd0 top30">
         <div class="col-md-8 pd0 btn-edit save_edit-profile">

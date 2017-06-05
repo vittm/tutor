@@ -70,134 +70,25 @@
             </div>
           </div>
           <ul class="col-md-12 top30 pd0 gender__edit couser-time" >
-             <li class="col-md-3">
+             <div class="col-md-3">
                 <p>Thứ Hai</p>
-             </li>
-             <li class="col-md-3">
-               <input name="morning[]" type="checkbox" id="morning" value="1">
-               <label for="morning"></label>
-               <div class="check"></div>
-             </li>
-
-             <li class="col-md-3"> <input name="afternoon[]" type="checkbox" id="afternoon" value="2">
-              <label for="afternoon"></label>
-               <div class="check"><div class="inside"></div></div>
-             </li>
-             <li class="col-md-3"> <input name="night[]" type="checkbox" id="night" value="3">
-                              <label for="night"></label>
-               <div class="check"><div class="inside"></div></div>
-             </li>
-
-             <li class="col-md-3">
-
                 <p>Thứ Ba</p>
-             </li>
-             <li class="col-md-3">
-               <input name="morning[]" type="checkbox" id="morning3" value="1">
-               <label for="morning3"></label>
-               <div class="check"></div>
-             </li>
-
-             <li class="col-md-3"> <input name="afternoon[]" type="checkbox" id="afternoon3" value="2">
-              <label for="afternoon3"></label>
-               <div class="check"><div class="inside"></div></div>
-             </li>
-             <li class="col-md-3"> <input name="night[]" type="checkbox" id="night3" value="3">
-                              <label for="night3"></label>
-               <div class="check"><div class="inside"></div></div>
-             </li>
-
-             <li class="col-md-3">
-
                 <p>Thứ Tư</p>
-             </li>
-             <li class="col-md-3">
-               <input name="morning[]" type="checkbox" id="morning4" value="1">
-               <label for="morning4"></label>
-               <div class="check"></div>
-             </li>
-
-             <li class="col-md-3"> <input name="afternoon[]" type="checkbox" id="afternoon4" value="2">
-              <label for="afternoon4"></label>
-               <div class="check"><div class="inside"></div></div>
-             </li>
-             <li class="col-md-3"> <input name="night[]" type="checkbox" id="night4" value="3">
-                              <label for="night4"></label>
-               <div class="check"><div class="inside"></div></div>
-             </li>
-
-             <li class="col-md-3">
-
                 <p>Thứ Năm</p>
-             </li>
-             <li class="col-md-3">
-               <input name="morning[]" type="checkbox" id="morning5" value="1">
-               <label for="morning5"></label>
-               <div class="check"></div>
-             </li>
-
-             <li class="col-md-3"> <input name="afternoon[]" type="checkbox" id="afternoon5" value="2">
-              <label for="afternoon5"></label>
-               <div class="check"><div class="inside"></div></div>
-             </li>
-             <li class="col-md-3"> <input name="night[]" type="checkbox" id="night5" value="3">
-                              <label for="night5"></label>
-               <div class="check"><div class="inside"></div></div>
-             </li>
-             <li class="col-md-3">
-
                 <p>Thứ Sáu</p>
-             </li>
-             <li class="col-md-3">
-               <input name="morning[]" type="checkbox" id="morning6" value="1">
-               <label for="morning6"></label>
-               <div class="check"></div>
-             </li>
-
-             <li class="col-md-3"> <input name="afternoon[]" type="checkbox" id="afternoon6" value="2">
-              <label for="afternoon6"></label>
-               <div class="check"><div class="inside"></div></div>
-             </li>
-             <li class="col-md-3"> <input name="night[]" type="checkbox" id="night6" value="3">
-                              <label for="night6"></label>
-               <div class="check"><div class="inside"></div></div>
-             </li>
-             <li class="col-md-3">
-
                 <p>Thứ Bảy</p>
-             </li>
-             <li class="col-md-3">
-               <input name="morning[]" type="checkbox" id="morning7" value="1">
-               <label for="morning7"></label>
-               <div class="check"></div>
-             </li>
-
-             <li class="col-md-3"> <input name="afternoon[]" type="checkbox" id="afternoon7" value="2">
-              <label for="afternoon7"></label>
-               <div class="check"><div class="inside"></div></div>
-             </li>
-             <li class="col-md-3"> <input name="night[]" type="checkbox" id="night7" value="3">
-                              <label for="night7"></label>
-               <div class="check"><div class="inside"></div></div>
-             </li>
-             <li class="col-md-3">
-
-                <p>Thứ Chủ Nhật</p>
-             </li>
-             <li class="col-md-3">
-               <input name="morning[]" type="checkbox" id="morning8" value="1">
-               <label for="morning8"></label>
-               <div class="check"></div>
-             </li>
-
-             <li class="col-md-3"> <input name="afternoon[]" type="checkbox" id="afternoon8" value="2">
-              <label for="afternoon8"></label>
-               <div class="check"><div class="inside"></div></div>
-             </li>
-             <li class="col-md-3"> <input name="night[]" type="checkbox" id="night8" value="3">
-                              <label for="night8"></label>
-               <div class="check"><div class="inside"></div></div>
-             </li>
+                <p>Chủ Nhật</p>
+             </div>
+            <div class="col-md-8 pd0">
+               @for( $i = 0; $i <= 21 ; $i++ )
+                   <li class="col-md-3">
+                     {{ Form::hidden('morning[]', 0, false) }}
+                     {{ Form::checkbox('morning[]', 1, false, array('id'=>'morning'.$i)) }}
+                     <label for="morning{{$i}}"></label>
+                     <div class="check"></div>
+                   </li>
+              @endfor
+            </div>
           </ul>
         </div>
       </div>

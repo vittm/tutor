@@ -25,6 +25,7 @@ class UserController extends Controller
     public function myprofile($id)
     {
         $id_user = DB::table('users')->where('id', '=', $id)->get();
+        $couser = DB::table('cousers')->where('id_user', '=', $id)->get();
         $post= DB::table('posts')->where('id_user', '=', $id)->get();
         $contact= explode(',', $id_user[0]->field);
         $subject= explode(',', $id_user[0]->subjects);
@@ -70,7 +71,7 @@ class UserController extends Controller
         $job= json_decode($id_user[0]->job,JSON_BIGINT_AS_STRING);
         $status =  DB::table('users')->where('id', $idAuth )->select('id')->first();
         DB::table('users')->where('id', $id)->update(['level_user'=>'1']);
-        return view('users.index', ['id_user' => $id_user,'ratings' => $rating,'contact'=>$contact,'subject' => $subject, 'content_teach' => $content_teach,'value_get' => $value_get, 'connect' => $connect, 'learn_teach' => $learn_teach, 'feeling' => $feeling, 'count_id' => $count_id, 'cmtprofiles' => $cmt,'feedbacks' => $feedback,'status' => $status,'post'=>$post,'job' => $job ]);
+        return view('users.index', ['id_user' => $id_user,'ratings' => $rating,'couser'=>$couser,'contact'=>$contact,'subject' => $subject, 'content_teach' => $content_teach,'value_get' => $value_get, 'connect' => $connect, 'learn_teach' => $learn_teach, 'feeling' => $feeling, 'count_id' => $count_id, 'cmtprofiles' => $cmt,'feedbacks' => $feedback,'status' => $status,'post'=>$post,'job' => $job ]);
     }
     public function tab_pay()
     {

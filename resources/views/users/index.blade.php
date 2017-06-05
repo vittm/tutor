@@ -67,27 +67,32 @@
 					 	</div>
 				</div>
 			</div>
-			<form class="col-md-12 pd0 form-register-couser">
-				<p>Đăn ký học với gia sư</p>
-				<select class="form-control">
-						<option value="Khoá học tâm lý cơ">Khoá học tâm lý cơ</option>
+			<form class="col-md-12 pd0 form-register-couser" method="Post" enctype="multiple/part" action="{{ url('/couser/register')}}">
+				<p>Đăng ký học với gia sư</p>
+				{{ csrf_field() }}
+				<input type="hidden" name="user_login" value="{!! Auth::id() !!}">
+				<select class="form-control" name="selectCouser">
+
+						@foreach($couser as $value)
+							<option value="{ $value->title}}">{{ $value->title}}</option>
+						@endforeach
 				</select>
 				<p>Dự kiến số buổi học/tuần</p>
-				<input type="text" name="" value="">
-				<p>Dự kiến số buổi học/tuần</p>
-				<input type="text" name="" value="">
+				<input class="form-control" type="text" name="planmoment" value="">
+				<p>Dự kiến số buổi giờ/tuần</p>
+				<input class="form-control" type="text" name="planetime" value="">
 				<p>Dự kiến học phí/tháng</p>
-				<input type="text" name="" value="3.000.00 đ">
-			</form>
+				<input class="form-control" type="text" name="price" value="3.000.00 đ">
 			<div class="col-md-12 pd0">
 				<!-- Button trigger modal -->
-					<button type="button" class="btn btn-origan btn-lg contact-user" data-toggle="modal" data-target="#contact-teach">
-						Đămg ký học thử
+					<button type="submit" class="btn btn-origan btn-lg contact-user">
+						Đăng ký học thử
 					</button>
 			</div>
 			<hr>
 			<p class="col-md-12 pd0" style="font-size: 12px; margin-top: 20px;"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt </p>
 			<p class="col-md-12 pd0" style="font-size: 12px"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt </p>
+		</form>
 		</div>
 		</div>
 	  <!-- Tab panes -->
@@ -135,7 +140,7 @@
 					 </div>
 				</div>
 
-	    	
+
 
 	    	 <br>
 
