@@ -20,8 +20,6 @@ class CouserController extends Controller
 
     public function __construct()
     {
-
-
     }
 
     public function look(Request $request, $id) {
@@ -66,9 +64,88 @@ class CouserController extends Controller
           $db->program = $input['program'];
           $db->timetype1 = json_encode($arr1);
           $db->price = $input['id_user'];
+          $db->typeCourse = '1';
           $db->save();
-        return redirect('/chinh-sua-ca-nhan-'.$id);
+        return redirect('/trang-ca-nhan-'.$id);
     }
+    public function adding_opening(Request $request, $id){
+      $input = $request->all();
+      $id = $input['id_user'];
+      $db = new Cousers;
+      if($files=$request->file('coverMain')){
+          $file = $input['coverMain'];
+          $filename = $file->getClientOriginalName();
+          $nameConvert = date('H-i-sYmd').$filename;
+          $file->move(public_path().'/img/couser', $nameConvert);
+      }else{
+          $nameConvert= 'couser.jpg';
+      }
+          $db->id = $id;
+          $db->picture = $input['picuture'];
+          $db->title = $input['title'];
+          $db->who = $input['who'];
+          $db->information = $input['information'];
+          $db->study = $input['study'];
+          $db->type = $input['type'];
+          $db->program = $input['program'];
+          $db->opentime =  $input['opentime'];
+          $db->closetime =  $input['closetime'];
+          $db->timeplan = $input['timeplan'];
+          $db->typeCourse = '2';
 
+          $db->save();
+          return redirect('/trang-ca-nhan-'.$id);
+      }
+      public function editing_opening(Request $request, $id){
+        $input = $request->all();
+        $id = $input['id_user'];
+
+
+        $profile= ([
+            'name' => $input['name'],
+            'title' => $input['title-profile'],
+            'field' => $input['edit-profile__field'],
+            'subjects' => $input['filed-subject'],
+            'date' => $input['edit-profile__date'],
+            'gender' => $input['gender'],
+            'ward' => $input['ward'],
+            'district' =>  $input['distric'],
+            'city' =>  $input['city'],
+            'expericen' => $input['edit-profile__exper'],
+            'jobs' => $input['edit-profile__jobs'],
+            'subjects' => $input['filed-subject']
+        ]);
+
+        DB::table('couser')->where('id', $id)->update($profile);
+        return redirect('/trang-ca-nhan-'.$id);
+      }
+      public function editing_opening(Request $request, $id){
+        $input = $request->all();
+        $id = $input['id_user'];
+
+
+        $profile= ([
+            'name' => $input['name'],
+            'title' => $input['title-profile'],
+            'field' => $input['edit-profile__field'],
+            'subjects' => $input['filed-subject'],
+            'date' => $input['edit-profile__date'],
+            'gender' => $input['gender'],
+            'ward' => $input['ward'],
+            'district' =>  $input['distric'],
+            'city' =>  $input['city'],
+            'expericen' => $input['edit-profile__exper'],
+            'jobs' => $input['edit-profile__jobs'],
+            'subjects' => $input['filed-subject']
+        ]);
+
+        DB::table('couser')->where('id', $id)->update($profile);
+        return redirect('/trang-ca-nhan-'.$id);
+      }
+
+      public function delete_message($couserid,$id){
+          $courser = DB::table('cousers')->where('id', '=', $couserid)->get();
+          return view('couser.edit', ['couser' => $couser ]);
+      }
 
 }

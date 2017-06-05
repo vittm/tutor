@@ -6,36 +6,40 @@
 <!-- Nav tabs -->
 <div class="col-md-3">
 <ul class="col-md-12 nav nav-tabs tab-edit-profile" role="tablist">
-  <li role="presentation"><a href="#avatar" aria-controls="home" role="tab" data-toggle="tab">Đăng khoá học mới</a></li>
-  <li role="presentation" class="active"><a href="#opening" aria-controls="home" role="tab" data-toggle="tab"> Đăng khoá học sắp khai giảng </a></li>
-  <li role="presentation"><a href="#password" aria-controls="home" role="tab" data-toggle="tab"> Mật Khẩu</a></li>
+  <li role="presentation"><a href="#avatar" aria-controls="home" role="tab" data-toggle="tab">Chỉnh sửa</a></li>
+  <li role="presentation" class="active"><a href="#opening" aria-controls="home" role="tab" data-toggle="tab"> Danh sách khóa học</a></li>
 </ul>
 </div>
 <div class="col-md-8">
 <!-- Tab panes -->
 <div class="tab-content edit-profile edit-couser">
   <div role="tabpanel" class="tab-pane active" id="add">
-    <form name="update-information" class="form-horizontal  edit-profile__form col-md-offset-1 col-md-11 pd0" role="form" method="POST" action="{{ url('/couser/adding') }}-{{ $id_user[0]->id }}" enctype='multipart/form-data'>
+    <form name="update-information" class="form-horizontal  edit-profile__form col-md-offset-1 col-md-11 pd0" role="form" method="POST" action="{{ url('/couser/editing')}}-{{$couser[0]->id}}-{{ $id_user[0]->id }}" enctype='multipart/form-data'>
                       {{ csrf_field() }}
-      <input type="hidden" name="id_user" value="{{ $id_user[0]->id}}">
-      <input type="hidden" name="picture" value="{{ $id_user[0]->avatar}}">
+      <input type="hidden" name="id_user" value="{{ $couser[0]->id_user}}">
+      <input type="hidden" name="picture" value="{{ $couser[0]->picuture}}">
+      <input type="hidden" name="cousertype" value="{{ $couser[0]->typeCourse}}">
+
       <div class="col-md-12 pd0 top10">
          <div class="col-md-3 "> Tiêu đề</div>
-         <div class="col-md-8"><textarea class="form-control" type="text" name="title" value=""></textarea></div>
+         <div class="col-md-8"><textarea class="form-control" type="text" name="title" value=""></textarea><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"></div>
       </div>
       <div class="col-md-12 pd0">
          <div class="col-md-3 "> Hình ảnh</div>
          <div class="col-md-7">
+           @if($couser[0]->picuture != null)
+ 						<img class="col-md-12 top30" src="{{ URL::to('/img/couser')}}/{{couser[0]->picuture}}" alt="..." class="img-thumbnail">
+ 					 @endif
            <input class="multiple-flie" type="file" name="imgCouser" >
          </div>
       </div>
       <div class="col-md-12 pd0">
          <div class="col-md-3 "> Giới thiệu tổng quát</div>
-         <div class="col-md-8"> <textarea class="form-control" name="information" value=""></textarea> </div>
+         <div class="col-md-8"> <textarea class="form-control" name="information" value=""></textarea><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"> </div>
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3">Bạn sẽ học được gì</div>
-        <div class="col-md-8"><textarea class="form-control" name="study" value=""></textarea></div>
+        <div class="col-md-8"><textarea class="form-control" name="study" value=""></textarea><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"></div>
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3">Ai nên tham gia</div>
@@ -45,13 +49,14 @@
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3"> Phương pháp giảng</div>
-        <div class="col-md-8"><textarea class="form-control" name="type"></textarea></div>
+        <div class="col-md-8"><textarea class="form-control" name="type"></textarea><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"></div>
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3">Chương trình học</div>
-        <div class="col-md-8"><textarea class="form-control" name="program" ></textarea>
+        <div class="col-md-8"><textarea class="form-control" name="program" ></textarea><img src="{{ URL::to('img/icon/inclined-pencil.png')}}">
      </div>
       </div>
+      @if($couser[0]->typeCourse == '1')
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3 top15"> Thời gian học</div>
         <div class="col-md-8">
@@ -201,9 +206,28 @@
           </ul>
         </div>
       </div>
+      @endif
+
+      @if($couser[0]->typeCourse == '2')
+        <div class="col-md-12 pd0 top10">
+          <div class="col-md-3">Thời gian bắt đầu</div>
+          <div class="col-md-8"><input type="date" class="form-control" name="opentime" ></input>
+          </div>
+        </div>
+        <div class="col-md-12 pd0 top10">
+          <div class="col-md-3">Dự kiến thời gian</div>
+          <div class="col-md-8"><input type="date" class="form-control" name="timeplan" ></input>
+          </div>
+        </div>
+        <div class="col-md-12 pd0 top10">
+          <div class="col-md-3">Thời gian kết thúc</div>
+          <div class="col-md-8"><input type="date" class="form-control" name="closetime" ></input>
+          </div>
+        </div>
+      @endif
       <div class="col-md-12 pd0 top30">
         <div class="col-md-3">Học phí</div>
-        <div class="col-md-8"><textarea class="form-control" name="price" value=""></textarea></div>
+        <div class="col-md-8"><textarea class="form-control" name="price" value=""></textarea><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"></div>
       </div>
     <div class="col-md-offset-6 col-md-4 pd0 top30">
         <div class="col-md-8 pd0 btn-edit save_edit-profile">
@@ -222,7 +246,7 @@
       <input type="hidden" name="picture" value="{{ $id_user[0]->avatar}}">
       <div class="col-md-12 pd0 top10">
          <div class="col-md-3 "> Tiêu đề</div>
-         <div class="col-md-8"><textarea class="form-control" type="text" name="title" value=""></textarea></div>
+         <div class="col-md-8"><textarea class="form-control" type="text" name="title" value=""></textarea><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"></div>
       </div>
       <div class="col-md-12 pd0">
          <div class="col-md-3 "> Hình ảnh</div>
@@ -232,11 +256,11 @@
       </div>
       <div class="col-md-12 pd0">
          <div class="col-md-3 "> Giới thiệu tổng quát</div>
-         <div class="col-md-8"> <textarea class="form-control" name="information" value=""></textarea> </div>
+         <div class="col-md-8"> <textarea class="form-control" name="information" value=""></textarea><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"> </div>
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3">Bạn sẽ học được gì</div>
-        <div class="col-md-8"><textarea class="form-control" name="study" value=""></textarea></div>
+        <div class="col-md-8"><textarea class="form-control" name="study" value=""></textarea><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"></div>
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3">Ai nên tham gia</div>
@@ -246,31 +270,36 @@
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3"> Phương pháp giảng</div>
-        <div class="col-md-8"><textarea class="form-control" name="type"></textarea></div>
+        <div class="col-md-8"><textarea class="form-control" name="type"></textarea><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"></div>
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3">Chương trình học</div>
-        <div class="col-md-8"><textarea class="form-control" name="program" ></textarea>
+        <div class="col-md-8"><textarea class="form-control" name="program" ></textarea><img src="{{ URL::to('img/icon/inclined-pencil.png')}}">
+        </div>
+      </div>
+      <div class="col-md-12 pd0 top10">
+        <div class="col-md-3">Chương trình học</div>
+        <div class="col-md-8"><textarea class="form-control" name="program" ></textarea><img src="{{ URL::to('img/icon/inclined-pencil.png')}}">
         </div>
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3">Thời gian bắt đầu</div>
-        <div class="col-md-8"><input type="date" class="form-control" name="opentime" ></input>
+        <div class="col-md-8"><input type="date" class="form-control" name="opentime" ></input><img src="{{ URL::to('img/icon/inclined-pencil.png')}}">
         </div>
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3">Dự kiến thời gian</div>
-        <div class="col-md-8"><input type="date" class="form-control" name="timeplan" ></input>
+        <div class="col-md-8"><input type="date" class="form-control" name="plantime" ></input><img src="{{ URL::to('img/icon/inclined-pencil.png')}}">
         </div>
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3">Thời gian kết thúc</div>
-        <div class="col-md-8"><input type="date" class="form-control" name="closetime" ></input>
+        <div class="col-md-8"><input type="date" class="form-control" name="closetime" ></input><img src="{{ URL::to('img/icon/inclined-pencil.png')}}">
         </div>
       </div>
       <div class="col-md-12 pd0 top30">
         <div class="col-md-3">Học phí</div>
-        <div class="col-md-8"><textarea class="form-control" name="price" value=""></textarea></div>
+        <div class="col-md-8"><textarea class="form-control" name="price" value=""></textarea><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"></div>
       </div>
     <div class="col-md-offset-6 col-md-4 pd0 top30">
         <div class="col-md-8 pd0 btn-edit save_edit-profile">

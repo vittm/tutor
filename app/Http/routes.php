@@ -56,6 +56,9 @@ Route::group(['middleware' => ['auth']], function () {
 
 		Route::get('couser/add-{id}', 'CouserController@look');
 		Route::post('couser/adding-{id}', 'CouserController@adding_couser');
+		Route::post('couser/opening-{id}', 'CouserController@adding_opening');
+		Route::post('couser/editing-{couserid}-{id}', 'CouserController@editing_couser');
+		Route::post('couser/edit-{couserid}-{id}', 'CouserController@edit_couser');
 
     Route::get('danh-sach-tin-nhan-{id}', 'UserController@listing_message');
     Route::get('chi-tiet-tin-nhan-{watch}', 'UserController@detail_message');
