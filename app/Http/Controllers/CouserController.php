@@ -54,7 +54,7 @@ class CouserController extends Controller
         $afternoon= 0;
       }
       $arr1=array('morning'=>$morning,'afternoon'=>$afternoon, 'night'=> $night );
-          $db->id = $id;
+          $db->id_user = $id;
           $db->picture = $nameConvert;
           $db->title = $input['title'];
           $db->who = $input['who'];
@@ -80,7 +80,7 @@ class CouserController extends Controller
       }else{
           $nameConvert= 'couser.jpg';
       }
-          $db->id = $id;
+          $db->id_user = $id;
           $db->picture = $input['picuture'];
           $db->title = $input['title'];
           $db->who = $input['who'];
@@ -96,7 +96,7 @@ class CouserController extends Controller
           $db->save();
           return redirect('/trang-ca-nhan-'.$id);
       }
-      public function editing_opening(Request $request, $id){
+      public function editing_couser(Request $request, $id){
         $input = $request->all();
         $id = $input['id_user'];
 
@@ -143,8 +143,8 @@ class CouserController extends Controller
         return redirect('/trang-ca-nhan-'.$id);
       }
 
-      public function delete_message($couserid,$id){
-          $courser = DB::table('cousers')->where('id', '=', $couserid)->get();
+      public function edit_couser($couserid){
+          $couser = DB::table('cousers')->where('id', '=', $couserid)->get(); 
           return view('couser.edit', ['couser' => $couser ]);
       }
 
