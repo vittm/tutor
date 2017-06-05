@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Couser extends Authenticatable
+class Cousers extends Authenticatable
 {
 
 }

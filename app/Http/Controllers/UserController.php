@@ -6,7 +6,6 @@ use View;
 use DB;
 use Auth;
 use App\User;
-use App\Experiences;
 use App\Learns;
 use App\Ratings;
 use App\Messages;
@@ -26,7 +25,6 @@ class UserController extends Controller
     public function myprofile($id)
     {
         $id_user = DB::table('users')->where('id', '=', $id)->get();
-        $exp = DB::table('experiences')->where('id_user', '=', $id)->get();
         $post= DB::table('posts')->where('id_user', '=', $id)->get();
         $contact= explode(',', $id_user[0]->field);
         $subject= explode(',', $id_user[0]->subjects);
@@ -81,7 +79,6 @@ class UserController extends Controller
 
     public function edit(Request $request, $id) {
         $id_user = DB::table('users')->where('id', '=', $id)->get();
-        $exp = DB::table('experiences')->where('id_user', '=', $id)->get();
         $time = json_decode($id_user[0]->time_learn,JSON_BIGINT_AS_STRING);
         $learn = DB::table('learns')->where('id_user', '=', $id)->get();
         $job= json_decode($id_user[0]->job,JSON_BIGINT_AS_STRING);
@@ -96,15 +93,16 @@ class UserController extends Controller
           $file = $input['coverMain'];
           $filename = $file->getClientOriginalName();
           $nameConvert = date('H-i-sYmd').$filename;
-          $file->move(public_path().'/img/couser', $nameConvert);
+          $file->move(public_path().'/img/cover', $nameConvert);
       }else{
           $nameConvert=$input['cover'];
       }
         $profile= ([
-          'picture' => $nameConvert
+          'cover' => $nameConvert,
+          'avatar' => $nameConvert1
         ]);
 
-        DB::table('couser')->where('id', $id)->update($profile);
+        DB::table('users')->where('id', $id)->update($profile);
         return redirect('/chinh-sua-ca-nhan-'.$id);
     }
     public function editing_picture(Request $request, $id){

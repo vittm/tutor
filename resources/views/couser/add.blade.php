@@ -49,7 +49,7 @@
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3">Chương trình học</div>
-        <div class="col-md-8"><textarea class="form-control" name="edit-profile__jobs" ></textarea><img src="{{ URL::to('img/icon/inclined-pencil.png')}}">
+        <div class="col-md-8"><textarea class="form-control" name="program" ></textarea><img src="{{ URL::to('img/icon/inclined-pencil.png')}}">
      </div>
       </div>
       <div class="col-md-12 pd0 top10">

@@ -6,8 +6,7 @@ use View;
 use DB;
 use Auth;
 use App\User;
-use App\Couser;
-use App\Experiences;
+use App\Cousers;
 use App\Learns;
 use App\Ratings;
 use App\Messages;
@@ -32,30 +31,42 @@ class CouserController extends Controller
     public function adding_couser(Request $request, $id){
       $input = $request->all();
       $id = $input['id_user'];
-
+      $db = new Cousers;
       if($files=$request->file('coverMain')){
           $file = $input['coverMain'];
           $filename = $file->getClientOriginalName();
-          $nameConvert = date('H-i-s==Y-m-d==').'-'.$filename;
-          $file->move(public_path().'/img/cover', $nameConvert);
+          $nameConvert = date('H-i-sYmd').$filename;
+          $file->move(public_path().'/img/couser', $nameConvert);
       }else{
-          $nameConvert=$input['cover'];
+          $nameConvert= 'couser.jpg';
       }
-      if($request->hasFile('avatarMain')){
-          $file = $input['avatarMain'];
-          $filename1 = $file->getClientOriginalName();
-          $nameConvert1 = date('H-i-s==Y-m-d==').'-'.$filename1;
-          $file->move(public_path().'/img/avatar', $nameConvert1);
-      }else{
-          $nameConvert1 =$input['avatar'];
+      if($input['night'] != null ){
+        $night= $input['night'];
+      }else {
+        $night= 0;
       }
-
-        $profile= ([
-          'avatar' => $nameConvert,
-          'cover' => $nameConvert1
-        ]);
-
-        DB::table('users')->where('id', $id)->update($profile);
+      if($input['morning'] != null ){
+        $morning= $input['morning'];
+      }else {
+        $morning= 0;
+      }
+      if($input['afternoon'] != null ){
+        $afternoon= $input['afternoon'];
+      }else {
+        $afternoon= 0;
+      }
+      $arr1=array('morning'=>$morning,'afternoon'=>$afternoon, 'night'=> $night );
+          $db->id = $id;
+          $db->picture = $nameConvert;
+          $db->title = $input['title'];
+          $db->who = $input['who'];
+          $db->information = $input['information'];
+          $db->study = $input['study'];
+          $db->type = $input['type'];
+          $db->program = $input['program'];
+          $db->timetype1 = json_encode($arr1);
+          $db->price = $input['id_user'];
+          $db->save();
         return redirect('/chinh-sua-ca-nhan-'.$id);
     }
 
