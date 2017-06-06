@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div>
+<div class="col-md-12 pd0" style="background: #f7f7f7; border-right: 1px solid #eeeeee;">
 <!-- Nav tabs -->
 <div class="col-md-3">
 <ul class="col-md-12 nav nav-tabs tab-edit-profile" role="tablist">

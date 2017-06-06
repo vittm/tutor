@@ -67,20 +67,19 @@
 					 	</div>
 				</div>
 			</div>
-			<form class="col-md-12 pd0 form-register-couser" method="Post" enctype="multiple/part" action="{{ url('/couser/register')}}">
+			<form class="col-md-12 pd0 form-register-couser" method="get" enctype="multiple/part" action="{{ url('/couser/register')}}">
 				<p>Đăng ký học với gia sư</p>
 				{{ csrf_field() }}
 				<input type="hidden" name="user_login" value="{!! Auth::id() !!}">
 				<select class="form-control" name="selectCouser">
-
 						@foreach($couser as $value)
-							<option value="{ $value->title}}">{{ $value->title}}</option>
+							<option value="{{ $value->title }}">{{ $value->title}}</option>
 						@endforeach
 				</select>
 				<p>Dự kiến số buổi học/tuần</p>
 				<input class="form-control" type="text" name="planmoment" value="">
 				<p>Dự kiến số buổi giờ/tuần</p>
-				<input class="form-control" type="text" name="planetime" value="">
+				<input class="form-control" type="text" name="plantime" value="">
 				<p>Dự kiến học phí/tháng</p>
 				<input class="form-control" type="text" name="price" value="3.000.00 đ">
 			<div class="col-md-12 pd0">

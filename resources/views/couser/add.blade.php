@@ -2,13 +2,13 @@
 
 @section('content')
 
-<div>
+<div class="col-md-12 pd0" style="background: #f7f7f7; border-right: 1px solid #eeeeee;">
 <!-- Nav tabs -->
 <div class="col-md-3">
 <ul class="col-md-12 nav nav-tabs tab-edit-profile" role="tablist">
   <li role="presentation" class="active"><a href="#avatar" aria-controls="home" role="tab" data-toggle="tab">Đăng khoá học mới</a></li>
   <li role="presentation"><a href="#adding_opening" aria-controls="home" role="tab" data-toggle="tab"> Đăng khoá học sắp khai giảng </a></li>
-  <li role="presentation"><a href="#password" aria-controls="home" role="tab" data-toggle="tab"> Mật Khẩu</a></li>
+  <li role="presentation"><a href="#student" aria-controls="home" role="tab" data-toggle="tab"> Danh sách khóa học</a></li>
 </ul>
 </div>
 <div class="col-md-8">

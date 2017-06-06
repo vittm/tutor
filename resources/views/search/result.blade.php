@@ -1,7 +1,7 @@
 @extends('layouts.web')
 
 @section('content')
-<div class="col-md-12 pd0" style="background: #f7f7f7">
+<div class="col-md-12 pd0" style="background: #f7f7f7; border-right: 1px solid #eeeeee;">
 <div class="col-md-12 pd0" style="position:relative;background: #000;">
 	<img src="{{ url('img/cover1.png') }}" style="position:absolute;height: 376px; width: 100%;">
 </div>

@@ -23,6 +23,9 @@ body {
     font-size: 1.3rem;
     color: #161542;
 }
+p, h3, span, h4 {
+  color: #161542;
+}
 body a:hover {
     text-decoration: none;
 }
@@ -1621,7 +1624,6 @@ input[type="Email"] {
 /**** tab *****/
 
 body .tab-edit-profile {
-    border-right: 1px solid #eeeeee;
     border-bottom: none;
     background: #f7f7f7;
 }
@@ -11976,4 +11978,14 @@ blockquote .small:before {
     margin-top: 15px;
     background: #fcaf00;
     border-radius: 4px;
+}
+.list-student {
+  margin-bottom: 20px;
+  padding: 10px;
+  -webkit-box-shadow: 0px 3px 11px -3px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 3px 11px -3px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 3px 11px -3px rgba(0, 0, 0, 0.75);
+}
+.list-student p {
+  font-size: 15px;
 }

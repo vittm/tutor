@@ -83,9 +83,11 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ url('/chinh-sua-ca-nhan')}}-{{ Auth::user()->id }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Hồ sơ gia sư</a></li>
-                                    <li><a href="{{ url('/config-profile')}}-{{ Auth::user()->id }}"><i class="fa fa-file-text-o" aria-hidden="true"></i>Sửa thông tin</a></li>
-                                    <li><a href="{{url('/danh-sach-tin-nhan')}}-{{Auth::user()->id}}"><i class="fa fa-envelope-o" aria-hidden="true"></i> Hộp Tin Nhắn</a></li>
+                                    <li><a href="{{ url('/trang-ca-nhan')}}-{{ Auth::user()->id }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Trang cá nhân</a></li>
+                                    <li><a href="{{ url('/chinh-sua-ca-nhan')}}-{{ Auth::user()->id }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Chỉnh sửa hồ sơ</a></li>
+                                    <li><a href="{{ url('/add')}}-{{ Auth::user()->id }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Th</a></li>
+                                    <li><a href="{{ url('/quan-ly-hoc-vien')}}"><i class="fa fa-file-text-o" aria-hidden="true"></i>Quản lý thông tin học viên</a></li>
+                                    <li><a href="{{ url('/chinh-sua-ca-nhan')}}-{{ Auth::user()->id }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Chỉnh sửa hồ sơ</a></li>
                                     @if(Auth::user()->active == 0)
                                     <li><a href="{{ url('/admin/text') }}"><i class="fa fa-cogs" aria-hidden="true"></i>Admin</a></li>
                                      <li><a href="{{ url('/thanh-toan')}}"><i class="fa fa-file-text-o" aria-hidden="true"></i>Thanh Toán</a></li>
