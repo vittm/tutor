@@ -98,6 +98,14 @@ class UserController extends Controller
       }else{
           $nameConvert=$input['cover'];
       }
+      if($files=$request->file('avatarMain')){
+          $file1 = $input['avatarMain'];
+          $filename = $file->getClientOriginalName();
+          $nameConvert1 = date('H-i-sYmd').$filename1;
+          $file->move(public_path().'/img/avatar', $nameConvert1);
+      }else{
+          $nameConvert1=$input['avatar'];
+      }
         $profile= ([
           'cover' => $nameConvert,
           'avatar' => $nameConvert1

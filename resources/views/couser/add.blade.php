@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="col-md-12 pd0" style="background: #f7f7f7; border-right: 1px solid #eeeeee;">
+<div class="col-md-12 pd0" style="background: #f7f7f7; padding-top: 40px;">
 <!-- Nav tabs -->
 <div class="col-md-3">
 <ul class="col-md-12 nav nav-tabs tab-edit-profile" role="tablist">
@@ -11,7 +11,7 @@
   <li role="presentation"><a href="#student" aria-controls="home" role="tab" data-toggle="tab"> Danh sách khóa học</a></li>
 </ul>
 </div>
-<div class="col-md-8">
+<div class="col-md-8" style="border-left: 1px solid #eeeeee;">
 <!-- Tab panes -->
 <div class="tab-content edit-profile edit-couser">
   <div role="tabpanel" class="tab-pane active" id="add">
@@ -81,7 +81,7 @@
              </div>
             <div class="col-md-8 pd0">
                @for( $i = 0; $i <= 21 ; $i++ )
-                   <li class="col-md-3">
+                   <li class="col-md-4">
                      <input type="hidden" name="morning[]" value="0">
                      <input type="checkbox" name="morning[]" value="1" id="morning{{$i}}">
                      <label for="morning{{$i}}"></label>

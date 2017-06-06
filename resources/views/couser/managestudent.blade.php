@@ -1,13 +1,13 @@
 @extends('layouts.web')
 
 @section('content')
-<div class="container pd0" style="background: #f7f7f7;margin-top: 40px; padding-top: 40px;">
+<div class="container pd0" style="background: #f7f7f7; padding-top: 40px;">
 <div class="col-md-3">
 <ul class="col-md-12 nav nav-tabs tab-edit-profile" role="tablist">
   <li role="presentation" class="active"><a href="#opening" aria-controls="home" role="tab" data-toggle="tab">Học viên đăng ký thử</a></li>
 </ul>
 </div>
-<div class="col-md-9">
+<div class="col-md-9" style="border-left: 1px solid #eeeeee;">
 <!-- Tab panes -->
 <div class="tab-content edit-profile edit-couser">
   <div role="tabpanel" class="tab-pane active" id="add">

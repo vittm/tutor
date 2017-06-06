@@ -1,31 +1,34 @@
 @extends('layouts.web')
 
 @section('content')
-<div class="col-md-12 pd0" style="background: #f7f7f7; border-right: 1px solid #eeeeee;">
-<div class="col-md-12 pd0" style="position:relative;background: #000;">
-	<img src="{{ url('img/cover1.png') }}" style="position:absolute;height: 376px; width: 100%;">
+<div class="col-md-12 pd0" style="background: #f7f7f7;">
+<div class="col-md-12 pd0 cover-search">
+	<img src="{{ url('img/cover1.png') }}" style="display:block;width:100%;margin: auto; height: 100%;">
+	<h3 class="cover-search__title"> Tìm ngay gia sư, thổi bay lo lắng </h3>
+	<form class="container" style="position:absolute;z-index: 1;top:15%;left:0;right:0;margin: auto" action="{{ url('/find-teach') }}" role="form" method="GET" enctype='multipart/form-data'>
+	<div class="container search_teach">
+		<div class="col-md-12 col-xs-12 group_search_one pad0">
+					<ul class="col-md-offset-1 col-md-10 search">
+							<li><input type="text" placeholder="Địa điểm" name="address-find"><img src="img/icon/placeholder.png"></li>
+							<li><input type="text" placeholder="Lĩnh Vực" name="valueField" type="text" aria-describedby="inputSuccess2Status"><img src="img/icon/multi-tab.png"></li>
+							<li><input type="text" placeholder="Môn học" name="valueSubject"><img src="img/icon/open-book.png" aria-describedby="inputSuccess2Status" id="subject-find" ></li>
+							<li><input type="text" placeholder="Nội dung học" name="contentSubject"><img src="img/icon/bar-chart.png"></li>
+							<li class="icon-search submit_search">
+							<button type="submit" name="academic" placeholder=""><img src="img/icon/search.png"></button></li>
+					</ul>
+		</div>
+	</div>
+	</form>
 </div>
 <form class="container" action="{{ url('/find-teach') }}" role="form" method="GET" enctype='multipart/form-data'>
-<div class="container search_teach">
-	<div class="col-md-12 col-xs-12 group_search_one pad0">
-				<ul class="col-md-offset-1 col-md-10 search">
-						<li><input type="text" placeholder="Địa điểm" name="address-find"><img src="img/icon/placeholder.png"></li>
-						<li><input type="text" placeholder="Lĩnh Vực" name="valueField" type="text" aria-describedby="inputSuccess2Status"><img src="img/icon/multi-tab.png"></li>
-						<li><input type="text" placeholder="Môn học" name="valueSubject"><img src="img/icon/open-book.png" aria-describedby="inputSuccess2Status" id="subject-find" ></li>
-						<li><input type="text" placeholder="Nội dung học" name="contentSubject"><img src="img/icon/bar-chart.png"></li>
-						<li class="icon-search submit_search">
-						<button type="submit" name="academic" placeholder=""><img src="img/icon/search.png"></button></li>
-				</ul>
-	</div>
-</div>
-<div class="container" style="border-bottom: 1px solid #161542;">
-	<div class="sortby">
-		<ul><li>Sắp sếp theo: </li>
-			<li><button type="submit" name="rating" value="rating">Đánh giá cao nhất</button></li>
-			<li><button type="submit" name="lowestPrice" value="lowestPrice">Học phí tốt nhất</button></li>
-		</ul>
-	</div>
-	</div>
+	<div class="container" style="border-bottom: 1px solid #161542;">
+		<div class="sortby">
+			<ul><li>Sắp sếp theo: </li>
+				<li><button type="submit" name="rating" value="rating">Đánh giá cao nhất</button></li>
+				<li><button type="submit" name="lowestPrice" value="lowestPrice">Học phí tốt nhất</button></li>
+			</ul>
+		</div>
+		</div>
 </form>
 <div class="container clear">
 	<div class="col-md-9">
@@ -34,7 +37,7 @@
 			<div class="col-md-9 pd0 information-profile">'
 				<div class="col-md-4">
 					<img src="{{ URL::to('img/avatar')}}/{{ $value->avatar}}" alt="..." class="img-circle dl" height="120" width="120">
-					<h3 class="text-center">{{ $value->name }}<img class="sticker-verify" src="{{ URL::to('img/icon/VectorSmartObjectcop.png')}}" alt=""></h3>
+					<h3 class="text-center"><?php $str = explode(' ', $value->name); ?>{{end($str)}} {{reset($str)}} <img class="sticker-verify" src="{{ URL::to('img/icon/VectorSmartObjectcop.png')}}" alt=""></h3>
 					<p  class="text-center">{{ $value->jobs }}, {{ $value->city }}</p>
 			    </div>
 				<div class="col-md-8">

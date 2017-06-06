@@ -3,17 +3,17 @@
 @section('content')
 
 
-	<div class="container">
-
-		<div class="col-md-9 pd0">
-			<div class="col-md-4">
+	<div class="container" style="margin-top: -10rem;">
+		<img src="{{ URL::to('img/cover')}}/{{ $id_user[0]->cover}}" alt="..." style="display:block;margin: auto;width: 100%;">
+		<div class="col-md-9 pd0" style="margin-top: -6rem;">
+			<div class="col-md-4 pd0">
 				<img src="{{ URL::to('img/avatar')}}/{{ $id_user[0]->avatar}}" alt="..." class="img-circle avatar-profile" height="150" width="150">
 			</div>
 
-			<div class=" @if($id_user[0]->id == current($status) ) col-md-8 @else col-md-4  @endif information-profile">
-				<h3><?php $str = explode(' ', $id_user[0]->name); ?>{{end($str)}} {{reset($str)}} <img class="sticker-verify" src="{{ URL::to('img/icon/VectorSmartObjectcop.png')}}" alt=""></h3>
+			<div class=" @if($id_user[0]->id == current($status) ) col-md-8 @else col-md-4  @endif information-profile pd0">
+				<h3 style="color: #ffffff;"><?php $str = explode(' ', $id_user[0]->name); ?>{{end($str)}} {{reset($str)}} <img class="sticker-verify" src="{{ URL::to('img/icon/VectorSmartObjectcop.png')}}" alt=""></h3>
 				<span> Giáo viên từ Quận {{ $id_user[0]->district }}, {{ $id_user[0]->city }}</span>
-				<h3>{{ $id_user[0] -> title }} </h3>
+				<h3 style="margin-top: 3rem;color: #ffffff;">{{ $id_user[0] -> title }} </h3>
 			</div>
 			<div class="col-md-12 action-menu">
 				<div class="col-md-4 action-menu__left">
@@ -77,11 +77,11 @@
 						@endforeach
 				</select>
 				<p>Dự kiến số buổi học/tuần</p>
-				<input class="form-control" type="text" name="planmoment" value="">
+				<input class="form-control" type="text" placeholder="3 ngày"name="planmoment">
 				<p>Dự kiến số buổi giờ/tuần</p>
-				<input class="form-control" type="text" name="plantime" value="">
+				<input class="form-control" type="text" placeholder="3 tiếng"name="plantime">
 				<p>Dự kiến học phí/tháng</p>
-				<input class="form-control" type="text" name="price" value="3.000.00 đ">
+				<input class="form-control" type="text" placeholder="3.000.00 VNĐ"name="price">
 			<div class="col-md-12 pd0">
 				<!-- Button trigger modal -->
 					<button type="submit" class="btn btn-origan btn-lg contact-user">

@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div>
+<div class="col-md-12 pd0" style="background: #f7f7f7; padding-top: 40px;">
   <!-- Nav tabs -->
   <div class="col-md-3">
   <ul class="col-md-12 nav nav-tabs tab-edit-profile" role="tablist">
@@ -95,7 +95,7 @@
 			<form class="form-horizontal  edit-profile__form col-md-12 pd0" role="form" method="POST" action="{{ url('/editing/style') }}-{{ $id_user[0]->id }}" enctype='multipart/form-data'>
                         {{ csrf_field() }}
         <input type="hidden" name="id_user" value="{{ $id_user[0]->id}}">
-        <input type="hidden" name="picture" value="{{ $id_user[0]->avatar}}">
+        <input type="hidden" name="avatar" value="{{ $id_user[0]->avatar}}">
 				<input type="hidden" name="cover" value="{{ $id_user[0]->cover}}">
 
 			<div class="col-md-8 top30">

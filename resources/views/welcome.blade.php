@@ -90,7 +90,7 @@
         <h3 class="u-text-right">News</h3>
         <a href="#" class="col-sm-6 col-md-6 u-padding-rt2p5">
             <div class="thumbnail">
-                <img src="img/15894445_838530309639542_2349149972623187983_n.jpg" alt="...">
+                <img src="img/SchooluniformofJapan.png" alt="...">
                 <div class="caption">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
                 </div>
@@ -98,7 +98,7 @@
         </a>
         <a href="#" class="col-sm-6 col-md-6 u-padding-lf2p5">
             <div class="thumbnail">
-                <img src="img/15894445_838530309639542_2349149972623187983_n.jpg" alt="...">
+                <img src="img/SchooluniformofJapan.png" alt="...">
                 <div class="caption">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
                 </div>
@@ -106,7 +106,7 @@
         </a>
         <a href="#" class="col-sm-12 col-md-12">
             <div class="thumbnail thumbnail-last">
-            <img src="img/12806213_10154113581409903_7694427345698942710_n.jpg" alt="...">
+            <img src="img/bannerweb.png" alt="...">
                 <div class="caption">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
                 </div>
@@ -118,10 +118,10 @@
         <h3 class="u-text-left">Anythings</h3>
         <ul class="question-social">
             <li>
-                <h6>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat.</h6>
+                consequat.</h5>
                 <span>Câu trả lời hay nhất</span>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -130,10 +130,10 @@
                 <button>Trả lời</button>
             </li>
             <li>
-                <h6>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat.</h6>
+                consequat.</h5>
                 <span>Câu trả lời hay nhất</span>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -142,10 +142,10 @@
                 <button>Trả lời</button>
             </li>
             <li>
-                <h6>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat.</h6>
+                consequat.</h5>
                 <span>Câu trả lời hay nhất</span>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -162,9 +162,11 @@
 	</div>
     </div>
 </section>
-    <div class="container top30 @if($show[2]->value != '1') hidden @endif">
+<br>
+<br>
+    <div class="container @if($show[2]->value != '1') hidden @endif">
         <h3 class="text-center"> CÁC MÔN HỌC NỔI BẬT </h3>
-    <ul class="listing-subject-hot">
+    <ul class="listing-subject-hot top30">
         <li class="col-md-4">
             <a href="{{ url('/find-teach?valueField=&valueSubject=english')}}"class="thumbnail col-md-12">
                 <img src="img/Layer3.png" alt="...">
@@ -281,6 +283,10 @@
     </div>
 
 
-
+<style>
+.main {
+	margin-top: 0;
+}
+</style>
 
 @endsection
