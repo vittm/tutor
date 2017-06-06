@@ -6,8 +6,8 @@
 <!-- Nav tabs -->
 <div class="col-md-3">
 <ul class="col-md-12 nav nav-tabs tab-edit-profile" role="tablist">
-  <li role="presentation"><a href="#avatar" aria-controls="home" role="tab" data-toggle="tab">Đăng khoá học mới</a></li>
-  <li role="presentation" class="active"><a href="#opening" aria-controls="home" role="tab" data-toggle="tab"> Đăng khoá học sắp khai giảng </a></li>
+  <li role="presentation" class="active"><a href="#avatar" aria-controls="home" role="tab" data-toggle="tab">Đăng khoá học mới</a></li>
+  <li role="presentation"><a href="#adding_opening" aria-controls="home" role="tab" data-toggle="tab"> Đăng khoá học sắp khai giảng </a></li>
   <li role="presentation"><a href="#password" aria-controls="home" role="tab" data-toggle="tab"> Mật Khẩu</a></li>
 </ul>
 </div>
@@ -82,8 +82,8 @@
             <div class="col-md-8 pd0">
                @for( $i = 0; $i <= 21 ; $i++ )
                    <li class="col-md-3">
-                     {{ Form::hidden('morning[]', 0, false) }}
-                     {{ Form::checkbox('morning[]', 1, false, array('id'=>'morning'.$i)) }}
+                     <input type="hidden" name="morning[]" value="0">
+                     <input type="checkbox" name="morning[]" value="1" id="morning{{$i}}">
                      <label for="morning{{$i}}"></label>
                      <div class="check"></div>
                    </li>
@@ -106,7 +106,7 @@
     </div>
     </form>
   </div>
-  <div role="tabpanel" class="tab-pane active" id="add">
+  <div role="tabpanel" class="tab-pane" id="adding_opening">
     <form name="update-information" class="form-horizontal  edit-profile__form col-md-offset-1 col-md-11 pd0" role="form" method="POST" action="{{ url('/couser/adding') }}-{{ $id_user[0]->id }}" enctype='multipart/form-data'>
                       {{ csrf_field() }}
       <input type="hidden" name="id_user" value="{{ $id_user[0]->id}}">

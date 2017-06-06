@@ -1,15 +1,11 @@
 @charset "UTF-8";
 @media (min-width: 992px) {
-  .main-header {
-    background: url(../img/banner.png); }
-    .main-header nav {
-      border-bottom: 3px solid #000; }
+    .main-header nav { padding-top: 5px; padding-bottom: 5px;}
       .main-header nav .logo img {
         width: 100px; }
       .main-header nav .menu {
         list-style: none;
-        float: right;
-        margin-top: 2rem; }
+        margin-top: 3rem; }
         .main-header nav .menu li {
           display: inline; }
         .main-header nav .menu__item {
@@ -18,7 +14,9 @@
           text-decoration: none;
           text-transform: uppercase;
           font-weight: bold;
-          position: relative; }
+          position: relative;
+          color: #000000;
+        }
         .main-header nav .menu__item::after {
           position: absolute;
           content: ' ';
@@ -52,7 +50,7 @@
         height: 44px;
         padding-left: 44px; }
       .search li input:focus, .search li input:active {
-        border: none; }
+        border: none; outline: none;}
       .search li img {
         position: absolute;
         top: -3px;
@@ -103,12 +101,12 @@
     margin-bottom: 1.5em; }
   .timeline h1 {
     font-size: 1.3em;
-    color: #4B878D;
+    color: #161541;
     width: 90%;
     margin-top: 0;
     font-style: italic;
     text-align: right;
-    font-weight: 300; }
+    font-weight: 500; }
   .timeline p {
     letter-spacing: .5px;
     font-size: 1.1em;
@@ -127,7 +125,7 @@
     border-radius: 50%;
     z-index: 10; }
   .timeline a {
-    color: #38666a;
+    color: #161541;
     margin-left: .3em; }
   .dir-l {
     float: left; }
@@ -165,7 +163,7 @@
     padding: 15px;
     left: 48.1%;
     margin-left: -30px;
-    background: #161542; }
+    }
   .timeline-item {
     display: block;
     height: auto;
@@ -196,7 +194,7 @@
       color: #161542;
       font-size: 17px; }
     .social .thumbnail {
-      position: relative; }
+      position: relative; padding: 0;}
       .social .thumbnail .caption {
         position: absolute;
         bottom: 6px;
@@ -255,10 +253,12 @@
         padding: 15px; }
         .listing-subject-hot li .thumbnail .caption h3 {
           color: #fdb000;
-          font-size: 18px;
-          font-weight: 300; }
+          font-size: 20px;
+          font-weight: 500;
+          margin-top: 0;
+        }
         .listing-subject-hot li .thumbnail .caption ul {
-          margin-left: 0; }
+          margin-left: 0; padding-left: 0;}
           .listing-subject-hot li .thumbnail .caption ul li {
             display: inline;
             margin-left: 20px;

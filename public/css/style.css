@@ -21,6 +21,7 @@
 }
 body {
     font-size: 1.3rem;
+    color: #161542;
 }
 body a:hover {
     text-decoration: none;
@@ -55,6 +56,11 @@ div.pr5 {
 }
 div.well {
     background: #ffffff;
+}
+
+.dl {
+  display: block;
+  margin: auto;
 }
 @media (min-width: 1200px) {
     body main > .container {
@@ -151,7 +157,6 @@ figcaption:hover div {
     }
 }
 .global-header__login {
-    position: absolute;
     display: block;
     font-style: normal;
     font-weight: normal;
@@ -160,9 +165,6 @@ figcaption:hover div {
     -moz-osx-font-smoothing: grayscale;
     font-size: 1.3rem;
     text-transform: uppercase;
-    z-index: 2;
-    right: 2rem;
-    top: 3.6rem;
     list-style: none;
 }
 .global-header.sticky .global-header__logo-mini {
@@ -1194,9 +1196,9 @@ p {
     padding-left: 0;
 }
 .user-rating li {
-    list-style: none;
-    display: inline;
-    color: #FFD700;
+  position: relative;
+  list-style: none;
+  display: inline;
 }
 .user-rating li i {
     font-size: 44px;
@@ -1232,6 +1234,7 @@ div.information-profile {
     top: -3px;
 }
 .information-profile h3 {
+  margin-top: 0;
     margin-bottom: 0;
 }
 .information-profile > span {
@@ -1263,6 +1266,13 @@ div.information-profile {
 .btn-origan {
     background: #fcaf00;
     color: #ffffff;
+}
+.btn.btn-origan2 {
+  float: right!important;
+  background: transparent;
+  border: 1px solid #fcaf00;
+  color: #fcaf00;
+  font-weight: 500;
 }
 ul.tab-profile {
     border: none;
@@ -2181,11 +2191,13 @@ body .mess-post {
 }
 .list-profile {
     padding: 10px;
-    border-bottom: solid 1px #ccc;
+    -webkit-box-shadow: 0px 3px 11px -3px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 3px 11px -3px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 3px 11px -3px rgba(0, 0, 0, 0.75);
+    background: #ffffff;
 }
 .list-profile:hover {
     cursor: pointer;
-    background: rgba(204, 204, 204, 0.07);
 }
 .sortby {
     margin-top: 30px;
@@ -2204,7 +2216,7 @@ body .mess-post {
     font-weight: 500;
 }
 .sortby ul li button:focus {
-    color: #33cc66;
+    color: #fcaf00;
     outline: none;
 }
 body .notification {
@@ -6129,11 +6141,18 @@ blockquote .small:before {
         opacity: 1
     }
     .logo {
-        display: block
-    }
-    .logo>img {
         display: block;
-        height: 46px
+        text-align: center;
+        color: #000000;
+    }
+    .logo > img {
+        display: block;
+        height: 46px;
+        margin: auto;
+    }
+    .logo > p {
+      margin-top: 3px;
+      font-size: 13px;
     }
     .logo:hover {
         opacity: 1
@@ -11936,4 +11955,25 @@ blockquote .small:before {
 }
 .couser-time > .col-md-3 > p {
   margin-top:30px;
+}
+.main-header {
+  position: fixed;
+  top: 0;
+  z-index: 3;
+  width: 100%;
+  background: rgba(231, 226, 223, 0.92);
+}
+.main {
+  margin-top: 7rem;
+}
+.search_teach {
+  padding-top: 131px;
+  padding-bottom: 147px;
+}
+.border-origran {
+    height: 7px;
+    width: 50px;
+    margin-top: 15px;
+    background: #fcaf00;
+    border-radius: 4px;
 }

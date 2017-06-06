@@ -22,7 +22,7 @@
 					</div>
 
 					<div class="col-md-6">
-							<img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_3.png')}}" alt=""><p>Chia sẻ hồ sơ</p>
+							<img class="action-menu__icon " src="{{ URL::to('img/icon/VectorSmartObject_3.png')}}" alt=""><p>Chia sẻ hồ sơ</p>
 					</div>
 					<button type="button" class="btn col-md-12" style="background: #fcaf00; color: #ffffff;" name="button">Theo dõi </button>
 				</div>

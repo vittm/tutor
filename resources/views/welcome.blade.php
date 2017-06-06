@@ -2,7 +2,7 @@
 
 @section('content')
 <section>
-{{-- <!-- progressbar -->
+<!-- progressbar -->
 		<section id="progressbar-slider" class="sample slider--animated @if($show[0]->value != '1') hidden @endif" data-slidizle data-slidizle-loop="true" data-slidizle-timeout="3000" data-slidizle-pause-on-hover="true">
 
 			<ul class="slider-content" data-slidizle-content>
@@ -16,7 +16,7 @@
 				</li>
 			@endforeach
 			</ul>
-			
+
 			<div class="slider-next" data-slidizle-next>
 				<i class="fa fa-arrow-right"></i>
 			</div>
@@ -34,9 +34,9 @@
 			</ul>
 
 			<div class="slidizle-loading"> </div>
-		</section> --}}
+		</section>
     <form class="container" action="{{ url('/find-teach') }}" role="form" method="GET" enctype='multipart/form-data'>
-        <ul class="offset-md-1 col-md-10 search">
+        <ul class="col-md-offset-1 col-md-10 search">
             <li><input type="text" placeholder="Địa điểm" name="address-find"><img src="img/icon/placeholder.png"></li>
             <li><input type="text" placeholder="Lĩnh Vực" name="valueField" type="text" aria-describedby="inputSuccess2Status"><img src="img/icon/multi-tab.png"></li>
             <li><input type="text" placeholder="Môn học" name="valueSubject"><img src="img/icon/open-book.png" aria-describedby="inputSuccess2Status" id="subject-find" ></li>
@@ -46,44 +46,44 @@
         </ul>
     </form>
 
-    <div class="container">
-        <div class="why-select">VÌ SAO GIA SƯ CHỌN <img src="img/logo.png"></div>
+    <div class="container ">
+        <div class="why-select top30">VÌ SAO GIA SƯ CHỌN <img src="img/logo.png" style="position:relative; top: -9px;"></div>
     </div>
-    <div class="container">
-        <ul class="timeline">   
+    <div class="col-md-offset-2 col-md-8" style="background:url({{ url('img/bg_why.png')}})">
+        <ul class="timeline">
             <li class="timeline-item">
                 <figure class="timeline-icon">
-                    <img src="img/icon/placeholder.png" alt="timeline" />
+                    <img src="img/VectorSmartObject_1.png" alt="timeline" />
                 </figure>
                 <div class="dir-l radius-3">
                         <h1>Chi phí thấp</h1>
-                        <p> Phasellus dapibus pulvinar venenatis. Suspendisse turpis ipsum, venenatis in ipsum id, viverra ultricies quam. Proin eu orci non tortor cursus bibendum quis maximus tellus. Suspendisse imperdiet fermentum consectetur. Nunc euismod, turpis ut condimentum posuere, justo augue varius magna, non dapibus lectus lorem ac metus. Pellentesque augue enim, congue vehicula eleifend id, congue a tellus. Donec at est in felis rhoncus rutrum in ac leo.</p>
+                        <p> Phasellus dapibus pulvinar venenatis. Suspendisse turpis ipsum, venenatis in ipsum id, viverra ultricies quam. </p>
                 </div>
             </li>
 
             <li class="timeline-item">
                 <figure class="timeline-icon">
-                    <img src="img/icon/placeholder.png" alt="course" />
+                    <img src="img/VectorSmartObject.png" alt="course" />
                 </figure>
                 <div class="dir-r radius-3">
                         <h1>Tối đa hóa thu nhập</h1>
-                        <p> Phasellus dapibus pulvinar venenatis. Suspendisse turpis ipsum, venenatis in ipsum id, viverra ultricies quam. Proin eu orci non tortor cursus bibendum quis maximus tellus. Suspendisse imperdiet fermentum consectetur. Nunc euismod, turpis ut condimentum posuere, justo augue varius magna, non dapibus lectus lorem ac metus. Pellentesque augue enim, congue vehicula eleifend id, congue a tellus. Donec at est in felis rhoncus rutrum in ac leo.</p>
+                        <p> Phasellus dapibus pulvinar venenatis. </p>
                 </div>
             </li>
             <li class="timeline-item">
                 <figure class="timeline-icon">
-                    <img src="img/icon/placeholder.png" alt="course" />
+                    <img src="img/VectorSmartObject_0.png" alt="course" />
                 </figure>
                 <div class="dir-l radius-3">
                         <h1> Nhanh chóng </h1>
-                        <p> Phasellus dapibus pulvinar venenatis. Suspendisse turpis ipsum, venenatis in ipsum id, viverra ultricies quam. Proin eu orci non tortor cursus bibendum quis maximus tellus. Suspendisse imperdiet fermentum consectetur. Nunc euismod, turpis ut condimentum posuere, justo augue varius magna, non dapibus lectus lorem ac metus. Pellentesque augue enim, congue vehicula eleifend id, congue a tellus. Donec at est in felis rhoncus rutrum in ac leo.</p>
+                        <p> Phasellus dapibus pulvinar venenatis. Suspendisse turpis ipsum, venenatis in ipsum id, viverra ultricies quam.</p>
                 </div>
             </li>
         </ul>
     </div>
 
     <div class="container">
-        <div class="why-select"> CỘNG ĐỒNG <img src="img/logo.png"></div>
+        <div class="why-select top30"> CỘNG ĐỒNG <img src="img/logo.png" style="position:relative; top: -9px;"></div>
     </div>
     <div class="container social">
     <div class="col-md-6 line-straight col-one">
@@ -155,16 +155,19 @@
             </li>
         </ul>
     </div>
-    <h4>Bạn có thắc mắc với môn học của mình, hãy hỏi gia sư của chúng tôi ngay!</h4>
-    <button>Đặt câu hỏi ngay</button>
+		<div class="col-md-12 pd0 top30">
+    <h4 style="text-align: center; color: #161542;font-style: italic; display: block;">Bạn có thắc mắc với môn học của mình, hãy hỏi gia sư của chúng tôi ngay!</h4>
+    <button style="border: 1px solid #fdb000; color: #fdb000;padding-top: 5px; padding-bottom: 5px;border-radius: 8px; margin: auto; display: block;background: transparent;
+    ">Đặt câu hỏi ngay</button>
+	</div>
     </div>
 </section>
-    <div class="container @if($show[2]->value != '1') hidden @endif">
-        <h3> CÁC MÔN HỌC NỔI BẬT </h3>
+    <div class="container top30 @if($show[2]->value != '1') hidden @endif">
+        <h3 class="text-center"> CÁC MÔN HỌC NỔI BẬT </h3>
     <ul class="listing-subject-hot">
         <li class="col-md-4">
             <a href="{{ url('/find-teach?valueField=&valueSubject=english')}}"class="thumbnail col-md-12">
-                <img src="img/12806213_10154113581409903_7694427345698942710_n.jpg" alt="...">
+                <img src="img/Layer3.png" alt="...">
                 <div class="caption">
                     <h3> Tiếng Anh</h3>
                     <ul>
@@ -178,7 +181,7 @@
         </li>
         <li class="col-md-4">
             <a class="thumbnail col-md-12">
-                <img src="img/12806213_10154113581409903_7694427345698942710_n.jpg" alt="...">
+                <img src="img/Layer3.png" alt="...">
                 <div class="caption">
                     <h3> Tiếng Anh</h3>
                     <ul>
@@ -192,7 +195,7 @@
         </li>
         <li class="col-md-4">
             <div class="thumbnail">
-                <img src="img/12806213_10154113581409903_7694427345698942710_n.jpg" alt="...">
+                <img src="img/Layer3.png" alt="...">
                 <div class="caption">
                     <h3> Tiếng Anh</h3>
                     <ul>
@@ -206,7 +209,7 @@
         </li>
         <li class="col-md-4">
             <div class="thumbnail">
-                <img src="img/12806213_10154113581409903_7694427345698942710_n.jpg" alt="...">
+                <img src="img/mathematics702x336.png" alt="...">
                 <div class="caption">
                     <h3> Tiếng Anh</h3>
                     <ul>
@@ -220,7 +223,7 @@
         </li>
         <li class="col-md-4">
             <div class="thumbnail">
-                <img src="img/12806213_10154113581409903_7694427345698942710_n.jpg" alt="...">
+                <img src="img/researchlab2.png" alt="...">
                 <div class="caption">
                     <h3> Tiếng Anh</h3>
                     <ul>
@@ -234,7 +237,7 @@
         </li>
         <li class="col-md-4">
             <div class="thumbnail">
-                <img src="img/12806213_10154113581409903_7694427345698942710_n.jpg" alt="...">
+                <img src="img/PitchDropMarch2013cr.png" alt="...">
                 <div class="caption">
                     <h3> Tiếng Anh</h3>
                     <ul>
@@ -248,7 +251,7 @@
         </li>
         <li class="col-md-6">
             <div class="thumbnail">
-                <img src="img/15894445_838530309639542_2349149972623187983_n.jpg" alt="...">
+                <img src="img/accountantcopy.png" alt="...">
                 <div class="caption">
                     <h3> TIẾNG ANH </h3>
                     <ul>
@@ -262,7 +265,7 @@
         </li>
         <li class="col-md-6">
             <div class="thumbnail">
-                <img src="img/15894445_838530309639542_2349149972623187983_n.jpg" alt="...">
+                <img src="img/manreadingwebprogram.png" alt="...">
                 <div class="caption">
                     <h3> TIẾNG ANH </h3>
                     <ul>
@@ -277,7 +280,7 @@
     </ul>
     </div>
 
-	
+
 
 
 @endsection

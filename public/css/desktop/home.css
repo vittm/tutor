@@ -13,7 +13,9 @@ nav .menu {
     text-decoration: none;
     text-transform: uppercase;
     font-weight: bold;
-    position: relative; }
+    position: relative;
+    color: #000000;
+  }
   nav .menu__item:before {
     position: absolute;
     content: ' ';

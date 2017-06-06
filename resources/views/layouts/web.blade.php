@@ -51,20 +51,19 @@
 <section class="main-header">
   <nav class="container">
     <a href="{{ url('/') }}" class="col-md-3 logo">
-      <img  src="img/logo.png" alt="">
+      <img  src="{{ url('img/logo.png')}}" alt="">
+      <p>Tìm giáo viên, gia sư miễn phí </p>
     </a>
-    <div class="col-md-8">
+    <div class="col-md-offset-2 col-md-6">
       <ul class="menu">
         <li><a href="{{ URL('tim-kiem-gia-su') }}" class="menu__item">Tìm Giáo Viên</a></li>
         <li><a href="{{ url('blog') }}" class="menu__item">Cộng đồng</a></li>
-        <li><a href="#" class="menu__item">Đăng nhập</a></li>
+
         @if (Auth::guest())
-                            <ul class="global-header__login notlogined">
-                                <li><a href="{{ URL::to('/login') }}">Đăng Nhập</a></li>
-                            </ul>
+                            <li><a href="{{ url('login') }}" class="menu__item">Đăng nhập</a></li>
                         @else
 
-                            <ul class="global-header__login log--active">
+                            <li class="global-header__login log--active">
 
                             <li>
                             @if(strlen(Auth::user()->avatar) > 1)
@@ -94,13 +93,14 @@
                                     <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Đăng Xuất</a></li>
                                 </ul>
                             </li>
-                        </ul>
+                        </li>
                         @endif
       </ul>
     </div>
   </nav>
 </section>
-<main class="col-md-12 main" style="background: #f7f7f7;">
+<!-- style="background: #f7f7f7;" -->
+<main class="col-md-12 pd0 main" >
         @yield('content')
 
 

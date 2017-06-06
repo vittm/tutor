@@ -89,7 +89,7 @@
               @if(json_decode($couser[0]->timetype1) != null)
                 @foreach( json_decode($couser[0]->timetype1) as $key => $value )
                    <li class="col-md-3">
-                     {{ Form::hidden('morning[]', 0, false) }}
+                     <input type="hidden" name="morning[]" value="0">
                      <input type="checkbox" name="morning[]" value="1" id="morning{{$key}}" @if($value == '1') checked @endif >
                      <label for="morning{{$key}}"></label>
                      <div class="check"></div>
@@ -98,8 +98,8 @@
                 @else
                 @for( $i = 0; $i <= 21 ; $i++ )
                   <li class="col-md-3">
-                    {{ Form::hidden('morning[]', 0, false) }}
-                    {{ Form::checkbox('morning[]', 1, false, array('id'=>'morning'.$i)) }}
+                    <input type="hidden" name="morning[]" value="0">
+                    <input type="checkbox" name="morning[]" value="1" id="morning{{$i}}">
                     <label for="morning{{$i}}"></label>
                     <div class="check"></div>
                   </li>
