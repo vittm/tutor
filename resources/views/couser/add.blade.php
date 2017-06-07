@@ -27,9 +27,16 @@
          <div class="col-md-3 "> Hình ảnh</div>
          <div class="col-md-7">
            <input class="multiple-flie" type="file" name="imgCouser" >
+           <ul class="col-md-offset-2 col-md-9 gender__edit">
+ 						 <li>
+ 							 <input name="typeclass" type="radio" id="boy" value="1">
+ 							 <label for="boy">Khoá học có cung cấp <strong> Lớp học 1 + 1 </strong></label>
+ 							 <div class="check"></div>
+ 						 </li>
+           </ul>
          </div>
       </div>
-      <div class="col-md-12 pd0">
+      <div class="col-md-12 pd0 top15">
          <div class="col-md-3 "> Giới thiệu tổng quát</div>
          <div class="col-md-8"> <textarea class="form-control" name="information" value=""></textarea> </div>
       </div>
@@ -62,10 +69,10 @@
             <div class="col-md-3">
               Sáng
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 pd0">
               Trưa
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 pd0">
               Chiều
             </div>
           </div>
@@ -80,7 +87,7 @@
                 <p>Chủ Nhật</p>
              </div>
             <div class="col-md-8 pd0">
-               @for( $i = 0; $i <= 21 ; $i++ )
+               @for( $i = 0; $i < 21 ; $i++ )
                    <li class="col-md-4">
                      <input type="hidden" name="morning[]" value="0">
                      <input type="checkbox" name="morning[]" value="1" id="morning{{$i}}">
@@ -173,7 +180,23 @@
     </div>
     </form>
   </div>
+  <div role="tabpanel" class="tab-pane" id="student">
 
+  @foreach($couser as $key => $value)
+  <a class="col-md-6 list-couser wel">
+    <div class="col-md-12 pd0 list-couser__images" wel>
+      <div class="list-couser__typeCourse">siêu nhân gao</div>
+      <img src="{{ URL::to('/img/couser')}}/{{$value ->picture}}" style="width:100%">
+      <div class="list-couser__price btn btn-origan2">{{$value -> price}} <sup>Đ/ giờ </sup></div>
+    </div>
+      <div class="col-md-12 list-couser__name wel"> <h3> {{$value ->title }} </h3></div>
+      <div class="col-md-4 pd10 wel"><img src="{{ URL::to('/img/icon/inclined-pencil.png')}}" width="20px"><span> Chỉnh sửa </span></div>
+      <div class="col-md-4 pd10 wel"><img src="{{ URL::to('/img/icon/VectorSmartObject_3.png')}}"><span> Chia sẻ </span></div>
+      <div class="col-md-4 pd10 wel"><img src="{{ URL::to('/img/icon/inclined-pencil.png')}}"><span> Xoá</span></div>
+      <button class="btn btn-origan col-md-12 pd0">Thanh Toán </button>
+  </a>
+  @endforeach
+  </div>
 </div>
 </div>
 </div>

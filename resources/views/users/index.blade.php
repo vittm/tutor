@@ -3,29 +3,121 @@
 @section('content')
 
 
-	<div class="container" style="margin-top: -10rem;">
+	<div class="container pd0" style="margin-top: -10rem;background: #f7f7f7	">
+		@if($id_user[0]->cover != null)
 		<img src="{{ URL::to('img/cover')}}/{{ $id_user[0]->cover}}" alt="..." style="display:block;margin: auto;width: 100%;">
+		@else
+		<img src="{{ URL::to('img/cover/default.png')}}" alt="..." style="display:block;margin: auto;width: 100%;">
+		@endif
 		<div class="col-md-9 pd0" style="margin-top: -6rem;">
 			<div class="col-md-4 pd0">
-				<img src="{{ URL::to('img/avatar')}}/{{ $id_user[0]->avatar}}" alt="..." class="img-circle avatar-profile" height="150" width="150">
+				<img style="position: relative;z-index: 1;"src="{{ URL::to('img/avatar')}}/{{ $id_user[0]->avatar}}" alt="..." class="img-circle avatar-profile" height="150" width="150">
 			</div>
 
 			<div class=" @if($id_user[0]->id == current($status) ) col-md-8 @else col-md-4  @endif information-profile pd0">
 				<h3 style="color: #ffffff;"><?php $str = explode(' ', $id_user[0]->name); ?>{{end($str)}} {{reset($str)}} <img class="sticker-verify" src="{{ URL::to('img/icon/VectorSmartObjectcop.png')}}" alt=""></h3>
-				<span> Giáo viên từ Quận {{ $id_user[0]->district }}, {{ $id_user[0]->city }}</span>
-				<h3 style="margin-top: 3rem;color: #ffffff;">{{ $id_user[0] -> title }} </h3>
+				<span style="color: #ffffff;font-weight: 500;"> Giáo viên từ Quận {{ $id_user[0]->district }}, {{ $id_user[0]->city }}</span>
+				@if($id_user[0]->active == 2)
+				<h3 style="margin-top: 3rem;">{{ $id_user[0] -> title }} </h3>
+				@endif
 			</div>
-			<div class="col-md-12 action-menu">
+			<div class="col-md-12 action-menu profile-student">
 				<div class="col-md-4 action-menu__left">
-					<div class="col-md-6">
-							<img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_4.png')}}" alt=""><p>Lưu hồ sơ</p>
-					</div>
+					<div class="col-md-12 wel action-menu__left__share">
+						<div class="col-md-6 pdl">
+								<img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_4.png')}}" alt=""><p>Lưu hồ sơ</p>
+						</div>
 
-					<div class="col-md-6">
-							<img class="action-menu__icon " src="{{ URL::to('img/icon/VectorSmartObject_3.png')}}" alt=""><p>Chia sẻ hồ sơ</p>
-					</div>
-					<button type="button" class="btn col-md-12" style="background: #fcaf00; color: #ffffff;" name="button">Theo dõi </button>
+						<div class="col-md-6 pdr">
+								<img class="action-menu__icon " src="{{ URL::to('img/icon/VectorSmartObject_3.png')}}" alt=""><p>Chia sẻ hồ sơ</p>
+						</div>
+						<button type="button" class="btn col-md-12" style="background: #fcaf00; color: #ffffff;" name="button">Theo dõi </button>
 				</div>
+				<div class="col-md-12 wel pd10 follow-profile">
+						<img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_2.png')}}" alt="">
+						<span> <span> 34 </span> Người theo dõi</span>
+				</div>
+				<div class="col-md-12 wel pd10 follow-profile top15">
+						<img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_2.png')}}" alt="">
+						<span> <span> 34 </span> Đang theo dõi</span>
+						<div class="cold-md-12 pd0 top15">
+							<div class="col-md-4">
+								<img src="{{ URL::to('img/avatar/04-21-212017060549c8d33637cb126c6c0745ddf6f5f03e.jpg')}}" alt="..." class="img-circle dl" height="60" width="60">
+							</div>
+							<div class="col-md-4">
+								<img src="{{ URL::to('img/avatar/04-21-212017060549c8d33637cb126c6c0745ddf6f5f03e.jpg')}}" alt="..." class="img-circle dl" height="60" width="60">
+							</div>
+							<div class="col-md-4">
+								<img src="{{ URL::to('img/avatar/04-21-212017060549c8d33637cb126c6c0745ddf6f5f03e.jpg')}}" alt="..." class="img-circle dl" height="60" width="60">
+							</div>
+							<div class="col-md-4">
+								<img src="{{ URL::to('img/avatar/04-21-212017060549c8d33637cb126c6c0745ddf6f5f03e.jpg')}}" alt="..." class="img-circle dl" height="60" width="60">
+							</div>
+							<div class="col-md-4">
+								<img src="{{ URL::to('img/avatar/04-21-212017060549c8d33637cb126c6c0745ddf6f5f03e.jpg')}}" alt="..." class="img-circle dl" height="60" width="60">
+							</div>
+							<div class="col-md-4">
+								<img src="{{ URL::to('img/avatar/04-21-212017060549c8d33637cb126c6c0745ddf6f5f03e.jpg')}}" alt="..." class="img-circle dl" height="60" width="60">
+							</div>
+							<div class="col-md-4">
+								<img src="{{ URL::to('img/avatar/04-21-212017060549c8d33637cb126c6c0745ddf6f5f03e.jpg')}}" alt="..." class="img-circle dl" height="60" width="60">
+							</div>
+							<div class="col-md-4">
+								<img src="{{ URL::to('img/avatar/04-21-212017060549c8d33637cb126c6c0745ddf6f5f03e.jpg')}}" alt="..." class="img-circle dl" height="60" width="60">
+							</div>
+							<div class="col-md-4">
+								<img src="{{ URL::to('img/avatar/04-21-212017060549c8d33637cb126c6c0745ddf6f5f03e.jpg')}}" alt="..." class="img-circle dl" height="60" width="60">
+							</div>
+
+						</div>
+				</div>
+				<div class="col-md-12">
+
+				</div>
+				</div>
+				<div class="col-md-8 pd0">
+					<div class="col-md-12 wel">
+ 					 <h3>{!! $id_user[0]->title !!}</h3>
+ 					 <div class="col-md-12 pd0 top10">
+ 					 		<div class="col-md-4 "><img src="img/icon/VectorSmartObject_6.png" alt=""> Họ và Tên</div>
+ 					 		<div class="col-md-8"><strong>{!! $id_user[0]->name !!}</strong></div>
+ 				 	 </div>
+ 					 <div class="col-md-12 pd0 top10">
+ 						 <div class="col-md-4"><img src="img/icon/VectorSmartObject_7.png" alt=""> Ngày sinh</div>
+ 						 <div class="col-md-8"><strong>{!! $id_user[0]->date !!}</strong></div>
+ 				   </div>
+ 					 <div class="col-md-12 pd0 top10">
+ 					 <div class="col-md-4"><img src="img/icon/VectorSmartObject_5.png" alt=""> Giới tính</div>
+ 					 <div class="col-md-8"><strong>@if( $id_user[0]->gender == 1 ) {{ ' Nam'}} @else {{ 'Nữ '}} @endif</strong></div>
+ 					 </div>
+ 					 <div class="col-md-12 pd0 top10">
+ 					 <div class="col-md-4"><img src="img/icon/VectorSmartObject_8.png" alt=""> Địa chỉ</div>
+ 					 <div class="col-md-8"><strong>{!! $id_user[0]->ward !!} {!! $id_user[0]->district !!} TP {!! $id_user[0]->city !!}</strong></div>
+ 					 </div>
+ 					 <div class="col-md-12 pd0 top10">
+ 					 <div class="col-md-4"> Học vấn</div>
+ 					 <div class="col-md-8"><strong>{!!  $id_user[0]->expericen !!}</strong></div>
+ 					 </div>
+ 					 <div class="col-md-12 pd0 top10">
+ 					 <div class="col-md-4"> Hiện là</div>
+ 					 <div class="col-md-8"><strong>{!!  $id_user[0]->jobs !!}</strong>
+ 					</div>
+ 					 </div>
+ 					 <div class="col-md-12 pd0 top10">
+ 					 <div class="col-md-4"> Lĩnh vực giảng dạy</div>
+ 					 <div class="col-md-8"><strong>{!! $id_user[0]->field !!}</strong></div>
+ 					 </div>
+ 					 <div class="col-md-12 pd0 top10">
+ 					 <div class="col-md-4"> Xác nhận hồ sơ vào ngày</div>
+ 					 <div class="col-md-8"><strong>{!! $id_user[0]->created_at !!}</strong></div>
+ 					 </div>
+ 					 <div class="col-md-12 pd0 top10">
+ 						 <div class="col-md-4"> Cập nhập lần cuối</div>
+ 						 <div class="col-md-8"><strong>{!! $id_user[0]->updated_at !!}</strong></div>
+ 					 </div>
+ 				</div>
+				</div>
+					@if($id_user[0]->active == 2)
 				<div class="col-md-8">
 					<div class="col-md-3">
 						<p class="action-menu__counter">{{ $id_user[0] -> viewed }}</p><p>Người theo dõi</p><img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_2.png')}}" alt="">
@@ -40,7 +132,9 @@
 						<p class="action-menu__counter">{{ 5 }}{{' năm'}}</p><p>Kinh nghiệm</p><img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_0.png')}}" alt="">
 					</div>
 				</div>
+				@endif
 		</div>
+@if($id_user[0]->active == 2)
 		<hr>
 	  <!-- Nav tabs -->
 	  <ul class="nav nav-tabs tab-profile col-md-12 clear pd0" role="tablist">
@@ -49,10 +143,11 @@
 	    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Đánh giá</a></li>
 	    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Bài đăng</a></li>
 	  </ul>
-
+@endif
 
 
 	  </div>
+		@if($id_user[0]->active == 2)
 	  <div class="col-md-3 ">
 	  	<div class="col-md-12 fix-title">
 			<div class="col-md-2 pd0">
@@ -378,6 +473,7 @@
 	 </div>
 
 	</div>
+	@endif
 	</div>
 	<!-- Modal -->
 	<!-- <div class="modal fade col-md-12" id="contact-teach" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

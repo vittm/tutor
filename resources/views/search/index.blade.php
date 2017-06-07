@@ -73,7 +73,7 @@
 		</div>
 @endforeach
 </div>
-<div class="col-md-3 top30 text-center well" style="border-top: 15px solid #fcaf00;">
+<div class="col-md-3 top30 text-center wel" style="border-top: 15px solid #fcaf00;">
 
 	<h3 style="font-size: 21px; font-weight: 700;"> TOP GIA SƯ CỦA THÁNG </h3>
 	<div class="border-origran" style="margin: 15px auto; display:block; width: 150px;"></div>

@@ -54,13 +54,21 @@ div.pr5 {
     padding-left: 0;
     padding-right: 5px;
 }
+body .pdr {
+  padding-right: 0;
+}
+body .pdl {
+  padding-left: 0;
+}
 .cl-black {
     color: #000000;
 }
-div.well {
+div.wel {
     background: #ffffff;
 }
-
+.grey {
+  background: #f7f7f7;
+}
 .dl {
   display: block;
   margin: auto;
@@ -1733,6 +1741,7 @@ body .k-i-calendar:before,
 .avatar >img {
     width: 50px;
     height: 50px;
+    border: 1px solid #ffffff;
 }
 .notification_mess {
     position: absolute;
@@ -11596,12 +11605,10 @@ blockquote .small:before {
     .avatar-profile {
         display: block;
         margin: 0 auto 20px;
+        border: 2px solid #ffffff;
     }
     .action-menu {
         text-align: center;
-    }
-    .action-menu .action-menu__left > div {
-        padding: 0;
     }
     .action-menu .action-menu__left .action-menu__icon {
         margin-bottom: 5px;
@@ -11610,6 +11617,7 @@ blockquote .small:before {
     .action-menu .action-menu__icon {
         margin: 0 auto 20px;
         width: 30px;
+        display: block;
     }
     .action-menu .action-menu__counter {
         color: #fcaf00;
@@ -11637,7 +11645,7 @@ blockquote .small:before {
     .edit-profile__form > .col-md-12 > .col-md-3 {
         position: relative;
         top: 5px;
-        font-size: 13px;
+        font-size: 14px;
     }
     .edit-couser .edit-profile__form > .col-md-12 > .col-md-8 > img {
       top: -10px;
@@ -11956,10 +11964,13 @@ blockquote .small:before {
   margin-top: 15px;
 }
 .couser-time li {
-  height: 31px;
+  height: 41px;
+}
+.gender__edit.couser-time > .col-md-3 {
+  margin-top: 10px;
 }
 .couser-time > .col-md-3 > p {
-  margin-top:30px;
+  margin-top: 20px;
 }
 .main-header {
   position: fixed;
@@ -12015,4 +12026,43 @@ blockquote .small:before {
   text-align: center;
   margin: auto;
   text-transform: uppercase;
+}
+.follow-profile {
+  margin-top: 10px;
+  padding: 10px;
+  text-align: left;
+}
+.follow-profile > span {
+  font-size: 14px;
+    font-weight: 500;
+}
+.follow-profile > span > span {
+  color: #fcaf00;
+}
+body .profile-student {
+  margin-top: -80px;
+  position: relative;
+  text-align: left;
+}
+body .profile-student > .action-menu__left > .action-menu__left__share {
+  padding-top: 80px;
+  padding-bottom:10px;
+}
+.list-couser {
+  position: relative;
+}
+.list-couser__typeCourse {
+  position: absolute;
+  width: 50%;
+  height: 40px;
+  background: rgba(252, 175, 0, 0.82);
+  text-align: center;
+  line-height: 42px;
+  right: 0;
+  font-size: 16px;
+}
+.list-couser__price {
+  position: absolute;
+  bottom: 15px;
+  right: 0;
 }

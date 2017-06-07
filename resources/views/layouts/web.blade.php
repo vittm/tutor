@@ -67,9 +67,9 @@
 
                             <li>
                             @if(strlen(Auth::user()->avatar) > 1)
-                                <a class="avatar" href="#"><img src="{{ URL::to('/img/avatar')}}/{{ Auth::user()->avatar }}" alt="..." class="img-circle" height="50"></a>
+                                <a class="avatar" href="{{ url('/trang-ca-nhan')}}-{{ Auth::user()->id }}"><img src="{{ URL::to('/img/avatar')}}/{{ Auth::user()->avatar }}" alt="..." class="img-circle" height="50"></a>
                             @else
-                                <a class="avatar-me" href="#"><span> {{ Auth::user()->avatar }} </span></a>
+                                <a class="avatar-me" href="{{ url('/trang-ca-nhan')}}-{{ Auth::user()->id }}"><span> {{ Auth::user()->avatar }} </span></a>
                             @endif</a>
 
                             @if($mess > 0)
@@ -83,7 +83,6 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ url('/trang-ca-nhan')}}-{{ Auth::user()->id }}">Trang cá nhân</a></li>
                                     <li><a href="{{ url('/chinh-sua-ca-nhan')}}-{{ Auth::user()->id }}"></i>Chỉnh sửa hồ sơ</a></li>
                                     <li><a href="{{ url('/couser/add-2')}}-{{ Auth::user()->id }}">Quản lý khóa học</a></li>
                                     <li><a href="{{ url('/quan-ly-hoc-vien')}}"></i>Quản lý thông tin học viên</a></li>

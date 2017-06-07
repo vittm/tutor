@@ -32,6 +32,13 @@
  						<img class="top30" src="{{ URL::to('/img/couser')}}/{{$couser[0]->picture}}" alt="..." class="img-thumbnail" height="200" width="200" style="margin: auto; display: block;">
  					 @endif
            <input class="multiple-flie" type="file" name="imgCouser" >
+            <ul class="col-md-offset-2 col-md-9 gender__edit">
+ 						 <li>
+ 							 <input name="typeclass" type="radio" @if($couser[0]->typeclass == '1') checked @endif id="boy" value="1">
+ 							 <label for="boy">Khoá học có cung cấp <strong> Lớp học 1 + 1 </strong></label>
+ 							 <div class="check"></div>
+ 						 </li>
+           </ul>
          </div>
       </div>
       <div class="col-md-12 pd0">
@@ -88,7 +95,7 @@
             <div class="col-md-8 pd0">
               @if(json_decode($couser[0]->timetype1) != null)
                 @foreach( json_decode($couser[0]->timetype1) as $key => $value )
-                   <li class="col-md-3">
+                   <li class="col-md-4">
                      <input type="hidden" name="morning[]" value="0">
                      <input type="checkbox" name="morning[]" value="1" id="morning{{$key}}" @if($value == '1') checked @endif >
                      <label for="morning{{$key}}"></label>
@@ -96,7 +103,7 @@
                    </li>
                 @endforeach
                 @else
-                @for( $i = 0; $i <= 21 ; $i++ )
+                @for( $i = 0; $i < 21 ; $i++ )
                   <li class="col-md-4">
                     <input type="hidden" name="morning[]" value="0">
                     <input type="checkbox" name="morning[]" value="1" id="morning{{$i}}">

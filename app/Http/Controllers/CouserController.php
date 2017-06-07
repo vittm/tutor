@@ -26,7 +26,8 @@ class CouserController extends Controller
 
     public function look(Request $request, $id) {
         $id_user = DB::table('users')->where('id', '=', $id)->get();
-        return view('couser.add', ['id_user' => $id_user]);
+        $couser = DB::table('cousers')->where('id_user', '=', $id)->get();
+        return view('couser.add', ['id_user' => $id_user, 'couser' => $couser]);
     }
     public function adding_couser(Request $request, $id){
       $input = $request->all();
@@ -51,6 +52,7 @@ class CouserController extends Controller
           $db->timetype1 = json_encode($input['morning']);
           $db->price = $input['id_user'];
           $db->typeCourse = '1';
+          $db->typeclass = $input['typeclass'];
           $db->save();
         return redirect('/trang-ca-nhan-'.$id);
     }
@@ -104,7 +106,8 @@ class CouserController extends Controller
               'type' => $input['type'],
               'program' => $input['program'],
               'timetype1' => json_encode($input['morning']),
-              'price' =>  $input['price']
+              'price' =>  $input['price'],
+              'typeclass' => $input['typeclass']
           ]);
         }else if($id_user[0]->typeCourse == '2') {
           $arr1=array('morning'=>$morning,'afternoon'=>$afternoon, 'night'=> $night );
