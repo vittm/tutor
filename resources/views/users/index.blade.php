@@ -2,14 +2,17 @@
 
 @section('content')
 
-
+	@if($id_user[0]->active != 2)
 	<div class="container pd0" style="margin-top: -10rem;background: #f7f7f7	">
+	@else
+	<div class="container pd0" style="margin-top: -10rem;">
+	@endif
 		@if($id_user[0]->cover != null)
 		<img src="{{ URL::to('img/cover')}}/{{ $id_user[0]->cover}}" alt="..." style="display:block;margin: auto;width: 100%;">
 		@else
 		<img src="{{ URL::to('img/cover/default.png')}}" alt="..." style="display:block;margin: auto;width: 100%;">
 		@endif
-		<div class="col-md-9 pd0" style="margin-top: -6rem;">
+		<div class="@if($id_user[0]->active == 2)col-md-8 @else col-md-12 @endif pd0" style="margin-top: -6rem;">
 			<div class="col-md-4 pd0">
 				<img style="position: relative;z-index: 1;"src="{{ URL::to('img/avatar')}}/{{ $id_user[0]->avatar}}" alt="..." class="img-circle avatar-profile" height="150" width="150">
 			</div>
@@ -21,7 +24,7 @@
 				<h3 style="margin-top: 3rem;">{{ $id_user[0] -> title }} </h3>
 				@endif
 			</div>
-			<div class="col-md-12 action-menu profile-student">
+			<div class="col-md-12 action-menu profile-student pd0">
 				<div class="col-md-4 action-menu__left">
 					<div class="col-md-12 wel action-menu__left__share">
 						<div class="col-md-6 pdl">
@@ -31,15 +34,18 @@
 						<div class="col-md-6 pdr">
 								<img class="action-menu__icon " src="{{ URL::to('img/icon/VectorSmartObject_3.png')}}" alt=""><p>Chia sẻ hồ sơ</p>
 						</div>
-						<button type="button" class="btn col-md-12" style="background: #fcaf00; color: #ffffff;" name="button">Theo dõi </button>
+						<input type="hidden" class="user_id_follow" value="{{ Auth::user()->id }}">
+						<input type="hidden" class="id_follow" value="{{ $id_user[0] -> id }}">
+						<a href="#" class="btn col-md-12 btn-follow" style="background: #fcaf00; color: #ffffff;" name="button">  @if($kkfollowers > 0) Đang theo dõi @else Theo dõi @endif </a>
 				</div>
+				@if($id_user[0]->active !=2)
 				<div class="col-md-12 wel pd10 follow-profile">
 						<img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_2.png')}}" alt="">
-						<span> <span> 34 </span> Người theo dõi</span>
+						<span> <span> {{ $kfollowers }} </span> Người theo dõi</span>
 				</div>
 				<div class="col-md-12 wel pd10 follow-profile top15">
 						<img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_2.png')}}" alt="">
-						<span> <span> 34 </span> Đang theo dõi</span>
+						<span> <span> {{ $zfollowers }} </span> Đang theo dõi</span>
 						<div class="cold-md-12 pd0 top15">
 							<div class="col-md-4">
 								<img src="{{ URL::to('img/avatar/04-21-212017060549c8d33637cb126c6c0745ddf6f5f03e.jpg')}}" alt="..." class="img-circle dl" height="60" width="60">
@@ -68,59 +74,91 @@
 							<div class="col-md-4">
 								<img src="{{ URL::to('img/avatar/04-21-212017060549c8d33637cb126c6c0745ddf6f5f03e.jpg')}}" alt="..." class="img-circle dl" height="60" width="60">
 							</div>
-
+						</div>
+						<div class="col-md-12 wel">
+							<h4> Hình Ảnh </h4>
+							@if(json_decode($id_user[0]->picture) != null)
+								@foreach( json_decode($id_user[0]->picture) as $value )
+								<div class="col-md-6">
+									<img class="col-md-12 pd0 top10" src="{{ URL::to('/img/picture')}}/{{$value}}" alt="..." class="img-thumbnail">
+								</div>
+								@endforeach
+							@endif
 						</div>
 				</div>
-				<div class="col-md-12">
-
+				@endif
 				</div>
-				</div>
+				@if($id_user[0]->active !=2)
 				<div class="col-md-8 pd0">
-					<div class="col-md-12 wel">
+					<div class="col-md-12 wel list-information">
  					 <h3>{!! $id_user[0]->title !!}</h3>
- 					 <div class="col-md-12 pd0 top10">
- 					 		<div class="col-md-4 "><img src="img/icon/VectorSmartObject_6.png" alt=""> Họ và Tên</div>
+ 					 <div class="col-md-12 pd0 top15">
+ 					 		<div class="col-md-4 "><img src="img/icon/VectorSmartObject_6.png" alt=""><span> Họ và Tên </span></div>
  					 		<div class="col-md-8"><strong>{!! $id_user[0]->name !!}</strong></div>
  				 	 </div>
- 					 <div class="col-md-12 pd0 top10">
- 						 <div class="col-md-4"><img src="img/icon/VectorSmartObject_7.png" alt=""> Ngày sinh</div>
+ 					 <div class="col-md-12 pd0 top15">
+ 						 <div class="col-md-4"><img src="img/icon/VectorSmartObject_7.png" alt=""><span> Ngày sinh </span></div>
  						 <div class="col-md-8"><strong>{!! $id_user[0]->date !!}</strong></div>
  				   </div>
- 					 <div class="col-md-12 pd0 top10">
- 					 <div class="col-md-4"><img src="img/icon/VectorSmartObject_5.png" alt=""> Giới tính</div>
+ 					 <div class="col-md-12 pd0 top15">
+ 					 <div class="col-md-4"><img src="img/icon/VectorSmartObject_5.png" alt=""><span> Giới tính </span></div>
  					 <div class="col-md-8"><strong>@if( $id_user[0]->gender == 1 ) {{ ' Nam'}} @else {{ 'Nữ '}} @endif</strong></div>
  					 </div>
- 					 <div class="col-md-12 pd0 top10">
- 					 <div class="col-md-4"><img src="img/icon/VectorSmartObject_8.png" alt=""> Địa chỉ</div>
+ 					 <div class="col-md-12 pd0 top15">
+ 					 <div class="col-md-4"><img src="img/icon/VectorSmartObject_8.png" alt=""><span> Địa chỉ </span></div>
  					 <div class="col-md-8"><strong>{!! $id_user[0]->ward !!} {!! $id_user[0]->district !!} TP {!! $id_user[0]->city !!}</strong></div>
  					 </div>
- 					 <div class="col-md-12 pd0 top10">
+ 					 <div class="col-md-12 pd0 top15">
  					 <div class="col-md-4"> Học vấn</div>
  					 <div class="col-md-8"><strong>{!!  $id_user[0]->expericen !!}</strong></div>
  					 </div>
- 					 <div class="col-md-12 pd0 top10">
+ 					 <div class="col-md-12 pd0 top15">
  					 <div class="col-md-4"> Hiện là</div>
  					 <div class="col-md-8"><strong>{!!  $id_user[0]->jobs !!}</strong>
  					</div>
  					 </div>
- 					 <div class="col-md-12 pd0 top10">
+ 					 <div class="col-md-12 pd0 top15">
  					 <div class="col-md-4"> Lĩnh vực giảng dạy</div>
  					 <div class="col-md-8"><strong>{!! $id_user[0]->field !!}</strong></div>
  					 </div>
- 					 <div class="col-md-12 pd0 top10">
+ 					 <div class="col-md-12 pd0 top15">
  					 <div class="col-md-4"> Xác nhận hồ sơ vào ngày</div>
  					 <div class="col-md-8"><strong>{!! $id_user[0]->created_at !!}</strong></div>
  					 </div>
- 					 <div class="col-md-12 pd0 top10">
+ 					 <div class="col-md-12 pd0 top15">
  						 <div class="col-md-4"> Cập nhập lần cuối</div>
  						 <div class="col-md-8"><strong>{!! $id_user[0]->updated_at !!}</strong></div>
  					 </div>
  				</div>
+			    <div class="col-md-12 wel top30">
+			      @foreach($student as $key => $value)
+						<div class="col-md-6 list-couser-main top15">
+			      <a class="col-md-12 pd0 list-couser wel">
+			        <div class="col-md-12 pd0 list-couser__images">
+			          @if($value -> typeclass == '1')
+			          <div class="list-couser__typeCourse">
+			            Học 1 + 1
+			          </div>
+			          @endif
+			          @if($value -> typeCouser == '1')
+			          <div class="list-couser__typeCourse">
+			            Lớp học sắp khai giảng
+			          </div>
+			          @endif
+			          <img src="{{ URL::to('/img/couser')}}/{{$value->picture_couser}}" style="width:100%">
+			          <div class="list-couser__price btn btn-origan2">{{number_format($value->price)}}<sup>Đ/ giờ </sup></div>
+			        </div>
+			          <div class="col-md-12 list-couser__name wel top10"> <h4> {{$value ->title }} </h4> <h4 class="top15"> {{ $value->name}}</h4> <p style="font-size: 13px;"><i>{{ $value->jobs}}, {{ $value->city}}</i></p></div>
+			      </a>
+					</div>
+			      @endforeach
+			    </div>
 				</div>
-					@if($id_user[0]->active == 2)
-				<div class="col-md-8">
+				@endif
+				@if($id_user[0]->active == 2)
+				<div class="col-md-8 top30">
 					<div class="col-md-3">
-						<p class="action-menu__counter">{{ $id_user[0] -> viewed }}</p><p>Người theo dõi</p><img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_2.png')}}" alt="">
+						<p class="action-menu__counter">{{ $zfollowers }}</p><p>Người theo dõi</p><img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_2.png')}}" alt="">
 					</div>
 					<div class="col-md-3">
 						<p class="action-menu__counter">{{ $id_user[0] -> viewed }}</p><p>Học Viên</p><img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_1.png')}}" alt="">
@@ -138,10 +176,10 @@
 		<hr>
 	  <!-- Nav tabs -->
 	  <ul class="nav nav-tabs tab-profile col-md-12 clear pd0" role="tablist">
-	    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Giới thiệu</a></li>
-	    <li role="presentation"><a href="#info" aria-controls="home" role="tab" data-toggle="tab">Thông tin lớp dạy</a></li>
+	    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Giới Thiệu</a></li>
+	    <li role="presentation"><a href="#info" aria-controls="home" role="tab" data-toggle="tab">Khóa Học</a></li>
 	    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Đánh giá</a></li>
-	    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Bài đăng</a></li>
+	    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Cộng đồng Wiis</a></li>
 	  </ul>
 @endif
 
@@ -193,44 +231,61 @@
 	  <div class="tab-content content-profile col-md-8 clear pd0">
 	    <div role="tabpanel" class="tab-pane active" id="home">
 	    	<h4 class="title-profile"> GIỚI THIỆU </h4>
-	    	 <div class="col-md-12">
+	    	 <div class="col-md-12 list-information">
 					 <p>{!! $id_user[0]->info !!}</p>
-					 <div class="col-md-12 pd0 top10">
-					 		<div class="col-md-4 "><img src="img/icon/VectorSmartObject_6.png" alt=""> Họ và Tên</div>
+					 <div class="col-md-12 pd0 top15">
+					 		<div class="col-md-4 "><img src="img/icon/VectorSmartObject_6.png" alt=""><span> Họ và Tên </span></div>
 					 		<div class="col-md-8"><strong>{!! $id_user[0]->name !!}</strong></div>
 				 	 </div>
-					 <div class="col-md-12 pd0 top10">
-						 <div class="col-md-4"><img src="img/icon/VectorSmartObject_7.png" alt=""> Ngày sinh</div>
+					 <div class="col-md-12 pd0 top15">
+						 <div class="col-md-4"><img src="img/icon/VectorSmartObject_7.png" alt=""><span> Ngày sinh </span></div>
 						 <div class="col-md-8"><strong>{!! $id_user[0]->date !!}</strong></div>
 				   </div>
-					 <div class="col-md-12 pd0 top10">
-					 <div class="col-md-4"><img src="img/icon/VectorSmartObject_5.png" alt=""> Giới tính</div>
+					 <div class="col-md-12 pd0 top15">
+					 <div class="col-md-4"><img src="img/icon/VectorSmartObject_5.png" alt=""><span> Giới tính </span></div>
 					 <div class="col-md-8"><strong>@if( $id_user[0]->gender == 1 ) {{ ' Nam'}} @else {{ 'Nữ '}} @endif</strong></div>
 					 </div>
-					 <div class="col-md-12 pd0 top10">
-					 <div class="col-md-4"><img src="img/icon/VectorSmartObject_8.png" alt=""> Địa chỉ</div>
+					 <div class="col-md-12 pd0 top15">
+					 <div class="col-md-4"><img src="img/icon/VectorSmartObject_8.png" alt=""><span> Địa chỉ </span></div>
 					 <div class="col-md-8"><strong>{!! $id_user[0]->ward !!} {!! $id_user[0]->district !!} TP {!! $id_user[0]->city !!}</strong></div>
 					 </div>
-					 <div class="col-md-12 pd0 top10">
+					 <div class="col-md-12 pd0 top15">
 					 <div class="col-md-4"> Học vấn</div>
 					 <div class="col-md-8"><strong>{!!  $id_user[0]->expericen !!}</strong></div>
 					 </div>
-					 <div class="col-md-12 pd0 top10">
+					 <div class="col-md-12 pd0 top15">
 					 <div class="col-md-4"> Hiện là</div>
 					 <div class="col-md-8"><strong>{!!  $id_user[0]->jobs !!}</strong>
 					</div>
 					 </div>
-					 <div class="col-md-12 pd0 top10">
+					 <div class="col-md-12 pd0 top15">
 					 <div class="col-md-4"> Lĩnh vực giảng dạy</div>
 					 <div class="col-md-8"><strong>{!! $id_user[0]->field !!}</strong></div>
 					 </div>
-					 <div class="col-md-12 pd0 top10">
+					 <div class="col-md-12 pd0 top15">
 					 <div class="col-md-4"> Xác nhận hồ sơ vào ngày</div>
 					 <div class="col-md-8"><strong>{!! $id_user[0]->created_at !!}</strong></div>
 					 </div>
-					 <div class="col-md-12 pd0 top10">
+					 <div class="col-md-12 pd0 top15">
 						 <div class="col-md-4"> Cập nhập lần cuối</div>
 						 <div class="col-md-8"><strong>{!! $id_user[0]->updated_at !!}</strong></div>
+					 </div>
+
+					 <div class="col-md-12 top15">
+						 @if(json_decode($id_user[0]->video) != null)
+		 					@foreach( json_decode($id_user[0]->video) as $value )
+		 						<video class="col-md-offset-1 col-md-10"  controls>
+		 						  <source src="{{ URL::to('/video')}}/{{$value}}">
+		 						</video>
+		 					@endforeach
+		 				@endif
+					 </div>
+					 <div class="col-md-12">
+						 @if(json_decode($id_user[0]->picture) != null)
+							 @foreach( json_decode($id_user[0]->picture) as $value )
+								 <img class="col-md-4 top10" src="{{ URL::to('/img/picture')}}/{{$value}}" alt="..." class="img-thumbnail">
+							 @endforeach
+						 @endif
 					 </div>
 				</div>
 
@@ -240,32 +295,31 @@
 
 	    </div>
 	    <div role="tabpanel" class="tab-pane" id="info">
-	    		<h4 class="title-profile">Thông tin lớp dạy</h4>
+	    		<h4 class="title-profile"> KHÓA HỌC </h4>
 	    		<br>
-				<p class="col-md-6"><strong> Dạy Môn: </strong> {{ $id_user[0]->subjects }}</p>
-				<table class="table table-hover">
-			    <thead>
-			        <tr>
-			            <th>#</th>
-			            <th>Môn học</th>
-			            <th>Nội dung học</th>
-			            <th>Phương pháp học</th>
-			            <th>Giá</th>
-			        </tr>
-			    </thead>
-			    <tbody>
-			    {{ $id_user[0]->content_teach}}
-
-			    </tbody>
-			</table>
-				<div class="col-md-12 pd0">
-					<h4 class="title-profile">Nội dung dạy</h4>
-					{!! $id_user[0]->content_teach !!}
-				</div>
-				<div class="col-md-12 pd0">
-					<h4 class="title-profile">Phương pháp dạy</h4>
-				</div>
-				{!! $id_user[0]->content_teach !!}
+					<div class="col-md-12 wel top10">
+						@foreach($list_cousers as $key => $value)
+						<div class="col-md-6 list-couser-main top15">
+						<a class="col-md-12 pd0 list-couser wel">
+							<div class="col-md-12 pd0 list-couser__images">
+								@if($value -> typeclass == '1')
+								<div class="list-couser__typeCourse">
+									Học 1 + 1
+								</div>
+								@endif
+								@if($value -> typeCouser == '1')
+								<div class="list-couser__typeCourse">
+									Lớp học sắp khai giảng
+								</div>
+								@endif
+								<img src="{{ URL::to('/img/couser')}}/{{$value->picture_couser}}" style="width:100%">
+								<div class="list-couser__price btn btn-origan2">{{number_format($value->price)}}<sup>Đ/ giờ </sup></div>
+							</div>
+								<div class="col-md-12 list-couser__name wel top10"> <h4> {{$value ->title }} </h4> </div>
+						</a>
+					</div>
+						@endforeach
+					</div>
 	    </div>
 	    <div role="tabpanel" class="tab-pane" id="messages">
 	    	<div class="col-md-12 clear pd0">
@@ -457,19 +511,7 @@
 	  </div>
 
 	 <div role="tabpanel" class="tab-pane" id="settings">
-	 @foreach( $post as $valuePost)
-	 	<a href="{{ url('chi-tiet-bai-dang') }}-{{$valuePost->id}}">
-	 	<div class="col-md-2">
-	 		{!! $valuePost -> subject !!}
-	 	</div>
-	 	<div class="col-md-5">
-	 		{!! $valuePost -> content !!}
-	 	</div>
-	 	<div class="col-md-5">
-	 		{!! $valuePost -> begin !!}
-	 	</div>
-	 	</a>
-	@endforeach
+
 	 </div>
 
 	</div>

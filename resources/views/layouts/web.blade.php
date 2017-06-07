@@ -159,7 +159,26 @@
             });
         return false;
     });
-
+    $('.btn-follow').click(function(e){
+        var id = $('.id_follow').val();
+        var user_id = $('.user_id_follow').val();
+        e.preventDefault();
+        $.ajax({
+            url:"{{ url('/follow') }}-"+id+"-"+user_id+"",
+            type:"get",
+            cache:false,
+            data:{'id':id,'user_id':user_id,"_token": "{{ csrf_token() }}"},
+            dataType:"html",
+            success: function(val){
+                  if(val == 'okay') {
+                      $('.btn-follow').text('Đang theo dõi');
+                  }else {
+                      $('.btn-follow').text('Theo dõi');
+                  }
+                }
+            });
+        return false;
+    });
     var $timeline_block = $('.cd-timeline-block');
 
     //hide timeline blocks which are outside the viewport

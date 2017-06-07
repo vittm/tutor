@@ -11624,6 +11624,7 @@ blockquote .small:before {
         margin-bottom: 5px;
         font-weight: 700;
         font-size: 13px;
+        text-align: center;
     }
     .form-register-couser > p {
         margin-bottom: 5px;
@@ -12039,6 +12040,15 @@ blockquote .small:before {
 .follow-profile > span > span {
   color: #fcaf00;
 }
+body div.follow-profile .action-menu__icon{
+  display: inline;
+}
+body .list-couser-main:nth-child(even) {
+  padding-right: 0;
+}
+body .list-couser-main:nth-child(odd) {
+  padding-left: 0;
+}
 body .profile-student {
   margin-top: -80px;
   position: relative;
@@ -12048,8 +12058,19 @@ body .profile-student > .action-menu__left > .action-menu__left__share {
   padding-top: 80px;
   padding-bottom:10px;
 }
+body .action-menu__left__share .col-md-6 p {
+  text-align: center;
+}
+.list-information {
+  padding-bottom: 20px;
+}
+.list-information .col-md-4 > span {
+  position: relative;
+  top: 5px;
+}
 .list-couser {
   position: relative;
+  border: 1px solid #eeeeee;
 }
 .list-couser__typeCourse {
   position: absolute;
@@ -12060,9 +12081,22 @@ body .profile-student > .action-menu__left > .action-menu__left__share {
   line-height: 42px;
   right: 0;
   font-size: 16px;
+  color: #ffffff;
+  font-weight: 500;
 }
 .list-couser__price {
   position: absolute;
   bottom: 15px;
   right: 0;
+}
+.list-couser__config {
+    border: 1px solid #eeeeee;
+}
+.list-couser__config:nth-child(1) {
+  border: 1px solid #eeeeee;
+  border-right: none;
+}
+.list-couser__config:nth-child(3) {
+  border: 1px solid #eeeeee;
+  border-left: none;
 }

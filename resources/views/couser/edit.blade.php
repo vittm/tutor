@@ -29,7 +29,7 @@
          <div class="col-md-3 "> Hình ảnh</div>
          <div class="col-md-7">
            @if($couser[0]->picture != null)
- 						<img class="top30" src="{{ URL::to('/img/couser')}}/{{$couser[0]->picture}}" alt="..." class="img-thumbnail" height="200" width="200" style="margin: auto; display: block;">
+ 						<img class="top30" src="{{ URL::to('/img/couser')}}/{{$couser[0]->picture_couser}}" alt="..." class="img-thumbnail" height="200" width="200" style="margin: auto; display: block;">
  					 @endif
            <input class="multiple-flie" type="file" name="imgCouser" >
             <ul class="col-md-offset-2 col-md-9 gender__edit">
@@ -150,6 +150,33 @@
     </form>
   </div>
 
+</div>
+<div role="tabpanel" class="tab-pane" id="student">
+  <div class="col-md-12">
+    @foreach($couser as $key => $value)
+    <a class="col-md-4 list-couser wel">
+      <div class="col-md-12 pd0 list-couser__images">
+        @if($value -> typeclass == '1')
+        <div class="list-couser__typeCourse">
+          Học 1 + 1
+        </div>
+        @endif
+        @if($value -> typeCouser == '1')
+        <div class="list-couser__typeCourse">
+          Lớp học sắp khai giảng
+        </div>
+        @endif
+        <img src="{{ URL::to('/img/couser')}}/{{$value ->picture_couser}}" style="width:100%">
+        <div class="list-couser__price btn btn-origan2"><sup>Đ/ giờ </sup></div>
+      </div>
+        <div class="col-md-12 list-couser__name wel"> <h3> {{$value ->title }} </h3></div>
+        <div class="col-md-4 list-couser__config pd10 wel"><img src="{{ URL::to('/img/icon/inclined-pencil.png')}}" width="20px"><span> Chỉnh sửa </span></div>
+        <div class="col-md-4 list-couser__config pd10 wel"><img src="{{ URL::to('/img/icon/VectorSmartObject_3.png')}}"><span> Chia sẻ </span></div>
+        <div class="col-md-4 list-couser__config pd10 wel"><img src="{{ URL::to('/img/icon/inclined-pencil.png')}}"><span> Xoá</span></div>
+        <button class="btn btn-origan col-md-12 pd0">Thanh Toán </button>
+    </a>
+    @endforeach
+  </div>
 </div>
 </div>
 </div>

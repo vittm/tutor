@@ -10,24 +10,22 @@ use Illuminate\Http\Request;
 
 class Checkout extends Controller
   {
-            public $url_api ='https://www.nganluong.vn/checkout.api.nganluong.post.php';  
+            public $url_api ='https://www.nganluong.vn/checkout.api.nganluong.post.php';
             public $merchant_id = '';
             public $merchant_password = '';
             public $receiver_email = '';
             public $cur_code = 'vnd';
             
-    
-
             function __construct($merchant_id, $merchant_password, $receiver_email,$url_api)
-            {               
+            {
                 $this->version ='3.1';
                 $this->url_api =$url_api;
                 $this->merchant_id = $merchant_id;
                 $this->merchant_password = $merchant_password;
-                $this->receiver_email = $receiver_email;                
-            }   
-            
-          function GetTransactionDetail($token){    
+                $this->receiver_email = $receiver_email;
+            }
+
+          function GetTransactionDetail($token){
                 ###################### BEGIN #####################
                         $params = array(
                             'merchant_id'       => $this->merchant_id ,
@@ -35,8 +33,8 @@ class Checkout extends Controller
                             'version'           => $this->version,
                             'function'          => 'GetTransactionDetail',
                             'token'             => $token
-                        );                      
-                        
+                        );
+
                         $post_field = '';
                         foreach ($params as $key => $value){
                             if ($post_field != '') $post_field .= '&';
@@ -52,20 +50,20 @@ class Checkout extends Controller
                         curl_setopt($ch, CURLOPT_POST, 1);
                         curl_setopt($ch, CURLOPT_POSTFIELDS, $post_field);
                         $result = curl_exec($ch);
-                        $status = curl_getinfo($ch, CURLINFO_HTTP_CODE); 
+                        $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
                         $error = curl_error($ch);
-                        
+
                         if ($result != '' && $status==200){
-                            $nl_result  = simplexml_load_string($result);                       
+                            $nl_result  = simplexml_load_string($result);
                             return $nl_result;
                         }
-                        
+
                         return false;
                 ###################### END #####################
-          
-          } 
-          
-          
+
+          }
+
+
         /*
 
         Hàm lấy link thanh toán bằng thẻ visa
@@ -78,18 +76,18 @@ class Checkout extends Controller
                     buyer_fullname
                     buyer_email
                     buyer_mobile
-        ===============================         
-            $array_items mảng danh sách các item name theo quy tắc 
+        ===============================
+            $array_items mảng danh sách các item name theo quy tắc
             item_name1
             item_quantity1
             item_amount1
             item_url1
             .....
             payment_type Kiểu giao dịch: 1 - Ngay; 2 - Tạm giữ; Nếu không truyền hoặc bằng rỗng thì lấy theo chính sách của NganLuong.vn
-         */         
+         */
         function VisaCheckout($order_code,$total_amount,$payment_type,$order_description,$tax_amount,
-                                    $fee_shipping,$discount_amount,$return_url,$cancel_url,$buyer_fullname,$buyer_email,$buyer_mobile, 
-                                    $buyer_address,$array_items,$bank_code) 
+                                    $fee_shipping,$discount_amount,$return_url,$cancel_url,$buyer_fullname,$buyer_email,$buyer_mobile,
+                                    $buyer_address,$array_items,$bank_code)
                 {
                  $params = array(
                         'cur_code'              =>  $this->cur_code,
@@ -97,11 +95,11 @@ class Checkout extends Controller
                         'version'               => $this->version,
                         'merchant_id'           => $this->merchant_id, //Mã merchant khai báo tại NganLuong.vn
                         'receiver_email'        => $this->receiver_email,
-                        'merchant_password'     => MD5($this->merchant_password), //MD5(Mật khẩu kết nối giữa merchant và NganLuong.vn)                     
+                        'merchant_password'     => MD5($this->merchant_password), //MD5(Mật khẩu kết nối giữa merchant và NganLuong.vn)
                         'order_code'            => $order_code, //Mã hóa đơn do website bán hàng sinh ra
                         'total_amount'          => $total_amount, //Tổng số tiền của hóa đơn
-                        'payment_method'        => 'VISA', //Phương thức thanh toán, nhận một trong các giá trị 'VISA','ATM_ONLINE', 'ATM_OFFLINE' hoặc 'NH_OFFLINE'                                                
-                        'bank_code'             => $bank_code, //Phương thức thanh toán, nhận một trong các giá trị 'VISA','ATM_ONLINE', 'ATM_OFFLINE' hoặc 'NH_OFFLINE'                                                
+                        'payment_method'        => 'VISA', //Phương thức thanh toán, nhận một trong các giá trị 'VISA','ATM_ONLINE', 'ATM_OFFLINE' hoặc 'NH_OFFLINE'
+                        'bank_code'             => $bank_code, //Phương thức thanh toán, nhận một trong các giá trị 'VISA','ATM_ONLINE', 'ATM_OFFLINE' hoặc 'NH_OFFLINE'
                         'payment_type'          => $payment_type, //Kiểu giao dịch: 1 - Ngay; 2 - Tạm giữ; Nếu không truyền hoặc bằng rỗng thì lấy theo chính sách của NganLuong.vn
                         'order_description'     => $order_description, //Mô tả đơn hàng
                         'tax_amount'            => $tax_amount, //Tổng số tiền thuế
@@ -129,7 +127,7 @@ class Checkout extends Controller
                     }
                     }
                 //die($post_field);
-                    
+
                 $nl_result=$this->CheckoutCall($post_field);
                 return $nl_result;
             }
@@ -140,11 +138,11 @@ class Checkout extends Controller
             'version' => Config::$_VERSION,
             'merchant_id' => $this->merchant_id, //Mã merchant khai báo tại NganLuong.vn
             'receiver_email' => $this->receiver_email,
-            'merchant_password' => MD5($this->merchant_password), //MD5(Mật khẩu kết nối giữa merchant và NganLuong.vn)                     
+            'merchant_password' => MD5($this->merchant_password), //MD5(Mật khẩu kết nối giữa merchant và NganLuong.vn)
             'order_code' => $order_code, //Mã hóa đơn do website bán hàng sinh ra
             'total_amount' => $total_amount, //Tổng số tiền của hóa đơn
-            'payment_method' => 'CREDIT_CARD_PREPAID', //Phương thức thanh toán, nhận một trong các giá trị 'VISA','ATM_ONLINE', 'ATM_OFFLINE' hoặc 'NH_OFFLINE'                                                
-            'bank_code' => $bank_code, //Phương thức thanh toán, nhận một trong các giá trị 'VISA','ATM_ONLINE', 'ATM_OFFLINE' hoặc 'NH_OFFLINE'                                                
+            'payment_method' => 'CREDIT_CARD_PREPAID', //Phương thức thanh toán, nhận một trong các giá trị 'VISA','ATM_ONLINE', 'ATM_OFFLINE' hoặc 'NH_OFFLINE'
+            'bank_code' => $bank_code, //Phương thức thanh toán, nhận một trong các giá trị 'VISA','ATM_ONLINE', 'ATM_OFFLINE' hoặc 'NH_OFFLINE'
             'payment_type' => $payment_type, //Kiểu giao dịch: 1 - Ngay; 2 - Tạm giữ; Nếu không truyền hoặc bằng rỗng thì lấy theo chính sách của NganLuong.vn
             'order_description' => $order_description, //Mô tả đơn hàng
             'tax_amount' => $tax_amount, //Tổng số tiền thuế
@@ -184,26 +182,26 @@ class Checkout extends Controller
         ===============================
         Tham số truyền vào bắt buộc phải có
                     order_code
-                    total_amount            
+                    total_amount
                     bank_code // Theo bảng mã ngân hàng
-                    
+
                     buyer_fullname
                     buyer_email
                     buyer_mobile
-        =============================== 
-            
-            $array_items mảng danh sách các item name theo quy tắc 
+        ===============================
+
+            $array_items mảng danh sách các item name theo quy tắc
             item_name1
             item_quantity1
             item_amount1
             item_url1
-            .....           
+            .....
             payment_type Kiểu giao dịch: 1 - Ngay; 2 - Tạm giữ; Nếu không truyền hoặc bằng rỗng thì lấy theo chính sách của NganLuong.vn
 
-        */            
+        */
         function BankCheckout($order_code,$total_amount,$bank_code,$payment_type,$order_description,$tax_amount,
-                                    $fee_shipping,$discount_amount,$return_url,$cancel_url,$buyer_fullname,$buyer_email,$buyer_mobile, 
-                                    $buyer_address,$array_items) 
+                                    $fee_shipping,$discount_amount,$return_url,$cancel_url,$buyer_fullname,$buyer_email,$buyer_mobile,
+                                    $buyer_address,$array_items)
            {
                  $params = array(
                         'cur_code'              =>  $this->cur_code,
@@ -211,9 +209,9 @@ class Checkout extends Controller
                         'version'               => $this->version,
                         'merchant_id'           => $this->merchant_id, //Mã merchant khai báo tại NganLuong.vn
                         'receiver_email'        => $this->receiver_email,
-                        'merchant_password'     => MD5($this->merchant_password), //MD5(Mật khẩu kết nối giữa merchant và NganLuong.vn)                     
+                        'merchant_password'     => MD5($this->merchant_password), //MD5(Mật khẩu kết nối giữa merchant và NganLuong.vn)
                         'order_code'            => $order_code, //Mã hóa đơn do website bán hàng sinh ra
-                        'total_amount'          => $total_amount, //Tổng số tiền của hóa đơn                        
+                        'total_amount'          => $total_amount, //Tổng số tiền của hóa đơn
                         'payment_method'        => 'ATM_ONLINE', //Phương thức thanh toán, nhận một trong các giá trị 'ATM_ONLINE', 'ATM_OFFLINE' hoặc 'NH_OFFLINE'
                         'bank_code'             => $bank_code, //Mã Ngân hàng
                         'payment_type'          => $payment_type, //Kiểu giao dịch: 1 - Ngay; 2 - Tạm giữ; Nếu không truyền hoặc bằng rỗng thì lấy theo chính sách của NganLuong.vn
@@ -229,7 +227,7 @@ class Checkout extends Controller
                         'buyer_address'         => $buyer_address, //Địa chỉ người mua hàng
                         'total_item'            => count($array_items)
                     );
-                    
+
                     $post_field = '';
                     foreach ($params as $key => $value){
                         if ($post_field != '') $post_field .= '&';
@@ -247,13 +245,13 @@ class Checkout extends Controller
                 //echo $post_field;
                 //die;
                 $nl_result=$this->CheckoutCall($post_field);
-                
+
                 return $nl_result;
             }
-            
+
         function BankOfflineCheckout($order_code,$total_amount,$bank_code,$payment_type,$order_description,$tax_amount,
-                                    $fee_shipping,$discount_amount,$return_url,$cancel_url,$buyer_fullname,$buyer_email,$buyer_mobile, 
-                                    $buyer_address,$array_items) 
+                                    $fee_shipping,$discount_amount,$return_url,$cancel_url,$buyer_fullname,$buyer_email,$buyer_mobile,
+                                    $buyer_address,$array_items)
            {
                  $params = array(
                         'cur_code'              =>  $this->cur_code,
@@ -261,9 +259,9 @@ class Checkout extends Controller
                         'version'               => $this->version,
                         'merchant_id'           => $this->merchant_id, //Mã merchant khai báo tại NganLuong.vn
                         'receiver_email'        => $this->receiver_email,
-                        'merchant_password'     => MD5($this->merchant_password), //MD5(Mật khẩu kết nối giữa merchant và NganLuong.vn)                     
+                        'merchant_password'     => MD5($this->merchant_password), //MD5(Mật khẩu kết nối giữa merchant và NganLuong.vn)
                         'order_code'            => $order_code, //Mã hóa đơn do website bán hàng sinh ra
-                        'total_amount'          => $total_amount, //Tổng số tiền của hóa đơn                        
+                        'total_amount'          => $total_amount, //Tổng số tiền của hóa đơn
                         'payment_method'        => 'ATM_OFFLINE', //Phương thức thanh toán, nhận một trong các giá trị 'ATM_ONLINE', 'ATM_OFFLINE' hoặc 'NH_OFFLINE'
                         'bank_code'             => $bank_code, //Mã Ngân hàng
                         'payment_type'          => $payment_type, //Kiểu giao dịch: 1 - Ngay; 2 - Tạm giữ; Nếu không truyền hoặc bằng rỗng thì lấy theo chính sách của NganLuong.vn
@@ -279,7 +277,7 @@ class Checkout extends Controller
                         'buyer_address'         => $buyer_address, //Địa chỉ người mua hàng
                         'total_item'            => count($array_items)
                     );
-                    
+
                     $post_field = '';
                     foreach ($params as $key => $value){
                         if ($post_field != '') $post_field .= '&';
@@ -297,14 +295,14 @@ class Checkout extends Controller
                 //echo $post_field;
                 //die;
                 $nl_result=$this->CheckoutCall($post_field);
-                
+
                 return $nl_result;
             }
-            
-            
+
+
             function officeBankCheckout($order_code,$total_amount,$bank_code,$payment_type,$order_description,$tax_amount,
-                                    $fee_shipping,$discount_amount,$return_url,$cancel_url,$buyer_fullname,$buyer_email,$buyer_mobile, 
-                                    $buyer_address,$array_items) 
+                                    $fee_shipping,$discount_amount,$return_url,$cancel_url,$buyer_fullname,$buyer_email,$buyer_mobile,
+                                    $buyer_address,$array_items)
            {
                  $params = array(
                         'cur_code'              => $this->cur_code,
@@ -312,9 +310,9 @@ class Checkout extends Controller
                         'version'               => $this->version,
                         'merchant_id'           => $this->merchant_id, //Mã merchant khai báo tại NganLuong.vn
                         'receiver_email'        => $this->receiver_email,
-                        'merchant_password'     => MD5($this->merchant_password), //MD5(Mật khẩu kết nối giữa merchant và NganLuong.vn)                     
+                        'merchant_password'     => MD5($this->merchant_password), //MD5(Mật khẩu kết nối giữa merchant và NganLuong.vn)
                         'order_code'            => $order_code, //Mã hóa đơn do website bán hàng sinh ra
-                        'total_amount'          => $total_amount, //Tổng số tiền của hóa đơn                        
+                        'total_amount'          => $total_amount, //Tổng số tiền của hóa đơn
                         'payment_method'        => 'NH_OFFLINE', //Phương thức thanh toán, nhận một trong các giá trị 'ATM_ONLINE', 'ATM_OFFLINE' hoặc 'NH_OFFLINE'
                         'bank_code'             => $bank_code, //Mã Ngân hàng
                         'payment_type'          => $payment_type, //Kiểu giao dịch: 1 - Ngay; 2 - Tạm giữ; Nếu không truyền hoặc bằng rỗng thì lấy theo chính sách của NganLuong.vn
@@ -330,7 +328,7 @@ class Checkout extends Controller
                         'buyer_address'         => $buyer_address, //Địa chỉ người mua hàng
                         'total_item'            => count($array_items)
                     );
-                    
+
                     $post_field = '';
                     foreach ($params as $key => $value){
                         if ($post_field != '') $post_field .= '&';
@@ -348,7 +346,7 @@ class Checkout extends Controller
                 //echo $post_field;
                 //die;
                 $nl_result=$this->CheckoutCall($post_field);
-                
+
                 return $nl_result;
             }
 
@@ -359,26 +357,26 @@ class Checkout extends Controller
             ===============================
             Tham số truyền vào bắt buộc phải có
                         order_code
-                        total_amount            
+                        total_amount
                         bank_code // HN hoặc HCM
-                        
+
                         buyer_fullname
                         buyer_email
                         buyer_mobile
-            =============================== 
-                
-                $array_items mảng danh sách các item name theo quy tắc 
+            ===============================
+
+                $array_items mảng danh sách các item name theo quy tắc
                 item_name1
                 item_quantity1
                 item_amount1
                 item_url1
-                .....           
+                .....
                 payment_type Kiểu giao dịch: 1 - Ngay; 2 - Tạm giữ; Nếu không truyền hoặc bằng rỗng thì lấy theo chính sách của NganLuong.vn
 
-            */            
+            */
          function TTVPCheckout($order_code,$total_amount,$bank_code,$payment_type,$order_description,$tax_amount,
-                                    $fee_shipping,$discount_amount,$return_url,$cancel_url,$buyer_fullname,$buyer_email,$buyer_mobile, 
-                                    $buyer_address,$array_items) 
+                                    $fee_shipping,$discount_amount,$return_url,$cancel_url,$buyer_fullname,$buyer_email,$buyer_mobile,
+                                    $buyer_address,$array_items)
            {
                  $params = array(
                         'cur_code'          =>  $this->cur_code,
@@ -386,9 +384,9 @@ class Checkout extends Controller
                         'version'               => $this->version,
                         'merchant_id'           => $this->merchant_id, //Mã merchant khai báo tại NganLuong.vn
                         'receiver_email'        => $this->receiver_email,
-                        'merchant_password'     => MD5($this->merchant_password), //MD5(Mật khẩu kết nối giữa merchant và NganLuong.vn)                     
+                        'merchant_password'     => MD5($this->merchant_password), //MD5(Mật khẩu kết nối giữa merchant và NganLuong.vn)
                         'order_code'            => $order_code, //Mã hóa đơn do website bán hàng sinh ra
-                        'total_amount'          => $total_amount, //Tổng số tiền của hóa đơn                        
+                        'total_amount'          => $total_amount, //Tổng số tiền của hóa đơn
                         'payment_method'        => 'ATM_ONLINE', //Phương thức thanh toán, nhận một trong các giá trị 'ATM_ONLINE', 'ATM_OFFLINE' hoặc 'NH_OFFLINE'
                         'bank_code'             => $bank_code, //Mã Ngân hàng
                         'payment_type'          => $payment_type, //Kiểu giao dịch: 1 - Ngay; 2 - Tạm giữ; Nếu không truyền hoặc bằng rỗng thì lấy theo chính sách của NganLuong.vn
@@ -404,7 +402,7 @@ class Checkout extends Controller
                         'buyer_address'         => $buyer_address, //Địa chỉ người mua hàng
                         'total_item'            => count($array_items)
                     );
-                    
+
                     $post_field = '';
                     foreach ($params as $key => $value){
                         if ($post_field != '') $post_field .= '&';
@@ -418,11 +416,11 @@ class Checkout extends Controller
                         }
                     }
                     }
-                    
+
                 $nl_result=$this->CheckoutCall($post_field);
                 return $nl_result;
             }
-            
+
             /*
 
             Hàm lấy link thanh toán dùng số dư ví ngân lượng
@@ -435,8 +433,8 @@ class Checkout extends Controller
                         buyer_fullname
                         buyer_email
                         buyer_mobile
-            ===============================         
-                $array_items mảng danh sách các item name theo quy tắc 
+            ===============================
+                $array_items mảng danh sách các item name theo quy tắc
                 item_name1
                 item_quantity1
                 item_amount1
@@ -444,10 +442,10 @@ class Checkout extends Controller
                 .....
 
                 payment_type Kiểu giao dịch: 1 - Ngay; 2 - Tạm giữ; Nếu không truyền hoặc bằng rỗng thì lấy theo chính sách của NganLuong.vn
-             */         
+             */
         function NLCheckout($order_code,$total_amount,$payment_type,$order_description,$tax_amount,
-                                    $fee_shipping,$discount_amount,$return_url,$cancel_url,$buyer_fullname,$buyer_email,$buyer_mobile, 
-                                    $buyer_address,$array_items) 
+                                    $fee_shipping,$discount_amount,$return_url,$cancel_url,$buyer_fullname,$buyer_email,$buyer_mobile,
+                                    $buyer_address,$array_items)
                 {
                  $params = array(
                         'cur_code'              => $this->cur_code,
@@ -455,9 +453,9 @@ class Checkout extends Controller
                         'version'               => $this->version,
                         'merchant_id'           => $this->merchant_id, //Mã merchant khai báo tại NganLuong.vn
                         'receiver_email'        => $this->receiver_email,
-                        'merchant_password'     => MD5($this->merchant_password), //MD5(Mật khẩu kết nối giữa merchant và NganLuong.vn)                     
+                        'merchant_password'     => MD5($this->merchant_password), //MD5(Mật khẩu kết nối giữa merchant và NganLuong.vn)
                         'order_code'            => $order_code, //Mã hóa đơn do website bán hàng sinh ra
-                        'total_amount'          => $total_amount, //Tổng số tiền của hóa đơn                        
+                        'total_amount'          => $total_amount, //Tổng số tiền của hóa đơn
                         'payment_method'        => 'NL', //Phương thức thanh toán
                         'payment_type'          => $payment_type, //Kiểu giao dịch: 1 - Ngay; 2 - Tạm giữ; Nếu không truyền hoặc bằng rỗng thì lấy theo chính sách của NganLuong.vn
                         'order_description'     => $order_description, //Mô tả đơn hàng
@@ -485,12 +483,12 @@ class Checkout extends Controller
                         }
                     }
                     }
-                    
+
                 //die($post_field);
                 $nl_result=$this->CheckoutCall($post_field);
                 return $nl_result;
             }
-                
+
     function IBCheckout($order_code, $total_amount, $bank_code, $payment_type, $order_description, $tax_amount, $fee_shipping, $discount_amount, $return_url, $cancel_url, $buyer_fullname, $buyer_email, $buyer_mobile, $buyer_address, $array_items) {
         $params = array(
             'cur_code' => $this->cur_code,
@@ -498,9 +496,9 @@ class Checkout extends Controller
             'version' => $this->version,
             'merchant_id' => $this->merchant_id, //Mã merchant khai báo tại NganLuong.vn
             'receiver_email' => $this->receiver_email,
-            'merchant_password' => MD5($this->merchant_password), //MD5(Mật khẩu kết nối giữa merchant và NganLuong.vn)                     
+            'merchant_password' => MD5($this->merchant_password), //MD5(Mật khẩu kết nối giữa merchant và NganLuong.vn)
             'order_code' => $order_code, //Mã hóa đơn do website bán hàng sinh ra
-            'total_amount' => $total_amount, //Tổng số tiền của hóa đơn                     
+            'total_amount' => $total_amount, //Tổng số tiền của hóa đơn
             'payment_method' => 'IB_ONLINE', //Phương thức thanh toán
             'bank_code' => $bank_code,
             'payment_type' => $payment_type, //Kiểu giao dịch: 1 - Ngay; 2 - Tạm giữ; Nếu không truyền hoặc bằng rỗng thì lấy theo chính sách của NganLuong.vn
@@ -535,10 +533,10 @@ class Checkout extends Controller
         //die($post_field);
         $nl_result = $this->CheckoutCall($post_field);
         return $nl_result;
-    }           
-            
-    function CheckoutCall($post_field){     
-                
+    }
+
+    function CheckoutCall($post_field){
+
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_URL,$this->url_api);
                 curl_setopt($ch, CURLOPT_ENCODING , 'UTF-8');
@@ -549,19 +547,19 @@ class Checkout extends Controller
                 curl_setopt($ch, CURLOPT_POST, 1);
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $post_field);
                 $result = curl_exec($ch);
-                $status = curl_getinfo($ch, CURLINFO_HTTP_CODE); 
+                $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
                 $error = curl_error($ch);
-                
-                if ($result != '' && $status==200){                     
+
+                if ($result != '' && $status==200){
                     $xml_result = str_replace('&','&amp;',(string)$result);
-                    $nl_result  = simplexml_load_string($xml_result);                   
-                    $nl_result->error_message = $this->GetErrorMessage($nl_result->error_code);                                     
+                    $nl_result  = simplexml_load_string($xml_result);
+                    $nl_result->error_message = $this->GetErrorMessage($nl_result->error_code);
                 }
                 else $nl_result->error_message = $error;
                 return $nl_result;
-            
+
             }
-            
+
     function GetErrorMessage($error_code) {
                 $arrCode = array(
                 '00' => 'Thành công',
@@ -607,7 +605,7 @@ class Checkout extends Controller
 
                    return $arrCode[(string)$error_code];
             }
-            
-            
-            
+
+
+
   }

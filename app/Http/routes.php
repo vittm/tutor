@@ -53,6 +53,7 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::post('editing/video-{id}', 'UserController@editing_video');
 		Route::post('editing/level-{id}', 'UserController@editing_level');
 		Route::post('editing/password-{id}', 'UserController@editing_password');
+		Route::get('follow-{id}-{user_id}', 'UserController@follow');
 
 		Route::get('couser/add-{id}', 'CouserController@look');
 		Route::post('couser/adding-{id}', 'CouserController@adding_couser');

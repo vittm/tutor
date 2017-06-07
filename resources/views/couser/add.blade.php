@@ -181,21 +181,31 @@
     </form>
   </div>
   <div role="tabpanel" class="tab-pane" id="student">
-
-  @foreach($couser as $key => $value)
-  <a class="col-md-6 list-couser wel">
-    <div class="col-md-12 pd0 list-couser__images" wel>
-      <div class="list-couser__typeCourse">siêu nhân gao</div>
-      <img src="{{ URL::to('/img/couser')}}/{{$value ->picture}}" style="width:100%">
-      <div class="list-couser__price btn btn-origan2">{{$value -> price}} <sup>Đ/ giờ </sup></div>
+    <div class="col-md-12">
+      @foreach($couser as $key => $value)
+      <a class="col-md-4 list-couser wel">
+        <div class="col-md-12 pd0 list-couser__images">
+          @if($value -> typeclass == '1')
+          <div class="list-couser__typeCourse">
+            Học 1 + 1
+          </div>
+          @endif
+          @if($value -> typeCouser == '1')
+          <div class="list-couser__typeCourse">
+            Lớp học sắp khai giảng
+          </div>
+          @endif
+          <img src="{{ URL::to('/img/couser')}}/{{$value ->picture_couser}}" style="width:100%">
+          <div class="list-couser__price btn btn-origan2">{{number_format($value->price)}}<sup>Đ/ giờ </sup></div>
+        </div>
+          <div class="col-md-12 list-couser__name wel"> <h3> {{$value ->title }} </h3></div>
+          <div class="col-md-4 list-couser__config pd10 wel"><img src="{{ URL::to('/img/icon/inclined-pencil.png')}}" width="20px"><span> Chỉnh sửa </span></div>
+          <div class="col-md-4 list-couser__config pd10 wel"><img src="{{ URL::to('/img/icon/VectorSmartObject_3.png')}}"><span> Chia sẻ </span></div>
+          <div class="col-md-4 list-couser__config pd10 wel"><img src="{{ URL::to('/img/icon/inclined-pencil.png')}}"><span> Xoá</span></div>
+          <button class="btn btn-origan col-md-12 pd0">Thanh Toán </button>
+      </a>
+      @endforeach
     </div>
-      <div class="col-md-12 list-couser__name wel"> <h3> {{$value ->title }} </h3></div>
-      <div class="col-md-4 pd10 wel"><img src="{{ URL::to('/img/icon/inclined-pencil.png')}}" width="20px"><span> Chỉnh sửa </span></div>
-      <div class="col-md-4 pd10 wel"><img src="{{ URL::to('/img/icon/VectorSmartObject_3.png')}}"><span> Chia sẻ </span></div>
-      <div class="col-md-4 pd10 wel"><img src="{{ URL::to('/img/icon/inclined-pencil.png')}}"><span> Xoá</span></div>
-      <button class="btn btn-origan col-md-12 pd0">Thanh Toán </button>
-  </a>
-  @endforeach
   </div>
 </div>
 </div>

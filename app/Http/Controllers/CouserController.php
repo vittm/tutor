@@ -42,7 +42,7 @@ class CouserController extends Controller
           $nameConvert= 'couser.jpg';
       }
           $db->id_user = $id;
-          $db->picture = $nameConvert;
+          $db->picture_couser = $nameConvert;
           $db->title = $input['title'];
           $db->who = $input['who'];
           $db->information = $input['information'];
@@ -69,7 +69,7 @@ class CouserController extends Controller
           $nameConvert= 'couser.jpg';
       }
           $db->id_user = $id;
-          $db->picture = $input['picuture'];
+          $db->picture_couser = $input['picuture'];
           $db->title = $input['title'];
           $db->who = $input['who'];
           $db->information = $input['information'];
@@ -98,7 +98,7 @@ class CouserController extends Controller
 
         if($id_user[0]->typeCouser == '1') {
           $profile= ([
-              'picture' => $nameConvert,
+              'picture_couser' => $nameConvert,
               'title' => $input['title'],
               'who' => $input['who'],
               'information' => $input['information'],
@@ -112,7 +112,7 @@ class CouserController extends Controller
         }else if($id_user[0]->typeCourse == '2') {
           $arr1=array('morning'=>$morning,'afternoon'=>$afternoon, 'night'=> $night );
           $profile= ([
-              'picture' => $nameConvert,
+              'picture_couser' => $nameConvert,
               'title' => $input['title'],
               'who' => $input['who'],
               'information' => $input['information'],
