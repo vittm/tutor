@@ -84,7 +84,7 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="{{ url('/chinh-sua-ca-nhan')}}-{{ Auth::user()->id }}"></i>Chỉnh sửa hồ sơ</a></li>
-                                    <li><a href="{{ url('/couser/add-2')}}-{{ Auth::user()->id }}">Quản lý khóa học</a></li>
+                                    <li><a href="{{ url('/couser/add')}}-{{ Auth::user()->id }}">Quản lý khóa học</a></li>
                                     <li><a href="{{ url('/quan-ly-hoc-vien')}}"></i>Quản lý thông tin học viên</a></li>
                                     <li><a href="{{ url('/chinh-sua-ca-nhan')}}-{{ Auth::user()->id }}">Chỉnh sửa hồ sơ</a></li>
                                     @if(Auth::user()->active == 0)

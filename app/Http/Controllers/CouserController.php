@@ -33,8 +33,8 @@ class CouserController extends Controller
       $input = $request->all();
       $id = $input['id_user'];
       $db = new Cousers;
-      if($files=$request->file('coverMain')){
-          $file = $input['coverMain'];
+      if($files=$request->file('imgCouser')){
+          $file = $input['imgCouser'];
           $filename = $file->getClientOriginalName();
           $nameConvert = date('H-i-sYmd').$filename;
           $file->move(public_path().'/img/couser', $nameConvert);
@@ -43,7 +43,7 @@ class CouserController extends Controller
       }
           $db->id_user = $id;
           $db->picture_couser = $nameConvert;
-          $db->title = $input['title'];
+          $db->name_couser = $input['title'];
           $db->who = $input['who'];
           $db->information = $input['information'];
           $db->study = $input['study'];
@@ -51,7 +51,7 @@ class CouserController extends Controller
           $db->program = $input['program'];
           $db->timetype1 = json_encode($input['morning']);
           $db->price = $input['id_user'];
-          $db->typeCourse = '1';
+          $db->typeCouser = '1';
           $db->typeclass = $input['typeclass'];
           $db->save();
         return redirect('/trang-ca-nhan-'.$id);
@@ -60,8 +60,8 @@ class CouserController extends Controller
       $input = $request->all();
       $id = $input['id_user'];
       $db = new Cousers;
-      if($files=$request->file('coverMain')){
-          $file = $input['coverMain'];
+      if($files=$request->file('imgCouser')){
+          $file = $input['imgCouser'];
           $filename = $file->getClientOriginalName();
           $nameConvert = date('H-i-sYmd').$filename;
           $file->move(public_path().'/img/couser', $nameConvert);
@@ -70,7 +70,7 @@ class CouserController extends Controller
       }
           $db->id_user = $id;
           $db->picture_couser = $input['picuture'];
-          $db->title = $input['title'];
+          $db->name_couser = $input['title'];
           $db->who = $input['who'];
           $db->information = $input['information'];
           $db->study = $input['study'];
@@ -87,8 +87,8 @@ class CouserController extends Controller
       public function editing_couser(Request $request, $couserid){
         $input = $request->all();
         $id_user = DB::table('cousers')->where('id', '=', $couserid)->get();
-        if($files=$request->file('coverMain')){
-            $file = $input['coverMain'];
+        if($files=$request->file('imgCouser')){
+            $file = $input['imgCouser'];
             $filename = $file->getClientOriginalName();
             $nameConvert = date('H-i-sYmd').$filename;
             $file->move(public_path().'/img/couser', $nameConvert);
@@ -99,7 +99,7 @@ class CouserController extends Controller
         if($id_user[0]->typeCouser == '1') {
           $profile= ([
               'picture_couser' => $nameConvert,
-              'title' => $input['title'],
+              'name_couser' => $input['title'],
               'who' => $input['who'],
               'information' => $input['information'],
               'study' => $input['study'],
@@ -113,7 +113,7 @@ class CouserController extends Controller
           $arr1=array('morning'=>$morning,'afternoon'=>$afternoon, 'night'=> $night );
           $profile= ([
               'picture_couser' => $nameConvert,
-              'title' => $input['title'],
+              'name_couser' => $input['title'],
               'who' => $input['who'],
               'information' => $input['information'],
               'study' => $input['study'],
@@ -146,7 +146,7 @@ class CouserController extends Controller
         $db->couser = $input['selectCouser'];
 
         $db->save();
-        return redirect('/');
+        return redirect('/trang-ca-nhan-'.$id);
       }
 
       public function mange_student() {

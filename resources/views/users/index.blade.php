@@ -12,7 +12,7 @@
 		@else
 		<img src="{{ URL::to('img/cover/default.png')}}" alt="..." style="display:block;margin: auto;width: 100%;">
 		@endif
-		<div class="@if($id_user[0]->active == 2)col-md-8 @else col-md-12 @endif pd0" style="margin-top: -6rem;">
+		<div class="@if($id_user[0]->active == 2) col-md-9 @else col-md-12 @endif pd0" style="margin-top: -6rem;">
 			<div class="col-md-4 pd0">
 				<img style="position: relative;z-index: 1;"src="{{ URL::to('img/avatar')}}/{{ $id_user[0]->avatar}}" alt="..." class="img-circle avatar-profile" height="150" width="150">
 			</div>
@@ -47,35 +47,13 @@
 						<img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_2.png')}}" alt="">
 						<span> <span> {{ $zfollowers }} </span> Đang theo dõi</span>
 						<div class="cold-md-12 pd0 top15">
-							<div class="col-md-4">
-								<img src="{{ URL::to('img/avatar/04-21-212017060549c8d33637cb126c6c0745ddf6f5f03e.jpg')}}" alt="..." class="img-circle dl" height="60" width="60">
+							@foreach($listfollowers as $value)
+							<div class="col-md-3">
+								<img src="{{ URL::to('img/avatar')}}/{{$value->avatar}}" alt="..." class="img-circle dl" height="60" width="60">
 							</div>
-							<div class="col-md-4">
-								<img src="{{ URL::to('img/avatar/04-21-212017060549c8d33637cb126c6c0745ddf6f5f03e.jpg')}}" alt="..." class="img-circle dl" height="60" width="60">
-							</div>
-							<div class="col-md-4">
-								<img src="{{ URL::to('img/avatar/04-21-212017060549c8d33637cb126c6c0745ddf6f5f03e.jpg')}}" alt="..." class="img-circle dl" height="60" width="60">
-							</div>
-							<div class="col-md-4">
-								<img src="{{ URL::to('img/avatar/04-21-212017060549c8d33637cb126c6c0745ddf6f5f03e.jpg')}}" alt="..." class="img-circle dl" height="60" width="60">
-							</div>
-							<div class="col-md-4">
-								<img src="{{ URL::to('img/avatar/04-21-212017060549c8d33637cb126c6c0745ddf6f5f03e.jpg')}}" alt="..." class="img-circle dl" height="60" width="60">
-							</div>
-							<div class="col-md-4">
-								<img src="{{ URL::to('img/avatar/04-21-212017060549c8d33637cb126c6c0745ddf6f5f03e.jpg')}}" alt="..." class="img-circle dl" height="60" width="60">
-							</div>
-							<div class="col-md-4">
-								<img src="{{ URL::to('img/avatar/04-21-212017060549c8d33637cb126c6c0745ddf6f5f03e.jpg')}}" alt="..." class="img-circle dl" height="60" width="60">
-							</div>
-							<div class="col-md-4">
-								<img src="{{ URL::to('img/avatar/04-21-212017060549c8d33637cb126c6c0745ddf6f5f03e.jpg')}}" alt="..." class="img-circle dl" height="60" width="60">
-							</div>
-							<div class="col-md-4">
-								<img src="{{ URL::to('img/avatar/04-21-212017060549c8d33637cb126c6c0745ddf6f5f03e.jpg')}}" alt="..." class="img-circle dl" height="60" width="60">
-							</div>
+							@endforeach
 						</div>
-						<div class="col-md-12 wel">
+						<div class="col-md-12 wel top30">
 							<h4> Hình Ảnh </h4>
 							@if(json_decode($id_user[0]->picture) != null)
 								@foreach( json_decode($id_user[0]->picture) as $value )
@@ -131,6 +109,7 @@
  					 </div>
  				</div>
 			    <div class="col-md-12 wel top30">
+						<h4 class="top15"><strong>Lớp học tham gia <strong></h4>
 			      @foreach($student as $key => $value)
 						<div class="col-md-6 list-couser-main top15">
 			      <a class="col-md-12 pd0 list-couser wel">
@@ -148,7 +127,7 @@
 			          <img src="{{ URL::to('/img/couser')}}/{{$value->picture_couser}}" style="width:100%">
 			          <div class="list-couser__price btn btn-origan2">{{number_format($value->price)}}<sup>Đ/ giờ </sup></div>
 			        </div>
-			          <div class="col-md-12 list-couser__name wel top10"> <h4> {{$value ->title }} </h4> <h4 class="top15"> {{ $value->name}}</h4> <p style="font-size: 13px;"><i>{{ $value->jobs}}, {{ $value->city}}</i></p></div>
+			          <div class="col-md-12 list-couser__name wel top10"> <h4> {{$value ->name_couser }} </h4> <h4 class="top15"> {{ $value->name}}</h4> <p style="font-size: 13px;"><i>{{ $value->jobs}}, {{ $value->city}}</i></p></div>
 			      </a>
 					</div>
 			      @endforeach
@@ -158,16 +137,16 @@
 				@if($id_user[0]->active == 2)
 				<div class="col-md-8 top30">
 					<div class="col-md-3">
-						<p class="action-menu__counter">{{ $zfollowers }}</p><p>Người theo dõi</p><img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_2.png')}}" alt="">
+						<p class="action-menu__counter">{{ $zfollowers }}</p><p class="text-center">Người theo dõi</p><img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_2.png')}}" alt="">
 					</div>
 					<div class="col-md-3">
-						<p class="action-menu__counter">{{ $id_user[0] -> viewed }}</p><p>Học Viên</p><img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_1.png')}}" alt="">
+						<p class="action-menu__counter">{{ $id_user[0] -> viewed }}</p><p class="text-center">Học Viên</p><img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_1.png')}}" alt="">
 					</div>
 					<div class="col-md-3">
-						<p class="action-menu__counter">{{ 30 }}</p><p>Khoá học</p><img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject.png')}}" alt="">
+						<p class="action-menu__counter">{{ 30 }}</p><p class="text-center">Khoá học</p><img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject.png')}}" alt="">
 					</div>
 					<div class="col-md-3">
-						<p class="action-menu__counter">{{ 5 }}{{' năm'}}</p><p>Kinh nghiệm</p><img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_0.png')}}" alt="">
+						<p class="action-menu__counter">{{ 5 }}{{' năm'}}</p><p class="text-center">Kinh nghiệm</p><img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_0.png')}}" alt="">
 					</div>
 				</div>
 				@endif
@@ -203,10 +182,11 @@
 			<form class="col-md-12 pd0 form-register-couser" method="get" enctype="multiple/part" action="{{ url('/couser/register')}}">
 				<p>Đăng ký học với gia sư</p>
 				{{ csrf_field() }}
+
 				<input type="hidden" name="user_login" value="{!! Auth::id() !!}">
 				<select class="form-control" name="selectCouser">
 						@foreach($couser as $value)
-							<option value="{{ $value->title }}">{{ $value->title}}</option>
+							<option value="{{ $value->id }}">{{ $value->name_couser}}</option>
 						@endforeach
 				</select>
 				<p>Dự kiến số buổi học/tuần</p>
@@ -315,7 +295,7 @@
 								<img src="{{ URL::to('/img/couser')}}/{{$value->picture_couser}}" style="width:100%">
 								<div class="list-couser__price btn btn-origan2">{{number_format($value->price)}}<sup>Đ/ giờ </sup></div>
 							</div>
-								<div class="col-md-12 list-couser__name wel top10"> <h4> {{$value ->title }} </h4> </div>
+								<div class="col-md-12 list-couser__name wel top10"> <h4> {{$value ->name_couser }} </h4> </div>
 						</a>
 					</div>
 						@endforeach

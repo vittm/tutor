@@ -63,23 +63,23 @@ class UserController extends Controller
         else{
             $idAuth= $id;
         }
-        $id_student = DB::table('registercousers')->join('cousers', 'cousers.id', '=', 'registercousers.id_couser')->join('users', 'users.id', '=', 'registercousers.id_couser')->where([['registercousers.id_couser', '=', $id]])->get();
-        $list_cousers = DB::table('cousers')->join('users', 'users.id', '=', 'cousers.id_user')->where('cousers.id_user', '=', $id)->get();
+        $id_student = DB::table('registercousers')->join('cousers', 'cousers.id', '=', 'registercousers.couser')->join('users', 'users.id', '=', 'cousers.id_user')->where([['registercousers.id_user', '=', $id]])->get();
+        $list_cousers = DB::table('cousers')->join('users', 'users.id', '=', 'cousers.id_user')->where('cousers.id_user', '=', $id_user[0]->id)->get();
         $view= $id_user[0]->viewed + 1;
 
         //user_id là trang cá nhân của người khác
         //follower_id là của user
-        $kkfollowers= DB::table('followers')->where([['follower_id','=',$idAuth],['user_id','=',$id_user[0]->id]])->count(); //button xem user hiện tại có theo dõi trên profile khác
+        $kkfollowers= DB::table('followers')->where([['follower_id','=',$idAuth],['user_id','=',$id_user[0]->id]])->count(); // có đang theo dõi người khác không
         $zfollowers= DB::table('followers')->where([['follower_id','=',$id_user[0]->id]])->count(); //đang follow người ta
         $kfollowers= DB::table('followers')->where([['user_id','=',$id_user[0]->id]])->count(); // người ta theo dõi
-        $listfollowers= DB::table('followers')->where([['user_id','=',$id_user[0]->id]])->get();
+        $listfollowers= DB::table('followers')->join('users', 'users.id', '=', 'followers.user_id')->where([['follower_id','=',$id]])->get();
         $ratingsuser =  round(($content_teach+ $value_get + $connect + $feeling + $learn_teach)/($count_id*5),2);
         DB::table('users')->where('id', $id)->update(['sumRatings' => $ratingsuser , 'countRatings' => $count_id,'viewed' => $view ]);
 
         $job= json_decode($id_user[0]->job,JSON_BIGINT_AS_STRING);
         $status =  DB::table('users')->where('id', $idAuth )->select('id')->first();
         DB::table('users')->where('id', $id)->update(['level_user'=>'1']);
-        return view('users.index', ['id_user' => $id_user,'ratings' => $rating,'kkfollowers'=>$kkfollowers,'kfollowers'=>$kfollowers,'zfollowers'=>$zfollowers,'list_cousers'=>$list_cousers,'student'=>$id_student,'couser'=>$couser,'contact'=>$contact,'subject' => $subject, 'content_teach' => $content_teach,'value_get' => $value_get, 'connect' => $connect, 'learn_teach' => $learn_teach, 'feeling' => $feeling, 'count_id' => $count_id, 'cmtprofiles' => $cmt,'feedbacks' => $feedback,'status' => $status,'post'=>$post,'job' => $job ]);
+        return view('users.index', ['id_user' => $id_user,'ratings' => $rating,'listfollowers'=>$listfollowers,'kkfollowers'=>$kkfollowers,'kfollowers'=>$kfollowers,'zfollowers'=>$zfollowers,'list_cousers'=>$list_cousers,'student'=>$id_student,'couser'=>$couser,'contact'=>$contact,'subject' => $subject, 'content_teach' => $content_teach,'value_get' => $value_get, 'connect' => $connect, 'learn_teach' => $learn_teach, 'feeling' => $feeling, 'count_id' => $count_id, 'cmtprofiles' => $cmt,'feedbacks' => $feedback,'status' => $status,'post'=>$post,'job' => $job ]);
     }
     public function tab_pay()
     {

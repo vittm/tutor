@@ -29,6 +29,7 @@
            <input class="multiple-flie" type="file" name="imgCouser" >
            <ul class="col-md-offset-2 col-md-9 gender__edit">
  						 <li>
+               <input type="hidden" name="typeclass" type="radio" id="boy" value="0">
  							 <input name="typeclass" type="radio" id="boy" value="1">
  							 <label for="boy">Khoá học có cung cấp <strong> Lớp học 1 + 1 </strong></label>
  							 <div class="check"></div>
@@ -183,7 +184,7 @@
   <div role="tabpanel" class="tab-pane" id="student">
     <div class="col-md-12">
       @foreach($couser as $key => $value)
-      <a class="col-md-4 list-couser wel">
+      <div class="col-md-4 list-couser wel">
         <div class="col-md-12 pd0 list-couser__images">
           @if($value -> typeclass == '1')
           <div class="list-couser__typeCourse">
@@ -198,12 +199,14 @@
           <img src="{{ URL::to('/img/couser')}}/{{$value ->picture_couser}}" style="width:100%">
           <div class="list-couser__price btn btn-origan2">{{number_format($value->price)}}<sup>Đ/ giờ </sup></div>
         </div>
-          <div class="col-md-12 list-couser__name wel"> <h3> {{$value ->title }} </h3></div>
-          <div class="col-md-4 list-couser__config pd10 wel"><img src="{{ URL::to('/img/icon/inclined-pencil.png')}}" width="20px"><span> Chỉnh sửa </span></div>
-          <div class="col-md-4 list-couser__config pd10 wel"><img src="{{ URL::to('/img/icon/VectorSmartObject_3.png')}}"><span> Chia sẻ </span></div>
-          <div class="col-md-4 list-couser__config pd10 wel"><img src="{{ URL::to('/img/icon/inclined-pencil.png')}}"><span> Xoá</span></div>
+          <div class="col-md-12 list-couser__name wel"> <h3> {{$value ->name_couser }} </h3></div>
+          <div class="col-md-12 pd0">
+            <a href="{{ URL::to('/couser/edit')}}-{{$value ->id}}" class="col-md-4 list-couser__config pd10 wel"><img src="{{ URL::to('/img/icon/inclined-pencil.png')}}" width="20px"><span> Chỉnh sửa </span></a>
+            <a class="col-md-4 list-couser__config pd10 wel"> <img src="{{ URL::to('/img/icon/VectorSmartObject_3.png')}}"><span> Chia sẻ </span></a>
+            <a href="{{ URL::to('/couser/delete')}}-{{$value ->id}}" class="col-md-4 list-couser__config pd10 wel"><img src="{{ URL::to('/img/icon/inclined-pencil.png')}}"><span> Xoá</span></a>
+          </div>
           <button class="btn btn-origan col-md-12 pd0">Thanh Toán </button>
-      </a>
+      </div>
       @endforeach
     </div>
   </div>
