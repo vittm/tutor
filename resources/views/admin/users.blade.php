@@ -3,6 +3,7 @@
 @section('content')
 
 <p>Chỉnh sửa phần thành viên</p>
+
 <form action="{{ url('/admin/update-user')}}" enctype="multipart/form-data"  method="POST">
    <input type="hidden" name="_token" value="{{ csrf_token() }}">
    @foreach($user as $key => $value)
@@ -19,7 +20,7 @@
       <div class="col-md-2 top15">
             <span class="style-input">
                <select class="form-control" name="active[]">
-                  <option> Loại thành viên</option>
+                  <option> Loại thành viên </option>
                   <option @if( $value->active == 1 ) selected @endif value="1">
                      Học Viên
                   </option>

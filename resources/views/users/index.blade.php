@@ -34,7 +34,7 @@
 						<div class="col-md-6 pdr">
 								<img class="action-menu__icon " src="{{ URL::to('img/icon/VectorSmartObject_3.png')}}" alt=""><p>Chia sẻ hồ sơ</p>
 						</div>
-						<input type="hidden" class="user_id_follow" value="{{ Auth::user()->id }}">
+						<input type="hidden" class="user_id_follow" value="@if(Auth::check()){{ Auth::user()->id }} @endif">
 						<input type="hidden" class="id_follow" value="{{ $id_user[0] -> id }}">
 						<a href="#" class="btn col-md-12 btn-follow" style="background: #fcaf00; color: #ffffff;" name="button">  @if($kkfollowers > 0) Đang theo dõi @else Theo dõi @endif </a>
 				</div>

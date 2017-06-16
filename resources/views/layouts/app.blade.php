@@ -76,6 +76,12 @@
                         <p>Thành Viên</p>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ url::to('/admin/search') }}">
+                        <i class="pe-7s-note2"></i>
+                        <p>Tìm thành viên</p>
+                    </a>
+                </li>
                 <li class="">
                     <a href="{{ url('/admin/manage-voucher')}}">
                         <i class="pe-7s-science"></i>
@@ -190,7 +196,7 @@
 
                     if( getInput.hasClass('onoffswitch-checked') ){
                        var value= '1';
-                    } else 
+                    } else
                     {
                         var value= '0';
                     }
@@ -227,7 +233,7 @@
 
         });
     </script>
-    
+
 </html>
 @else
     <p>Hi</p>
