@@ -140,6 +140,7 @@ class CouserController extends Controller
         $db = new Registercousers;
 
         $db->id_user = $id;
+        $db->id_couser = $input['id_teacher'];
         $db->planmoment = $input['planmoment'];
         $db->plantime = $input['plantime'];
         $db->price = $input['price'];
@@ -151,7 +152,7 @@ class CouserController extends Controller
 
       public function mange_student() {
         $id = Auth::id();
-        $id_student = DB::table('registercousers')->join('users', 'users.id', '=', 'registercousers.id_user')->where('registercousers.teacher', '=', $id)->get();
+        $id_student = DB::table('registercousers')->join('users', 'users.id', '=', 'registercousers.id_user')->where('registercousers.id_couser', '=', $id)->get();
 
         return view('couser.managestudent', ['student' => $id_student ]);
       }

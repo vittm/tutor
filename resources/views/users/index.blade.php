@@ -182,7 +182,7 @@
 			<form class="col-md-12 pd0 form-register-couser" method="get" enctype="multiple/part" action="{{ url('/couser/register')}}">
 				<p>Đăng ký học với gia sư</p>
 				{{ csrf_field() }}
-
+				<input type="hidden" name="id_teacher" value={{ $id_user[0]->id }}>
 				<input type="hidden" name="user_login" value="{!! Auth::id() !!}">
 				<select class="form-control" name="selectCouser">
 						@foreach($couser as $value)
