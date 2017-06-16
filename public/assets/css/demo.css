@@ -119,11 +119,49 @@ body .pd0{
     position: absolute; top: 0; bottom: 0;
     right: 56px;
     border: 2px solid #FAF5F5; border-radius: 20px;
-    transition: all 0.3s ease-in 0s; 
+    transition: all 0.3s ease-in 0s;
 }
 .onoffswitch-checked .onoffswitch-inner {
     margin-left: 0;
 }
 .onoffswitch-checked .onoffswitch-switch {
-    right: 0px; 
+    right: 0px;
+}
+.list-couser {
+  position: relative;
+  border: 1px solid #eeeeee;
+}
+.list-couser__typeCourse {
+  position: absolute;
+  width: 50%;
+  height: 40px;
+  background: rgba(252, 175, 0, 0.82);
+  text-align: center;
+  line-height: 42px;
+  right: 0;
+  font-size: 16px;
+  color: #ffffff;
+  font-weight: 500;
+}
+.list-couser__price {
+  position: absolute;
+  bottom: 15px;
+  right: 0;
+}
+.list-couser__config {
+    border: 1px solid #eeeeee;
+}
+.list-couser__config:nth-child(1) {
+  border: 1px solid #eeeeee;
+  border-right: none;
+}
+.list-couser__config:nth-child(3) {
+  border: 1px solid #eeeeee;
+  border-left: none;
+}
+body .list-couser-main:nth-child(even) {
+  padding-right: 0;
+}
+body .list-couser-main:nth-child(odd) {
+  padding-left: 0;
 }

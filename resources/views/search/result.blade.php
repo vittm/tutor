@@ -20,7 +20,7 @@
 	</div>
 	</form>
 </div>
-<form class="container" action="{{ url('/find-teach') }}" role="form" method="GET" enctype='multipart/form-data'>
+<form class="container" style="pointer-events:none;" action="{{ url('/find-teach') }}" role="form" method="GET" enctype='multipart/form-data'>
 	<div class="container" style="border-bottom: 1px solid #161542;">
 		<div class="sortby">
 			<ul><li>Sắp sếp theo: </li>

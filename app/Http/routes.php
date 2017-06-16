@@ -36,16 +36,60 @@ Route::get('/dang-tin', function(){
 	return view('posts.createPosts');
 });
 
+
 Route::get('/thanh-toan-online', function(){
     return view('users.pay-online');
 });
 
+Route::get('follow-{id}-{user_id}', 'UserController@follow');
 
 Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('admin/index', 'HomeController@index');
 });
 
 Route::group(['middleware' => ['auth']], function () {
+		Route::get('/admin/search', function(){
+			return view('admin.search');
+		});
+		// Admin
+		Route::post('/admin/result-user', 'WidgetController@result_user');
+		Route::get('/admin/add-slide', function(){
+			return view('admin.add-slide');
+		});
+		Route::get('/admin/listing-slide', 'WidgetController@listing_slide');
+		Route::post('/admin/adding-slide', 'WidgetController@adding_slider');
+		Route::get('/admin/edit-slide-{id}', 'WidgetController@edit_slide');
+		Route::post('/admin/editing-slide-{id}', 'WidgetController@editing_slide');
+		Route::get('/admin/destroy-slide-{id}', 'WidgetController@destroy_slide');
+		Route::get('/admin/text', function(){
+		    return view('admin.text');
+		});
+		Route::get('/admin/delete-text-{id}', 'WidgetController@delete_text');
+		Route::post('/admin/update-text', 'WidgetController@update_text');
+
+		Route::get('/admin/add-feedback', function(){
+		    return view('admin.add-feedback');
+		});
+		Route::get('/admin/feedback', 'WidgetController@listing_feedback');
+		Route::post('/admin/adding-feedback', 'WidgetController@adding_feedback');
+		Route::get('/admin/edit-feedback-{id}', 'WidgetController@edit_feedback');
+		Route::post('/admin/editing-feedback-{id}', 'WidgetController@editing_feedback');
+		Route::get('/admin/destroy-feedback-{id}', 'WidgetController@destroy_feedback');
+		Route::get('/admin/thanh-vien', 'WidgetController@admin_user');
+		Route::post('/admin/update-user', 'WidgetController@update_user');
+		Route::get('/admin/delete-user-{id}', 'WidgetController@delete_user');
+		Route::post('/pay-online', 'WidgetController@bank');
+		Route::post('/voucher-{id}', 'WidgetController@voucher');
+		Route::post('/review-teacher-{id}', 'WidgetController@review');
+
+
+		Route::get('/admin/add-voucher', 'WidgetController@add_voucher');
+		Route::post('/admin/adding-voucher', 'WidgetController@adding_voucher');
+		Route::get('/admin/manage-voucher', 'WidgetController@mangevoucher');
+		Route::get('/admin/delete-voucher-{id}', 'WidgetController@delete_voucher');
+		Route::get('/admin/show', 'WidgetController@show_index');
+		Route::post('/admin/update-show-index-{id}-{value}', 'WidgetController@update_show_index');
+
     Route::get('chinh-sua-ca-nhan-{id}', 'UserController@edit');
     Route::post('editing-{id}', 'UserController@editing');
 		Route::post('editing/style-{id}', 'UserController@editing_style');
@@ -53,7 +97,7 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::post('editing/video-{id}', 'UserController@editing_video');
 		Route::post('editing/level-{id}', 'UserController@editing_level');
 		Route::post('editing/password-{id}', 'UserController@editing_password');
-		Route::get('follow-{id}-{user_id}', 'UserController@follow');
+
 
 		Route::get('couser/add-{id}', 'CouserController@look');
 		Route::post('couser/adding-{id}', 'CouserController@adding_couser');
@@ -75,44 +119,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 
-// Admin
 
-Route::get('/admin/add-slide', function(){
-	return view('admin.add-slide');
-});
-Route::get('/admin/listing-slide', 'WidgetController@listing_slide');
-Route::post('/admin/adding-slide', 'WidgetController@adding_slider');
-Route::get('/admin/edit-slide-{id}', 'WidgetController@edit_slide');
-Route::post('/admin/editing-slide-{id}', 'WidgetController@editing_slide');
-Route::get('/admin/destroy-slide-{id}', 'WidgetController@destroy_slide');
-Route::get('/admin/text', function(){
-    return view('admin.text');
-});
-Route::get('/admin/delete-text-{id}', 'WidgetController@delete_text');
-Route::post('/admin/update-text', 'WidgetController@update_text');
-
-Route::get('/admin/add-feedback', function(){
-    return view('admin.add-feedback');
-});
-Route::get('/admin/feedback', 'WidgetController@listing_feedback');
-Route::post('/admin/adding-feedback', 'WidgetController@adding_feedback');
-Route::get('/admin/edit-feedback-{id}', 'WidgetController@edit_feedback');
-Route::post('/admin/editing-feedback-{id}', 'WidgetController@editing_feedback');
-Route::get('/admin/destroy-feedback-{id}', 'WidgetController@destroy_feedback');
-Route::get('/admin/thanh-vien', 'WidgetController@admin_user');
-Route::post('/admin/update-user', 'WidgetController@update_user');
-Route::get('/admin/delete-user-{id}', 'WidgetController@delete_user');
-Route::post('/pay-online', 'WidgetController@bank');
-Route::post('/voucher-{id}', 'WidgetController@voucher');
-Route::post('/review-teacher-{id}', 'WidgetController@review');
-
-
-Route::get('/admin/add-voucher', 'WidgetController@add_voucher');
-Route::post('/admin/adding-voucher', 'WidgetController@adding_voucher');
-Route::get('/admin/manage-voucher', 'WidgetController@mangevoucher');
-Route::get('/admin/delete-voucher-{id}', 'WidgetController@delete_voucher');
-Route::get('/admin/show', 'WidgetController@show_index');
-Route::post('/admin/update-show-index-{id}-{value}', 'WidgetController@update_show_index');
 
 //Blog
 

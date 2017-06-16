@@ -249,4 +249,18 @@ class WidgetController extends Controller
 
         return redirect('/trang-ca-nhan-'.$id);
     }
+
+    //search users
+    public function result_user(Request $request){
+      $value= $request->all();
+      if(isset($value['search-phone'])){
+          $phone= $value['search-phone'];
+          $searchs = DB::table('users')->where('phone','LIKE','%'.$phone.'%')->get();
+          return view('admin.result',['search'=>$searchs]);
+      }else if (isset($value['search-bill'])){
+          $code= $value['search-bill'];
+          $bills= DB::table('bills')->leftJoin('users','users.id','=','bills.id_user')->leftJoin('cousers','cousers.id','=','bills.id_couser')->where('code',$code)->get();
+          return view('admin.result',['bills'=>$bills]);
+      }
+    }
 }
