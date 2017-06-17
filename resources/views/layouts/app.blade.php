@@ -71,14 +71,14 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url::to('/admin/thanh-vien') }}">
+                    <a href="{{ url::to('/admin/khoa-hoc') }}">
                         <i class="pe-7s-note2"></i>
-                        <p>Thành Viên</p>
+                        <p>Khoá Học</p>
                     </a>
                 </li>
                 <li>
                     <a href="{{ url::to('/admin/search') }}">
-                        <i class="pe-7s-note2"></i>
+                        <i class="pe-7s-id"></i>
                         <p>Tìm thành viên</p>
                     </a>
                 </li>

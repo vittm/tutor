@@ -10,7 +10,7 @@
     <div role="tabpanel" class="tab-pane active" id="home">
       <form action="{{ url('/admin/result-user')}}" enctype="multipart/form-data"  method="POST">
          <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        <div class="container">
+        <div class="">
           <div class="col-md-6 col-md-offset-3">
 
               <!-- Search Form -->

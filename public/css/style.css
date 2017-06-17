@@ -12089,6 +12089,11 @@ body .action-menu__left__share .col-md-6 p {
   bottom: 15px;
   right: 0;
 }
+.list-couser__images > img{
+  width:100%;
+  height:300px;
+  object-fit: cover;
+}
 .list-couser__config {
     border: 1px solid #eeeeee;
 }
@@ -12099,4 +12104,26 @@ body .action-menu__left__share .col-md-6 p {
 .list-couser__config:nth-child(3) {
   border: 1px solid #eeeeee;
   border-left: none;
+}
+.title-modal {
+  background: #0f293d;
+  padding: 11px 20px;
+}
+.modal-title {
+  color: #ffffff;
+}
+.close {
+  pointer-events: none;
+}
+.notice {
+    padding: 15px;
+    background-color: #fafafa;
+    border-left: 6px solid #7f7f84;
+    margin-bottom: 10px;
+    -webkit-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+       -moz-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+            box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+}
+.notice-danger {
+    border-color: #d73814;
 }

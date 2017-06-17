@@ -66,12 +66,7 @@
                             <li class="global-header__login log--active">
 
                             <li>
-                            @if(strlen(Auth::user()->avatar) > 1)
                                 <a class="avatar" href="{{ url('/trang-ca-nhan')}}-{{ Auth::user()->id }}"><img src="{{ URL::to('/img/avatar')}}/{{ Auth::user()->avatar }}" alt="..." class="img-circle" height="50"></a>
-                            @else
-                                <a class="avatar-me" href="{{ url('/trang-ca-nhan')}}-{{ Auth::user()->id }}"><span> {{ Auth::user()->avatar }} </span></a>
-                            @endif</a>
-
                             @if($mess > 0)
                             <a class="notification_mess" href="{{url('/danh-sach-tin-nhan')}}-{{Auth::user()->id}}"><img src="{{ URL::to('/img/icon')}}/speech-bubble.png"><span>{{ $mess }} </span>
                             </a>
@@ -196,6 +191,7 @@
             }
         });
     });
+    $('#form-couser').modal('show')
     </script>
 </body>
 

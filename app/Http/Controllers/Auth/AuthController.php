@@ -75,21 +75,22 @@ class AuthController extends Controller
             $filename = $file->getClientOriginalName();
             $file->move(public_path().'/img/avatar', $filename);
         }else{
-            $filename=substr($data['name'],0,1);
+            if($input['active'] == 1) $filename="hocvien.jpg"
+            if($input['active'] == 2) $filename="giasu.jpg";
         }
 
         $user = array('email' => Input::get('email'),'name' => Input::get('name'));
-        
+
         Mail::send('auth.emails.welcome', ['user' => $user], function ($m) use ($user) {
             $m->to($user['email'], $user['name'])->subject('Chào mừng bạn đến với Wiis');
         });
-            
+
          $request->session()->flash('form-success', 'Đăng ký thành công');
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'active'   => $data['active'],
+            'active'   => $input['active'],
             'avatar' => $filename,
             'gender' => 'Trống rỗng',
             'info' => 'Trống rỗng',

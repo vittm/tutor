@@ -168,12 +168,14 @@ class WidgetController extends Controller
         return redirect('/admin/text');
     }
 
-    public function admin_user(){
-        $user = DB::table('users')->get();
-        return view('admin.users',['user'=>$user]);
-
+    public function admin_cousers(){
+        $bills= DB::table('users')->leftJoin('cousers','cousers.id_user','=','users.id')->where('cousers.action','0')->paginate(10);
+        return view('admin.cousers',['bills'=>$bills]);
     }
-
+    public function detail_user(Request $request, $id){
+        $bills= DB::table('cousers')->leftJoin('users','users.id','cousers.id_user')->select('users.name','cousers.*')->where('id_user',$id)->paginate(10);
+        return view('admin.detail-user',['cousers'=>$bills]);
+    }
     public function update_user(Request $request){
         $list= $request->all();
         $id= $request->get('id_edit');
@@ -187,7 +189,7 @@ class WidgetController extends Controller
                         'name' => $text[$key], 'active' => $active[$key],'email' =>$email[$key],'pay' => $pay[$key]
                     ]);
         }
-        return redirect('/admin/thanh-vien');
+        return redirect('/admin/search');
     }
 
     public function delete_user($id){
@@ -216,7 +218,6 @@ class WidgetController extends Controller
         $db = new Vouchers;
         $db->voucher = $value['name'];
         $db->price = $value['value-price'];
-
         $db->save();
 
         return redirect('/admin/manage-voucher');
@@ -251,7 +252,7 @@ class WidgetController extends Controller
     }
 
     //search users
-    public function result_user(Request $request){
+    public function result_user(Request $request) {
       $value= $request->all();
       if(isset($value['search-phone'])){
           $phone= $value['search-phone'];
@@ -259,8 +260,18 @@ class WidgetController extends Controller
           return view('admin.result',['search'=>$searchs]);
       }else if (isset($value['search-bill'])){
           $code= $value['search-bill'];
-          $bills= DB::table('bills')->leftJoin('users','users.id','=','bills.id_user')->leftJoin('cousers','cousers.id','=','bills.id_couser')->where('code',$code)->get();
+          $bills= DB::table('users')->leftJoin('cousers','cousers.id_user','=','users.id')->where('cousers.code',$code)->get();
           return view('admin.result',['bills'=>$bills]);
       }
+    }
+    public function pay_couser(Request $request) {
+      $value= $request->all();
+      $id = $value['wam'];
+      $id_couser = $value['wan'];
+      $array = ([
+          'action' => '1'
+      ]);
+      DB::table('cousers')->where('id', $id_couser)->update($array);
+      return redirect('/admin/search');
     }
 }

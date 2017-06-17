@@ -24,7 +24,7 @@ class UserController extends Controller
     public function myprofile($id)
     {
         $id_user = DB::table('users')->where('id', '=', $id)->get();
-        $couser = DB::table('cousers')->where('id_user', '=', $id)->get();
+        $couser = DB::table('cousers')->where([['id_user', '=', $id],['action','1']])->get();
         $post= DB::table('posts')->where('id_user', '=', $id)->get();
         $contact= explode(',', $id_user[0]->field);
         $subject= explode(',', $id_user[0]->subjects);
@@ -64,7 +64,7 @@ class UserController extends Controller
             $idAuth= $id;
         }
         $id_student = DB::table('registercousers')->join('cousers', 'cousers.id', '=', 'registercousers.couser')->join('users', 'users.id', '=', 'cousers.id_user')->where([['registercousers.id_user', '=', $id]])->get();
-        $list_cousers = DB::table('cousers')->join('users', 'users.id', '=', 'cousers.id_user')->where('cousers.id_user', '=', $id_user[0]->id)->get();
+        $list_cousers = DB::table('cousers')->join('users', 'users.id', '=', 'cousers.id_user')->where([['cousers.id_user', '=', $id_user[0]->id],['action','1']])->get();
         $view= $id_user[0]->viewed + 1;
 
         //user_id là trang cá nhân của người khác

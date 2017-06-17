@@ -12,8 +12,14 @@
         position: absolute;
     }
 }
+.wel {
+  background: #ffffff;
+}
 .top15{
     margin-top: 15px;
+}
+.top25{
+    margin-top: 25px;
 }
 .all-icons [class*="pe-"]{
     font-size: 40px;
@@ -164,4 +170,8 @@ body .list-couser-main:nth-child(even) {
 }
 body .list-couser-main:nth-child(odd) {
   padding-left: 0;
+}
+.modal-backdrop.in {
+  pointer-events: none;
+  opacity: 0;
 }

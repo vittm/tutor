@@ -32,6 +32,8 @@
  						<img class="top30" src="{{ URL::to('/img/couser')}}/{{$couser[0]->picture_couser}}" alt="..." class="img-thumbnail" height="200" width="200" style="margin: auto; display: block;">
  					 @endif
            <input class="multiple-flie" type="file" name="imgCouser" >
+           @if($couser[0]->typeCouser == '2')
+           @else
             <ul class="col-md-offset-2 col-md-9 gender__edit">
  						 <li>
                <input type="hidden" name="typeclass" type="radio" id="boy" value="0">
@@ -40,6 +42,7 @@
  							 <div class="check"></div>
  						 </li>
            </ul>
+           @endif
          </div>
       </div>
       <div class="col-md-12 pd0 top10">
@@ -160,13 +163,13 @@
             Học 1 + 1
           </div>
           @endif
-          @if($value -> typeCouser == '1')
+          @if($value -> typeCouser == '2')
           <div class="list-couser__typeCourse">
             Lớp học sắp khai giảng
           </div>
           @endif
           <img src="{{ URL::to('/img/couser')}}/{{$value ->picture_couser}}" style="width:100%">
-          <div class="list-couser__price btn btn-origan2">{{number_format($value->price)}}<sup>Đ/ giờ </sup></div>
+          <div class="list-couser__price btn btn-origan2">{{number_format($value->price)}}<sup>Đ/@if($value -> typeCouser == '2') Khoá @else Giờ @endif </sup></div>
         </div>
           <div class="col-md-12 list-couser__name wel"> <h3> {{$value ->name_couser }} </h3></div>
           <div class="col-md-12 pd0">
@@ -174,7 +177,20 @@
             <a class="col-md-4 list-couser__config pd10 wel"> <img src="{{ URL::to('/img/icon/VectorSmartObject_3.png')}}"><span> Chia sẻ </span></a>
             <a href="{{ URL::to('/couser/delete')}}-{{$value ->id}}" class="col-md-4 list-couser__config pd10 wel"><img src="{{ URL::to('/img/icon/inclined-pencil.png')}}"><span> Xoá</span></a>
           </div>
-          <button class="btn btn-origan col-md-12 pd0">Thanh Toán </button>
+          <button class="btn btn-origan col-md-12 pd0" @if($value->action != 0) {{'disabled="disabled"'}} @endif">@if($value->action == 0) {{'Thanh Toán'}} @else {{ 'Đã Thanh Toán' }} @endif</button>
+          <?php
+            $daym =  $value -> created_at;
+            $sepparator = '-';
+            $partsExp = explode($sepparator, $daym);
+            $d=cal_days_in_month(CAL_GREGORIAN,$partsExp[1],$partsExp[0]);
+            $date_exp= $d - (strtotime(date('Y-m-d')) - strtotime($value -> created_at)) / (60 * 60 * 24);
+            $date= date( 'Y-m-d');
+            $new_date = strtotime ( '+'.$date_exp.'day' , strtotime ( $date ) ) ;
+            $new_date = date ( 'd-m-Y' , $new_date );
+            $parts = explode($sepparator, $new_date);
+            $dayForDate = date("w", mktime(0, 0, 0, $parts[1], $parts[2], $parts[0]));
+          ?>
+          <div class="col-md-12 list-couser__name wel"> <h6>Hạn phí khoá học {{$date_exp}} ngày, Thứ @if($dayForDate == 0) {{ 'CN' }} @endif  @if ($dayForDate == 6) {{'Bảy'}} @endif  @if($dayForDate!= 0 && $dayForDate !=6) {{ $dayForDate }} @endif , {{$new_date}}</h6> </div>
       </div>
       @endforeach
     </div>

@@ -50,9 +50,11 @@ class CouserController extends Controller
           $db->type = $input['type'];
           $db->program = $input['program'];
           $db->timetype1 = json_encode($input['morning']);
-          $db->price = $input['id_user'];
+          $db->price = $input['price'];
           $db->typeCouser = '1';
           $db->typeclass = $input['typeclass'];
+          $numbers = range(1, 20);
+          $db->code = 'Wiis'.shuffle($numbers);
           $db->save();
         return redirect('/trang-ca-nhan-'.$id);
     }
@@ -69,7 +71,7 @@ class CouserController extends Controller
           $nameConvert= 'couser.jpg';
       }
           $db->id_user = $id;
-          $db->picture_couser = $input['picuture'];
+          $db->picture_couser = $nameConvert;
           $db->name_couser = $input['title'];
           $db->who = $input['who'];
           $db->information = $input['information'];
@@ -79,8 +81,11 @@ class CouserController extends Controller
           $db->opentime =  $input['opentime'];
           $db->closetime =  $input['closetime'];
           $db->timeplan = $input['timeplan'];
-          $db->typeCourse = '2';
-
+          $db->typeCouser = '2';
+          $db->price = $input['price'];
+          $db->pay= ($input['price'] * 30)/100;
+          $numbers = range(1, 20);
+          $db->code = 'Wiis'.shuffle($numbers);
           $db->save();
           return redirect('/trang-ca-nhan-'.$id);
       }

@@ -53,6 +53,7 @@ Route::group(['middleware' => ['auth']], function () {
 		});
 		// Admin
 		Route::post('/admin/result-user', 'WidgetController@result_user');
+		Route::post('/admin/pay-couser', 'WidgetController@pay_couser');
 		Route::get('/admin/add-slide', function(){
 			return view('admin.add-slide');
 		});
@@ -75,14 +76,14 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::get('/admin/edit-feedback-{id}', 'WidgetController@edit_feedback');
 		Route::post('/admin/editing-feedback-{id}', 'WidgetController@editing_feedback');
 		Route::get('/admin/destroy-feedback-{id}', 'WidgetController@destroy_feedback');
-		Route::get('/admin/thanh-vien', 'WidgetController@admin_user');
+		Route::get('/admin/khoa-hoc', 'WidgetController@admin_cousers');
 		Route::post('/admin/update-user', 'WidgetController@update_user');
 		Route::get('/admin/delete-user-{id}', 'WidgetController@delete_user');
 		Route::post('/pay-online', 'WidgetController@bank');
 		Route::post('/voucher-{id}', 'WidgetController@voucher');
 		Route::post('/review-teacher-{id}', 'WidgetController@review');
 
-
+		Route::get('/admin/detail-user-{id}', 'WidgetController@detail_user');
 		Route::get('/admin/add-voucher', 'WidgetController@add_voucher');
 		Route::post('/admin/adding-voucher', 'WidgetController@adding_voucher');
 		Route::get('/admin/manage-voucher', 'WidgetController@mangevoucher');
@@ -100,7 +101,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 		Route::get('couser/add-{id}', 'CouserController@look');
-		Route::post('couser/adding-{id}', 'CouserController@adding_couser');
+		Route::post('couser/opening/adding-{id}', 'CouserController@adding_couser');
 		Route::post('couser/opening-{id}', 'CouserController@adding_opening');
 		Route::post('couser/editing-{couserid}', 'CouserController@editing_couser');
 		Route::get('couser/edit-{couserid}', 'CouserController@edit_couser');
@@ -117,7 +118,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/thanh-toan', 'UserController@tab_pay');
 });
 
-
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 
 

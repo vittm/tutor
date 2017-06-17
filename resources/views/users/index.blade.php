@@ -18,7 +18,7 @@
 			</div>
 
 			<div class=" @if($id_user[0]->id == current($status) ) col-md-8 @else col-md-4  @endif information-profile pd0">
-				<h3 style="color: #ffffff;"><?php $str = explode(' ', $id_user[0]->name); ?>{{end($str)}} {{reset($str)}} <img class="sticker-verify" src="{{ URL::to('img/icon/VectorSmartObjectcop.png')}}" alt=""></h3>
+				<h3 style="color: #ffffff;"><?php $str = explode(' ', $id_user[0]->name); ?>{{end($str)}} {{reset($str)}} @if($id_user[0]->active == 2 ) <img class="sticker-verify" src="{{ URL::to('img/icon/VectorSmartObjectcop.png')}}" alt="">@endif</h3>
 				<span style="color: #ffffff;font-weight: 500;"> Giáo viên từ Quận {{ $id_user[0]->district }}, {{ $id_user[0]->city }}</span>
 				@if($id_user[0]->active == 2)
 				<h3 style="margin-top: 3rem;">{{ $id_user[0] -> title }} </h3>
@@ -119,13 +119,13 @@
 			            Học 1 + 1
 			          </div>
 			          @endif
-			          @if($value -> typeCouser == '1')
+			          @if($value -> typeCouser == '2')
 			          <div class="list-couser__typeCourse">
 			            Lớp học sắp khai giảng
 			          </div>
 			          @endif
 			          <img src="{{ URL::to('/img/couser')}}/{{$value->picture_couser}}" style="width:100%">
-			          <div class="list-couser__price btn btn-origan2">{{number_format($value->price)}}<sup>Đ/ giờ </sup></div>
+			          <div class="list-couser__price btn btn-origan2">{{number_format($value->price)}}<sup>Đ/ @if($value -> typeCouser == '1') Khoá @else Giờ @endif  </sup></div>
 			        </div>
 			          <div class="col-md-12 list-couser__name wel top10"> <h4> {{$value ->name_couser }} </h4> <h4 class="top15"> {{ $value->name}}</h4> <p style="font-size: 13px;"><i>{{ $value->jobs}}, {{ $value->city}}</i></p></div>
 			      </a>
@@ -158,7 +158,7 @@
 	    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Giới Thiệu</a></li>
 	    <li role="presentation"><a href="#info" aria-controls="home" role="tab" data-toggle="tab">Khóa Học</a></li>
 	    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Đánh giá</a></li>
-	    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Cộng đồng Wiis</a></li>
+	    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Hỏi Đáp</a></li>
 	  </ul>
 @endif
 
@@ -287,13 +287,13 @@
 									Học 1 + 1
 								</div>
 								@endif
-								@if($value -> typeCouser == '1')
+								@if($value -> typeCouser == '2')
 								<div class="list-couser__typeCourse">
 									Lớp học sắp khai giảng
 								</div>
 								@endif
 								<img src="{{ URL::to('/img/couser')}}/{{$value->picture_couser}}" style="width:100%">
-								<div class="list-couser__price btn btn-origan2">{{number_format($value->price)}}<sup>Đ/ giờ </sup></div>
+								<div class="list-couser__price btn btn-origan2">{{number_format($value->price)}}<sup>Đ/@if($value -> typeCouser == '2') Khoá @else Giờ @endif </sup></div>
 							</div>
 								<div class="col-md-12 list-couser__name wel top10"> <h4> {{$value ->name_couser }} </h4> </div>
 						</a>
