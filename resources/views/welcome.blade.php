@@ -36,11 +36,12 @@
 			<div class="slidizle-loading"> </div>
 		</section>
     <form class="container" action="{{ url('/find-teach') }}" role="form" method="GET" enctype='multipart/form-data'>
-        <ul class="col-md-offset-1 col-md-10 search">
-            <li><input type="text" placeholder="Địa điểm" name="address-find"><img src="img/icon/placeholder.png"></li>
-            <li><input type="text" placeholder="Lĩnh Vực" name="valueField" type="text" aria-describedby="inputSuccess2Status"><img src="img/icon/multi-tab.png"></li>
-            <li><input type="text" placeholder="Môn học" name="valueSubject"><img src="img/icon/open-book.png" aria-describedby="inputSuccess2Status" id="subject-find" ></li>
-            <li><input type="text" placeholder="Nội dung học" name="contentSubject"><img src="img/icon/bar-chart.png"></li>
+        <ul class="col-md-offset-2 col-md-10 search">
+						<li><input type="text" placeholder="Địa điểm" name="address-find"><img src="img/icon/placeholder.png"></li>
+						<li><input type="text" placeholder="Môn học" name="valueSubject"  id="subject-find" ><img src="img/icon/open-book.png" aria-describedby="inputSuccess2Status">
+								<input type="hidden" name="valueSubject" id="field" >
+						</li>
+						<li><input type="text" placeholder="Nội dung học" name="course"><img src="img/icon/bar-chart.png"></li>
             <li class="icon-search submit_search">
             <button type="submit" name="academic" placeholder=""><img src="img/icon/search.png"></button></li>
         </ul>

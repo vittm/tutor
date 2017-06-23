@@ -1,19 +1,19 @@
 @extends('layouts.web')
 
 @section('content')
-
+@if(Auth::user()->active == 2 && Auth::user()->id == $id_user[0]->id  )
 <div class="col-md-12 pd0" style="background: #f7f7f7; padding-top: 40px;">
 <!-- Nav tabs -->
 <div class="col-md-3">
 <ul class="col-md-12 nav nav-tabs tab-edit-profile" role="tablist">
-  <li role="presentation" class="active"><a href="#avatar" aria-controls="home" role="tab" data-toggle="tab">Đăng khoá học mới</a></li>
+  <li role="presentation" class="active"><a href="#add" aria-controls="home" role="tab" data-toggle="tab">Đăng khoá học mới</a></li>
   <li role="presentation"><a href="#adding_opening" aria-controls="home" role="tab" data-toggle="tab"> Đăng khoá học sắp khai giảng </a></li>
   <li role="presentation"><a href="#student" aria-controls="home" role="tab" data-toggle="tab"> Danh sách khóa học</a></li>
 </ul>
 </div>
 <div class="col-md-8" style="border-left: 1px solid #eeeeee;">
 <!-- Tab panes -->
-@if(Auth::user()->code_user == null && Auth::user()->city == null && Auth::user()->expericen == null &&Auth::user()->jobs == null && Auth::user()->picture == null)
+@if(Auth::user()->code_user == null || Auth::user()->city == null || Auth::user()->expericen == null ||Auth::user()->jobs == null || Auth::user()->picture == null)
 <!-- Button trigger modal -->
   <div class="modal fade in" id="form-couser">
     <div class="modal-dialog" role="document">
@@ -61,11 +61,7 @@
   </div>
 @endif
 <div class="tab-content edit-profile edit-couser">
-  <div role="tabpanel" class="tab-pane active
-  @if(Auth::user()->code_user == null && Auth::user()->city == null && Auth::user()->expericen == null &&Auth::user()->jobs == null && Auth::user()->picture == null)
-    close
-  @endif
-  " id="add">
+  <div role="tabpanel" id="add" class="tab-pane active @if(Auth::user()->code_user == null || Auth::user()->city == null || Auth::user()->expericen == null ||Auth::user()->jobs == null || Auth::user()->picture == null) close @endif">
     <form class="form-horizontal  edit-profile__form col-md-offset-1 col-md-11 pd0" role="form" method="POST"
     action="{{ url('/couser/adding') }}-{{ $id_user[0]->id }}" enctype='multipart/form-data' >
                       {{ csrf_field() }}
@@ -166,9 +162,7 @@
     </div>
     </form>
   </div>
-  <div role="tabpanel" class="tab-pane @if(Auth::user()->code_user == null && Auth::user()->city == null && Auth::user()->expericen == null &&Auth::user()->jobs == null && Auth::user()->picture == null)
-    close
-  @endif" id="adding_opening">
+  <div role="tabpanel" class="tab-pane @if(Auth::user()->code_user == null || Auth::user()->city == null || Auth::user()->expericen == null ||Auth::user()->jobs == null || Auth::user()->picture == null) close @endif" id="adding_opening">
     <form class="form-horizontal  edit-profile__form col-md-offset-1 col-md-11 pd0" role="form" method="POST" action="{{ url('/couser/opening') }}-{{ $id_user[0]->id }}" enctype='multipart/form-data'>
                       {{ csrf_field() }}
       <input type="hidden" name="id_user" value="{{ $id_user[0]->id}}">
@@ -390,4 +384,7 @@
 </div>
 </div>
 </div>
+@else
+<?php return redirect()->to('/trang-ca-nhan-'.Auth::user()->id)->send();?>
+@endif
 @stop

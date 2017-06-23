@@ -51,7 +51,11 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::get('/admin/search', function(){
 			return view('admin.search');
 		});
+
 		// Admin
+		Route::post('/profile/comments-{id}', 'UserController@comments');
+		Route::post('/profile/comments/reply-{id}', 'UserController@replys');
+		Route::post('/comments/like-{id}', 'UserController@likes');
 		Route::post('/admin/result-user', 'WidgetController@result_user');
 		Route::post('/admin/pay-couser', 'WidgetController@pay_couser');
 		Route::get('/admin/add-slide', function(){
@@ -108,6 +112,7 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::get('couser/register', 'CouserController@register_couser');
 		Route::get('quan-ly-hoc-vien', 'CouserController@mange_student');
 
+		Route::post('/editing/code_user', 'UserController@code_user');
     Route::get('danh-sach-tin-nhan-{id}', 'UserController@listing_message');
     Route::get('chi-tiet-tin-nhan-{watch}', 'UserController@detail_message');
     Route::get('xoa-tin-nhan-{id}', 'UserController@delete_message');

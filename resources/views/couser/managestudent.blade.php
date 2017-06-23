@@ -1,6 +1,7 @@
 @extends('layouts.web')
 
 @section('content')
+@if(Auth::user()->active == 2 && Auth::user()->id == $id_user[0]->id  )
 <div class="container pd0" style="background: #f7f7f7; padding-top: 40px;">
 <div class="col-md-3">
 <ul class="col-md-12 nav nav-tabs tab-edit-profile" role="tablist">
@@ -36,4 +37,7 @@
 </div>
 </div>
 </div>
+@else
+<?php return redirect()->to('/trang-ca-nhan-'.Auth::user()->id)->send();?>
+@endif
 @stop

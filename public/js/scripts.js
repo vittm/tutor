@@ -233,13 +233,7 @@ $('.add-cart').click(function(){
 	var cartObj = JSON.parse( cartValue );
 });
 
-// if(window.sessionStorage !== null) {
-// 	var session = window.sessionStorage,
-// 	data = JSON.parse(session.getItem('cart'));
-// 	$('.write-title').text(data.item);
-// 	$('.write-price').text(data.price);
-// 	$('.pay').attr('href','https://www.nganluong.vn/button_payment.php?receiver=uyendao0302@gmail.com&product_name='+data.item+'&price='+data.price+'&return_url=http://witayl.com');
-// }
+
 function clickdesktop( button, content) {
 	$(document).on('click', function (e) {
 		$('.' + content).hide();

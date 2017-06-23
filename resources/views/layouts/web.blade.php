@@ -54,11 +54,9 @@
       <img  src="{{ url('img/logo.png')}}" alt="">
       <p>Tìm giáo viên, gia sư miễn phí </p>
     </a>
-    <div class="col-md-offset-2 col-md-6">
-      <ul class="menu">
+    <div class="col-md-offset-3 col-md-6">
+      <ul class="menu" style="margin-top: @if (Auth::guest()) 3rem @else 1rem @endif">
         <li><a href="{{ URL('tim-kiem-gia-su') }}" class="menu__item">Tìm Giáo Viên</a></li>
-        <li><a href="{{ url('blog') }}" class="menu__item">Cộng đồng</a></li>
-
         @if (Auth::guest())
                             <li><a href="{{ url('login') }}" class="menu__item">Đăng nhập</a></li>
                         @else
@@ -78,10 +76,12 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+
                                     <li><a href="{{ url('/chinh-sua-ca-nhan')}}-{{ Auth::user()->id }}"></i>Chỉnh sửa hồ sơ</a></li>
+                                    @if(Auth::user()->active == 2 )
                                     <li><a href="{{ url('/couser/add')}}-{{ Auth::user()->id }}">Quản lý khóa học</a></li>
                                     <li><a href="{{ url('/quan-ly-hoc-vien')}}"></i>Quản lý thông tin học viên</a></li>
-                                    <li><a href="{{ url('/chinh-sua-ca-nhan')}}-{{ Auth::user()->id }}">Chỉnh sửa hồ sơ</a></li>
+                                    @endif
                                     @if(Auth::user()->active == 0)
                                     <li><a href="{{ url('/admin/text') }}"></i>Admin</a></li>
                                      <li><a href="{{ url('/thanh-toan')}}"></i>Thanh Toán</a></li>
@@ -91,6 +91,7 @@
                             </li>
                         </li>
                         @endif
+                        <li><a @if (Auth::guest()) href="{{ url('/') }}" @else href="{{ url('#') }}" @endif class="menu__item" style="position:realation;"><img src="{{ URL::to('/img/icon/earth.svg')}}" alt="..." class="img-circle" height="20"><span class="notify">1</span></a></li>
       </ul>
     </div>
   </nav>
@@ -110,8 +111,8 @@
      <script type="text/javascript" src="{{ URL::to('js/jquery.slidizle.js') }}"></script> <!-- Link thư viện jquery -->
 
     <script type="text/javascript" src="{{ URL::to('js/angular.min.js') }}"></script>
-     <!-- <script type="text/javascript" src="js/jquery.autocomplete.min.js"></script>
-      <script type="text/javascript" src="js/currency-autocomplete.js"></script> -->
+     <script type="text/javascript" src="js/jquery.autocomplete.min.js"></script>
+      <script type="text/javascript" src="js/currency-autocomplete.js"></script>
      <script type="text/javascript" src="{{ URL::to('js/kendo.all.min.js') }}"></script> <!-- Link thư viện jquery -->
 
     <script type="text/javascript" src="{{ URL::to('js/scripts.js') }}"></script>   <!--- Link jquery tự viết-->
@@ -132,8 +133,13 @@
            });
        });
    </script>
+
  <script type="text/javascript" src="{{ URL::to('/ckeditor/ckeditor.js')}}"></script>
     <script type="text/javascript">
+
+    @if(parsed_url['tab'] == 'info')
+      $('a[href="#info"]').tab('show');
+    @endif
     $('.click-voucher').click(function(e){
         var id = $('.voucher').val();
         var session = window.sessionStorage,
@@ -191,7 +197,29 @@
             }
         });
     });
-    $('#form-couser').modal('show')
+    $('#form-couser').modal('show');
+
+    $('.click-heart').click(function(e){
+        var id = $(this).attr('value');
+        var key = $(this).attr('id');
+        var value= parseInt($(this).text()) + 1 ;
+        var t_this = $(this);
+        e.preventDefault();
+        $.ajax({
+            url:"{{ url('/comments/like') }}-"+id+"",
+            type:"post",
+            cache:false,
+            data:{'id':id,"_token": "{{ csrf_token() }}"},
+            dataType:"html",
+            success: function(val){
+                  if(val == 'okay') {
+                      $(t_this).attr('id',key).children().text( value);
+                      $(t_this).attr('id',key).css('color','#eb0e0e');
+                  }
+                }
+            });
+        return false;
+    });
     </script>
 </body>
 

@@ -9,6 +9,7 @@ use App\User;
 use App\Learns;
 use App\Ratings;
 use App\Messages;
+use App\Comments;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use File;
@@ -36,6 +37,7 @@ class UserController extends Controller
         $count_id = DB::table('ratings')->where('id_user', '=', $id)->count();
         $learn_teach = DB::table('ratings')->where('id_user', '=', $id)->sum('learn');
         $feeling = DB::table('ratings')->where('id_user', '=', $id)->sum('feeling');
+        $question = DB::table('comments')->where('id_user', '=', $id)->orderBy('id', 'desc')->get();
         $cmt = DB::table('cmtprofiles')->join('users','cmtprofiles.id_user','=','users.id')->where('cmtprofiles.id_user', '=', $id)->get();
         $feedback = DB::table('feedbacks')->join('users','feedbacks.id_user','=','users.id')->join('projects','feedbacks.id_feed','=','projects.id')->where('feedbacks.id_user', '=', $id)->get();
 
@@ -79,7 +81,7 @@ class UserController extends Controller
         $job= json_decode($id_user[0]->job,JSON_BIGINT_AS_STRING);
         $status =  DB::table('users')->where('id', $idAuth )->select('id')->first();
         DB::table('users')->where('id', $id)->update(['level_user'=>'1']);
-        return view('users.index', ['id_user' => $id_user,'ratings' => $rating,'listfollowers'=>$listfollowers,'kkfollowers'=>$kkfollowers,'kfollowers'=>$kfollowers,'zfollowers'=>$zfollowers,'list_cousers'=>$list_cousers,'student'=>$id_student,'couser'=>$couser,'contact'=>$contact,'subject' => $subject, 'content_teach' => $content_teach,'value_get' => $value_get, 'connect' => $connect, 'learn_teach' => $learn_teach, 'feeling' => $feeling, 'count_id' => $count_id, 'cmtprofiles' => $cmt,'feedbacks' => $feedback,'status' => $status,'post'=>$post,'job' => $job ]);
+        return view('users.index', ['id_user' => $id_user,'ratings' => $rating,'question'=>$question,'listfollowers'=>$listfollowers,'kkfollowers'=>$kkfollowers,'kfollowers'=>$kfollowers,'zfollowers'=>$zfollowers,'list_cousers'=>$list_cousers,'student'=>$id_student,'couser'=>$couser,'contact'=>$contact,'subject' => $subject, 'content_teach' => $content_teach,'value_get' => $value_get, 'connect' => $connect, 'learn_teach' => $learn_teach, 'feeling' => $feeling, 'count_id' => $count_id, 'cmtprofiles' => $cmt,'feedbacks' => $feedback,'status' => $status,'post'=>$post,'job' => $job ]);
     }
     public function tab_pay()
     {
@@ -145,6 +147,34 @@ class UserController extends Controller
       }
         $profile= ([
           'picture' => json_encode($images)
+        ]);
+
+        DB::table('users')->where('id', $id)->update($profile);
+        return redirect('/chinh-sua-ca-nhan-'.$id);
+    }
+    public function code_user(Request $request){
+      $input = $request->all();
+      $id = $input['id_user'];
+      $id_user = DB::table('users')->where('id', $id)->get();
+      $images=array();
+      if($files=$request->file('images')){
+          if(json_decode($id_user[0]->code_user) != null) {
+            foreach( json_decode($id_user[0]->code_user) as $value ){
+              $file = public_path('img\picture\\'.$value);
+              $result= File::delete( $file );
+            }
+          }
+          foreach($files as $file){
+              $name=$file->getClientOriginalName();
+              $nameConvert = date('H-i-s-Y-m-d-').'-'.$name;
+              $file->move('img/picture',$nameConvert);
+              $images[]=$nameConvert;
+          }
+      }else {
+        $images[] = $input['picture'];
+      }
+        $profile= ([
+          'code_user' => json_encode($images)
         ]);
 
         DB::table('users')->where('id', $id)->update($profile);
@@ -361,5 +391,33 @@ class UserController extends Controller
         $db->save();
         return 'okay';
       }
+    }
+    public function comments(Request $request, $id){
+      $value= $request->all();
+      $db = new Comments;
+      $db->id_user = $id;
+      $db->id_post = Auth::user()->id;
+      $db->content= $value['question'];
+
+      $db->save();
+      return redirect('/trang-ca-nhan-'.$id);
+    }
+    public function replys(Request $request, $id){
+      $value= $request->all();
+      $reply = ([
+          'reply' => $value['reply'],
+      ]);
+      DB::table('comments')->where('id', $id)->update($reply);
+      return redirect('/trang-ca-nhan-'.Auth::user()->id);
+    }
+    public function likes($id){
+      $quanlity= DB::table('comments')->where('id', $id)->get();
+      $number = 1;
+      $vote = $quanlity[0]->vote;
+      $like = ([
+          'vote' => (int)$vote + (int)$number
+      ]);
+      DB::table('comments')->where('id', $id)->update($like);
+      return 'okay';
     }
 }

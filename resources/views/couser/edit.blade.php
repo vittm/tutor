@@ -1,7 +1,7 @@
 @extends('layouts.web')
 
 @section('content')
-
+@if(Auth::user()->active == 2 && Auth::user()->id == $couser[0]->id_user  )
 <div class="col-md-12 pd0" style="background: #f7f7f7; padding-top: 40px;">
 <!-- Nav tabs -->
 <div class="col-md-3">
@@ -198,4 +198,7 @@
 </div>
 </div>
 </div>
+@else
+<?php return redirect()->to('/trang-ca-nhan-'.Auth::user()->id)->send();?>
+@endif
 @stop

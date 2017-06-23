@@ -9,10 +9,11 @@
 	<div class="container search_teach">
 		<div class="col-md-12 col-xs-12 group_search_one pad0">
 					<ul class="col-md-offset-1 col-md-10 search">
-							<li><input type="text" placeholder="Địa điểm" name="address-find"><img src="img/icon/placeholder.png"></li>
-							<li><input type="text" placeholder="Lĩnh Vực" name="valueField" type="text" aria-describedby="inputSuccess2Status"><img src="img/icon/multi-tab.png"></li>
-							<li><input type="text" placeholder="Môn học" name="valueSubject"><img src="img/icon/open-book.png" aria-describedby="inputSuccess2Status" id="subject-find" ></li>
-							<li><input type="text" placeholder="Nội dung học" name="contentSubject"><img src="img/icon/bar-chart.png"></li>
+						<li><input type="text" placeholder="Địa điểm" name="address-find"><img src="img/icon/placeholder.png"></li>
+						<li><input type="text" placeholder="Môn học" name="valueSubject"  id="subject-find" ><img src="img/icon/open-book.png" aria-describedby="inputSuccess2Status">
+
+						</li>
+						<li><input type="text" placeholder="Nội dung học" name="course"><img src="img/icon/bar-chart.png"></li>
 							<li class="icon-search submit_search">
 							<button type="submit" name="academic" placeholder=""><img src="img/icon/search.png"></button></li>
 					</ul>
@@ -33,7 +34,7 @@
 <div class="container clear">
 	<div class="col-md-9">
 @foreach( $search as $key => $value)
-	<div class="col-md-12 pd0 top30 list-profile" data-href="{{ url('/trang-ca-nhan')}}-{{$value->id_uni}}">
+	<div class="col-md-12 pd0 top30 list-profile" data-href="{{ url('/trang-ca-nhan')}}-{{$value->id_uni}}?tab=info">
 			<div class="col-md-9 pd0 information-profile">'
 				<div class="col-md-4">
 					<img src="{{ URL::to('img/avatar')}}/{{ $value->avatar}}" alt="..." class="img-circle dl" height="120" width="120">

@@ -1,7 +1,7 @@
 	@extends('layouts.web')
 
 @section('content')
-
+@if(Auth::user()->id == $id_user[0]->id  )
 <div class="col-md-12 pd0" style="background: #f7f7f7; padding-top: 40px;">
   <!-- Nav tabs -->
   <div class="col-md-3">
@@ -12,6 +12,7 @@
 		<li role="presentation"><a href="#video" aria-controls="home" role="tab" data-toggle="tab"> Video cá nhân</a></li>
 		<li role="presentation"><a href="#picture" aria-controls="home" role="tab" data-toggle="tab"> Hình ảnh cá nhân</a></li>
 		<li role="presentation"><a href="#level" aria-controls="home" role="tab" data-toggle="tab"> Bằng cấp chứng chỉ</a></li>
+		<li role="presentation"><a href="#code" aria-controls="home" role="tab" data-toggle="tab"> Thẻ CMND</a></li>
   </ul>
 </div>
 <div class="col-md-8">
@@ -221,7 +222,35 @@
 		      </div>
 			</form>
 		</div>
+		<div class="tab-pane" id="code">
+
+			<form class="col-md-12" method="POST" enctype="multipart/form-data" action="{{ url('/editing/code_user')}}">
+												{{ csrf_field() }}
+				<h4> Mặt trước và mặt sau của CMND </h4>
+				<input type="hidden" name="id_user" value="{{ $id_user[0]->id}}">
+				<input type="hidden" name="level" value="{{ $id_user[0]->level}}">
+					<input class="multiple-flie" type="file" name="images[]" multiple>
+					<div class="col-md-offset-8 col-md-4 pd0 top30">
+		          <div class="col-md-8 pd0 btn-edit save_edit-profile">
+		              <button class="btn btn-5 btn-5a fa icon-right"><span>Lưu lại</span></button>
+		          </div>
+							<div class="col-md-3">
+								<button href=" " class="btn fa icon-right"><span> Hủy</span></button>
+							</div>
+		      </div>
+			</form>
+			<div class="col-md-12 top30">
+				@if(json_decode($id_user[0]->code_user) != null)
+					@foreach( json_decode($id_user[0]->code_user) as $value )
+						<img class="col-md-4 top10" src="{{ URL::to('/img/picture')}}/{{$value}}" alt="..." class="img-thumbnail">
+					@endforeach
+				@endif
+			</div>
+		</div>
   </div>
 </div>
 </div>
+@else
+<?php return redirect()->to('/chinh-sua-ca-nhan-'.Auth::user()->id)->send();?>
+@endif
 @stop

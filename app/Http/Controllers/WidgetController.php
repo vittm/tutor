@@ -23,8 +23,8 @@ class WidgetController extends Controller
     }
 
     public function search_teach(Request $request){
-        $search = User::filterByRequest($request)->leftJoin('learns','users.id','=','learns.id_user')->get();
-		return view('search.result',['search'=>$search]);
+        $search = User::filterByRequest($request)->get();
+		    return view('search.result',['search'=>$search]);
     }
 
     public function findClass(){
