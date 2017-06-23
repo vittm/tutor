@@ -408,7 +408,7 @@ class UserController extends Controller
           'reply' => $value['reply'],
       ]);
       DB::table('comments')->where('id', $id)->update($reply);
-      return redirect('/trang-ca-nhan-'.Auth::user()->id);
+      return redirect('/trang-ca-nhan-'.Auth::user()->id.'?tab=setting');
     }
     public function likes($id){
       $quanlity= DB::table('comments')->where('id', $id)->get();

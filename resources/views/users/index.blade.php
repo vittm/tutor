@@ -648,7 +648,5 @@ box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.5);padding-top: 15px;">
 	    </form>
 	  </div>
 	</div> -->
-	<script type="text/javascript">
-
-	</script>
+	
 @stop

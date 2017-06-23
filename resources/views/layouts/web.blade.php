@@ -137,8 +137,13 @@
  <script type="text/javascript" src="{{ URL::to('/ckeditor/ckeditor.js')}}"></script>
     <script type="text/javascript">
 
-    @if(parsed_url['tab'] == 'info')
-      $('a[href="#info"]').tab('show');
+    @if (isset($_GET['tab']) == true)
+      @if($_GET['tab'] == 'info')
+        $('a[href="#info"]').tab('show');
+      @endif
+      @if($_GET['tab'] == 'settings')
+        $('a[href="#settings"]').tab('show');
+      @endif
     @endif
     $('.click-voucher').click(function(e){
         var id = $('.voucher').val();
