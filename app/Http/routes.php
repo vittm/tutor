@@ -54,6 +54,8 @@ Route::group(['middleware' => ['auth']], function () {
 
 		// Admin
 		Route::post('/profile/comments-{id}', 'UserController@comments');
+		Route::get('/profile/notification', 'UserController@notification');
+		Route::get('/profile/notification/details-{id}', 'UserController@notification_detail');
 		Route::post('/profile/comments/reply-{id}', 'UserController@replys');
 		Route::post('/comments/like-{id}', 'UserController@likes');
 		Route::post('/admin/result-user', 'WidgetController@result_user');

@@ -12,7 +12,7 @@
 <!-- Tab panes -->
 <div class="tab-content edit-profile edit-couser">
   <div role="tabpanel" class="tab-pane active" id="add">
-  @foreach($student as $value)
+  @foreach($student as $key => $value)
     <div class="col-md-12 pd0 list-student well">
       <div class="col-md-1 top15"><img src="{{ URL::to('img/avatar')}}/{{ $value->avatar}}" alt="..." class="img-circle dl" height="60" width="60"></div>
       <div class="col-md-11">
@@ -30,7 +30,7 @@
           <div class="col-md-12 pd0">
             <div class="col-md-6 pd0"><p>Ngày đăng ký</p></div><div class="col-md-6">{{ $value->created_at }} <p style="font-size:12px;font-style:italic;color: #161542"> Bạn nên gọi điện thoại cho học viên trong vòng 24h để xác nhận nhu cầu học của học viên. Nếu không nhận được lớp bạn vui lòng gọi vào hottline <span style="color: #fcaf00;"> 012345566 </span> của chúng tôi.</div>
           </div>
-          <button class="btn btn-origan col-md-12 pd0" @if($value->action != 0) {{'disabled="disabled"'}} @endif" data-toggle="modal" data-target="#myModal{{$key}}">
+          <button class="btn btn-origan col-md-offset-6 col-md-6 pd0" @if($value->action != 0) {{'disabled="disabled"'}} @endif" data-toggle="modal" data-target="#myModal{{$key}}">
             @if($value->action == 0) {{'Thanh Toán'}} @else {{ 'Đã Thanh Toán' }} @endif</button>
           <?php
             $daym =  $value -> created_at;

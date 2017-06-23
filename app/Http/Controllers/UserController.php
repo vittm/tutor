@@ -21,11 +21,12 @@ class UserController extends Controller
 
     public function __construct()
     {
+
     }
     public function myprofile($id)
     {
         $id_user = DB::table('users')->where('id', '=', $id)->get();
-        $couser = DB::table('cousers')->where([['id_user', '=', $id],['action','1']])->get();
+        $couser = DB::table('cousers')->where([['id_user', '=', $id]])->get();
         $post= DB::table('posts')->where('id_user', '=', $id)->get();
         $contact= explode(',', $id_user[0]->field);
         $subject= explode(',', $id_user[0]->subjects);
@@ -66,7 +67,7 @@ class UserController extends Controller
             $idAuth= $id;
         }
         $id_student = DB::table('registercousers')->join('cousers', 'cousers.id', '=', 'registercousers.couser')->join('users', 'users.id', '=', 'cousers.id_user')->where([['registercousers.id_user', '=', $id]])->get();
-        $list_cousers = DB::table('cousers')->join('users', 'users.id', '=', 'cousers.id_user')->where([['cousers.id_user', '=', $id_user[0]->id],['action','1']])->get();
+        $list_cousers = DB::table('cousers')->join('users', 'users.id', '=', 'cousers.id_user')->where([['cousers.id_user', '=', $id_user[0]->id]])->get();
         $view= $id_user[0]->viewed + 1;
 
         //user_id là trang cá nhân của người khác
@@ -400,7 +401,7 @@ class UserController extends Controller
       $db->content= $value['question'];
 
       $db->save();
-      return redirect('/trang-ca-nhan-'.$id);
+      return redirect('/trang-ca-nhan-'.$id.'?tab=settings');
     }
     public function replys(Request $request, $id){
       $value= $request->all();
@@ -408,7 +409,7 @@ class UserController extends Controller
           'reply' => $value['reply'],
       ]);
       DB::table('comments')->where('id', $id)->update($reply);
-      return redirect('/trang-ca-nhan-'.Auth::user()->id.'?tab=setting');
+      return redirect('/trang-ca-nhan-'.Auth::user()->id.'?tab=settings');
     }
     public function likes($id){
       $quanlity= DB::table('comments')->where('id', $id)->get();
@@ -419,5 +420,13 @@ class UserController extends Controller
       ]);
       DB::table('comments')->where('id', $id)->update($like);
       return 'okay';
+    }
+    public function notification(){
+      $search = DB::table('notifications')->where('id_user',Auth::user()->id)->get();
+      return view('users.notification',['search'=>$search]);
+    }
+    public function notification_detail($id){
+      $search = DB::table('notifications')->where('id',$id)->get();
+      return view('users.notification-detail',['search'=>$search]);
     }
 }

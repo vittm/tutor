@@ -91,7 +91,11 @@
                             </li>
                         </li>
                         @endif
-                        <li><a @if (Auth::guest()) href="{{ url('/') }}" @else href="{{ url('#') }}" @endif class="menu__item" style="position:realation;"><img src="{{ URL::to('/img/icon/earth.svg')}}" alt="..." class="img-circle" height="20"><span class="notify">1</span></a></li>
+                        <li><a  data-toggle="dropdown" id="notification" role="button" aria-expanded="false" @if (Auth::guest()) href="{{ url('/') }}" @else href="{{ url('#') }}" @endif class="menu__item" style="position:realation;"><img src="{{ URL::to('/img/icon/earth.svg')}}" alt="..." class="img-circle" height="20"><span class="notify">{{$quanlityNotify}}</span></a>
+                          <ul class="dropdown-menu" role="menu" aria-labelledby="notification"style="float:right">
+                              <li><a href="{{ url('/chinh-sua-ca-nhan')}}-{{ Auth::user()->id }}"></i>Chỉnh sửa hồ sơ</a></li>
+                          </ul>
+                        </li>
       </ul>
     </div>
   </nav>
@@ -144,6 +148,7 @@
       @if($_GET['tab'] == 'settings')
         $('a[href="#settings"]').tab('show');
       @endif
+      $('body').animate({scrollTop: 300}, 700);
     @endif
     $('.click-voucher').click(function(e){
         var id = $('.voucher').val();

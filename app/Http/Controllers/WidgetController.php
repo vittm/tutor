@@ -271,7 +271,7 @@ class WidgetController extends Controller
       $array = ([
           'action' => '1'
       ]);
-      DB::table('cousers')->where('id', $id_couser)->update($array);
+      DB::table('registercousers')->where('id', $id_couser)->update($array);
       return redirect('/admin/search');
     }
 }

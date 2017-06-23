@@ -517,11 +517,11 @@ box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.5);padding-top: 15px;">
 						@endforeach
 				</select>
 				<p>Dự kiến số buổi học/tuần</p>
-				<input class="form-control" type="text" placeholder="3 ngày"name="planmoment">
+				<input class="form-control" type="number" placeholder="3 ngày"name="planmoment">
 				<p>Dự kiến số buổi giờ/tuần</p>
-				<input class="form-control" type="text" placeholder="3 tiếng"name="plantime">
+				<input class="form-control" type="number" placeholder="3 tiếng"name="plantime">
 				<p>Dự kiến học phí/tháng</p>
-				<input class="form-control" type="text" placeholder="3.000.00 VNĐ"name="price">
+				<input class="form-control" type="number" placeholder="3.000.00 VNĐ"name="price">
 			<div class="col-md-12 pd0">
 				<!-- Button trigger modal -->
 					<button type="submit" class="btn btn-origan btn-lg contact-user">
@@ -648,5 +648,5 @@ box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.5);padding-top: 15px;">
 	    </form>
 	  </div>
 	</div> -->
-	
+
 @stop
