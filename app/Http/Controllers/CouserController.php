@@ -137,20 +137,26 @@ class CouserController extends Controller
           $couser = DB::table('cousers')->where('id', '=', $couserid)->get();
           return view('couser.edit', ['couser' => $couser ]);
       }
-
+      function random_numbers($char,$table,$find){
+        $random_code= $char.rand(1, 900000000);
+        $checkcode = DB::table($table)->where($find, '=',$random_code)->count();
+        if($checkcode == 0){
+          $code=$random_code;
+          return $code;
+        }else{
+          self::random_numbers($char,$table,$find);
+        }
+      }
       public function register_couser(Request $request){
         $input = $request->all();
         $id = $input['user_login'];
         $db = new Registercousers;
         $nDb = new Notifications;
         $couser = DB::table('cousers')->leftJoin('users','users.id','=','cousers.id_user')->select('users.name','cousers.*')->where('cousers.id', '=', $input['selectCouser'])->get();
-
         $typeClass= (((($input['planmoment'] * 5 ) * $input['plantime']) * $couser[0]->price ) * 30)/100;
         $typeCouser = ($couser[0]->price * 30)/100;
-
         if($couser[0] -> typeclass == '1') $priceofclass = $typeClass;
         if($couser[0] -> typeCouser == '2') $priceofclass = $typeCouser;
-
         $db->pay = $priceofclass;
         $db->user = $id;
         $db->id_teacher = $input['id_teacher'];
@@ -158,8 +164,8 @@ class CouserController extends Controller
         $db->plantime = $input['plantime'];
         $db->id_course = $input['selectCouser'];
         $db->price = $couser[0]->price;
-        $random_numbers = range(0, 999);
-        $db->code = 'Wiis'.shuffle($random_numbers);
+        $db->code = self::random_numbers('Wiis','registercousers','code');
+
 
         $nDb->id_user = $input['id_teacher'];
         $nDb->name_notification = 'Học viên đăng ký khoá học '. $couser[0]->name_couser .'';
@@ -170,14 +176,13 @@ class CouserController extends Controller
         ;
 
         $couserNotify = DB::table('cousers')->leftJoin('users','users.id','=','cousers.id_user')->select('users.name','cousers.*')->where([['cousers.id', '=', $input['selectCouser']],['users.id','=',$input['id_teacher']]])->get();
-        $giftcode = range(0, 999);
-        $gift_code = 'GiftCode'.shuffle($giftcode);
+        $gift_code= self::random_numbers('MSDT','registercousers','giftcode');
         Session::put('name_user', $couser[0]->name);
         Session::put('name_couser', $couserNotify[0]->name_couser);
         Session::put('giftcode', $gift_code);
         Session::put('teacher', $couserNotify[0]->name);
         Session::put('pricecourse', $priceofclass);
-
+        $db->giftcode = $gift_code;
         $nDb->save();
         $db->save();
         return redirect('/trang-ca-nhan-'.$id.'?register=true');
