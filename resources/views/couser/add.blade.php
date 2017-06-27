@@ -77,10 +77,8 @@
            <input class="multiple-flie" type="file" name="imgCouser" >
            <ul class="col-md-offset-2 col-md-9 gender__edit">
  						 <li>
-               <input type="hidden" name="typeclass" type="radio" id="boy" value="0">
- 							 <input name="typeclass" type="radio" id="boy" value="1">
+               <input type="hidden" name="typeclass" type="radio" id="boy" value="1">
  							 <label for="boy">Khoá học có cung cấp <strong> Lớp học 1 + 1 </strong></label>
- 							 <div class="check"></div>
  						 </li>
            </ul>
          </div>

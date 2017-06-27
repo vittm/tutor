@@ -16,6 +16,7 @@ use File;
 use Validator;
 use Hash;
 use App\Registercousers;
+use App\Notifications;
 
 class CouserController extends Controller
 {
@@ -83,9 +84,6 @@ class CouserController extends Controller
           $db->timeplan = $input['timeplan'];
           $db->typeCouser = '2';
           $db->price = $input['price'];
-          $db->pay= ($input['price'] * 30)/100;
-          $numbers = range(1, 20);
-          $db->code = 'Wiis'.shuffle($numbers);
           $db->save();
           return redirect('/trang-ca-nhan-'.$id);
       }
@@ -143,22 +141,34 @@ class CouserController extends Controller
         $input = $request->all();
         $id = $input['user_login'];
         $db = new Registercousers;
-
-        $db->id_user = $id;
-        $db->id_couser = $input['id_teacher'];
+        $nDb = new Notifications;
+        $couser = DB::table('cousers')->leftJoin('users','users.id','=','cousers.id_user')->select('users.name','cousers.*')->where('cousers.id', '=', $input['selectCouser'])->get();
+        if($couser[0] -> typeclass == '1') $db->pay = (((($input['planmoment'] * 5 ) * $input['plantime']) * $couser[0]->price ) * 30)/100;
+        if($couser[0] -> typeCouser == '2') $db->pay= ($couser[0]->price * 30)/100;
+        $db->user = $id;
+        $db->id_teacher = $input['id_teacher'];
         $db->planmoment = $input['planmoment'];
         $db->plantime = $input['plantime'];
-        $db->price = $input['price'];
-        $db->couser = $input['selectCouser'];
+        $db->id_course = $input['selectCouser'];
+        $db->price = $couser[0]->price;
+        $random_numbers = range(0, 999);
+        $db->code = 'Wiis'.shuffle($random_numbers);
 
+        $nDb->id_user = $input['id_teacher'];
+        $nDb->name_notification = 'Học viên đăng ký khoá học '. $couser[0]->name_couser .'';
+        $nDb->content_notification = '
+          <p> Chào '.Auth::user()->name .'</p>
+          <p> Hệ thống thông báo bạn học viên <a href="'.url('/trang-ca-nhan').'-'.$couser[0]->id_user.'">'. $couser[0]->name .'</a> đã đăng ký khoá học <strong>'. $couser[0]->name_couser .'</strong> của bạn. Bạn hãy vào trang <a href='.url('/quan-ly-hoc-vien').'>Quản lý học viên </a> của mình để xem chi tiết hơn.</p>
+          '
+        ;
+        $nDb->save();
         $db->save();
         return redirect('/trang-ca-nhan-'.$id);
       }
 
       public function mange_student() {
         $id = Auth::id();
-        $id_student = DB::table('registercousers')->join('users', 'users.id', '=', 'registercousers.id_user')->where('registercousers.id_couser', '=', $id)->get();
-
+        $id_student = DB::table('registercousers')->join('users', 'users.id', '=', 'registercousers.user')->leftjoin('cousers','cousers.id','registercousers.id_course')->select('users.name','users.avatar','users.district','users.city','users.phone','cousers.name_couser','cousers.typeclass','cousers.typeCouser','cousers.picture_couser','registercousers.*')->where('registercousers.id_teacher', '=', $id)->get();
         return view('couser.managestudent', ['student' => $id_student ]);
       }
 }

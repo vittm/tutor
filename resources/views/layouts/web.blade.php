@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Wiss</title>
+    <title>Wiis</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <link rel="stylesheet" type="text/css" href="{{ URL::to('css/style.css') }}">  <!-- Link css tự style -->
@@ -91,11 +91,24 @@
                             </li>
                         </li>
                         @endif
-                        <li><a  data-toggle="dropdown" id="notification" role="button" aria-expanded="false" @if (Auth::guest()) href="{{ url('/') }}" @else href="{{ url('#') }}" @endif class="menu__item" style="position:realation;"><img src="{{ URL::to('/img/icon/earth.svg')}}" alt="..." class="img-circle" height="20"><span class="notify">{{$quanlityNotify}}</span></a>
-                          <ul class="dropdown-menu" role="menu" aria-labelledby="notification"style="float:right">
-                              <li><a href="{{ url('/chinh-sua-ca-nhan')}}-{{ Auth::user()->id }}"></i>Chỉnh sửa hồ sơ</a></li>
-                          </ul>
+
+                        <li><a  data-toggle="dropdown" id="notification" role="button" aria-expanded="false" @if (Auth::check()) href="{{ url('/') }}" @else href="{{ url('#') }}" @endif class="menu__item" style="position:realative;"><img src="{{ URL::to('/img/icon/earth.svg')}}" alt="..." class="img-circle" height="20"><span class="notify">@if(Auth::check()){{$quanlityNotify}}@else 1 @endif</span></a>
+                          @if (Auth::check())
+                            <ul class="dropdown-menu notificationn" role="menu" aria-labelledby="notification"style="float:right">
+                              <a class="list-group-item active" style="padding:5px;border-radius: 0;text-align: left;background:#fdb000;border-color: #fdb000;"> Thông báo </a>
+                              <li role="separator" class="divider"></li>
+                              @foreach ($notify as $value)
+                                <li><a href="{{ url('/profile/notification/details')}}-{{ $value->id }}"><img src="{{ url('img/logo.png')}}" width="35px">{{ $value->name_notification }}</a></li>
+                                 <li role="separator" class="divider"></li>
+                              @endforeach
+                              @if(Auth::check() )
+                              <li><a class="btn btn-group-xs grey" href="{{ url('/profile/notification')}}"> @if($quanlityNotify > 5) Xem Tiếp @else Xem tất cả @endif</a></li>
+                              @endif
+
+                            </ul>
+                            @endif
                         </li>
+
       </ul>
     </div>
   </nav>

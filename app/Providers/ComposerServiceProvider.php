@@ -21,7 +21,9 @@ class ComposerServiceProvider extends ServiceProvider
         if (Auth::check()){
             $id= Auth::user()->id;
             $mess= DB::table('messages')->where([['id_user','=',$id], ['watch','=','0' ]])->count();
-            view()->share(['mess'=>$mess]);
+            $quanlityNotify= DB::table('notifications')->where([['id_user',$id],['nRead','0']])->count();
+            $Notify= DB::table('notifications')->where([['id_user',$id],['nRead','0']])->limit(5)->orderBy('id', 'desc')->get();
+            view()->share(['mess'=>$mess,'quanlityNotify'=>$quanlityNotify,'notify'=>$Notify]);
         }
         });
     }

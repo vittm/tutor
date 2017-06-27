@@ -45,21 +45,6 @@ function addTarget() {
 	$('.target-checkbox').append(s);
 }
 
-function addDiploma(){
-	var a= '<div class="panel col-md-12 pd0 top15"><label class="col-md-6"><img src="img/icon/pilot-of-airplane.png"> Cấp bậc: <input type="text" name="level-learn[]"> </label><label class="col-md-6"><img src="img/icon/graduate.png"> Nơi cấp/ Nơi học tập: <input type="text" name="location-learn[]"> </label><label class="col-md-6"><img src="img/icon/diploma.png"> Bằng Cấp: <input type="text" name="diploma-learn[]"> </label><label class="col-md-6"><img src="img/icon/medal.png"> Huy chương/ Giải thưởng: <input type="text" name="medal-learn[]"> </label></div>';
-	$('.level-edit').append(a);
-}
-
-function addLevel(){
-	var a= '<div class="panel col-md-12 pd0"><label class="col-md-6"><img src="img/icon/pilot-of-airplane.png"> Chức vụ: <input type="text" name="level_exp[]"> </label><label class="col-md-6"><img src="img/icon/graduate.png"> Nơi làm việc: <input type="text" name="location-exp[]"> </label><label class="col-md-6"><img src="img/icon/diploma.png"> Mô tả:  <textarea class="col-md-12 des" name="des-exp[]"></textarea>  </label><label class="col-md-6"><img src="img/icon/medal.png"> Thời Gian: <input type="text" name="time-exp[]"> </label></div>';
-	$('.working-edit').append(a);
-}
-
-function addClasslearn(){
-	var a= '<label class="col-md-6 pd0">Môn học: <input type="text" name="subject_class" class="form-control" value=""> </label><label class="col-md-6 pd0">Giá: <input type="text" name="price_class" value=""> </label><textarea rows="20" cols="70" class="ckeditor" id="editor1" name="content_teach" placeholder="Nội dung dạy"> </textarea><textarea rows="20" cols="70" placeholder="Phương pháp dạy" class="ckeditor" id="editor1" name="method_teach"></textarea>';
-	$('.learn-class').append(a);
-}
-
 $('.time_working').click(function(){
 	var i = $('.count_time-working').length;
 	var id= 'iad'+ i;
@@ -68,12 +53,6 @@ $('.time_working').click(function(){
 });
 
 
-$('.time_working').click(function(){
-	var i = $('.count_time-working').length;
-	var id= 'time-post'+ i;
-	var a='<script>$(".'+ id +'").kendoDateTimePicker({animation: false});</script><div class="panel col-md-6 pd0"><label class="col-md-12 pd0"><input class="count_time-working '+ id +'" name="time-post[]"  /></label></div>';
-	$('.time_posts').append(a);
-});
 
 $(window).scroll(function() {
 
@@ -259,4 +238,23 @@ $(window).on('scroll', function(){
 		}
 	});
 });
+});
+function addCommas(nStr) {
+    nStr += '';
+    x = nStr.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    return x1 + x2;
+}
+
+$('.selectCouser').click(function(){
+	var selected = $('.selectCouser option:selected');
+	if (selected.length) {
+		var val = selected.attr('data-price');
+        $('.price-register').val(addCommas(val));
+  }
 });

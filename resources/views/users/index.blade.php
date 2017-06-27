@@ -55,11 +55,15 @@
 					@if($id_user[0]->active == 2)
 					<div class="col-md-12 top15 wel" style="padding-top:15px;">
 						<div class="col-md-12 pd0">
-							<div class="col-md-1"><img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_2.png')}}" alt=""></div><div class="col-md-2"><p class="action-menu__counter">{{ $zfollowers }}</p></div><div class="col-md-8 pd0"><p class="text-left">Người theo dõi</p></div>
+							<div class="col-md-1"><img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_2.png')}}" alt=""></div><div class="col-md-4"><p class="action-menu__counter">{{ $zfollowers }}</p></div><div class="col-md-6 pd0"><p class="text-left">Người theo dõi</p></div>
 						</div>
+					</div>
+					<div class="col-md-12 top15 wel" style="padding-top:15px;">
 						<div class="col-md-12 pd0">
-							<div class="col-md-1"><img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_1.png')}}" alt="" style="top: -4px;"></div><div class="col-md-3"><p class="action-menu__counter">{{ $id_user[0] -> viewed }}</p></div><div class="col-md-7 pd0"><p class="text-left">Học Viên</p></div>
+							<div class="col-md-1"><img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_1.png')}}" alt="" style="top: -4px;"></div><div class="col-md-4"><p class="action-menu__counter">{{ $id_user[0] -> viewed }}</p></div><div class="col-md-6 pd0"><p class="text-left">Học Viên</p></div>
 						</div>
+					</div>
+					<div class="col-md-12 top15 wel" style="padding-top:15px;">
 						<div class="col-md-12 pd0">
 							<div class="col-md-1"><img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_0.png')}}" alt="" style="top: -1px;"></div><div class="col-md-4"><p class="action-menu__counter">{{ 5 }}{{' năm'}}</p></div><div class="col-md-6 pd0"><p class="text-left">Kinh nghiệm</p></div>
 						</div>
@@ -95,7 +99,7 @@
 				<h3 style="margin-top: 3.3rem; padding-left: 5px;">{{ $id_user[0] -> title }} </h3>
 				@endif
 				@if($id_user[0]->active !=2)
-				<div class="col-md-12 pd0" style="margin-top: 40px;">
+				<div class="col-md-12 pdl" style="margin-top: 40px;">
 					<div class="col-md-12 wel list-information" style=" padding-top: 15px;">
 					 <h3>{!! $id_user[0]->title !!}</h3>
 					 <div class="col-md-12 pd0 top30">
@@ -492,8 +496,8 @@ box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.5);padding-top: 15px;">
 			</div>
 	  </div>
 		@if($id_user[0]->active == 2)
-	  <div class="col-md-3 ">
-	  	<div class="col-md-12 fix-title">
+	  <div class="col-md-3 wel">
+	  	<div class="col-md-12 fix-title wel">
 			<div class="col-md-2 pd0">
 				<img src="{{ URL::to('img/avatar')}}/{{ $id_user[0]->avatar}}" alt="..." class="img-circle" height="50" width="50">
 			</div>
@@ -511,17 +515,18 @@ box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.5);padding-top: 15px;">
 				{{ csrf_field() }}
 				<input type="hidden" name="id_teacher" value={{ $id_user[0]->id }}>
 				<input type="hidden" name="user_login" value="{!! Auth::id() !!}">
-				<select class="form-control" name="selectCouser">
+				<select class="form-control selectCouser" name="selectCouser">
+					<option value="" data-price="0">------ Chọn khoá học -----</option>
 						@foreach($couser as $value)
-							<option value="{{ $value->id }}">{{ $value->name_couser}}</option>
+							<option value="{{ $value->id }}" data-price={{$value->price}}>{{ $value->name_couser}}</option>
 						@endforeach
 				</select>
-				<p>Dự kiến số buổi học/tuần</p>
+				<p>Dự kiến số ngày học/tuần</p>
 				<input class="form-control" type="number" placeholder="3 ngày"name="planmoment">
-				<p>Dự kiến số buổi giờ/tuần</p>
-				<input class="form-control" type="number" placeholder="3 tiếng"name="plantime">
+				<p>Dự kiến số buổi giờ/ngày</p>
+				<input class="form-control" type="number" placeholder="3 giờ"name="plantime">
 				<p>Dự kiến học phí/tháng</p>
-				<input class="form-control" type="number" placeholder="3.000.00 VNĐ"name="price">
+				<input class="form-control price-register" type="text" disabled name="price">
 			<div class="col-md-12 pd0">
 				<!-- Button trigger modal -->
 					<button type="submit" class="btn btn-origan btn-lg contact-user">

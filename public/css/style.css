@@ -1428,6 +1428,7 @@ body .pl0 {
 .fix-title.sticky .name-user {
     display: block;
     z-index: 1;
+    object-fit: cover;
 }
 div.fix-title input {
   border-radius: 0;
@@ -1742,6 +1743,7 @@ body .k-i-calendar:before,
 .avatar >img {
     width: 50px;
     height: 50px;
+    object-fit: cover;
     border: 1px solid #ffffff;
 }
 .notification_mess {
@@ -11605,6 +11607,7 @@ blockquote .small:before {
     }
     .avatar-profile {
         display: block;
+        object-fit: cover;
         margin: 0 auto 20px;
         border: 2px solid #ffffff;
     }
@@ -12163,8 +12166,7 @@ body .action-menu__left__share .col-md-6 p {
     left: 30px;
 }
 .ask-box #askForm textarea {
-    max-height: 80px;
-    min-height: 20px;
+    min-height: 50px;
     line-height: 20px;
     height: 20px;
     font-size: 16px;

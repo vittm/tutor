@@ -16,6 +16,7 @@ use File;
 use Validator;
 use Hash;
 use App\Followers;
+use App\Notifications;
 class UserController extends Controller
 {
 
@@ -66,7 +67,7 @@ class UserController extends Controller
         else{
             $idAuth= $id;
         }
-        $id_student = DB::table('registercousers')->join('cousers', 'cousers.id', '=', 'registercousers.couser')->join('users', 'users.id', '=', 'cousers.id_user')->where([['registercousers.id_user', '=', $id]])->get();
+        $id_student = DB::table('registercousers')->join('cousers', 'cousers.id', '=', 'registercousers.id_course')->join('users', 'users.id', '=', 'cousers.id_user')->where([['registercousers.user', '=', $id]])->get();
         $list_cousers = DB::table('cousers')->join('users', 'users.id', '=', 'cousers.id_user')->where([['cousers.id_user', '=', $id_user[0]->id]])->get();
         $view= $id_user[0]->viewed + 1;
 
@@ -109,11 +110,11 @@ class UserController extends Controller
       }else{
           $nameConvert=$input['cover'];
       }
-      if($files=$request->file('avatarMain')){
+      if($files1=$request->file('avatarMain')){
           $file1 = $input['avatarMain'];
-          $filename = $file->getClientOriginalName();
+          $filename1 = $file1->getClientOriginalName();
           $nameConvert1 = date('H-i-sYmd').$filename1;
-          $file->move(public_path().'/img/avatar', $nameConvert1);
+          $file1->move(public_path().'/img/avatar', $nameConvert1);
       }else{
           $nameConvert1=$input['avatar'];
       }
@@ -422,11 +423,15 @@ class UserController extends Controller
       return 'okay';
     }
     public function notification(){
-      $search = DB::table('notifications')->where('id_user',Auth::user()->id)->get();
+      $search = DB::table('notifications')->where('id_user',Auth::user()->id)->orderBy('id','desc')->paginate(10);
       return view('users.notification',['search'=>$search]);
     }
     public function notification_detail($id){
       $search = DB::table('notifications')->where('id',$id)->get();
+      $read = ([
+          'nRead' => 1
+      ]);
+      DB::table('notifications')->where('id', $id)->update($read);
       return view('users.notification-detail',['search'=>$search]);
     }
 }

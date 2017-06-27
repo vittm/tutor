@@ -1,8 +1,7 @@
 @extends('layouts.web')
 
 @section('content')
-<div class="row">
-    <div class="col-md-offset-2 col-md-10">
+    <div class="col-md-offset-1 col-md-10">
         <div class="card">
             <div class="header text-center">
                 <h4 class="title">Chi tiết các thông báo của bạn.</h4>
@@ -12,37 +11,37 @@
                 <table class="table table-bigboy">
                     <thead>
                         <tr>
-                            <th class="text-center"></th>
+                            <th >STT</th>
+                            <th>Ảnh</th>
                             <th >Tên thông báo</th>
                             <th class="">Ngày thông báo</th>
-                            <th> Hành Động </th>
+                            <th> </th>
                         </tr>
                     </thead>
                     <tbody>
                       @foreach($search as $key => $value)
-                        <tr>
+                        <tr class="list-notification @if($value->nRead == 0) grey @endif" >
+                            <td><span>{{$key+1}}</span></td>
                             <td>
                                 <div class="img-container">
-                                    <img src="{{ URL::to('img/logo.png')}}" alt="Lorem ipsum" width="70" height="40" style="object-fit: contant;"/>
+                                    <img src="{{ URL::to('img/logo.png')}}" alt="Lorem ipsum" width="50" height="27" style="object-fit: contant;"/>
                                 </div>
                             </td>
                             <td class="td-name">
-                                tên
-                            </td
-                            <td class="td-number">ádasd</td>
-                            <td class="td-name">
-                                ádasd
+                                <span>{{  $value->name_notification}}</spa>
                             </td>
+                            <td class="td-number"><span>{{date('d-m-y',strtotime($value->created_at))}}</span></td>
                             <td class="td-number">
-                              <a class="btn btn-primary" href="{{ url('/profile/notification/details')}}-{{$value->id}}">Xem chi tiết</a>
+                              <a class="btn" href="{{ url('/profile/notification/details')}}-{{$value->id}}">Xem chi tiết</a>
                             </td>
                         </tr>
-
                         @endforeach
                     </tbody>
                 </table>
             </div>
         </div><!--  end card  -->
+        <div class="col-md-12">
+          {{ $search->links() }}
+        </div>
     </div> <!-- end col-md-12 -->
-</div> <!-- end row -->
 @Stop

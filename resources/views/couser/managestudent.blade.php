@@ -13,24 +13,34 @@
 <div class="tab-content edit-profile edit-couser">
   <div role="tabpanel" class="tab-pane active" id="add">
   @foreach($student as $key => $value)
-    <div class="col-md-12 pd0 list-student well">
+    <div class="col-md-12 pd0 list-student wel">
       <div class="col-md-1 top15"><img src="{{ URL::to('img/avatar')}}/{{ $value->avatar}}" alt="..." class="img-circle dl" height="60" width="60"></div>
       <div class="col-md-11">
-          <div class="col-md-7 pd0"><h3>{{ $value->name }}</h3><p><i>{{ $value->city}}</i></p></div>
+          <div class="col-md-7 pd0"><h3>{{ $value->name }}</h3><p><i>Quận {{ $value->district}}, TP {{ $value->city}}</i></p></div>
           <div class="col-md-5"><button class="btn btn-origan2" style="border-radius: 8px; padding-top: 3px; padding-bottom: 3px;border-width: 2px;"><img src="{{ URL::to('img/icon/iconphone.png')}}" height="40"><span style="font-weight: 700;color: #161542; font-size: 15px;"> {{ $value->phone }}</span></button></div>
           <div class="col-md-12 pd0" style="border-bottom: 1px solid #eeeeee;padding-bottm:15px;margin-bottom:5px;">
             <p style="margin-bottom: 0;color: #161542"> Khóa học </p>
-            <h3 style="margin-top: 0;color: #fcaf00;">{{ $value->couser}}</h3>
+            <h3 style="margin-top: 0;color: #fcaf00;">{{ $value->name_couser}}</h3>
           </div>
           <div class="col-md-12 pd0" style="border-bottom: 1px solid #eeeeee; padding-bottm:15px;margin-bottom:15px;">
             <div class="col-md-6 pd0"><p>Dự kiến số buổi học/tuần</p></div><div class="col-md-6"><p style="font-weight:500;color: #161542">{{ $value->planmoment}} ngày</p></div>
-            <div class="col-md-6 pd0"><p>Dự kiến số giờ học/tuần</p></div><div class="col-md-6"><p style="font-weight:500;color: #161542">{{ $value->plantime}} giờ</p></div>
-            <div class="col-md-6 pd0"><p>Học phí dự tính</p></div><div class="col-md-6"><p style="font-weight:500;color: #161542">{{ $value->price}} ngày</p></div>
+            <div class="col-md-6 pd0"><p>Dự kiến số giờ học/ngày</p></div><div class="col-md-6"><p style="font-weight:500;color: #161542">{{ $value->plantime}} giờ</p></div>
+            <div class="col-md-6 pd0"><p>Học phí khoá học:</p></div><div class="col-md-6"><p style="font-weight:500;color: #161542">
+                {{ number_format($value->price)}} <sup>đ </sup>
+              </p></div>
           </div>
+          <div class="col-md-6 pd0"><p>Học phí dự tính</p></div><div class="col-md-6"><p style="font-weight:500;color: #161542">
+            @if($value -> typeclass == '1')
+            {{ number_format(((($value->planmoment * 5 ) * $value->plantime) * $value->price )) }} <sup>đ </sup>
+            @endif
+            @if($value -> typeCouser == '2')
+            {{ number_format($value->price) }} <sup>đ </sup>
+            @endif
+            </p></div>
           <div class="col-md-12 pd0">
             <div class="col-md-6 pd0"><p>Ngày đăng ký</p></div><div class="col-md-6">{{ $value->created_at }} <p style="font-size:12px;font-style:italic;color: #161542"> Bạn nên gọi điện thoại cho học viên trong vòng 24h để xác nhận nhu cầu học của học viên. Nếu không nhận được lớp bạn vui lòng gọi vào hottline <span style="color: #fcaf00;"> 012345566 </span> của chúng tôi.</div>
           </div>
-          <button class="btn btn-origan col-md-offset-6 col-md-6 pd0" @if($value->action != 0) {{'disabled="disabled"'}} @endif" data-toggle="modal" data-target="#myModal{{$key}}">
+          <button class="btn btn-origan col-md-offset-8 col-md-4 pd0" @if($value->action != 0) {{'disabled="disabled"'}} @endif" data-toggle="modal" data-target="#myModal{{$key}}">
             @if($value->action == 0) {{'Thanh Toán'}} @else {{ 'Đã Thanh Toán' }} @endif</button>
           <?php
             $daym =  $value -> created_at;
@@ -45,7 +55,7 @@
             $dayForDate = date("w", mktime(0, 0, 0, $parts[1], $parts[2], $parts[0]));
           ?>
           @if($value->action != 1)
-          <div class="col-md-12 list-couser__name wel"> <h6>Hạn phí khoá học {{$date_exp}} ngày, Thứ @if($dayForDate == 0) {{ 'CN' }} @endif  @if ($dayForDate == 6) {{'Bảy'}} @endif  @if($dayForDate!= 0 && $dayForDate !=6) {{ $dayForDate }} @endif , {{$new_date}}</h6> </div>
+          <div class="col-md-offset-6 col-md-6 list-couser__name text-right pd0 wel"><br> <h6>Hạn phí khoá học {{$date_exp}} ngày, Thứ @if($dayForDate == 0) {{ 'CN' }} @endif  @if ($dayForDate == 6) {{'Bảy'}} @endif  @if($dayForDate!= 0 && $dayForDate !=6) {{ $dayForDate }} @endif , {{$new_date}}</h6> </div>
           @endif
           <!-- Modal -->
             <div class="modal fade" id="myModal{{$key}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -76,14 +86,27 @@
                           Học phí/tháng:
                         </div>
                         <div class="col-md-6">
-                          {{number_format($value ->price)}}<sup> Đ</sup>
+                          {{number_format($value ->price)}}<sup> đ</sup>
                         </div>
+                        <div class="col-md-6">Học phí dự tính:</div><div class="col-md-6">
+                          @if($value -> typeclass == '1')
+                          {{ number_format(((($value->planmoment * 5 ) * $value->plantime) * $value->price )) }} <sup>đ </sup>
+                          @endif
+                          @if($value -> typeCouser == '2')
+                          {{ number_format($value->price) }} <sup>đ </sup>
+                          @endif
+                          </div>
                         <div class="col-md-12">
                           <p style="font-size:13px;font-weight:400;color:#fcaf00;"><i>(Nếu có sự thay đổi. Bạn vui lòng gọi vào hotline: <strong>0868 505 523 </strong> để xác nhận lại)</i></p>
                         </div>
-                        <div class="col-md-6">
-                          <h4><span style='font-weight:500;font-size:14px'>Tổng số tiền: </span><strong> {{number_format($value->pay)}} đ </strong></h4>
-                          <i> ( 30% * {{number_format($value ->price)}} = {{number_format($value->pay)}} đ )</i>
+                        <div class="col-md-12">
+                          <h4><span style='font-weight:500;font-size:14px'>Tổng số tiền: </span><strong> {{number_format($value->pay)}} <sup> đ</sup> </strong></h4>
+                          @if($value -> typeclass == '1')
+                          <i> ( 30% * {{ number_format(((($value->planmoment * 5 ) * $value->plantime) * $value->price )) }} <sup> đ</sup>  = {{number_format($value->pay)}} <sup> đ</sup> )</i>
+                          @endif
+                          @if($value -> typeCouser == '2')
+                          <i> ( 30% * {{number_format($value ->price)}} = {{number_format($value->pay)}} <sup> đ</sup> )</i>
+                          @endif
                         </div>
                         <?php
                         $daym =  $value -> created_at;
@@ -150,11 +173,11 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                   </div>
                 </div>
-      </div>
-  </div>
+                </div>
+            </div>
+          </div>
+    </div>
   @endforeach
-</div>
-</div>
 </div>
 </div>
 @else
