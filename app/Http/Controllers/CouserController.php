@@ -17,6 +17,7 @@ use Validator;
 use Hash;
 use App\Registercousers;
 use App\Notifications;
+use Session;
 
 class CouserController extends Controller
 {
@@ -143,8 +144,14 @@ class CouserController extends Controller
         $db = new Registercousers;
         $nDb = new Notifications;
         $couser = DB::table('cousers')->leftJoin('users','users.id','=','cousers.id_user')->select('users.name','cousers.*')->where('cousers.id', '=', $input['selectCouser'])->get();
-        if($couser[0] -> typeclass == '1') $db->pay = (((($input['planmoment'] * 5 ) * $input['plantime']) * $couser[0]->price ) * 30)/100;
-        if($couser[0] -> typeCouser == '2') $db->pay= ($couser[0]->price * 30)/100;
+
+        $typeClass= (((($input['planmoment'] * 5 ) * $input['plantime']) * $couser[0]->price ) * 30)/100;
+        $typeCouser = ($couser[0]->price * 30)/100;
+
+        if($couser[0] -> typeclass == '1') $priceofclass = $typeClass;
+        if($couser[0] -> typeCouser == '2') $priceofclass = $typeCouser;
+
+        $db->pay = $priceofclass;
         $db->user = $id;
         $db->id_teacher = $input['id_teacher'];
         $db->planmoment = $input['planmoment'];
@@ -161,9 +168,19 @@ class CouserController extends Controller
           <p> Hệ thống thông báo bạn học viên <a href="'.url('/trang-ca-nhan').'-'.$couser[0]->id_user.'">'. $couser[0]->name .'</a> đã đăng ký khoá học <strong>'. $couser[0]->name_couser .'</strong> của bạn. Bạn hãy vào trang <a href='.url('/quan-ly-hoc-vien').'>Quản lý học viên </a> của mình để xem chi tiết hơn.</p>
           '
         ;
+
+        $couserNotify = DB::table('cousers')->leftJoin('users','users.id','=','cousers.id_user')->select('users.name','cousers.*')->where([['cousers.id', '=', $input['selectCouser']],['users.id','=',$input['id_teacher']]])->get();
+        $giftcode = range(0, 999);
+        $gift_code = 'GiftCode'.shuffle($giftcode);
+        Session::put('name_user', $couser[0]->name);
+        Session::put('name_couser', $couserNotify[0]->name_couser);
+        Session::put('giftcode', $gift_code);
+        Session::put('teacher', $couserNotify[0]->name);
+        Session::put('pricecourse', $priceofclass);
+
         $nDb->save();
         $db->save();
-        return redirect('/trang-ca-nhan-'.$id);
+        return redirect('/trang-ca-nhan-'.$id.'?register=true');
       }
 
       public function mange_student() {

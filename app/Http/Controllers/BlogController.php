@@ -33,7 +33,7 @@ class BlogController extends Controller
                         'viewed'=>$value->viewed + 1
                     ]);
         }
-         
+
 
         if($cmt == null){
             $cmt1 = ' ';

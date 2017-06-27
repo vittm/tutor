@@ -92,6 +92,9 @@
                                                 <option value="2">
                                                     Gia Sư
                                                 </option>
+                                                <option value="3">
+                                                    Phụ Huynh
+                                                </option>
                                             </select>
 
                                             @if ($errors->has('password'))
@@ -103,7 +106,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="col-md-12 form-signup">
                                 <div class="form-group">
 

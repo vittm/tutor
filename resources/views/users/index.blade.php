@@ -541,117 +541,38 @@ box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.5);padding-top: 15px;">
 		</div>
 	@endif
 	</div>
+	<!-- Button trigger modal -->
+	<button type="button" class="btn btn-primary btn-lg hidden" data-toggle="modal" data-target="#register-finish">
+	  Launch demo modal
+	</button>
 	<!-- Modal -->
-	<!-- <div class="modal fade col-md-12" id="contact-teach" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal fade" id="register-finish" tabindex="-1" role="dialog" aria-labelledby="register-finish">
 	  <div class="modal-dialog" role="document">
-	  <form class="login-form col-md-12" method="POST" action="{{ url('/sent-contact-tech') }}">
-	  	{{ csrf_field() }}
-	  	<input type="hidden" name="id_user" value="{{ $id_user[0]->id }}">
-	  	@if (Auth::guest())
-	  		<input type="hidden" name="name_user" value="Khách">
-	  	@else
-	  		<input type="hidden" name="name_user" value="{{ Auth::user()->name }}">
-	  	@endif
-	    <div class="modal-content col-md-12">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel">Liên Hệ</h4>
-	      </div>
+	    <div class="modal-content">
 	      <div class="modal-body">
-	      	<div class="col-md-3">
-	      		<img src="{{ URL::to('img/avatar')}}/{{ $id_user[0]->avatar}}" alt="..." class="img-circle" height="80">
-	      		<br>
-	      		<p class="top15"><strong>{{ $id_user[0]-> name}}</strong></p>
-	      	</div>
+					<div class="col-md-12 pd0 title-modal">
+	 					 <div class="col-md-6"><h4 class="modal-title" id="myModalLabel">Đăng Ký Học Thử Thành Công</h4></div>
+	 				</div>
+					<p>Cám ơn @if(Auth::check()) @if(Auth::user()->active == 3)phụ huynh @else bạn @endif @endif {{Session::get('name_user')}} đã cho WiiS cơ hội được phục vụ.</p>
+					<p><strong>Sau 1h nữa, gia sư {{Session::get('name_couser')}} sẽ gọi điện thoại xác nhận việc đăng ký học thử của anh/chị ạ.</strong> Nếu sau thời gian này không nhận được điện thoại từ gia sư, anh/ chị vui lòng thông báo lại cho WiiS theo hotline 0868. 505.523 để WiiS giúp anh/chị liên lạc với gia sư.
+					</p>
+					<h5>THÔNG TIN ĐĂNG KÝ HỌC THỬ</h5>
 
+					<p>⦁	Lớp học: <strong> {{Session::get('name_couser')}}</strong></p>
+					<p>⦁	Gia sư: <strong>{{Session::get('teacher')}}</strong></p>
+					<p>⦁	Học phí dự kiến/tháng: <strong>{{Session::get('pricecourse')}} / tháng </strong></p>
 
-	        	<div class="col-md-9">
-			    	<label for="subject">Môn học</label>
-			    </div>
-			    <div class="col-md-9">
-			    	<input type="text" class="form-control" name="subject" id="subject" placeholder="Điền vào môn học">
-			    </div>
-
-
-
-	        	<div class="col-md-9 top15">
-			    	<label for="">Trình Độ</label>
-			    	<select name="grade" class=" form-control grade">
-			    		<option value="Tiểu Học">Tiểu Học</option>
-			    		<option value="THCS">THCS</option>
-			    		<option value="THPT">THPT</option>
-			    		<option value="Đại Học">Đại Học</option>
-			    	</select>
-			    </div>
-	        	<div class="offset-md-6 col-md-6 top15">
-			    	<label for="exampleInputEmail1">Bắt đầu lớp học</label>
-
-			    	<select name="begin-class" class="form-control begin-class">
-			    		<option value="Vài ngày sau">Vài ngày sau</option>
-			    		<option value="Tuần sau">Tuần sau</option>
-			    		<option value="Tháng sau">Tháng sau</option>
-			    		<option value="Sắp xếp">Sắp xếp</option>
-			    	</select>
-			    </div>
-
-	        	<div class="col-md-6 top15">
-			    	<label for="exampleInputEmail1">Địa Điểm</label>
-			    	<select name="location_class" class="form-control location-class">
-			    		<option value="không có"> Lựa chọn địa điểm</option>
-			    		<option class="location-option" value="Học tại nơi của gia sư">Học tại nơi của gia sư</option>
-			    		<option class="athome" value="Học tại nơi của học viên">Học tại nơi của học viên </option>
-			    		<option class="location-option" value="Học online">Học online</option>
-			    		<option class="location-option" value="Sắp xếp ">Sắp xếp </option>
-			    	</select>
-			    	<input type="text" class="form-control select-athome" name="athome">
-			    </div>
-			<div class="col-md-12 top15">
-				<label>Thời gian có thể học</label>
-					<div class="panel col-md-12 pd0 time_mess">
-						<label class="col-md-6 pd0"><input class="iad" name="time-learn" /></label>
-					</div>
-			</div>
-			<div class="col-md-12 target-checkbox top15">
-				<div class="col-md-12 pd0">
-					<label>Mục tiêu: </label>
-				</div>
-				<div class="col-md-6 pd0">
-				    <label>
-				      <input type="checkbox" value="Nâng cao kỹ năng" name="target_mess[]"> Nâng cao kỹ năng
-				    </label>
-				 </div>
-				 <div class="col-md-6 pd0">
-				    <label>
-				      <input type="checkbox" value="Cải thiện điểm số" name="target_mess[]"> Cải thiện điểm số
-				    </label>
-				 </div>
-				 <div class="col-md-6 pd0">
-				    <label>
-				      <input type="checkbox" value="Học kỹ năng mới" name="target_mess[]"> Học kỹ năng mới
-				    </label>
-				 </div>
-				 <div class="col-md-6 pd0">
-				    <label>
-				      <input type="checkbox" value="Chuẩn bị cho bài test" name="target_mess[]"> Chuẩn bị cho bài test
-				    </label>
-				 </div>
-				</div>
-			<div class="col-md-12 top15">
-			 	<input type="text" name="add-target" class="add-target">
-				<button type="button" onclick="addTarget()">Thêm mục tiêu</button>
-			 </div>
-			<div class="col-md-12 top15">
-				<label for="exampleInputEmail1">Nội dung tin nhắn: </label>
-				<textarea class="form-control" rows="3" name="content"></textarea>
-			</div>
+					<p>Mã số may mắn của anh/chị là <strong>{{Session::get('giftcode')}}</strong></p>
+					<p>Vào ngày 30 hàng tháng trên fanpage, WiiS sẽ tiến hành quay số để tặng quà cho
+					những khách hàng may mắn đăng ký gia sư tại WiiS, xem thêm tại đây.</p>
+					<p>Khi đăng ký học với gia sư trên WiiS, anh/chị đã đóng góp 5.000đ vào
+					quỹ “Những Thiên thần nhỏ” nhằm giúp đỡ những trẻ em khuyết tật và kém may mắn
+					trong cuộc sống.</p>
 	      </div>
-	      <div class="modal-footer col-md-12">
-	        <button type="button" class="btn btn-default btn-5" data-dismiss="modal">Thoát</button>
-	       <button class="btn btn-5 btn-5a icon-cog"><span>Gửi tin nhắn</span></button>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default close-register" data-dismiss="modal">Close</button>
 	      </div>
 	    </div>
-	    </form>
 	  </div>
-	</div> -->
-
+	</div>
 @stop
