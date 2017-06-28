@@ -29,6 +29,11 @@
                   <i class="fa fa-times" style="color:#d73814;" aria-hidden="true"></i> <strong> Thiếu CMND</strong> <i style="font-size: 13px;">(sẽ được bảo mật)</i>
               </div>
             @endif
+            @if(Auth::user()->code_user == null)
+              <div class="notice notice-danger top10">
+                  <i class="fa fa-id-card-o" style="color:#d73814;" aria-hidden="true"></i> <strong> Thiếu phần giới thiệu</strong>
+              </div>
+            @endif
             @if(Auth::user()->picture == null)
               <div class="notice notice-danger top10">
                   <i class="fa fa-times" style="color:#d73814;" aria-hidden="true"></i> <strong> Thiếu ảnh cá nhân</strong>

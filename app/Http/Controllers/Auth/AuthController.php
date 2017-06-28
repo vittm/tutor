@@ -75,7 +75,8 @@ class AuthController extends Controller
             $filename = $file->getClientOriginalName();
             $file->move(public_path().'/img/avatar', $filename);
         }else{
-            if($input['active'] == 1) $filename="hocvien.jpg"
+            if($input['active'] == 1) $filename="hocvien.jpg";
+            if($input['active'] == 3) $filename="hocvien.jpg";
             if($input['active'] == 2) $filename="giasu.jpg";
         }
 

@@ -15,17 +15,17 @@
 		img {outline:none; text-decoration:none; -ms-interpolation-mode: bicubic;}
 		a img {border:none;display:inline-block;}
 		.image_fix {display:block;}
-		
+
 		h1, h2, h3, h4, h5, h6 {color: black !important;}
 
 		h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {color: blue !important;}
 
 		h1 a:active, h2 a:active,  h3 a:active, h4 a:active, h5 a:active, h6 a:active {
-			color: red !important; 
+			color: red !important;
 		}
 
 		h1 a:visited, h2 a:visited,  h3 a:visited, h4 a:visited, h5 a:visited, h6 a:visited {
-			color: purple !important; 
+			color: purple !important;
 		}
 
 		table td {border-collapse: collapse;}
@@ -121,7 +121,7 @@
 				<table cellpadding="0" cellspacing="0" border="0" align="center" width="100%" style="border-collapse:collapse;">
 					<tr>
 						<td class='movableContentContainer'>
-							
+
 							<div class='movableContent'>
 								<table cellpadding="0" cellspacing="0" border="0" align="center" width="600">
 									<tr height="40">
@@ -134,7 +134,7 @@
 										<td width="200" valign="top" align="center">
 											<div class="contentEditableContainer contentTextEditable">
 												<div class="contentEditable" >
-													<img src="http://sv1.upsieutoc.com/2016/10/30/finish.png" width="155" height='95' alt='Logo'  data-default="placeholder" />
+													<img src="http://sv1.upsieutoc.com/2016/10/30/finish.png" width="155" height='78' alt='Logo'  data-default="placeholder" />
 												</div>
 											</div>
 										</td>
@@ -154,7 +154,7 @@
 										<td width="100%" colspan="3" align="center" style="padding-bottom:10px;padding-top:25px;">
 											<div class="contentEditableContainer contentTextEditable">
 												<div class="contentEditable" >
-													<h2 >Welcome aboard!</h2>
+													<h2 >Chào mừng bạn đến với Wiis</h2>
 												</div>
 											</div>
 										</td>
@@ -164,7 +164,7 @@
 										<td width="400" align="center" style="padding-bottom:5px;">
 											<div class="contentEditableContainer contentTextEditable">
 												<div class="contentEditable" >
-													<p >Thanks for signing up to our newsletter - you're all set and will be receiving the first email soon.</p>
+													<p >Cảm ơn bạn đã đăng ký.</p>
 												</div>
 											</div>
 										</td>
@@ -183,7 +183,7 @@
 													<td bgcolor="#ED006F" align="center" style="border-radius:4px;" width="200" height="50">
 														<div class="contentEditableContainer contentTextEditable">
 															<div class="contentEditable" >
-																<a target='_blank' href="[CLIENTS.WEBSITE]" class='link2'>Visit our Website</a>
+																<a target='_blank' href="http://wiis.com" class='link2'>Ghé Thăm Website Ngay</a>
 															</div>
 														</div>
 
@@ -211,7 +211,7 @@
 																</div>
 															</div>
 														</div>
-														
+
 													</td>
 													<td width="400" valign="top" style="padding-top:40px;padding-bottom:20px;">
 														<br/>
@@ -220,7 +220,7 @@
 																<div style="font-size:23px;font-family:Heveltica, Arial, sans-serif;color:#fff;">A little bit about us</div>
 															</div>
 														</div>
-														
+
 														<div class="contentEditableContainer contentTextEditable">
 															<div class="contentEditable"  style="padding:20px 10px 0 0;margin:0;font-family:Helvetica, Arial, sans-serif;font-size:15px;line-height:150%;">
 																<p style='color:#FFEECE;'>Describe who you are, what you do and why you do it. You can also use this space as social proof (a tweet or post from a fan)</strong></p>

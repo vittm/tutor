@@ -42,6 +42,9 @@
                        <option @if( $value->active == 0 ) selected @endif value="0">
                           Admin
                        </option>
+                       <option @if( $value->active == 3 ) selected @endif value="1">
+                          Phụ Huynh
+                       </option>
                    </select>
                </span>
            </div>
@@ -71,8 +74,9 @@
 <div class="col-md-12 list-couser-main top15">
 <form action="{{ url('/admin/pay-couser')}}" enctype="multipart/form-data"  method="POST">
   <input type="hidden" name="_token" value="{{ csrf_token() }}">
-  <input type="hidden" name="wam" value="{{$value->id_user }}">
-  <input type="hidden" name="wan" value="{{$value->id }}">
+  <input type="hidden" name="wam" value="{{$value->id }}">
+  <input type="hidden" name="wan" value="{{$value->id_teacher }}">
+  <input type="hidden" name="couser" value="{{$value->id_course }}">
 <a class="col-md-12 pd0 list-couser wel">
   <div class="col-md-4 pd0 list-couser__images">
     @if($value -> typeclass == '1')
@@ -92,20 +96,20 @@
     <div class="col-md-8 list-couser__name wel top10"> <h4> {{$value ->name_couser }} </h4> </div>
     <button type="button" class="btn btn-danger col-md-4 top25 pd0" @if($value->action != 0) {{'disabled="disabled"'}} @endif" data-toggle="modal" data-target="#myModal">
     @if($value->action == 0) {{'Thanh Toán'}} @else {{ 'Đã Thanh Toán' }} @endif
-    </button>
-    <div class="col-md-5 list-couser__name wel "> <h5 style="margin-top:10px"><i class="pe-7s-user"></i> {{$value ->name }} </h5> </div>
-    <div class="col-md-6 list-couser__name wel"><h5 style="margin-top:10px"> <i class="pe-7s-call"></i> {{ $value->phone }}</h5> </div>
-    <?php
-    $daym =  $value -> created_at;
-    $sepparator = '-';
-    $partsExp = explode($sepparator, $daym);
-    $d=cal_days_in_month(CAL_GREGORIAN,$partsExp[1],$partsExp[0]);
-    $date_exp= $d - (strtotime(date('Y-m-d')) - strtotime($value -> created_at)) / (60 * 60 * 24);
-    $date= date( 'Y-m-d');
-    $new_date = strtotime ( '+'.$date_exp.'day' , strtotime ( $date ) ) ;
-    $new_date = date ( 'd-m-Y' , $new_date );
-    $parts = explode($sepparator, $new_date);
-    $dayForDate = date("w", mktime(0, 0, 0, $parts[1], $parts[2], $parts[0]));
+      </button>
+      <div class="col-md-5 list-couser__name wel "> <h5 style="margin-top:10px"><i class="pe-7s-user"></i> {{$value ->name }} </h5> </div>
+      <div class="col-md-6 list-couser__name wel"><h5 style="margin-top:10px"> <i class="pe-7s-call"></i> {{ $value->phone }}</h5> </div>
+      <?php
+      $daym =  $value -> created_at;
+      $sepparator = '-';
+      $partsExp = explode($sepparator, $daym);
+      $d=cal_days_in_month(CAL_GREGORIAN,$partsExp[1],$partsExp[0]);
+      $date_exp= $d - (strtotime(date('Y-m-d')) - strtotime($value -> created_at)) / (60 * 60 * 24);
+      $date= date( 'Y-m-d');
+      $new_date = strtotime ( '+'.$date_exp.'day' , strtotime ( $date ) ) ;
+      $new_date = date ( 'd-m-Y' , $new_date );
+      $parts = explode($sepparator, $new_date);
+      $dayForDate = date("w", mktime(0, 0, 0, $parts[1], $parts[2], $parts[0]));
     ?>
     <div class="col-md-9 list-couser__name wel top10"> <strong><h5>Hạn phí khoá học {{$date_exp}} ngày, Thứ @if($dayForDate == 0) {{ 'CN' }} @endif  @if ($dayForDate == 6) {{'Bảy'}} @endif  @if($dayForDate!= 0 && $dayForDate !=6) {{ $dayForDate }} @endif , {{$new_date}}</h5></strong> </div>
     <div class="col-md-12"> <h5> Tổng tiền thanh toán: {{number_format($value->pay)}} đ </h5> </div>

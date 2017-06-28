@@ -146,6 +146,10 @@
 			</div>
 		</div>
 		<div class="tab-pane" id="video">
+			<h4>⦁	Nếu bạn là sinh viên thì cần cung cấp thẻ sinh viên <br>
+					⦁	Nếu bạn là giáo viên thì cần cung cấp bằng sư phạm <br>
+Ngoài ra, WiiS khuyến khích bạn up những hình ảnh về bằng cấp, chứng chỉ liên quan đến lĩnh vực giảng dạy của bạn. Việc này sẽ giúp bạn củng cố niềm tin từ phía phụ huynh, học viên. Bên cạnh đó, khi có lớp cần gia sư, WiiS sẽ ưu tiên cho những bạn có hồ sơ cung cấp đầy đủ hình ảnh bằng cấp, chứng chỉ”.
+</h4>
 			<form class="col-md-12" method="POST" enctype="multipart/form-data" action="{{ url('/editing/video') }}-{{ $id_user[0]->id }}">
 												{{ csrf_field() }}
 				<input type="hidden" name="id_user" value="{{ $id_user[0]->id}}">

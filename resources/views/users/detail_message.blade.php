@@ -26,7 +26,7 @@
 			  </div>
 			    <!-- Begin Panel Content -->
 			    <div class="content">
-			      
+
 			      <!-- Name & Title Objects -->
 			      <div class="contact-info">
 			        <span class="entypo-vcard"></span>
@@ -47,12 +47,12 @@
 							@foreach($target['0'] as $tar)
 			           			<dd>{{ $tar }}</dd>
 				           	@endforeach
-				          	@else 
+				          	@else
 							{{ " " }}
 						@endif
 			         </dl>
 			          <hr />
-			      </div>     
+			      </div>
 			      <!-- Clear Positioned V-Card Objects -->
 			      <div class="clearfix"></div>
 			      <!-- Begin Contact Methods -->
@@ -89,7 +89,7 @@
 		  </div>
 		    <!-- Begin Panel Content -->
 		    <div class="content">
-		      
+
 		      <!-- Name & Title Objects -->
 		      <div class="contact-info">
 		        <span class="entypo-vcard"></span>
@@ -108,12 +108,12 @@
 						@foreach($target['0'] as $tar)
 		           			<dd>{{ $tar }}</dd>
 			           	@endforeach
-			          	@else 
+			          	@else
 						{{ " " }}
 					@endif
 		         </dl>
 		          <hr />
-		      </div>     
+		      </div>
 		      <!-- Clear Positioned V-Card Objects -->
 		      <div class="clearfix"></div>
 		      <!-- Begin Contact Methods -->

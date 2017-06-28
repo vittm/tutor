@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="{{ URL::to('css/test.css') }}">
     <!-- <link rel="stylesheet" href="css/main.css"> -->
     <!--[if gt IE 8]><!-->
-    <link rel="stylesheet" href="{{ URL::to('css/tablet.css') }}" media="screen and (min-width: 768px)">
-    <link rel="stylesheet" href="{{ URL::to('css/desktop.css') }}" media="screen and (min-width: 992px)">
+    <link rel="stylesheet" href="{{ URL::to('css/tablet.css') }}">
+    <link rel="stylesheet" href="{{ URL::to('css/desktop.css') }}" >
 
 
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
@@ -35,7 +35,9 @@
       </div>
       <div class="modal-body">
       <p>Chúc mừng bạn đã đăng ký thành công <br>
-      Bạn có thể đăng bài viết <a href="{{ url('/dang-tin') }}"> đăng bài</a> hoặc vào trang cá nhân của mình để chỉnh sửa thông tin cần thiết <a href="{{ url('/trang-ca-nhan')}}-{{ Auth::user()->id }}"> trang cá nhân</a>
+      Bạn hãy ghé thăm trang cá nhân của mình để thêm những thông tin cần thiết <a href="{{ url('/trang-ca-nhan')}}-{{ Auth::user()->id }}"> cho trang cá nhân của mình nhé!</a>
+      <br>
+      <strong>Cảm ơn bạn </strong>
       </p>
 
       </div>

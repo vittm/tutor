@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use DB;
+use Auth;
 use App\Slides;
 use App\User;
 use App\Posts;
@@ -12,6 +13,7 @@ use App\FeedbackHomes;
 use Illuminate\Support\Facades\Input;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Notifications;
 
 class WidgetController extends Controller
 {
@@ -56,7 +58,6 @@ class WidgetController extends Controller
 
         return redirect('/admin/listing-slide');
     }
-
     public function adding_feedback(Request $request){
         $value= $request->all();
         $db = new Feedbackhomes;
@@ -173,7 +174,7 @@ class WidgetController extends Controller
         return view('admin.cousers',['bills'=>$bills]);
     }
     public function detail_user(Request $request, $id){
-        $bills= DB::table('cousers')->leftJoin('users','users.id','cousers.id_user')->select('users.name','cousers.*')->where('id_user',$id)->paginate(10);
+        $bills= DB::table('cousers')->leftJoin('users','users.id','cousers.id_user')->join('registercousers','registercousers.id_course','cousers.id')->select('users.name','registercousers.pay','registercousers.action','registercousers.code','cousers.*')->where('id_user',$id)->paginate(10);
         return view('admin.detail-user',['cousers'=>$bills]);
     }
     public function update_user(Request $request){
@@ -260,18 +261,29 @@ class WidgetController extends Controller
           return view('admin.result',['search'=>$searchs]);
       }else if (isset($value['search-bill'])){
           $code= $value['search-bill'];
-          $bills= DB::table('users')->leftJoin('cousers','cousers.id_user','=','users.id')->where('cousers.code',$code)->get();
+          $bills= DB::table('cousers')->leftJoin('users','users.id','cousers.id_user')->join('registercousers','registercousers.id_course','cousers.id')->select('users.name','users.phone','registercousers.id','registercousers.pay','registercousers.action','registercousers.id_course','registercousers.code','registercousers.id_teacher','registercousers.pay','cousers.created_at','cousers.name_couser','cousers.typeclass','cousers.typeCouser','cousers.picture_couser','cousers.price')->where('registercousers.code',$code)->get();
           return view('admin.result',['bills'=>$bills]);
       }
     }
     public function pay_couser(Request $request) {
       $value= $request->all();
+      $nDb = new Notifications;
       $id = $value['wam'];
-      $id_couser = $value['wan'];
+      $id_teacher = $value['wan'];
       $array = ([
           'action' => '1'
       ]);
-      DB::table('registercousers')->where('id', $id_couser)->update($array);
+      $couser = DB::table('cousers')->leftJoin('users','users.id','=','cousers.id_user')->select('users.name','cousers.*')->where('cousers.id', '=', $value['couser'])->get();
+      $nDb->id_user = $id_teacher;
+      $nDb->name_notification = 'Thanh toán khóa học '. $couser[0]->name_couser .'';
+      $nDb->content_notification = '
+        <p> Chào '.Auth::user()->name .'</p>
+        <p> Hệ thống xin thông báo khoá học <strong>'. $couser[0]->name_couser .'</strong> của bạn đã được thanh toán thành công. Bạn hãy vào trang <a href='.url('/quan-ly-hoc-vien').'>Quản lý học viên </a> để kiểm tra lại.</p>
+        <p> Cảm ơn bạn </p>
+        '
+      ;
+      $nDb->save();
+      DB::table('registercousers')->where('id', $id)->update($array);
       return redirect('/admin/search');
     }
 }

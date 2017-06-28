@@ -56,8 +56,7 @@
                                 @endif
                             </div>
                         </div>
-
-                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }} bottom0">
+                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
                             <div class="input-text-register">
                                 <div class="input-group">
                                   <span class="input-group-addon" id="basic-addon1"><i class="fa fa-dot-circle-o" aria-hidden="true"></i></span>
@@ -71,21 +70,27 @@
                                 @endif
                             </div>
                         </div>
-
-                        <div class="form-group ">
-                            <div class="col-md-8 pd0">
-                                <input type="file" name="avatar" accept="image/*"  onchange="showMyImage(this)" id="file-2" class="inputfile inputfile-2 hidden" data-multiple-caption="{count} files selected" multiple="">
-                                <label class="avatar-signup" for="file-2">
-                                <img id="thumbnil" class="img-reg" src="{{ url('/img/finish.png') }}" title="ảnh đại diện" alt="image"/>
-                                 </label>
+                        <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                             <div class="input-text-register">
+                                <div class="input-group">
+                                  <span class="input-group-addon" id="basic-addon1"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                                        <input class="form-control" placeholder="SĐT" id="password" type="number" name="phone" >
+                                </div>
+                                @if ($errors->has('phone'))
+                                    <span class="help-block">
+                                        <strong>Vui lòng điền số điện thoại</strong>
+                                    </span>
+                                @endif
                             </div>
+                        </div>
+                        <div class="form-group">
                             <div class="col-md-12"></div>
                             <div class="col-md-12 form-signup">
-                                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                <div class="form-group{{ $errors->has('active') ? ' has-error' : '' }}">
                                     <div class="input-text col-md-12 pd0">
                                         <span class="style-input">
                                             <select class="form-control" name="active">
-                                                <option> Loại thành viên</option>
+                                                <option value="1"> Loại thành viên</option>
                                                 <option value="1">
                                                     Học Viên
                                                 </option>
@@ -97,7 +102,7 @@
                                                 </option>
                                             </select>
 
-                                            @if ($errors->has('password'))
+                                            @if ($errors->has('active'))
                                                 <span class="help-block">
                                                     <strong>Bạn phải lựa chọn loại thành viên</strong>
                                                 </span>
@@ -109,8 +114,11 @@
 
                             <div class="col-md-12 form-signup">
                                 <div class="form-group">
-
-                                      <div class="col-xs-4 pd0">
+                                      <div class="col-md-12 pd0">
+                                        <h5>Ảnh đại diện </h5>
+                                        <input class="multiple-flie" type="file" name="avatar" >
+                                      </div>
+                                      <div class="col-xs-4 pd0 top15">
                                         <select class="form-control">
                                         <option value="" disabled selected hidden>Ngày</option>
                                         <option value="01">01</option>
@@ -146,7 +154,7 @@
                                         <option value="31">31</option>
                                       </select>
                                       </div>
-                                      <div class="col-xs-4 pr0">
+                                      <div class="col-xs-4 pr0 top15">
                                         <select class="form-control" ng-model="register.db.month">
                                         <option value="" disabled selected hidden>Tháng</option>
                                         <option value="01">01</option>
@@ -163,7 +171,7 @@
                                         <option value="12">12</option>
                                       </select>
                                       </div>
-                                      <div class="col-xs-4 pr0">
+                                      <div class="col-xs-4 pr0 top15">
                                         <select class="form-control" ng-model="register.db.year">
                                         <option value="" disabled selected hidden>Năm</option>
                                         <option value="1951">1951</option>
@@ -225,7 +233,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button class="btn btn-5 btn-5a fa icon-right"><span>Đăng Ký</span></button>
