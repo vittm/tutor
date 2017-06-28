@@ -459,7 +459,7 @@
 						<div class="col-md-12 top15 wel" style="-webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.5);
 -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.5);
 box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.5);padding-top: 15px;">
-							<h4><strong>{{ $value->content }}</strong></h4>
+							<h4><strong>{!! $value->content !!}</strong></h4>
 
 							<h5><?php $str = explode(' ', $id_user[0]->name); ?>{{end($str)}} {{reset($str)}} trả lời: {{ $value -> reply}}</h5>
 							<span style="font-size: 11px;">{{$value->created_at}}</span>

@@ -2,6 +2,8 @@
 
 @section('content')
 <div class="container">
+      <br>
+      <img  src="{{ url('img/logo.png')}}" alt="" style="width:150px;margin: auto; display: block;">
       <div class="page-header">
         <h1>{{$search[0]->name_notification}}</h1>
       </div>

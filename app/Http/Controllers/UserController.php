@@ -397,18 +397,43 @@ class UserController extends Controller
     public function comments(Request $request, $id){
       $value= $request->all();
       $db = new Comments;
+      $nDb = new Notifications;
       $db->id_user = $id;
       $db->id_post = Auth::user()->id;
       $db->content= $value['question'];
-
       $db->save();
+
+      $nDb->id_user = $id ;
+      $nDb->name_notification = 'Bạn có một tin nhắn trong phần hỏi đáp';
+      $nDb->content_notification = '
+        <p> Bạn hãy trả lời tin nhăn trong <a href="'.url('/trang-ca-nhan-'.Auth::user()->id.'?tab=settings').'">phần hỏi đáp </a> nhé.</p>
+        <br>
+        <p>Câu hỏi: <strong>'.str_replace('<br />', PHP_EOL, $value['question']).'</strong> </p>
+        '
+      ;
+      $nDb->save();
+
       return redirect('/trang-ca-nhan-'.$id.'?tab=settings');
     }
     public function replys(Request $request, $id){
       $value= $request->all();
+      $nDb = new Notifications;
+
       $reply = ([
           'reply' => $value['reply'],
       ]);
+      $find = DB::table('comments')->where('id', $id)->get();
+      $nDb->id_user = $find[0]->id_post ;
+      $nDb->name_notification = 'Bạn có một phản hồi từ phần hỏi đáp';
+      $nDb->content_notification = '
+        <p> Bạn hãy vào trang cá nhân của <a href="'.url('/trang-ca-nhan-'.$find[0]->id_user.'?tab=settings').'"> để xem rõ hơn phần hỏi đáp </a> nhé.</p>
+        <br>
+        <p>Câu hỏi:<strong> '.$find[0]->content.'</strong></p>
+        <br>
+        <p>Câu trả lời: <strong>'.str_replace('<br />', PHP_EOL, $value['reply']).'</strong> </p>
+        '
+      ;
+      $nDb->save();
       DB::table('comments')->where('id', $id)->update($reply);
       return redirect('/trang-ca-nhan-'.Auth::user()->id.'?tab=settings');
     }
