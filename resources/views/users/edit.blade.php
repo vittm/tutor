@@ -81,6 +81,16 @@
 					<div class="col-md-8"><input type="text" name="filed-subject" value="{{ $id_user[0]->subjects }}"><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"></div>
 					<div class="col-md-offset-3 col-md-8"> <p  style="font-size: 13px; font-style: italic; color: rgb(176, 176, 176);">Nếu có nhiều dữ liệu phân cách bằng dấu phẩy nhé! </p></div>
 				</div>
+				<div class="col-md-12 pd0 top10">
+					<div class="col-md-3"> Kinh nghiệm </div>
+					<div class="col-md-8"><input type="text" name="edit-profile__experience" value=""><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"></div>
+				</div>
+				<div class="col-md-12 pd0 top10">
+					<div class="col-md-3"> Tự giới thiệu </div>
+					<div class="col-md-8">
+						<textarea rows="20" cols="70" class="ckeditor" id="editor1" name="edit-profile__info">{!! $id_user[0]->info !!}</textarea>
+					</div>
+				</div>
 	  	<div class="col-md-offset-6 col-md-4 pd0 top30">
           <div class="col-md-8 pd0 btn-edit save_edit-profile">
               <button class="btn btn-5 btn-5a fa icon-right"><span>Lưu lại</span></button>

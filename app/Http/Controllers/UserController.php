@@ -37,6 +37,7 @@ class UserController extends Controller
         $value_get = DB::table('ratings')->where('id_user', '=', $id)->sum('value_get');
         $connect = DB::table('ratings')->where('id_user', '=', $id)->sum('connect');
         $count_id = DB::table('ratings')->where('id_user', '=', $id)->count();
+        $count_student = DB::table('registercousers')->where('id_teacher', '=', $id)->count();
         $learn_teach = DB::table('ratings')->where('id_user', '=', $id)->sum('learn');
         $feeling = DB::table('ratings')->where('id_user', '=', $id)->sum('feeling');
         $question = DB::table('comments')->where('id_user', '=', $id)->orderBy('id', 'desc')->get();
@@ -83,7 +84,8 @@ class UserController extends Controller
         $job= json_decode($id_user[0]->job,JSON_BIGINT_AS_STRING);
         $status =  DB::table('users')->where('id', $idAuth )->select('id')->first();
         DB::table('users')->where('id', $id)->update(['level_user'=>'1']);
-        return view('users.index', ['id_user' => $id_user,'ratings' => $rating,'question'=>$question,'listfollowers'=>$listfollowers,'kkfollowers'=>$kkfollowers,'kfollowers'=>$kfollowers,'zfollowers'=>$zfollowers,'list_cousers'=>$list_cousers,'student'=>$id_student,'couser'=>$couser,'contact'=>$contact,'subject' => $subject, 'content_teach' => $content_teach,'value_get' => $value_get, 'connect' => $connect, 'learn_teach' => $learn_teach, 'feeling' => $feeling, 'count_id' => $count_id, 'cmtprofiles' => $cmt,'feedbacks' => $feedback,'status' => $status,'post'=>$post,'job' => $job ]);
+        return view('users.index', ['id_user' => $id_user,'ratings' => $rating,'question'=>$question,'count_student'=>$count_student,'listfollowers'=>$listfollowers,'kkfollowers'=>$kkfollowers,'kfollowers'=>$kfollowers,'zfollowers'=>$zfollowers,'list_cousers'=>$list_cousers,'student'=>$id_student,'couser'=>$couser,'contact'=>$contact,'subject' => $subject,
+         'content_teach' => $content_teach,'value_get' => $value_get, 'connect' => $connect, 'learn_teach' => $learn_teach, 'feeling' => $feeling, 'count_id' => $count_id, 'cmtprofiles' => $cmt,'feedbacks' => $feedback,'status' => $status,'post'=>$post,'job' => $job ]);
     }
     public function tab_pay()
     {
@@ -301,9 +303,11 @@ class UserController extends Controller
             'ward' => $input['ward'],
             'district' =>  $input['distric'],
             'city' =>  $input['city'],
-            'expericen' => $input['edit-profile__exper'],
+            'educational' => $input['edit-profile__exper'],
             'jobs' => $input['edit-profile__jobs'],
-            'subjects' => $input['filed-subject']
+            'subjects' => $input['filed-subject'],
+            'info' => $input['edit-profile__info'],
+            'experience' => $input['edit-profile__experience']
         ]);
 
         DB::table('users')->where('id', $id)->update($profile);

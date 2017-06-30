@@ -60,12 +60,12 @@
 					</div>
 					<div class="col-md-12 top15 wel" style="padding-top:15px;">
 						<div class="col-md-12 pd0">
-							<div class="col-md-1"><img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_1.png')}}" alt="" style="top: -4px;"></div><div class="col-md-4"><p class="action-menu__counter">{{ $id_user[0] -> viewed }}</p></div><div class="col-md-6 pd0"><p class="text-left">Học Viên</p></div>
+							<div class="col-md-1"><img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_1.png')}}" alt="" style="top: -4px;"></div><div class="col-md-4"><p class="action-menu__counter">{{ $count_student }}</p></div><div class="col-md-6 pd0"><p class="text-left">Học Viên</p></div>
 						</div>
 					</div>
 					<div class="col-md-12 top15 wel" style="padding-top:15px;">
 						<div class="col-md-12 pd0">
-							<div class="col-md-1"><img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_0.png')}}" alt="" style="top: -1px;"></div><div class="col-md-4"><p class="action-menu__counter">{{ 5 }}{{' năm'}}</p></div><div class="col-md-6 pd0"><p class="text-left">Kinh nghiệm</p></div>
+							<div class="col-md-1"><img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_0.png')}}" alt="" style="top: -1px;"></div><div class="col-md-4"><p class="action-menu__counter">{{ $id_user[0]->experience }}{{' năm'}}</p></div><div class="col-md-6 pd0"><p class="text-left">Kinh nghiệm</p></div>
 						</div>
 					</div>
 					@endif
@@ -185,7 +185,7 @@
 									 </div>
 									 <div class="col-md-12 pd0 top15">
 									 <div class="col-md-4"> Học vấn</div>
-									 <div class="col-md-8"><strong>{!!  $id_user[0]->expericen !!}</strong></div>
+									 <div class="col-md-8"><strong>{!!  $id_user[0]->educational !!}</strong></div>
 									 </div>
 									 <div class="col-md-12 pd0 top15">
 									 <div class="col-md-4"> Hiện là</div>
@@ -216,8 +216,8 @@
 					    		<br>
 									<div class="col-md-12 wel top10">
 										@foreach($list_cousers as $key => $value)
-										<div class="col-md-6 list-couser-main top15">
-										<a class="col-md-12 pd0 list-couser wel">
+										<div class="col-md-6 list-couser-main top15" style="height:280px;">
+										<a  data-toggle="modal" data-target="#couser{{$key}}" class="col-md-12 pd0 list-couser wel">
 											<div class="col-md-12 pd0 list-couser__images">
 												@if($value -> typeclass == '1')
 												<div class="list-couser__typeCourse">
@@ -229,11 +229,180 @@
 													Lớp học sắp khai giảng
 												</div>
 												@endif
-												<img src="{{ URL::to('/img/couser')}}/{{$value->picture_couser}}" style="width:100%">
+												<img src="{{ URL::to('/img/couser')}}/{{$value->picture_couser}}" style="width:100%;">
 												<div class="list-couser__price btn btn-origan2">{{number_format($value->price)}}<sup>Đ/@if($value -> typeCouser == '2') Khoá @else Giờ @endif </sup></div>
 											</div>
 												<div class="col-md-12 list-couser__name wel top10"> <h4> {{$value ->name_couser }} </h4> </div>
 										</a>
+									</div>
+									<div class="modal fade" id="couser{{$key}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			              <div class="modal-dialog" role="document">
+			                <div class="modal-content wel">
+			                  <div class="col-md-12 modal-body wel" style="padding:0;">
+			                    <div class="col-md-12 title-modal" style="background:#fcaf00;">
+			                      <div class="col-md-6"><p style="position:relative;top: 5px;">*  @if($value -> typeclass == '1')
+							                          <strong>Học 1 + 1</strong>
+							                        @endif
+							                        @if($value -> typeCouser == '2')
+							                          <strong>Lớp học sắp khai </strong>
+							                        @endif</p>
+														</div>
+			                      <div class="col-md-6"><div class="list-couser__price btn btn-origan2" style="border-color: #000000;color: #000;position:relative;top: 5px;">{{number_format($value->price)}}<sup>Đ/@if($value -> typeCouser == '2') Khoá @else Giờ @endif </sup></div></div>
+														<div class="col-md-12 top15">
+															<h3>{{$value ->name_couser }}</h3>
+															<h5>{{ $value->name }}</h5>
+															<p>{{ $value->jobs }} <p>
+													 </div>
+													</div>
+													<div class="col-md-12 wel">
+															<h4 style="color:#fcaf00;text-transform: uppercase;"> NỘI DUNG KHÓA HỌC </h4>
+															<div class="col-md-6">
+																<img src="{{ URL::to('/img/couser')}}/{{$value->picture_couser}}" style="width:100%;">
+															</div>
+															<div class="col-md-6">
+																<h4>GIỚI THIỆU TỔNG QUÁT </h4>
+																<p>{{$value->information}}</p>
+															</div>
+															<div class="col-md-12 top15">
+																	<p> Bạn sẽ học được gì? </p>
+																	{{ $value->study }}
+															</div>
+
+															<div class="col-md-6">
+																	<p>Ai nên tham gia ?</p>
+																	{{$value->who}}
+															</div>
+															<div class="col-md-6">
+																	<p>Phương pháp giảng dạy ?</p>
+																	{{$value->type}}
+															</div>
+															<div class="col-md-6">
+																	<p>Chương trình học ?</p>
+																	{{$value->program}}
+															</div>
+
+															<div class="col-md-12 pd0 top15">
+																	<div class="col-md-6">
+																		<p>HỌC PHÍ</p>
+																	</div>
+
+																	<div class="col-md-6">
+																		{{$value->price}}
+																	</div>
+															</div>
+															@if($value->typeCouser == '1')
+												      <div class="col-md-12 pd0 top10">
+												        <div class="col-md-3 top15"> Thời gian học</div>
+												        <div class="col-md-8">
+												          <div class="col-md-12 pd0 top15">
+												            <div class="col-md-3">
+												              Thứ
+												            </div>
+												            <div class="col-md-3">
+												              Sáng
+												            </div>
+												            <div class="col-md-3">
+												              Trưa
+												            </div>
+												            <div class="col-md-3">
+												              Chiều
+												            </div>
+												          </div>
+												          <ul class="col-md-12 top30 pd0 gender__edit couser-time" >
+												             <div class="col-md-3">
+												                <p>Thứ Hai</p>
+												                <p>Thứ Ba</p>
+												                <p>Thứ Tư</p>
+												                <p>Thứ Năm</p>
+												                <p>Thứ Sáu</p>
+												                <p>Thứ Bảy</p>
+												                <p>Chủ Nhật</p>
+												             </div>
+												            <div class="col-md-8 pd0">
+												              @if(json_decode($value->timetype1) != null)
+												                @foreach( json_decode($value->timetype1) as $key => $value )
+												                   <li class="col-md-4">
+												                     <input type="hidden" name="morning[]" value="0">
+												                     <input type="checkbox" name="morning[]" value="1" id="morning{{$key}}" @if($value == '1') checked @endif >
+												                     <label for="morning{{$key}}"></label>
+												                     <div class="check"></div>
+												                   </li>
+												                @endforeach
+												                @else
+												                @for( $i = 0; $i < 21 ; $i++ )
+												                  <li class="col-md-4">
+												                    <input type="hidden" name="morning[]" value="0">
+												                    <input type="checkbox" name="morning[]" value="1" id="morning{{$i}}">
+												                    <label for="morning{{$i}}"></label>
+												                    <div class="check"></div>
+												                  </li>
+												                @endfor
+												              @endif
+												            </div>
+												          </ul>
+												        </div>
+												      </div>
+												      @endif
+															@if($value->typeCouser == '2')
+															<div class="col-md-12 pd0">
+																	<div class="col-md-6">
+																		<p>Lớp học kéo dài</p>
+																	</div>
+
+																	<div class="col-md-6">
+																		{{ $value->closetime }}
+																	</div>
+															</div>
+															<div class="col-md-12 pd0">
+																	<div class="col-md-6">
+																		<p>Ngày khai giảng:</p>
+																	</div>
+
+																	<div class="col-md-6">
+																		{{$value->opentime}}
+																	</div>
+															</div>
+															<div class="col-md-12 pd0">
+																	<div class="col-md-6">
+																		<p>Thời gian học</p>
+																	</div>
+
+																	<div class="col-md-6">
+																		{{$value->timeplan}}
+																	</div>
+															</div>
+															@endif
+															<form class="col-md-12 pd0 form-register-couser" method="get" enctype="multiple/part" action="{{ url('/couser/register')}}">
+																{{ csrf_field() }}
+																<input type="hidden" name="id_teacher" value={{ $id_user[0]->id }}>
+																<input type="hidden" name="user_login" value="{!! Auth::id() !!}">
+
+															<div class="col-md-12 pd0">
+																<!-- Button trigger modal -->
+																	<button type="submit" class="btn btn-origan btn-lg contact-user">
+																		Đăng ký học thử
+																	</button>
+															</div>
+															<div class="col-md-12 top15">
+																<select class="form-control selectCouser top15" name="selectCouser">
+																	<option value="" data-price="0">------ Chọn khoá học -----</option>
+																		@foreach($couser as $value)
+																			<option value="{{ $value->id }}" data-price={{$value->price}}>{{ $value->name_couser}}</option>
+																		@endforeach
+																</select>
+																<p>Dự kiến số ngày học/tuần</p>
+																<input class="form-control" type="number" placeholder="3 ngày"name="planmoment">
+																<p>Dự kiến số buổi giờ/ngày</p>
+																<input class="form-control" type="number" placeholder="3 giờ"name="plantime">
+																<p>Dự kiến học phí/tháng</p>
+																<input class="form-control price-register" type="text" disabled name="price">
+																<hr>
+																<p class="col-md-12 pd0" style="font-size: 12px; margin-top: 20px;">Vui lòng thông báo lại cho WiiS theo hotline 0868. 505.523 để WiiS giúp anh/chị nếu như gặp sự cố gì</p>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
 									</div>
 										@endforeach
 									</div>
