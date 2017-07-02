@@ -18,24 +18,14 @@ use App\Notifications;
 class WidgetController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $search = DB::table('users')->leftJoin('learns','users.id','=','learns.id_user')->get();
+      if (isset($_GET['address-find'])){
+          $search = User::filterByRequest($request)->get();
+      }else {
+        $search = DB::table('users')->leftJoin('learns','users.id','=','learns.id_user')->where('active','=','2')->get();
+      }
         return view('search.index',['search'=>$search]);
-    }
-
-    public function search_teach(Request $request){
-        $search = User::filterByRequest($request)->get();
-		    return view('search.result',['search'=>$search]);
-    }
-
-    public function findClass(){
-        $search = DB::table('posts')->get();
-    	return view('search.findClass',['search'=>$search]);
-    }
-    public function search_class(Request $request){
-        $search = Posts::filterClass($request)->get();
-		return view('search.resultClass',['search'=>$search]);
     }
 
     public function adding_slider(Request $request){
@@ -249,7 +239,7 @@ class WidgetController extends Controller
         $db->start = $value['start-review'];
         $db->save();
 
-        return redirect('/trang-ca-nhan-'.$id);
+        return redirect('/trang-ca-nhan-'.$id.'-'.User::convert_string(Auth::user()->name).'');
     }
 
     //search users

@@ -47,7 +47,9 @@
           width: 8px;
           height: 8px; }
   .search {
-    margin-top: 20px; }
+    margin-top: 20px;
+    padding-left: 4%;
+  }
     .search li {
       position: relative;
       display: inline;
@@ -171,7 +173,7 @@
     width: 100px;
     height: 100px;
     padding: 15px;
-    left: 48.1%;
+    left: 47.1%;
     margin-left: -30px;
     }
   .timeline-item {
@@ -196,8 +198,6 @@
     right: auto; }
   .timeline-item a:hover {
     color: #4B878D; }
-  .social {
-    margin-top: 40px; }
     .social h3 {
       font-weight: 300;
       font-style: italic;

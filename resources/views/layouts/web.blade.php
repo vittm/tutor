@@ -26,27 +26,7 @@
     <!-- <div class="flash-message">
        <p class="alert alert-{{ $msg }}"> <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
     </div> -->
-    <div class="modal fade in" tabindex="-1" role="dialog" style="display: block;">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">{{ Session::get('form-' . $msg) }}</h4>
-      </div>
-      <div class="modal-body">
-      <p>Chúc mừng bạn đã đăng ký thành công <br>
-      Bạn hãy ghé thăm trang cá nhân của mình để thêm những thông tin cần thiết <a href="{{ url('/trang-ca-nhan')}}-{{ Auth::user()->id }}"> cho trang cá nhân của mình nhé!</a>
-      <br>
-      <strong>Cảm ơn bạn </strong>
-      </p>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    @include('modal.congratulationsignup')
     @endif
 @endforeach
 
@@ -66,7 +46,7 @@
                             <li class="global-header__login log--active">
 
                             <li>
-                                <a class="avatar" href="{{ url('/trang-ca-nhan')}}-{{ Auth::user()->id }}"><img src="{{ URL::to('/img/avatar')}}/{{ Auth::user()->avatar }}" alt="..." class="img-circle" height="50"></a>
+                                <a class="avatar" href="{{ url('/trang-ca-nhan')}}-{{ Auth::user()->id }}-{{App\User::convert_string(Auth::user()->name)}}"><img src="{{ URL::to('/img/avatar')}}/{{ Auth::user()->avatar }}" alt="..." class="img-circle" height="50"></a>
                             @if($mess > 0)
                             <a class="notification_mess" href="{{url('/danh-sach-tin-nhan')}}-{{Auth::user()->id}}"><img src="{{ URL::to('/img/icon')}}/speech-bubble.png"><span>{{ $mess }} </span>
                             </a>
@@ -169,6 +149,9 @@
       @if($_GET['register'] == 'true')
         $('#register-finish').modal('show');
       @endif
+    @endif
+    @if(Session::has('form-' . $msg))
+      $('#congratulationsignup').modal('show');
     @endif
     $('.close-register').click(function(){
       {{ session()->forget('name_user','name_couser','giftcode','teacher','pricecourse') }}

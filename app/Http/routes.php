@@ -16,7 +16,7 @@ Route::auth();
 
 Route::get('/', 'HomeController@index');
 
-Route::get('/trang-ca-nhan-{id}', 'UserController@myprofile');
+Route::get('/trang-ca-nhan-{id}-{name}', 'UserController@myprofile');
 
 Route::get('/tim-kiem-gia-su', 'WidgetController@index');
 
@@ -107,7 +107,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 		Route::get('couser/add-{id}', 'CouserController@look');
-		Route::post('couser/opening/adding-{id}', 'CouserController@adding_couser');
+		Route::post('couser/adding-{id}', 'CouserController@adding_couser');
 		Route::post('couser/opening-{id}', 'CouserController@adding_opening');
 		Route::post('couser/editing-{couserid}', 'CouserController@editing_couser');
 		Route::get('couser/edit-{couserid}', 'CouserController@edit_couser');

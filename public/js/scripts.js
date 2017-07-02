@@ -255,6 +255,23 @@ $('.selectCouser').click(function(){
 	var selected = $('.selectCouser option:selected');
 	if (selected.length) {
 		var val = selected.attr('data-price');
-        $('.price-register').val(addCommas(val));
+		var type = selected.attr('data-type');
+		if( type == '2') {
+				$('.planprice').text('/tháng');
+		}else {
+				$('.planprice').text('/giờ');
+		}
+    $('.price-register').val(addCommas(val));
+
   }
 });
+
+	// $('.couser-time .day-teach').click(function(){
+	// 	if($(this).eq('0').is(':checked')) {
+	// 		$('.hidden-teach').eq('0').remove();
+	// 		$(this).eq('0').val('1');
+	// 	}else {
+	// 		$(this).parents().append('<input class="hidden-teach" type="hidden" name="morning[]" value="0">');
+	// 		$(this).eq('0').val('0');
+	// 	}
+	// });

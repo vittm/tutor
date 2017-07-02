@@ -28,7 +28,7 @@ class CouserController extends Controller
 
     public function look(Request $request, $id) {
         $id_user = DB::table('users')->where('id', '=', $id)->get();
-        $couser = DB::table('cousers')->where('id_user', '=', $id)->get();
+        $couser = DB::table('cousers')->leftJoin('users','users.id','=','cousers.id_user')->select('users.name','users.jobs','users.district','users.city','cousers.*')->where('id_user', '=', $id)->get();
         return view('couser.add', ['id_user' => $id_user, 'couser' => $couser]);
     }
     public function adding_couser(Request $request, $id){
@@ -55,10 +55,8 @@ class CouserController extends Controller
           $db->price = $input['price'];
           $db->typeCouser = '1';
           $db->typeclass = $input['typeclass'];
-          $numbers = range(1, 20);
-          $db->code = 'Wiis'.shuffle($numbers);
           $db->save();
-        return redirect('/trang-ca-nhan-'.$id);
+        return redirect('/trang-ca-nhan-'.$id.'-'.User::convert_string(Auth::user()->name).'?tab=info');
     }
     public function adding_opening(Request $request, $id){
       $input = $request->all();
@@ -86,21 +84,20 @@ class CouserController extends Controller
           $db->typeCouser = '2';
           $db->price = $input['price'];
           $db->save();
-          return redirect('/trang-ca-nhan-'.$id);
+          return redirect('/trang-ca-nhan-'.$id.'-'.User::convert_string(Auth::user()->name).'?tab=info');
       }
       public function editing_couser(Request $request, $couserid){
         $input = $request->all();
-        $id_user = DB::table('cousers')->where('id', '=', $couserid)->get();
         if($files=$request->file('imgCouser')){
             $file = $input['imgCouser'];
             $filename = $file->getClientOriginalName();
             $nameConvert = date('H-i-sYmd').$filename;
             $file->move(public_path().'/img/couser', $nameConvert);
         }else{
-            $nameConvert= 'couser.jpg';
+            $nameConvert= $input['picture'];
         }
 
-        if($id_user[0]->typeCouser == '1') {
+        if($input['cousertype'] == '1') {
           $profile= ([
               'picture_couser' => $nameConvert,
               'name_couser' => $input['title'],
@@ -113,8 +110,7 @@ class CouserController extends Controller
               'price' =>  $input['price'],
               'typeclass' => $input['typeclass']
           ]);
-        }else if($id_user[0]->typeCourse == '2') {
-          $arr1=array('morning'=>$morning,'afternoon'=>$afternoon, 'night'=> $night );
+        }else if($input['cousertype'] == '2') {
           $profile= ([
               'picture_couser' => $nameConvert,
               'name_couser' => $input['title'],
@@ -124,17 +120,18 @@ class CouserController extends Controller
               'type' => $input['type'],
               'program' => $input['program'],
               'opentime' =>  $input['opentime'],
+              'timeplan' => $input['timeplan'],
               'price' =>  $input['price'],
               'closetime' => $input['closetime']
           ]);
         }
 
         DB::table('cousers')->where('id', $couserid)->update($profile);
-        return redirect('/trang-ca-nhan-'.$couserid);
+        return redirect('/trang-ca-nhan-'.Auth::user()->id.'-'.User::convert_string(Auth::user()->name).'?tab=info');
       }
 
       public function edit_couser($couserid){
-          $couser = DB::table('cousers')->where('id', '=', $couserid)->get();
+          $couser = DB::table('cousers')->where('cousers.id', '=', $couserid)->get();
           return view('couser.edit', ['couser' => $couser ]);
       }
       function random_numbers($char,$table,$find){
@@ -171,7 +168,7 @@ class CouserController extends Controller
         $nDb->name_notification = 'Học viên đăng ký khoá học '. $couser[0]->name_couser .'';
         $nDb->content_notification = '
           <p> Chào '.Auth::user()->name .'</p>
-          <p> Hệ thống thông báo bạn học viên <a href="'.url('/trang-ca-nhan').'-'.$couser[0]->id_user.'">'. $couser[0]->name .'</a> đã đăng ký khoá học <strong>'. $couser[0]->name_couser .'</strong> của bạn. Bạn hãy vào trang <a href='.url('/quan-ly-hoc-vien').'>Quản lý học viên </a> của mình để xem chi tiết hơn.</p>
+          <p> Hệ thống thông báo bạn học viên <a href="'.url('/trang-ca-nhan').'-'.$couser[0]->id_user.'-'.User::convert_string($couser[0]->name).'">'. $couser[0]->name .'</a> đã đăng ký khoá học <strong>'. $couser[0]->name_couser .'</strong> của bạn. Bạn hãy vào trang <a href='.url('/quan-ly-hoc-vien').'>Quản lý học viên </a> của mình để xem chi tiết hơn.</p>
           '
         ;
 
@@ -185,7 +182,7 @@ class CouserController extends Controller
         $db->giftcode = $gift_code;
         $nDb->save();
         $db->save();
-        return redirect('/trang-ca-nhan-'.$id.'?register=true');
+        return redirect('/trang-ca-nhan-'.$id.'-'.User::convert_string(Auth::user()->name).'?register=true');
       }
 
       public function mange_student() {

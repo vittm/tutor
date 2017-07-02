@@ -7,13 +7,13 @@
 <div class="col-md-3">
 <ul class="col-md-12 nav nav-tabs tab-edit-profile" role="tablist">
   <li role="presentation" class="active"><a href="#add" aria-controls="home" role="tab" data-toggle="tab">Đăng khoá học mới</a></li>
-  <li role="presentation"><a href="#adding_opening" aria-controls="home" role="tab" data-toggle="tab"> Đăng khoá học sắp khai giảng </a></li>
+  <li role="presentation"><a href="#adding_opening" aria-controls="home" role="tab" data-toggle="tab"> Đăng lớp học sắp khai giảng </a></li>
   <li role="presentation"><a href="#student" aria-controls="home" role="tab" data-toggle="tab"> Danh sách khóa học</a></li>
 </ul>
 </div>
 <div class="col-md-8" style="border-left: 1px solid #eeeeee;">
 <!-- Tab panes -->
-@if(Auth::user()->code_user == null || Auth::user()->city == null || Auth::user()->expericen == null ||Auth::user()->jobs == null || Auth::user()->picture == null)
+@if(Auth::user()->code_user == null || Auth::user()->info == null || Auth::user()->city == null || Auth::user()->educational == null ||Auth::user()->jobs == null || Auth::user()->picture == null)
 <!-- Button trigger modal -->
   <div class="modal fade in" id="form-couser">
     <div class="modal-dialog" role="document">
@@ -29,7 +29,7 @@
                   <i class="fa fa-times" style="color:#d73814;" aria-hidden="true"></i> <strong> Thiếu CMND</strong> <i style="font-size: 13px;">(sẽ được bảo mật)</i>
               </div>
             @endif
-            @if(Auth::user()->code_user == null)
+            @if(Auth::user()->info == null)
               <div class="notice notice-danger top10">
                   <i class="fa fa-id-card-o" style="color:#d73814;" aria-hidden="true"></i> <strong> Thiếu phần giới thiệu</strong>
               </div>
@@ -44,7 +44,7 @@
                   <i class="fa fa-times" style="color:#d73814;" aria-hidden="true"></i> <strong> Thiếu địa chỉ </strong>
               </div>
             @endif
-            @if(Auth::user()->expericen == null)
+            @if(Auth::user()->educational == null)
               <div class="notice notice-danger top10">
                   <i class="fa fa-times" style="color:#d73814;" aria-hidden="true"></i> <strong> Thiếu học vấn</strong>
               </div>
@@ -66,7 +66,7 @@
   </div>
 @endif
 <div class="tab-content edit-profile edit-couser">
-  <div role="tabpanel" id="add" class="tab-pane active @if(Auth::user()->code_user == null || Auth::user()->city == null || Auth::user()->expericen == null ||Auth::user()->jobs == null || Auth::user()->picture == null) close @endif">
+  <div role="tabpanel" id="add" class="tab-pane active @if(Auth::user()->code_user == null || Auth::user()->info == null || Auth::user()->city == null || Auth::user()->educational == null ||Auth::user()->jobs == null || Auth::user()->picture == null) close @endif">
     <form class="form-horizontal  edit-profile__form col-md-offset-1 col-md-11 pd0" role="form" method="POST"
     action="{{ url('/couser/adding') }}-{{ $id_user[0]->id }}" enctype='multipart/form-data' >
                       {{ csrf_field() }}
@@ -140,9 +140,9 @@
              </div>
             <div class="col-md-8 pd0">
                @for( $i = 0; $i < 21 ; $i++ )
-                   <li class="col-md-4">
-                     <input type="hidden" name="morning[]" value="0">
-                     <input type="checkbox" name="morning[]" value="1" id="morning{{$i}}">
+                   <li class="col-md-4 course-time__item">
+                     <input type="hidden" name="morning[{{$i}}]" value="0">
+                     <input class="day-teach" type="checkbox" name="morning[{{$i}}]" value="1" id="morning{{$i}}">
                      <label for="morning{{$i}}"></label>
                      <div class="check"></div>
                    </li>
@@ -165,7 +165,7 @@
     </div>
     </form>
   </div>
-  <div role="tabpanel" class="tab-pane @if(Auth::user()->code_user == null || Auth::user()->city == null || Auth::user()->expericen == null ||Auth::user()->jobs == null || Auth::user()->picture == null) close @endif" id="adding_opening">
+  <div role="tabpanel" class="tab-pane @if(Auth::user()->code_user == null || Auth::user()->info == null || Auth::user()->city == null || Auth::user()->educational == null ||Auth::user()->jobs == null || Auth::user()->picture == null) close @endif" id="adding_opening">
     <form class="form-horizontal  edit-profile__form col-md-offset-1 col-md-11 pd0" role="form" method="POST" action="{{ url('/couser/opening') }}-{{ $id_user[0]->id }}" enctype='multipart/form-data'>
                       {{ csrf_field() }}
       <input type="hidden" name="id_user" value="{{ $id_user[0]->id}}">
@@ -233,11 +233,11 @@
     </form>
   </div>
   <div role="tabpanel" class="tab-pane" id="student">
-    <div class="col-md-12">
+    <div class="col-md-12 pd0">
       @foreach($couser as $key => $value)
-      <div class="col-md-6 wel">
+      <div class="col-md-6 wel top15">
         <div class="col-md-12 list-couser pd0">
-        <div class="col-md-12 pd0 list-couser__images">
+        <div data-toggle="modal" data-target="#couser{{$key}}" class="col-md-12 pd0 list-couser__images">
           @if($value -> typeclass == '1')
           <div class="list-couser__typeCourse">
             Học 1 + 1
@@ -259,9 +259,10 @@
           </div>
             </div>
             </div>
+        @include('modal.detail-course')
+        @endforeach
         </div>
       </div>
-      @endforeach
     </div>
   </div>
 </div>

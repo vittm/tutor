@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use View;
 use DB;
 use Auth;
-use App\User;
+use App\User  ;
 use App\Learns;
 use App\Ratings;
 use App\Messages;
@@ -410,14 +410,14 @@ class UserController extends Controller
       $nDb->id_user = $id ;
       $nDb->name_notification = 'Bạn có một tin nhắn trong phần hỏi đáp';
       $nDb->content_notification = '
-        <p> Bạn hãy trả lời tin nhăn trong <a href="'.url('/trang-ca-nhan-'.Auth::user()->id.'?tab=settings').'">phần hỏi đáp </a> nhé.</p>
+        <p> Bạn hãy trả lời tin nhăn trong <a href="'.url('/trang-ca-nhan-'.Auth::user()->id.'-'.User::convert_string(Auth::user()->name).'?tab=settings').'">phần hỏi đáp </a> nhé.</p>
         <br>
         <p>Câu hỏi: <strong>'.str_replace('<br />', PHP_EOL, $value['question']).'</strong> </p>
         '
       ;
       $nDb->save();
 
-      return redirect('/trang-ca-nhan-'.$id.'?tab=settings');
+      return redirect('/trang-ca-nhan-'.$id.'-'.User::convert_string(Auth::user()->name).'?tab=settings');
     }
     public function replys(Request $request, $id){
       $value= $request->all();
@@ -430,7 +430,7 @@ class UserController extends Controller
       $nDb->id_user = $find[0]->id_post ;
       $nDb->name_notification = 'Bạn có một phản hồi từ phần hỏi đáp';
       $nDb->content_notification = '
-        <p> Bạn hãy vào trang cá nhân của <a href="'.url('/trang-ca-nhan-'.$find[0]->id_user.'?tab=settings').'"> để xem rõ hơn phần hỏi đáp </a> nhé.</p>
+        <p> Bạn hãy vào trang cá nhân của <a href="'.url('/trang-ca-nhan-'.$find[0]->id_user.'-'.User::convert_string($find[0]->name).'?tab=settings').'"> để xem rõ hơn phần hỏi đáp </a> nhé.</p>
         <br>
         <p>Câu hỏi:<strong> '.$find[0]->content.'</strong></p>
         <br>
@@ -439,7 +439,7 @@ class UserController extends Controller
       ;
       $nDb->save();
       DB::table('comments')->where('id', $id)->update($reply);
-      return redirect('/trang-ca-nhan-'.Auth::user()->id.'?tab=settings');
+      return redirect('/trang-ca-nhan-'.Auth::user()->id.'-'.User::convert_string(Auth::user()->name).'?tab=settings');
     }
     public function likes($id){
       $quanlity= DB::table('comments')->where('id', $id)->get();

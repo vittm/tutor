@@ -82,9 +82,9 @@ class RegisterController extends Controller
 
          $user = array('email' => Input::get('email'),'name' => Input::get('name'));
 
-         Mail::send('auth.emails.welcome', ['user' => $user], function ($m) use ($user) {
-             $m->to($user['email'], $user['name'])->subject('Chào mừng bạn đến với Wiis');
-         });
+        //  Mail::send('auth.emails.welcome', ['user' => $user], function ($m) use ($user) {
+        //      $m->to($user['email'], $user['name'])->subject('Chào mừng bạn đến với Wiis');
+        //  });
 
           $request->session()->flash('form-success', 'Đăng ký thành công');
          return User::create([
@@ -92,9 +92,7 @@ class RegisterController extends Controller
              'email' => $data['email'],
              'password' => bcrypt($data['password']),
              'active'   => $input['active'],
-             'avatar' => $filename,
-             'gender' => 'Trống rỗng',
-             'info' => 'Trống rỗng',
+             'avatar' => $filename
          ]);
 
      }

@@ -35,7 +35,7 @@
 
 			<div class="slidizle-loading"> </div>
 		</section>
-    <form class="container" action="{{ url('/find-teach') }}" role="form" method="GET" enctype='multipart/form-data'>
+    <form class="container" action="{{ url('/tim-kiem-gia-su') }}" role="form" method="GET" enctype='multipart/form-data'>
         <ul class="col-md-offset-2 col-md-10 search">
 						<li><input type="text" placeholder="Địa điểm" name="address-find"><img src="img/icon/placeholder.png"></li>
 						<li><input type="text" placeholder="Môn học" name="valueSubject"  id="subject-find" ><img src="img/icon/open-book.png" aria-describedby="inputSuccess2Status">
@@ -46,10 +46,12 @@
             <button type="submit" name="academic" placeholder=""><img src="img/icon/search.png"></button></li>
         </ul>
     </form>
+		<br>
 
     <div class="container ">
         <div class="why-select top30">VÌ SAO GIA SƯ CHỌN <img src="img/logo.png" style="position:relative; top: -9px;"></div>
     </div>
+		<div class="container ">
     <div class="col-md-offset-2 col-md-8" style="background:url({{ url('img/bg_why.png')}})">
         <ul class="timeline">
             <li class="timeline-item">
@@ -67,7 +69,7 @@
                     <img src="img/VectorSmartObject.png" alt="course" />
                 </figure>
                 <div class="dir-r radius-3">
-                        <h1>Tối đa hóa thu nhập</h1>
+                        <h1 style="text-align: left;">Tối đa hóa thu nhập</h1>
                         <p> Phasellus dapibus pulvinar venenatis. </p>
                 </div>
             </li>
@@ -82,12 +84,14 @@
             </li>
         </ul>
     </div>
-
+	</div>
+	<br>
+	<br>
     <div class="container">
-        <div class="why-select top30"> CỘNG ĐỒNG <img src="img/logo.png" style="position:relative; top: -9px;"></div>
+        <div class="why-select top30"> CÂU HỎI VỚI <img src="img/logo.png" style="position:relative; top: -9px;"></div>
     </div>
     <div class="container social">
-    <div class="col-md-6 line-straight col-one">
+    <!-- <div class="col-md-6 line-straight col-one">
         <h3 class="u-text-right">News</h3>
         <a href="#" class="col-sm-6 col-md-6 u-padding-rt2p5">
             <div class="thumbnail">
@@ -113,11 +117,11 @@
                 </div>
             </div>
         </a>
-    </div>
+    </div> -->
 
-    <div class="col-md-6 col-two">
+    <div class="col-md-12 col-two">
         <h3 class="u-text-left">Anythings</h3>
-        <ul class="question-social">
+        <ul class="question-social col-md-6">
             <li>
                 <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -128,7 +132,7 @@
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
                 </p>
-                <button>Trả lời</button>
+                <!-- <button>Trả lời</button> -->
             </li>
             <li>
                 <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -140,7 +144,7 @@
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
                 </p>
-                <button>Trả lời</button>
+                <!-- <button>Trả lời</button> -->
             </li>
             <li>
                 <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -152,7 +156,45 @@
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
                 </p>
-                <button>Trả lời</button>
+                <!-- <button>Trả lời</button> -->
+            </li>
+        </ul>
+				<ul class="question-social col-md-6">
+            <li>
+                <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat.</h5>
+                <span>Câu trả lời hay nhất</span>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                </p>
+                <!-- <button>Trả lời</button> -->
+            </li>
+            <li>
+                <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat.</h5>
+                <span>Câu trả lời hay nhất</span>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                </p>
+                <!-- <button>Trả lời</button> -->
+            </li>
+            <li>
+                <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat.</h5>
+                <span>Câu trả lời hay nhất</span>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                </p>
+                <!-- <button>Trả lời</button> -->
             </li>
         </ul>
     </div>

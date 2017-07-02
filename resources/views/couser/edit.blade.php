@@ -7,7 +7,6 @@
 <div class="col-md-3">
 <ul class="col-md-12 nav nav-tabs tab-edit-profile" role="tablist">
   <li role="presentation" class="active"><a href="#avatar" aria-controls="home" role="tab" data-toggle="tab">Chỉnh sửa</a></li>
-  <li role="presentation"><a href="#opening" aria-controls="home" role="tab" data-toggle="tab"> Danh sách khóa học</a></li>
 </ul>
 </div>
 <div class="col-md-8" style="border-left: 1px solid #eeeeee;">
@@ -15,7 +14,9 @@
 <div class="tab-content edit-profile edit-couser">
   <div role="tabpanel" class="tab-pane active" id="add">
 
-    <form name="update-information" class="form-horizontal  edit-profile__form col-md-offset-1 col-md-11 pd0" role="form" method="POST" action="{{ url('/couser/editing')}}-{{ $couser[0]->id }}" enctype='multipart/form-data'>
+    <form name="update-information" class="form-horizontal  edit-profile__form col-md-offset-1 col-md-11 pd0" role="form" method="POST"
+
+    action="{{ url('/couser/editing')}}-{{ $couser[0]->id }}" enctype='multipart/form-data'>
                       {{ csrf_field() }}
       <input type="hidden" name="id_user" value="{{ $couser[0]->id_user}}">
       <input type="hidden" name="picture" value="{{ $couser[0]->picture_couser}}">
@@ -100,8 +101,8 @@
               @if(json_decode($couser[0]->timetype1) != null)
                 @foreach( json_decode($couser[0]->timetype1) as $key => $value )
                    <li class="col-md-4">
-                     <input type="hidden" name="morning[]" value="0">
-                     <input type="checkbox" name="morning[]" value="1" id="morning{{$key}}" @if($value == '1') checked @endif >
+                     <input type="hidden" name="morning[{{$key}}]" value="0">
+                     <input class="day-teach" type="checkbox" name="morning[{{$key}}]" value="1" id="morning{{$key}}" @if($value == '1') checked @endif >
                      <label for="morning{{$key}}"></label>
                      <div class="check"></div>
                    </li>
@@ -109,8 +110,8 @@
                 @else
                 @for( $i = 0; $i < 21 ; $i++ )
                   <li class="col-md-4">
-                    <input type="hidden" name="morning[]" value="0">
-                    <input type="checkbox" name="morning[]" value="1" id="morning{{$i}}">
+                    <input type="hidden" name="morning[{{$i}}]" value="0">
+                    <input type="checkbox" name="morning[{{$i}}]" value="1" id="morning{{$i}}">
                     <label for="morning{{$i}}"></label>
                     <div class="check"></div>
                   </li>
@@ -152,48 +153,6 @@
         </div>
     </div>
     </form>
-  </div>
-  <div role="tabpanel" class="tab-pane" id="opening">
-    <div class="col-md-12">
-      @foreach($couser as $key => $value)
-      <div class="col-md-4 list-couser wel">
-        <div class="col-md-12 pd0 list-couser__images">
-          @if($value -> typeclass == '1')
-          <div class="list-couser__typeCourse">
-            Học 1 + 1
-          </div>
-          @endif
-          @if($value -> typeCouser == '2')
-          <div class="list-couser__typeCourse">
-            Lớp học sắp khai giảng
-          </div>
-          @endif
-          <img src="{{ URL::to('/img/couser')}}/{{$value ->picture_couser}}" style="width:100%">
-          <div class="list-couser__price btn btn-origan2">{{number_format($value->price)}}<sup>Đ/@if($value -> typeCouser == '2') Khoá @else Giờ @endif </sup></div>
-        </div>
-          <div class="col-md-12 list-couser__name wel"> <h3> {{$value ->name_couser }} </h3></div>
-          <div class="col-md-12 pd0">
-            <a href="{{ URL::to('/couser/edit')}}-{{$value ->id}}" class="col-md-4 list-couser__config pd10 wel"><img src="{{ URL::to('/img/icon/inclined-pencil.png')}}" width="20px"><span> Chỉnh sửa </span></a>
-            <a class="col-md-4 list-couser__config pd10 wel"> <img src="{{ URL::to('/img/icon/VectorSmartObject_3.png')}}"><span> Chia sẻ </span></a>
-            <a href="{{ URL::to('/couser/delete')}}-{{$value ->id}}" class="col-md-4 list-couser__config pd10 wel"><img src="{{ URL::to('/img/icon/inclined-pencil.png')}}"><span> Xoá</span></a>
-          </div>
-          <button class="btn btn-origan col-md-12 pd0" @if($value->action != 0) {{'disabled="disabled"'}} @endif">@if($value->action == 0) {{'Thanh Toán'}} @else {{ 'Đã Thanh Toán' }} @endif</button>
-          <?php
-            $daym =  $value -> created_at;
-            $sepparator = '-';
-            $partsExp = explode($sepparator, $daym);
-            $d=cal_days_in_month(CAL_GREGORIAN,$partsExp[1],$partsExp[0]);
-            $date_exp= $d - (strtotime(date('Y-m-d')) - strtotime($value -> created_at)) / (60 * 60 * 24);
-            $date= date( 'Y-m-d');
-            $new_date = strtotime ( '+'.$date_exp.'day' , strtotime ( $date ) ) ;
-            $new_date = date ( 'd-m-Y' , $new_date );
-            $parts = explode($sepparator, $new_date);
-            $dayForDate = date("w", mktime(0, 0, 0, $parts[1], $parts[2], $parts[0]));
-          ?>
-          <div class="col-md-12 list-couser__name wel"> <h6>Hạn phí khoá học {{$date_exp}} ngày, Thứ @if($dayForDate == 0) {{ 'CN' }} @endif  @if ($dayForDate == 6) {{'Bảy'}} @endif  @if($dayForDate!= 0 && $dayForDate !=6) {{ $dayForDate }} @endif , {{$new_date}}</h6> </div>
-      </div>
-      @endforeach
-    </div>
   </div>
 </div>
 </div>
