@@ -156,6 +156,9 @@
     $('.close-register').click(function(){
       {{ session()->forget('name_user','name_couser','giftcode','teacher','pricecourse') }}
     });
+    $('body').click(function(){
+      {{ session()->forget('name_user','name_couser','giftcode','teacher','pricecourse') }}
+    });
     $('.click-voucher').click(function(e){
         var id = $('.voucher').val();
         var session = window.sessionStorage,

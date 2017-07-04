@@ -14,7 +14,7 @@
 		<article class="search-result row wel" style="border: 1px solid #e1e1e1; padding-top: 10px; margin-bottom:10px;">
       <input type="hidden" class="form-control" name="id_edit[]" value="{{ $value->id }}">
       <div class="col-xs-12 col-sm-12 col-md-2">
-				<a href="{{ url('/trang-ca-nhan')}}-{{$value->id}}" title="Lorem ipsum" class="thumbnail"><img src="{{ url('img/avatar')}}/{{$value->avatar}}" alt="Lorem ipsum" /></a>
+				<a href="{{ url('/trang-ca-nhan')}}-{{$value->id}}-{{App\User::convert_string($value->name)}}" title="Lorem ipsum" class="thumbnail"><img src="{{ url('img/avatar')}}/{{$value->avatar}}" alt="Lorem ipsum" /></a>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-3">
         <h4 style="margin-top:10px;">{{$value->name}} <br> </h4>

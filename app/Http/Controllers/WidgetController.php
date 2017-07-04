@@ -23,7 +23,7 @@ class WidgetController extends Controller
       if (isset($_GET['address-find'])){
           $search = User::filterByRequest($request)->get();
       }else {
-        $search = DB::table('users')->leftJoin('learns','users.id','=','learns.id_user')->where('active','=','2')->get();
+        $search = DB::table('users')->where('active','=','2')->get();
       }
         return view('search.index',['search'=>$search]);
     }
@@ -239,7 +239,7 @@ class WidgetController extends Controller
         $db->start = $value['start-review'];
         $db->save();
 
-        return redirect('/trang-ca-nhan-'.$id.'-'.User::convert_string(Auth::user()->name).'');
+        return redirect('/trang-ca-nhan-'.$id.'-'.User::convert_string(Auth::user()->name).'?tab=messages');
     }
 
     //search users

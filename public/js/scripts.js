@@ -162,16 +162,6 @@ $('[data-slidizle]').slidizle({
 	}
 });
 
-	$('.job-edit').keypress(function(){
-		$('.university').val(' ');
-		if( $(this).val() == 'sinh viê' || $(this).val() == 'sinh vie' || $(this).val() == 'Sinh Viê' || $(this).val() == 'Sinh Vie' || $(this).val() == 'Sinh V'){
-			$('.university').show();
-		}
-		else {
-			$('.university').hide();
-		}
-	});
-
 var $slider = $('#progressbar-slider');
 				// $slider.slidizle();
 				var $progressbar = $slider.find('.slider-progressbar');
@@ -197,20 +187,6 @@ var $slider = $('#progressbar-slider');
 					}, api.getRemainingTimeout());
 				});
 
-
-
-$('.add-cart').click(function(){
-	var title_cart= $(this).parents('.item').children('.title-pay').text();
-	var price_cart= $(this).parents('.item').children('.val-price').text();
-	var cart = {
-		item: title_cart,
-		price: price_cart
-	};
-	var jsonStr = JSON.stringify( cart );
-	sessionStorage.setItem( "cart", jsonStr );
-	var cartValue = sessionStorage.getItem( "cart" );
-	var cartObj = JSON.parse( cartValue );
-});
 
 
 function clickdesktop( button, content) {
@@ -265,13 +241,94 @@ $('.selectCouser').click(function(){
 
   }
 });
+var starClicked = false;
 
-	// $('.couser-time .day-teach').click(function(){
-	// 	if($(this).eq('0').is(':checked')) {
-	// 		$('.hidden-teach').eq('0').remove();
-	// 		$(this).eq('0').val('1');
-	// 	}else {
-	// 		$(this).parents().append('<input class="hidden-teach" type="hidden" name="morning[]" value="0">');
-	// 		$(this).eq('0').val('0');
-	// 	}
-	// });
+$(function() {
+
+  $('.star').click(function() {
+
+    $(this).children('.selected').addClass('is-animated');
+    $(this).children('.selected').addClass('pulse');
+
+    var target = this;
+
+    setTimeout(function() {
+      $(target).children('.selected').removeClass('is-animated');
+      $(target).children('.selected').removeClass('pulse');
+    }, 1000);
+
+    starClicked = true;
+  })
+
+  $('.half').click(function() {
+    if (starClicked == true) {
+      setHalfStarState(this)
+    }
+    $(this).closest('.rating').find('.js-score').val($(this).data('value'));
+
+    $(this).closest('.rating').data('vote', $(this).data('value'));
+    calculateAverage()
+    console.log(parseInt($(this).data('value')));
+
+  })
+
+  $('.full').click(function() {
+    if (starClicked == true) {
+      setFullStarState(this)
+    }
+    $(this).closest('.rating').find('.js-score').val($(this).data('value'));
+
+    $(this).find('js-average').text(parseInt($(this).data('value')));
+
+    $(this).closest('.rating').data('vote', $(this).data('value'));
+    calculateAverage()
+
+    console.log(parseInt($(this).data('value')));
+  })
+
+  $('.half').hover(function() {
+    if (starClicked == false) {
+      setHalfStarState(this)
+    }
+
+  })
+
+  $('.full').hover(function() {
+    if (starClicked == false) {
+      setFullStarState(this)
+    }
+  })
+
+})
+
+function updateStarState(target) {
+  $(target).parent().prevAll().addClass('animate');
+  $(target).parent().prevAll().children().addClass('star-colour');
+
+  $(target).parent().nextAll().removeClass('animate');
+  $(target).parent().nextAll().children().removeClass('star-colour');
+}
+
+function setHalfStarState(target) {
+  $(target).addClass('star-colour');
+  $(target).siblings('.full').removeClass('star-colour');
+  updateStarState(target)
+}
+
+function setFullStarState(target) {
+  $(target).addClass('star-colour');
+  $(target).parent().addClass('animate');
+  $(target).siblings('.half').addClass('star-colour');
+
+  updateStarState(target)
+}
+
+function calculateAverage() {
+  var average = 0
+
+  $('.rating').each(function() {
+    average += $(this).data('vote')
+  })
+
+  $('.js-average').val((average/ $('.rating').length).toFixed(1))
+}

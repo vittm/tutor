@@ -88,7 +88,7 @@ class RegisterController extends Controller
 
           $request->session()->flash('form-success', 'Đăng ký thành công');
          return User::create([
-             'name' => $data['name'],
+             'name' => trim($data['name']),
              'email' => $data['email'],
              'password' => bcrypt($data['password']),
              'active'   => $input['active'],

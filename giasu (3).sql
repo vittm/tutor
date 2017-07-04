@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2017 at 03:09 AM
+-- Generation Time: Jul 03, 2017 at 12:31 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.8
 
@@ -209,11 +209,11 @@ CREATE TABLE `comments` (
 INSERT INTO `comments` (`id`, `id_post`, `id_user`, `content`, `reply`, `id_comment`, `vote`, `created_at`, `updated_at`) VALUES
 (18, 3, 8, 'qweqweqweqwe', '', 0, 0, '2017-06-18 08:44:33', '2017-06-18 08:44:33'),
 (19, 3, 8, 'adafadasd', '', 0, 0, '2017-06-18 08:45:00', '2017-06-18 08:45:00'),
-(20, 2, 3, 'Làm sao để em có thể quên đi anh  :)', 'Không, anh chỉ là thằng tester em ạ', 0, 35, '2017-06-18 11:44:32', '2017-06-18 11:44:32'),
-(21, 2, 3, 'Chỉ là test thôi em à ', '24234232', 0, 23, '2017-06-18 13:10:12', '2017-06-18 13:10:12'),
+(20, 2, 3, 'Làm sao để em có thể quên đi anh  :)', 'Không, anh chỉ là thằng tester em ạ', 0, 38, '2017-06-18 11:44:32', '2017-06-18 11:44:32'),
+(21, 2, 3, 'Chỉ là test thôi em à ', '24234232', 0, 24, '2017-06-18 13:10:12', '2017-06-18 13:10:12'),
 (22, 7, 8, '\r\nahihihihihi kkkk', '', 0, 0, '2017-06-18 15:43:14', '2017-06-18 15:43:14'),
-(23, 7, 3, 'Chi asdasdasd', 'u biet roi', 0, 0, '2017-06-18 17:27:58', '2017-06-18 17:27:58'),
-(24, 3, 3, 'asdasd', '', 0, 2, '2017-06-23 07:49:32', '2017-06-23 07:49:32');
+(23, 7, 3, 'Chi asdasdasd', 'u biet roi', 0, 1, '2017-06-18 17:27:58', '2017-06-18 17:27:58'),
+(24, 3, 3, 'asdasd', 'owf um', 0, 3, '2017-06-23 07:49:32', '2017-06-23 07:49:32');
 
 -- --------------------------------------------------------
 
@@ -247,10 +247,11 @@ CREATE TABLE `cousers` (
 --
 
 INSERT INTO `cousers` (`id`, `id_user`, `name_couser`, `picture_couser`, `information`, `study`, `who`, `type`, `program`, `timetype1`, `created_at`, `updated_at`, `price`, `opentime`, `closetime`, `timeplan`, `typeCouser`, `typeclass`) VALUES
-(4, '5', 'Khoá học luyện viết Văn', 'couser.jpg', '2313', '3123', '2312', '1231', '123123', '["0","0","0","0","0","0","0","0","0","1","0","1","0","1","0","0","0","0","0","0","0","0","0","0"]', '2017-06-05', '2017-06-05', '300000', '', '', '', '0', 0),
-(5, '3', 'Khoá học Giao tiếp tiếng Anh', '18-16-0020170607accountantcopy.png', '2313', '3123', '2312', '1231', '123123', '["0","0","0","0","0","0","0","0","0","0","1","0","0","1","0","0","1","0","0","0","0","0","0","0","0","0","0"]', '2017-06-05', '2017-06-05', '115000', '', '', '', '1', 1),
-(6, '3', 'Kế toán doanh nghiệp', '18-18-5420170607accountantcopy.png', '123123', '1231', '23123', '123', '123', '["0","0","0","0","0","0","0","0","1","0","0","0","0","0","0","1","0","0","1","0","0","1","0","0","0","0","1","0","0","0","0","0","1"]', '2017-06-07', '2017-06-07', '1000000', '', '', '', '2', 0),
-(7, '3', 'Khóa học thiết kế Kiến Trúc', '17-44-1020170617house-layout-600x461.jpeg', '2312', '34123', '122312', '312412312', '4123123', '', '2017-06-17', '2017-06-17', '3199000', '2017-06-15', '2017-06-21', '33', '2', 0);
+(4, '5', 'Khoá học luyện viết Văn', 'couser.jpg', '2313', '3123', '2312', '1231', '123123', '', '2017-06-05', '2017-06-05', '300000', '', '', '', '0', 0),
+(5, '3', 'Khoá học Giao tiếp tiếng Anh', '18-16-0020170607accountantcopy.png', '2313', '3123', '2312', '1231', '123123', '', '2017-06-05', '2017-06-05', '115000', '', '', '', '1', 1),
+(6, '3', 'Kế toán doanh nghiệp', 'couser.jpg', '123123', '1231', '23123', '123', '123', '', '2017-06-07', '2017-06-07', '1000000', '2017-07-03', '2017-07-19', '3', '2', 0),
+(7, '3', 'Khóa học thiết kế Kiến Trúc', '17-44-1020170617house-layout-600x461.jpeg', '2312', '34123', '122312', '312412312', '4123123', '', '2017-06-17', '2017-06-17', '3199000', '2017-06-15', '2017-06-21', '33', '2', 0),
+(27, '3', '123123', '00-30-252017070316298817_257074431394319_319102698124028342_n.jpg', '123', '12312', '312', '3123', '123123', '["1","0","0","0","0","0","1","1","0","0","0","0","0","1","0","1","0","0","1","0","0"]', '2017-07-03', '2017-07-03', '123123', '', '', '', '1', 1);
 
 -- --------------------------------------------------------
 
@@ -440,7 +441,11 @@ CREATE TABLE `notifications` (
 INSERT INTO `notifications` (`id`, `id_user`, `content_notification`, `name_notification`, `type_notification`, `nRead`, `created_at`, `updated_at`) VALUES
 (21, 3, '\r\n          <p> Chào Lê Quý Nam</p>\r\n          <p> Hệ thống thông báo bạn có học viên <a href="/trang-ca-nhan-3">Nguyễn Bảo Lâm</a> đã đăng ký khoá học <strong>Khóa học thiết kế Kiến Trúc</strong></p>\r\n          ', 'Học viên đăng ký khoá học Khóa học thiết kế Kiến Trúc', '0', 1, '2017-06-26', '2017-06-26'),
 (22, 3, '\r\n          <p> Chào Lê Quý Nam</p>\r\n          <p> Hệ thống thông báo bạn học viên <a href="http://localhost:8081/tutor/public/trang-ca-nhan-3">Nguyễn Bảo Lâm</a> đã đăng ký khoá học <strong>Kế toán doanh nghiệp</strong> của bạn. Bạn hãy vào trang <a href="/quan-ly-hoc-vien">Quản lý học viên </a> của mình để xem chi tiết hơn.</p>\r\n          ', 'Học viên đăng ký khoá học Kế toán doanh nghiệp', '0', 1, '2017-06-26', '2017-06-26'),
-(23, 3, '\r\n          <p> Chào Lê Quý Nam</p>\r\n          <p> Hệ thống thông báo bạn học viên <a href="http://localhost:8081/tutor/public/trang-ca-nhan-3">Nguyễn Bảo Lâm</a> đã đăng ký khoá học <strong>Khóa học thiết kế Kiến Trúc</strong> của bạn. Bạn hãy vào trang <a href=http://localhost:8081/tutor/public/quan-ly-hoc-vien>Quản lý học viên </a> của mình để xem chi tiết hơn.</p>\r\n          ', 'Học viên đăng ký khoá học Khóa học thiết kế Kiến Trúc', '0', 0, '2017-06-26', '2017-06-26');
+(23, 3, '\r\n          <p> Chào Lê Quý Nam</p>\r\n          <p> Hệ thống thông báo bạn học viên <a href="http://localhost:8081/tutor/public/trang-ca-nhan-3">Nguyễn Bảo Lâm</a> đã đăng ký khoá học <strong>Khóa học thiết kế Kiến Trúc</strong> của bạn. Bạn hãy vào trang <a href=http://localhost:8081/tutor/public/quan-ly-hoc-vien>Quản lý học viên </a> của mình để xem chi tiết hơn.</p>\r\n          ', 'Học viên đăng ký khoá học Khóa học thiết kế Kiến Trúc', '0', 1, '2017-06-26', '2017-06-26'),
+(24, 3, '\r\n          <p> Chào Nguyễn Bảo Lâm</p>\r\n          <p> Hệ thống thông báo bạn học viên <a href="http://localhost:8081/wiis/public/trang-ca-nhan-3">Nguyễn Bảo Lâm</a> đã đăng ký khoá học <strong>Khoá học Giao tiếp tiếng Anh</strong> của bạn. Bạn hãy vào trang <a href=http://localhost:8081/wiis/public/quan-ly-hoc-vien>Quản lý học viên </a> của mình để xem chi tiết hơn.</p>\r\n          ', 'Học viên đăng ký khoá học Khoá học Giao tiếp tiếng Anh', '0', 1, '2017-07-01', '2017-07-01'),
+(25, 3, '\r\n        <p> Bạn hãy vào trang cá nhân của <a href="http://localhost:8081/wiis/public/trang-ca-nhan-3?tab=settings"> để xem rõ hơn phần hỏi đáp </a> nhé.</p>\r\n        <br>\r\n        <p>Câu hỏi:<strong> asdasd</strong></p>\r\n        <br>\r\n        <p>Câu trả lời: <strong>owf um</strong> </p>\r\n        ', 'Bạn có một phản hồi từ phần hỏi đáp', '0', 1, '2017-07-01', '2017-07-01'),
+(26, 3, '\r\n          <p> Chào Lê Quý Nam</p>\r\n          <p> Hệ thống thông báo bạn học viên <a href="http://localhost:8081/wiis/public/trang-ca-nhan-3">Nguyễn Bảo Lâm</a> đã đăng ký khoá học <strong>Khoá học Giao tiếp tiếng Anh</strong> của bạn. Bạn hãy vào trang <a href=http://localhost:8081/wiis/public/quan-ly-hoc-vien>Quản lý học viên </a> của mình để xem chi tiết hơn.</p>\r\n          ', 'Học viên đăng ký khoá học Khoá học Giao tiếp tiếng Anh', '0', 1, '2017-07-02', '2017-07-02'),
+(27, 3, '\r\n          <p> Chào Lê Quý Nam</p>\r\n          <p> Hệ thống thông báo bạn học viên <a href="http://localhost:8081/wiis/public/trang-ca-nhan-3-Nguyen-Bao-Lam">Nguyễn Bảo Lâm</a> đã đăng ký khoá học <strong>123123</strong> của bạn. Bạn hãy vào trang <a href=http://localhost:8081/wiis/public/quan-ly-hoc-vien>Quản lý học viên </a> của mình để xem chi tiết hơn.</p>\r\n          ', 'Học viên đăng ký khoá học 123123', '0', 0, '2017-07-03', '2017-07-03');
 
 -- --------------------------------------------------------
 
@@ -542,6 +547,7 @@ CREATE TABLE `registercousers` (
   `price` varchar(255) NOT NULL,
   `action` int(11) NOT NULL,
   `code` varchar(255) NOT NULL,
+  `giftcode` varchar(255) NOT NULL,
   `pay` int(11) NOT NULL,
   `created_at` date NOT NULL,
   `updated_at` date NOT NULL
@@ -551,8 +557,11 @@ CREATE TABLE `registercousers` (
 -- Dumping data for table `registercousers`
 --
 
-INSERT INTO `registercousers` (`id`, `user`, `id_teacher`, `id_course`, `planmoment`, `plantime`, `price`, `action`, `code`, `pay`, `created_at`, `updated_at`) VALUES
-(16, 2, '3', 7, '2', '2', '3199000', 0, 'Wiis1', 959700, '2017-06-26', '2017-06-26');
+INSERT INTO `registercousers` (`id`, `user`, `id_teacher`, `id_course`, `planmoment`, `plantime`, `price`, `action`, `code`, `giftcode`, `pay`, `created_at`, `updated_at`) VALUES
+(16, 2, '3', 7, '2', '2', '3199000', 0, 'Wiis1', '', 959700, '2017-06-26', '2017-06-26'),
+(17, 3, '3', 5, '3', '3', '115000', 0, 'Wiis825732422', 'MSDT568899537', 1552500, '2017-07-01', '2017-07-01'),
+(18, 2, '3', 5, '3', '3', '115000', 0, 'Wiis32958985', 'MSDT556594849', 1552500, '2017-07-02', '2017-07-02'),
+(19, 2, '3', 27, '3', '3', '123123', 0, 'Wiis237716675', 'MSDT276745606', 1662160, '2017-07-03', '2017-07-03');
 
 -- --------------------------------------------------------
 
@@ -635,15 +644,11 @@ CREATE TABLE `users` (
   `gender` int(10) NOT NULL,
   `avatar` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `jobs` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `time_learn` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `like_blog` int(10) NOT NULL,
   `ward` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `district` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `subjects` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `info` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `pay` int(11) NOT NULL,
   `title` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `money_time` int(11) NOT NULL,
   `active` int(10) NOT NULL,
   `date` text NOT NULL,
   `level_user` int(11) NOT NULL,
@@ -662,24 +667,26 @@ CREATE TABLE `users` (
   `picture` text NOT NULL,
   `video` text NOT NULL,
   `code_user` varchar(255) NOT NULL,
-  `expericen` text NOT NULL,
+  `experience` text NOT NULL,
+  `educational` varchar(255) NOT NULL,
   `city` varchar(255) NOT NULL,
-  `level` varchar(255) NOT NULL
+  `level` varchar(255) NOT NULL,
+  `time_learn` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `id_uni`, `email`, `job`, `phone`, `password`, `gender`, `avatar`, `jobs`, `time_learn`, `like_blog`, `ward`, `district`, `subjects`, `info`, `pay`, `title`, `money_time`, `active`, `date`, `level_user`, `folower`, `field`, `status`, `viewed`, `content_teach`, `method_teach`, `sumRatings`, `countRatings`, `remember_token`, `created_at`, `updated_at`, `cover`, `picture`, `video`, `code_user`, `expericen`, `city`, `level`) VALUES
-(2, 'Lê Quý Nam', '2', 'lequynam@gmail.com', '{"job":"   alo   ","university":"       "}', 2147483647, '$2y$10$iz/MvQmDi25uKZRpOw2bCuRHCAxYNSsH6PZn/bT/3YH3Mc60KYf.e', 1, '04-23-252017060549c8d33637cb126c6c0745ddf6f5f03e.jpg', 'Giáo viên ila', '[["8\\/17\\/2016 12:00 AM","8\\/14\\/2016 1:30 AM","8\\/25\\/2016 12:00 AM","8\\/2\\/2016 12:00 AM"]]', 3, 'số 211 Nguyễn Trãi phường 15', 'Quận 5', 'Anh, Nga, Pháp, Trung', '<p>I started learning English at the age of 3 and I&#39;ve been surrounded by it for whole of my life in every possible way.</p>\r\n\r\n<p>Currently, I&rsquo;m performing scientific research and tutoring online in my free timings. To specify, I teach techniques for IELTS speaking and writing and offer courses for English communication, interview and debating skills. I&rsquo;m also offering assistance in making corrections of written transcripts [films subtitles, translations of books, curriculum, office statements, essays etc]. Apart from this, I also teach professional media editing and graphics designing softwares.</p>\r\n\r\n<div class="for-lecturers" style="box-sizing: border-box; margin-top: 35px; color: rgb(51, 51, 51); font-family: OpenSans-Regular, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px;">\r\n<div class="imfomate general" style="box-sizing: border-box; padding: 0px;">\r\n<p>Currently, I&rsquo;m performing scientific research and tutoring online in my free timings. To specify, I teach techniques for IELTS speaking and writing and offer courses for English communication, interview and debating skills. I&rsquo;m also offering assistance in making corrections of written transcripts [films subtitles, translations of books, curriculum, office statements, essays etc]. Apart from this, I also teach professional media editing and graphics designing softwares.</p>\r\n</div>\r\n</div>\r\n\r\n<p>&nbsp;</p>\r\n', 0, 'Kinh nghiệm 3 năm giảng dạy', 500000, 1, '2018-01-01', 1, '"3"', 'Sư phạm Anh', 0, 935, '{"class_group":{"subject":" ","price":" ","content":" ","method":" "}}', '', '8.2', '2', 'eDYeGnZvcopzSaqQqI5bT95hosy7FqTXQW3u8DRHMJTyNkdQDkvRlRsHnEqo', '2016-08-14 13:14:12', '2017-06-25 18:31:31', '15-09-55201706251176394_1396393813922747_829849495_n.jpg', '["17-24-31==2017-06-04==-16806775_1804867546502774_3771989680977662451_n.jpg","17-24-31==2017-06-04==-16830661_1804867483169447_1371076449408088748_n.jpg","17-24-31==2017-06-04==-16830693_1804867486502780_2573422782936129634_n.jpg","17-24-31==2017-06-04==-16830964_1804867503169445_1221483195989854047_n.jpg","17-24-31==2017-06-04==-16831033_1804867539836108_4231011083318236658_n.jpg","17-24-31==2017-06-04==-16831052_1804867456502783_3362415572487405662_n.jpg","17-24-31==2017-06-04==-16832062_1804867509836111_3963288658726311050_n.jpg","17-24-31==2017-06-04==-16832147_1804867463169449_1452755455391084880_n.jpg","17-24-31==2017-06-04==-16864282_1804867569836105_6380254026330523604_n.jpg","17-24-31==2017-06-04==-16864600_1804867659836096_5532593180209799403_n.jpg"]', '["17776455_337022060029070_5335841247112200192_n.mp4"]', '', '', 'Ho Chi Minh', ''),
-(3, 'Nguyễn Bảo Lâm', '3', 'lehainam@gmail.com', '{"job":"  \\u0102n b\\u00e1m  ","university":"     "}', 98135214, '$2y$10$Nndp.OAiVjRC7IaQlU.wgu49iZPt9ZStnjZRJ9xX2PnHahchVNcBC', 1, '19-37-3320170625bffa6871fb68f4562618cf8f76551bf1.jpg', 'Giảng viên CNTT', '[["8\\/16\\/2016 7:00 AM","8\\/24\\/2016 12:00 AM"]]', 5, 'Phường 3', '1', 'Toán,Anh, Kinh tế lượng, toán cao cấp, vĩ mô, maclenin', '<p>Trống rỗng</p>\r\n', 0, 'Xin chào các bạn', 300000, 2, '1993-03-10', 1, '', 'Cong nghe thong tin', 0, 710, '', '', '7.2', '1', 'Qqje8RajIORgZnW4LUA40ppbYP8blebkndhtBp3cM8SqP0Hn2mWqcVIkE7CC', '2016-08-20 02:22:58', '2017-06-25 18:30:19', '19-45-262017062512801363_1694733650803345_1365580251964161745_n.jpg', '["05-49-20==2017-06-18==-1600x800_8970_Rain_2d_illustration_rain_steampunk_train_environment_picture_image_digital_art.jpg","05-49-20==2017-06-18==-11810_415455621828391_1322483462_n.jpg","05-49-20==2017-06-18==-12220_689146384501284_8957757553677908226_n.png"]', '["05-49-01==2017-06-18==-17776455_337022060029070_5335841247112200192_n.mp4"]', '["06-30-09-2017-06-23--980x.jpg","06-30-09-2017-06-23--12312abas.jpg"]', 'Su Pham Anh', 'Ho CHi Minh City', ''),
-(5, 'Thiết Hạ Hân', '5', 'nguyenthaihan@gmail.com', '', 41314123, '$2y$10$/Ils7hhkj9xjQUlQv8xly.V/iiJZxcTR09QBPcyHQZRC4A4tY5l2i', 0, '071560ae00be5094091a10e458f867e7.jpg', '', '[["9\\/14\\/2016 12:00 AM"]]', 0, 'Trống rỗng', '', '\0\0Tr\0\0\0?\0\0\0?\0\0\0?\0\0\0?\0\0\0?\0\0\0?\0\0\0?\0\0\0?\0\0\0?\0\0\0?\0\0\0?\0\0\0?', '<p>\r\n	Trống rỗng</p>\r\n', 0, '0000-00-00', 3000, 2, '', 1, '', '', 0, 14, '', '', '0', '1', 'WrJZM51YdK3Wj7sOTiTwwcw7QLKbrjkpuQeuhqff2dxQohdoVpXPCntDufDR', '2016-08-21 17:30:25', '2016-09-03 06:58:04', '', '', '', '', '', '', ''),
-(6, 'Lý Bảo Anh', '6', 'lybaoanh@gmail.com', '', 0, '$2y$10$YJasrH0w7TCMETRbDOJDZuAyov1fTb8JUcqOBuZf.63HY6oig.7ie', 0, '31a95663cd826217f2dfe70857668ec2.jpg', '', '', 0, 'Trống rỗng', '', '\0\0Tr\0\0\0?\0\0\0?\0\0\0?\0\0\0?\0\0\0?\0\0\0?\0\0\0?\0\0\0?\0\0\0?\0\0\0?\0\0\0?\0\0\0?', 'Trống rỗng', 0, '0000-00-00', 3000, 1, '', 1, '', '', 0, 10, '', '', '0', '1', 'mrhlwTEH2eHRHnBszyJh5WojsKUiEq7ksVKywDtEAk4LK3WQnYAqefFXQHeT', '2016-08-30 16:04:18', '2016-08-30 16:04:33', '', '', '', '', '', '', ''),
-(7, 'admin', '7', 'admin@gmail.com', '{"job":"  Ki\\u1ebfn tr\\u00fac\\/Thi\\u1ebft k\\u1ebf n\\u1ed9i th\\u1ea5t  ","university":"     "}', 1674644053, '$2y$10$iz/MvQmDi25uKZRpOw2bCuRHCAxYNSsH6PZn/bT/3YH3Mc60KYf.e', 0, '12805904_1357669444259322_328062833020822169_n.jpg', '3 tiếng', ' ', 0, 'Bình Thạnh', '', 'Trống rỗng', '<p>Trống rỗng</p>\r\n', 1, '123123', 3000, 0, '', 1, '', '', 0, 168, '{"class_group":{"subject":"1231","price":"23123","content":" 12312","method":"3123123"}}', '<p>- Background:</p>\r\n\r\n<p>My name is Zeeshan Abid {scientifically, its Zinc! ;-) } I am a scientist and its my passion, not profession. I took IELTS 2 years ago and got 8 band.</p>\r\n\r\n<p>I started learning English at the age of 3 and I&#39;ve been surrounded by it for whole of my life in every possible way.</p>\r\n\r\n<p>Currently, I&rsquo;m performing scientific research and tutoring online in my free timings. To specify, I teach techniques for IELTS speaking and writing and offer courses for English communication, interview and debating skills. I&rsquo;m also offering assistance in making corrections of written transcripts [films subtitles, translations of books, curriculum, office statements, essays etc]. Apart from this, I also teach professional media editing and graphics designing softwares.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>- Personality and hobby :</p>\r\n\r\n<p>Personally I&#39;m a self-motivated person who can&#39;t seem to just settle down, who lives for adventure. My friends think I&#39;m a riddle wrapped up in a mystery. :p</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>I&rsquo;m particularly engrossed in self-awareness, interpreting omens and living for the moment. Having adventures, exploring new things, playing with children and sitting with old, befriending with white and black, poor and rich and mingling with the people belonging to various nations, religions and cultures have always fascinated me. I love sharing concepts and ideas to approach the unapproachable and to imagine the unimaginable things and I&rsquo;ve been using English as a medium to help this craving passion and curiosity.</p>\r\n', '8', '1', 'eQjMRPKiEMNrnbq3nHNfxNuvmw3brmYyydprrA5kE7etZwhbUH6qihzkdKgz', '2016-09-10 10:13:30', '2017-06-18 17:47:13', '', '', '', '', '', '', ''),
-(8, 'Bảo Anh', '8', 'baoanh@witayl.com', '', 3523154, '$2y$10$iz/MvQmDi25uKZRpOw2bCuRHCAxYNSsH6PZn/bT/3YH3Mc60KYf.e', 1, '486856_152504521576279_1535443610_n.jpg', '', ' ', 0, '', '', 'Trống rỗng', '<p>Trống rỗng</p>\r\n', 0, 'Xin chào các bạn', 500000, 2, '2017-06-14', 1, '', 'Công nghệ thông tin', 0, 32, '', '', '0', '1', '', '2016-09-19 19:31:10', '2016-09-19 19:31:10', '00-31-032017061820170127_145035_mix01.jpg', '', '', '["05-05-49-2017-06-18--640x360 (1).jpg"]', '', '', ''),
-(9, 'Hứa Lan Anh', '9', 'lananh138@gmail.com', '', 0, '$2y$10$Z1vKO8ew.41pcDsu6QC/WuUhrijO3uMnFD4WM5jJzxE8yREUZVmSi', 0, '', '', '', 0, 'Trống rỗng', '', 'Trống rỗng', 'Trống rỗng', 0, '0000-00-00', 3000, 1, '', 0, '', '', 0, 0, '', '', '', '', 'bGqQTe2lEoXZH7lu4HZKbZiNhWpS21iuujjlxy8lxIXx4Dwn63z1Okd0bW4u', '2016-10-29 23:48:32', '2016-10-30 00:31:06', '', '', '', '', '', '', ''),
-(18, '12313123', '18', 'admin@chuckki.com', '', 0, '$2y$10$fR0NxNnSsBau9MmDgog7GeIYVwNtwSxjd4WKASuXwndsd.9jFV/R2', 0, '', '', '', 0, '', '', '', '', 0, '', 0, 0, '', 0, '', '', 0, 0, '', '', '', '', 'ngLuhMgDVPvWmD05QSyo85eEZVLwKEtzOPGBM9IcXJSN3xaoamVeIZzlGDjM', '2017-06-18 00:21:34', '2017-06-18 00:21:42', '', '', '', '', '', '', '');
+INSERT INTO `users` (`id`, `name`, `id_uni`, `email`, `job`, `phone`, `password`, `gender`, `avatar`, `jobs`, `ward`, `district`, `subjects`, `info`, `title`, `active`, `date`, `level_user`, `folower`, `field`, `status`, `viewed`, `content_teach`, `method_teach`, `sumRatings`, `countRatings`, `remember_token`, `created_at`, `updated_at`, `cover`, `picture`, `video`, `code_user`, `experience`, `educational`, `city`, `level`, `time_learn`) VALUES
+(2, 'Lê Quý Nam', '2', 'lequynam@gmail.com', '{"job":"   alo   ","university":"       "}', 2147483647, '$2y$10$iz/MvQmDi25uKZRpOw2bCuRHCAxYNSsH6PZn/bT/3YH3Mc60KYf.e', 1, '04-23-252017060549c8d33637cb126c6c0745ddf6f5f03e.jpg', 'Giáo viên ila', 'số 211 Nguyễn Trãi phường 15', 'Quận 5', 'Anh, Nga, Pháp, Trung', '<p>I started learning English at the age of 3 and I&#39;ve been surrounded by it for whole of my life in every possible way.</p>\r\n\r\n<p>Currently, I&rsquo;m performing scientific research and tutoring online in my free timings. To specify, I teach techniques for IELTS speaking and writing and offer courses for English communication, interview and debating skills. I&rsquo;m also offering assistance in making corrections of written transcripts [films subtitles, translations of books, curriculum, office statements, essays etc]. Apart from this, I also teach professional media editing and graphics designing softwares.</p>\r\n\r\n<div class="for-lecturers" style="box-sizing: border-box; margin-top: 35px; color: rgb(51, 51, 51); font-family: OpenSans-Regular, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px;">\r\n<div class="imfomate general" style="box-sizing: border-box; padding: 0px;">\r\n<p>Currently, I&rsquo;m performing scientific research and tutoring online in my free timings. To specify, I teach techniques for IELTS speaking and writing and offer courses for English communication, interview and debating skills. I&rsquo;m also offering assistance in making corrections of written transcripts [films subtitles, translations of books, curriculum, office statements, essays etc]. Apart from this, I also teach professional media editing and graphics designing softwares.</p>\r\n</div>\r\n</div>\r\n\r\n<p>&nbsp;</p>\r\n', 'Kinh nghiệm 3 năm giảng dạy', 1, '2018-01-01', 1, '"3"', 'Sư phạm Anh', 0, 1004, '{"class_group":{"subject":" ","price":" ","content":" ","method":" "}}', '', '8.2', '2', '4wBTFotNTHlfRcruv1cCvuPpoUjrMgSNMZyn4UgzEAAedfXiu0yGtgkB1nFI', '2016-08-14 13:14:12', '2017-07-02 10:57:57', '15-09-55201706251176394_1396393813922747_829849495_n.jpg', '["17-24-31==2017-06-04==-16806775_1804867546502774_3771989680977662451_n.jpg","17-24-31==2017-06-04==-16830661_1804867483169447_1371076449408088748_n.jpg","17-24-31==2017-06-04==-16830693_1804867486502780_2573422782936129634_n.jpg","17-24-31==2017-06-04==-16830964_1804867503169445_1221483195989854047_n.jpg","17-24-31==2017-06-04==-16831033_1804867539836108_4231011083318236658_n.jpg","17-24-31==2017-06-04==-16831052_1804867456502783_3362415572487405662_n.jpg","17-24-31==2017-06-04==-16832062_1804867509836111_3963288658726311050_n.jpg","17-24-31==2017-06-04==-16832147_1804867463169449_1452755455391084880_n.jpg","17-24-31==2017-06-04==-16864282_1804867569836105_6380254026330523604_n.jpg","17-24-31==2017-06-04==-16864600_1804867659836096_5532593180209799403_n.jpg"]', '["17776455_337022060029070_5335841247112200192_n.mp4"]', '', '', '', 'Ho Chi Minh', '', ''),
+(3, 'Nguyễn Bảo Lâm', '3', 'lehainam@gmail.com', '{"job":"  \\u0102n b\\u00e1m  ","university":"     "}', 98135214, '$2y$10$Nndp.OAiVjRC7IaQlU.wgu49iZPt9ZStnjZRJ9xX2PnHahchVNcBC', 1, '19-37-3320170625bffa6871fb68f4562618cf8f76551bf1.jpg', 'Giảng viên CNTT', 'Phường 3', '1', 'Toán,Anh, Kinh tế lượng, toán cao cấp, vĩ mô, maclenin', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\r\n', 'Xin chào các bạn', 2, '1993-03-10', 1, '', 'Cong nghe thong tin', 0, 918, '', '', '7.2', '1', 'MVBiSNKZxuPtxW9Y0lB9DJNw5JUvzsBHkIWDzFRTvSXtS7ZL48DQF5PMWEw7', '2016-08-20 02:22:58', '2017-07-03 04:48:07', '19-45-262017062512801363_1694733650803345_1365580251964161745_n.jpg', '["05-49-20==2017-06-18==-1600x800_8970_Rain_2d_illustration_rain_steampunk_train_environment_picture_image_digital_art.jpg","05-49-20==2017-06-18==-11810_415455621828391_1322483462_n.jpg","05-49-20==2017-06-18==-12220_689146384501284_8957757553677908226_n.png"]', '["05-49-01==2017-06-18==-17776455_337022060029070_5335841247112200192_n.mp4"]', '["06-30-09-2017-06-23--980x.jpg","06-30-09-2017-06-23--12312abas.jpg"]', '5', 'Su Pham Anh', 'Ho CHi Minh City', '', ''),
+(5, 'Thiết Hạ Hân', '5', 'nguyenthaihan@gmail.com', '', 41314123, '$2y$10$/Ils7hhkj9xjQUlQv8xly.V/iiJZxcTR09QBPcyHQZRC4A4tY5l2i', 0, '071560ae00be5094091a10e458f867e7.jpg', '', 'Trống rỗng', '', '\0\0Tr\0\0\0?\0\0\0?\0\0\0?\0\0\0?\0\0\0?\0\0\0?\0\0\0?\0\0\0?\0\0\0?\0\0\0?\0\0\0?\0\0\0?', '<p>\r\n	Trống rỗng</p>\r\n', '0000-00-00', 2, '', 1, '', '', 0, 18, '', '', '0', '1', 'WrJZM51YdK3Wj7sOTiTwwcw7QLKbrjkpuQeuhqff2dxQohdoVpXPCntDufDR', '2016-08-21 17:30:25', '2016-09-03 06:58:04', '', '', '', '', '', '', '', '', ''),
+(6, 'Lý Bảo Anh', '6', 'lybaoanh@gmail.com', '', 0, '$2y$10$YJasrH0w7TCMETRbDOJDZuAyov1fTb8JUcqOBuZf.63HY6oig.7ie', 0, '31a95663cd826217f2dfe70857668ec2.jpg', '', 'Trống rỗng', '', '\0\0Tr\0\0\0?\0\0\0?\0\0\0?\0\0\0?\0\0\0?\0\0\0?\0\0\0?\0\0\0?\0\0\0?\0\0\0?\0\0\0?\0\0\0?', 'Trống rỗng', '0000-00-00', 1, '', 1, '', '', 0, 14, '', '', '0', '1', 'mrhlwTEH2eHRHnBszyJh5WojsKUiEq7ksVKywDtEAk4LK3WQnYAqefFXQHeT', '2016-08-30 16:04:18', '2016-08-30 16:04:33', '', '', '', '', '', '', '', '', ''),
+(7, 'admin', '7', 'admin@gmail.com', '{"job":"  Ki\\u1ebfn tr\\u00fac\\/Thi\\u1ebft k\\u1ebf n\\u1ed9i th\\u1ea5t  ","university":"     "}', 1674644053, '$2y$10$iz/MvQmDi25uKZRpOw2bCuRHCAxYNSsH6PZn/bT/3YH3Mc60KYf.e', 0, '12805904_1357669444259322_328062833020822169_n.jpg', '3 tiếng', 'Bình Thạnh', '', 'Trống rỗng', '<p>Trống rỗng</p>\r\n', '123123', 0, '', 1, '', '', 0, 168, '{"class_group":{"subject":"1231","price":"23123","content":" 12312","method":"3123123"}}', '<p>- Background:</p>\r\n\r\n<p>My name is Zeeshan Abid {scientifically, its Zinc! ;-) } I am a scientist and its my passion, not profession. I took IELTS 2 years ago and got 8 band.</p>\r\n\r\n<p>I started learning English at the age of 3 and I&#39;ve been surrounded by it for whole of my life in every possible way.</p>\r\n\r\n<p>Currently, I&rsquo;m performing scientific research and tutoring online in my free timings. To specify, I teach techniques for IELTS speaking and writing and offer courses for English communication, interview and debating skills. I&rsquo;m also offering assistance in making corrections of written transcripts [films subtitles, translations of books, curriculum, office statements, essays etc]. Apart from this, I also teach professional media editing and graphics designing softwares.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>- Personality and hobby :</p>\r\n\r\n<p>Personally I&#39;m a self-motivated person who can&#39;t seem to just settle down, who lives for adventure. My friends think I&#39;m a riddle wrapped up in a mystery. :p</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>I&rsquo;m particularly engrossed in self-awareness, interpreting omens and living for the moment. Having adventures, exploring new things, playing with children and sitting with old, befriending with white and black, poor and rich and mingling with the people belonging to various nations, religions and cultures have always fascinated me. I love sharing concepts and ideas to approach the unapproachable and to imagine the unimaginable things and I&rsquo;ve been using English as a medium to help this craving passion and curiosity.</p>\r\n', '8', '1', 'eQjMRPKiEMNrnbq3nHNfxNuvmw3brmYyydprrA5kE7etZwhbUH6qihzkdKgz', '2016-09-10 10:13:30', '2017-06-18 17:47:13', '', '', '', '', '', '', '', '', ''),
+(8, 'Bảo Anh', '8', 'baoanh@witayl.com', '', 3523154, '$2y$10$iz/MvQmDi25uKZRpOw2bCuRHCAxYNSsH6PZn/bT/3YH3Mc60KYf.e', 1, '486856_152504521576279_1535443610_n.jpg', '', '', '', 'Trống rỗng', '<p>Trống rỗng</p>\r\n', 'Xin chào các bạn', 2, '2017-06-14', 1, '', 'Công nghệ thông tin', 0, 33, '', '', '0', '1', '', '2016-09-19 19:31:10', '2016-09-19 19:31:10', '00-31-032017061820170127_145035_mix01.jpg', '', '', '["05-05-49-2017-06-18--640x360 (1).jpg"]', '', '', '', '', ''),
+(19, 'Nguyễn Nam Thành', '19', 'namthanh@gmail.com', '', 0, '$2y$10$guJ/agjNROczdqBqM6czwOPAHeyrU9d.Y4ZM4f4hzgHWV2GCymkN6', 0, '15241820_1045855955539994_8241102179935298978_n.jpg', '', '', '', '', 'Trống rỗng', '', 2, '', 1, '', '', 0, 2, '', '', '0', '1', 'Q1bkhFcqfJPLhDMJ0UUhhkCO8TJHZnEkg2ONUmsqO3b7AE11cFut1JYOnJWE', '2017-07-01 18:22:23', '2017-07-01 23:24:23', '', '', '', '', '', '', '', '', ''),
+(20, 'ga', '20', 'kiati@gmail.com', '', 0, '$2y$10$VxTt04T4/sXf9vH7QQsxD.unlAYaUsPJpSWcKhedZ/6o/FAxQrNjm', 0, 'hocvien.jpg', '', '', '', '', '', '', 1, '', 1, '', '', 0, 6, '', '', '0', '1', 'W5phKQ03NWiGTShzUavqRSqq2LhgO0sJ9qkMpXtjs2Sbz9hcGoEssj9Yd3dU', '2017-07-01 23:25:06', '2017-07-02 00:41:18', '', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -887,7 +894,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `cousers`
 --
 ALTER TABLE `cousers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `feedbackhomes`
 --
@@ -917,7 +924,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `posts`
 --
@@ -937,7 +944,7 @@ ALTER TABLE `ratings`
 -- AUTO_INCREMENT for table `registercousers`
 --
 ALTER TABLE `registercousers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `slides`
 --
@@ -947,7 +954,7 @@ ALTER TABLE `slides`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `vouchers`
 --

@@ -1,7 +1,16 @@
 @extends('layouts.web')
 
 @section('content')
-
+@if($id_user[0]->active !=2)
+	@foreach($student as $key => $value)
+		@include('modal.detail-course')
+	@endforeach
+@endif
+@if($id_user[0]->active ==2)
+	@foreach($list_cousers as $key => $value)
+		@include('modal.detail-course')
+	@endforeach
+@endif
 	<div class="container pd0" style="margin-top: -10rem;background: #f7f7f7	">
 		<div class="cover-profile" >
 		@if($id_user[0]->cover != null)
@@ -55,14 +64,27 @@
 					</div>
 					@endif
 					@if($id_user[0]->active == 2)
+					@if($kfollowers > 10)
 					<div class="col-md-12 top15 wel" style="padding-top:15px;">
 						<div class="col-md-12 pd0">
-							<div class="col-md-1"><img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_2.png')}}" alt=""></div><div class="col-md-4"><p class="action-menu__counter">{{ $zfollowers }}</p></div><div class="col-md-6 pd0"><p class="text-left">Người theo dõi</p></div>
+							<div class="col-md-1">
+								<img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_2.png')}}" alt="">
+							</div>
+							<div class="col-md-4">
+								<p class="action-menu__counter">{{ $zfollowers }}</p>
+							</div>
+							<div class="col-md-6 pd0"><p class="text-left">Người theo dõi</p></div>
 						</div>
 					</div>
+					@endif
 					<div class="col-md-12 top15 wel" style="padding-top:15px;">
 						<div class="col-md-12 pd0">
-							<div class="col-md-1"><img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_1.png')}}" alt="" style="top: -4px;"></div><div class="col-md-4"><p class="action-menu__counter">{{ $count_student }}</p></div><div class="col-md-6 pd0"><p class="text-left">Học Viên</p></div>
+							<div class="col-md-1">
+								<img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_1.png')}}" alt="" style="top: -4px;"></div>
+								<div class="col-md-4">
+									<p class="action-menu__counter">{{ $count_student }}</p>
+								</div>
+								<div class="col-md-6 pd0"><p class="text-left">Học Viên</p></div>
 						</div>
 					</div>
 					<div class="col-md-12 top15 wel" style="padding-top:15px;">
@@ -70,6 +92,7 @@
 							<div class="col-md-1"><img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_0.png')}}" alt="" style="top: -1px;"></div><div class="col-md-4"><p class="action-menu__counter">@if($id_user[0]->experience != 0){{ $id_user[0]->experience }}{{' năm'}} @else 0 @endif</p></div><div class="col-md-6 pd0"><p class="text-left">Kinh nghiệm</p></div>
 						</div>
 					</div>
+
 					@endif
 					@if($id_user[0]->active == 2)
 					<div class="col-md-12 top15 wel" style="padding-top:15px;">
@@ -107,7 +130,7 @@
 					 @include('users.information-sub')
 				</div>
 					<div class="col-md-12 wel top30">
-						<h4 class="top15"><strong>Lớp học tham gia <strong></h4>
+						<h4 class="top15"><strong>Lớp học tham gia </strong></h4>
 						@foreach($student as $key => $value)
 						<div class="col-md-6 list-couser-main top15">
 						<a data-toggle="modal" data-target="#couser{{$key}}" class="col-md-12 pd0 list-couser wel">
@@ -128,8 +151,7 @@
 								<div class="col-md-12 list-couser__name wel top10"> <h4> {{$value ->name_couser }} </h4> <h4 class="top15"> {{ $value->name}}</h4> <p style="font-size: 13px;"><i>{{ $value->jobs}}, {{ $value->city}}</i></p></div>
 						</a>
 					</div>
-					@include('modal.detail-course')
-						@endforeach
+					@endforeach
 					</div>
 				</div>
 				@endif
@@ -235,87 +257,272 @@
 							  Viết đánh giá
 							</a>
 							</div>
-							<div class="collapse top15 col-md-9" id="collapseExample">
-								<div class="well">
-								<form class="" method="POST" action="{{ url('/review-teacher') }}-{{ $id_user[0]->id }}">
+							<div class="collapse top15 col-md-12" id="collapseExample">
+								<div class="col-md-12 well">
+								<form class="col-md-12 pd0" method="POST" action="{{ url('/review-teacher') }}-{{ $id_user[0]->id }}">
 					  				{{ csrf_field() }}
 								  <label>
 								  <input type="text" class="form-control" name="titleReview" placeholder="Tiêu đề"></label>
 								  <input type="hidden" class="id_user" name="id_user" value="{{ $id_user[0]->id }}">
 								  <textarea rows="5" name="contentReview" class="form-control"> Nội dung đánh giá</textarea>
-								  <span>Nội dung dạy:</span>
-								  	<input type="hidden" name="start-review" class="start-review">
-								  	<div class="review-container">
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									</div>
-								<span>Nội dung dạy:</span>
-								  	<input type="hidden" name="start-review" class="start-review">
-								  	<div class="review-container">
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									</div>
-								<span>Nội dung dạy:</span>
-								  	<input type="hidden" name="start-review" class="start-review">
-								  	<div class="review-container">
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									</div>
-								<span>Nội dung dạy:</span>
-								  	<input type="hidden" name="start-review" class="start-review">
-								  	<div class="review-container">
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									</div>
-									<span>Nội dung dạy:</span>
-								  	<input type="hidden" name="start-review" class="start-review">
-								  	<div class="review-container">
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									  <div class="star"><span class="stararea">★</span></div>
-									</div>
+									<div class="col-md-4 pl0">
+									<p class="text-center">Nội dung dạy</p>
+										<input type="hidden" name="js-score1" class="score-rating js-score">
+										<div class="rating" data-vote="0">
+											  <div class="star hidden">
+											    <span class="full"data-value="0"></span>
+											    <span class="half"data-value="0"></span>
+											  </div>
 
-									<div class="text-right">
-									<button type="submit" class="btn btn-info up-review ">Đăng</button>
+											  <div class="star">
+
+											    <span class="full" data-value="2"></span>
+											    <span class="half" data-value="2.5"></span>
+											    <span class="selected"></span>
+
+											  </div>
+
+											  <div class="star">
+
+											    <span class="full" data-value="4"></span>
+											    <span class="half" data-value="4.5"></span>
+											    <span class="selected"></span>
+
+											  </div>
+
+											  <div class="star">
+
+											    <span class="full" data-value="6"></span>
+											    <span class="half" data-value="6.5"></span>
+											    <span class="selected"></span>
+
+											  </div>
+
+											  <div class="star">
+
+											    <span class="full" data-value="8"></span>
+											    <span class="half" data-value="8.5"></span>
+											    <span class="selected"></span>
+
+											  </div>
+
+											  <div class="star">
+
+											    <span class="full" data-value="10"></span>
+											    <span class="selected"></span>
+
+											  </div>
+											</div>
+									</div>
+									<div class="col-md-4 pl0">
+										<p class="text-center">Học phí</p>
+											<input type="hidden" name="js-score2" class="score-rating js-score">
+											<div class="rating" data-vote="0">
+												  <div class="star hidden">
+												    <span class="full"data-value="0"></span>
+												    <span class="half"data-value="0"></span>
+												  </div>
+
+												  <div class="star">
+
+												    <span class="full" data-value="2"></span>
+												    <span class="half" data-value="2.5"></span>
+												    <span class="selected"></span>
+
+												  </div>
+
+												  <div class="star">
+
+												    <span class="full" data-value="4"></span>
+												    <span class="half" data-value="4.5"></span>
+												    <span class="selected"></span>
+
+												  </div>
+
+												  <div class="star">
+
+												    <span class="full" data-value="6"></span>
+												    <span class="half" data-value="6.5"></span>
+												    <span class="selected"></span>
+
+												  </div>
+
+												  <div class="star">
+
+												    <span class="full" data-value="8"></span>
+												    <span class="half" data-value="8.5"></span>
+												    <span class="selected"></span>
+
+												  </div>
+
+												  <div class="star">
+
+												    <span class="full" data-value="10"></span>
+												    <span class="selected"></span>
+
+												  </div>
+
+
+												</div>
+									</div>
+									<div class="col-md-4 pl0">
+										<p class="text-center">Thái độ dạy</p>
+										<input type="hidden" name="js-score3" class="score-rating js-score">
+											<div class="rating" data-vote="0">
+												  <div class="star hidden">
+												    <span class="full"data-value="0"></span>
+												    <span class="half"data-value="0"></span>
+												  </div>
+
+												  <div class="star">
+
+												    <span class="full" data-value="2"></span>
+												    <span class="half" data-value="2.5"></span>
+												    <span class="selected"></span>
+
+												  </div>
+
+												  <div class="star">
+
+												    <span class="full" data-value="4"></span>
+												    <span class="half" data-value="4.5"></span>
+												    <span class="selected"></span>
+
+												  </div>
+
+												  <div class="star">
+
+												    <span class="full" data-value="6"></span>
+												    <span class="half" data-value="6.5"></span>
+												    <span class="selected"></span>
+
+												  </div>
+
+												  <div class="star">
+
+												    <span class="full" data-value="8"></span>
+												    <span class="half" data-value="8.5"></span>
+												    <span class="selected"></span>
+
+												  </div>
+
+												  <div class="star">
+
+												    <span class="full" data-value="10"></span>
+												    <span class="selected"></span>
+
+												  </div>
+
+
+												</div>
+									</div>
+									<div class="col-md-offset-2 col-md-4 pl0">
+										<p class="text-center">Tiến bộ</p>
+											<input type="hidden" name="js-score4" class="score-rating js-score">
+											<div class="rating" data-vote="0">
+												  <div class="star hidden">
+												    <span class="full"data-value="0"></span>
+												    <span class="half"data-value="0"></span>
+												  </div>
+
+												  <div class="star">
+
+												    <span class="full" data-value="2"></span>
+												    <span class="half" data-value="2.5"></span>
+												    <span class="selected"></span>
+
+												  </div>
+
+												  <div class="star">
+
+												    <span class="full" data-value="4"></span>
+												    <span class="half" data-value="4.5"></span>
+												    <span class="selected"></span>
+
+												  </div>
+
+												  <div class="star">
+
+												    <span class="full" data-value="6"></span>
+												    <span class="half" data-value="6.5"></span>
+												    <span class="selected"></span>
+
+												  </div>
+
+												  <div class="star">
+
+												    <span class="full" data-value="8"></span>
+												    <span class="half" data-value="8.5"></span>
+												    <span class="selected"></span>
+
+												  </div>
+
+												  <div class="star">
+
+												    <span class="full" data-value="10"></span>
+												    <span class="selected"></span>
+
+												  </div>
+
+
+												</div>
+									</div>
+									<div class="col-md-4 pl0">
+									<p class="text-center">Phương pháp dạy</p>
+									<input type="hidden" name="js-score5" class="score-rating js-score">
+										<div class="rating" data-vote="0">
+											  <div class="star hidden">
+											    <span class="full"data-value="0"></span>
+											    <span class="half"data-value="0"></span>
+											  </div>
+
+											  <div class="star">
+
+											    <span class="full" data-value="2"></span>
+											    <span class="half" data-value="2.5"></span>
+											    <span class="selected"></span>
+
+											  </div>
+
+											  <div class="star">
+
+											    <span class="full" data-value="4"></span>
+											    <span class="half" data-value="4.5"></span>
+											    <span class="selected"></span>
+
+											  </div>
+
+											  <div class="star">
+
+											    <span class="full" data-value="6"></span>
+											    <span class="half" data-value="6.5"></span>
+											    <span class="selected"></span>
+
+											  </div>
+
+											  <div class="star">
+
+											    <span class="full" data-value="8"></span>
+											    <span class="half" data-value="8.5"></span>
+											    <span class="selected"></span>
+
+											  </div>
+
+											  <div class="star">
+
+											    <span class="full" data-value="10"></span>
+											    <span class="selected"></span>
+
+											  </div>
+
+
+											</div>
+									</div>
+									<input type="hidden" name="score-average" class=" score-average js-average">
+									<div class="col-md-12">
+										<div class="text-right">
+										<button type="submit" class="btn btn-info up-review ">Đăng</button>
+										</div>
 									</div>
 								</form>
 								</div>
@@ -474,8 +681,7 @@ box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.5);padding-top: 15px;">
 					</button>
 			</div>
 			<hr>
-			<p class="col-md-12 pd0" style="font-size: 12px; margin-top: 20px;"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt </p>
-			<p class="col-md-12 pd0" style="font-size: 12px"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt </p>
+			<p class="col-md-12 pd0" style="font-size: 12px; margin-top: 20px;">  Nếu gặp sự cố gì, anh/ chị vui lòng thông báo lại cho <span style="color:#fcaf00;font-weight:600">Wiis</span> theo hotline 0868. 505.523 để WiiS giúp anh/chị.</p>
 		</form>
 		</div>
 		</div>

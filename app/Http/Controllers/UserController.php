@@ -31,7 +31,6 @@ class UserController extends Controller
         $post= DB::table('posts')->where('id_user', '=', $id)->get();
         $contact= explode(',', $id_user[0]->field);
         $subject= explode(',', $id_user[0]->subjects);
-        $learn = DB::table('learns')->where('id_user', '=', $id)->get();
         $rating =DB::table('ratings')->where('id_user', '=', $id)->get();
         $content_teach = DB::table('ratings')->where('id_user', '=', $id)->sum('content_teach');
         $value_get = DB::table('ratings')->where('id_user', '=', $id)->sum('value_get');
@@ -42,7 +41,7 @@ class UserController extends Controller
         $feeling = DB::table('ratings')->where('id_user', '=', $id)->sum('feeling');
         $question = DB::table('comments')->where('id_user', '=', $id)->orderBy('id', 'desc')->get();
         $cmt = DB::table('cmtprofiles')->join('users','cmtprofiles.id_user','=','users.id')->where('cmtprofiles.id_user', '=', $id)->get();
-        $feedback = DB::table('feedbacks')->join('users','feedbacks.id_user','=','users.id')->join('projects','feedbacks.id_feed','=','projects.id')->where('feedbacks.id_user', '=', $id)->get();
+        $feedback = DB::table('feedbacks')->join('users','feedbacks.id_user','=','users.id')->where('feedbacks.id_user', '=', $id)->get();
 
         if($count_id === 0){
             $rating = 0;
@@ -426,7 +425,7 @@ class UserController extends Controller
       $reply = ([
           'reply' => $value['reply'],
       ]);
-      $find = DB::table('comments')->where('id', $id)->get();
+      $find = DB::table('comments')->join('users','userd.id','=','comments.id_user')->where('id', $id)->get();
       $nDb->id_user = $find[0]->id_post ;
       $nDb->name_notification = 'Bạn có một phản hồi từ phần hỏi đáp';
       $nDb->content_notification = '
