@@ -241,6 +241,7 @@ $('.selectCouser').click(function(){
 
   }
 });
+
 var starClicked = false;
 
 $(function() {
@@ -278,7 +279,7 @@ $(function() {
     }
     $(this).closest('.rating').find('.js-score').val($(this).data('value'));
 
-    $(this).find('js-average').text(parseInt($(this).data('value')));
+    $(this).find('user-ratinge').text(parseInt($(this).data('value')));
 
     $(this).closest('.rating').data('vote', $(this).data('value'));
     calculateAverage()

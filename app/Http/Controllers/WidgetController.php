@@ -8,7 +8,7 @@ use App\Slides;
 use App\User;
 use App\Posts;
 use App\Vouchers;
-Use App\Feedbacks;
+Use App\Ratings;
 use App\FeedbackHomes;
 use Illuminate\Support\Facades\Input;
 use App\Http\Requests;
@@ -233,10 +233,25 @@ class WidgetController extends Controller
 
     public function review($id, Request $request) {
         $value= $request->all();
-        $db = new Feedbacks;
+        $db = new Ratings;
+        if($request->hasFile('imgRatings')){
+            $file = $value['imgRatings'];
+            $filename = $file->getClientOriginalName();
+            $file->move(public_path().'/img/ratings', $filename);
+        }else{
+            $filename=" ";
+        }
+
+        $db->img_ratings = $filename;
         $db->id_user = $value['id_user'];
-        $db->content_feed = $value['contentReview'];
-        $db->start = $value['start-review'];
+        $db->id_post = Auth::user()->id;
+        $db->content_teach = $value['js-score1'];
+        $db->value_get = $value['js-score4'];
+        $db->feeling = $value['js-score3'];
+        $db->learn = $value['js-score5'];
+        $db->feebacks = $value['contentReview'];
+        $db->price = $value['js-score2'];
+        $db->sumRatings = $value['score-average'];
         $db->save();
 
         return redirect('/trang-ca-nhan-'.$id.'-'.User::convert_string(Auth::user()->name).'?tab=messages');

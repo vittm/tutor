@@ -1193,7 +1193,30 @@ img.logo-congratulation--couser {
     text-align: center;
 }
 .content-teach >span {
-    font-size: 16px;
+    font-size: 12px;
+    font-weight: 600;
+}
+a.write-ratings {
+  display: block;
+  margin: auto;
+  background: transparent;
+  border: 1px solid #fcaf00;
+  color: #fcaf00;
+  font-weight: 500;
+  width: 165px;
+}
+.form-ratings > .col-md-4 {
+  border-right: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+}
+.form-ratings .form-ratings--none-border {
+  border-right: none;
+}
+.form-ratings__write .drop_uploader.drop_zone .text_wrapper  {
+  margin-top: 0;
+}
+.form-ratings > .col-md-4 > p {
+  margin-bottom: 0;
 }
 .btn-origan {
     background: #fcaf00;
@@ -12123,4 +12146,38 @@ application_ltr-7274c7e….css:1
 }
 .average .score-average {
   padding-top: 30px;
+}
+.user-rating {
+    text-align: center;
+    padding-left: 0;
+}
+.user-rating > li {
+  position: relative;
+  list-style: none;
+  display: block;
+}
+.user-rating > li > img{
+    margin: auto;
+    display: block;
+}
+.user-rating li span {
+  position: absolute;
+  top: 26px;
+  left: 0;
+  right: 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+.count-ratings {
+    top: 0px;
+    right: 0;
+    left: 27%;
+    margin: 0 auto;
+}
+.content-teach .user-rating > li > img{
+  width: 40px;
+}
+.content-teach .user-rating > li > span{
+  top: 13px;
+  font-size: 13px;
 }

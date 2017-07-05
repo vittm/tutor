@@ -143,6 +143,9 @@
       @if($_GET['tab'] == 'settings')
         $('a[href="#settings"]').tab('show');
       @endif
+      @if($_GET['tab'] == 'messages')
+        $('a[href="#messages"]').tab('show');
+      @endif
       $('body').animate({scrollTop: 300}, 700);
     @endif
     @if(isset($_GET['register']) == true && Session::get('name_couser') != null)

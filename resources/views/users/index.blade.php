@@ -205,47 +205,51 @@
 
 					    	 <div class="col-md-12 pd0">
 						    	 <div class="rating-show">
-										 <div class="col-md-2">
-											 <div class="start-view">
-							 					<img src="img/icon/shooting-star.png" ><span >{{ $id_user[0]->sumRatings }}</span>
-											</div>
+										 <div class="col-md-2 pr0 ">
+											 <ul class="user-rating">
+							 					<li>
+													<img src="img/icon/shooting-star.png" >
+													<span >{{ $ratings[0]->sumRatings }}</span>
+													<p class="top10">34 đánh giá</p>
+												</li>
+											</ul>
 										 </div>
-						    	 	<div class="content-teach col-md-2">
+						    	 	<div class="content-teach col-md-2 pr0">
 						    	 	<ul class="user-rating">
-								    	<li><i class="fa fa-star" aria-hidden="true"><span @if(($id_user[0]->sumRatings) >= 6 ) style="color: #43A047" @else style="color: #e53935" @endif>{{ $id_user[0]->sumRatings }} </span></i></li>
+								    	<li><img src="img/icon/shooting-star.png" ><span>{{ round(($content_teach/$count_id),2) }} </span></li>
 							    	 	</ul>
 						    	 	<span>Nội dung dạy</span>
 						    	 	</div>
 
-						    	 	<div class="content-teach col-md-2">
+						    	 	<div class="content-teach col-md-2 pr0">
 						    	 		<ul class="user-rating">
 							    	 		<li>
-							    	 			<i class="fa fa-star" aria-hidden="true"><span @if(round(($learn_teach/$count_id),2) >= 6 ) style="color: #43A047" @else style="color: #e53935" @endif>{{ round(($content_teach/$count_id),2) }} </span></i>
+							    	 			<img src="img/icon/shooting-star.png" ><span>{{ round(($learn_teach/$count_id),2) }} </span>
 							    	 		</li>
 							    	 	</ul>
 						    	 		<span>Phương pháp</span>
 						    	 	</div>
 
-						    	 	<div class="content-teach col-md-2">
+						    	 	<div class="content-teach col-md-2 pr0">
 							    	 	<ul class="user-rating">
 							    	 		<li>
-							    	 			<i class="fa fa-star" aria-hidden="true"><span @if(round(($learn_teach/$count_id),2) >= 6 ) style="color: #43A047" @else style="color: #e53935" @endif>{{ round(($learn_teach/$count_id),2) }} </span></i>
+							    	 			<img src="img/icon/shooting-star.png" ><span>{{ round(($price/$count_id),2) }} </span>
 							    	 		</li>
 
 							    	 	</ul>
 							    	 	<span>Giá cả </span>
 						    	 	</div>
 
-						    	 	<div class="content-teach col-md-2">
+						    	 	<div class="content-teach col-md-2 pr0">
 							    	 	<ul class="user-rating">
-							    	 		<li><i class="fa fa-star" aria-hidden="true"><span @if(round(($feeling/$count_id),2) >= 6 ) style="color: #43A047" @else style="color: #e53935" @endif>{{ round(($feeling/$count_id),2) }} </span></i></li>
+							    	 		<li><img src="img/icon/shooting-star.png" ><span>{{ round(($feeling/$count_id),2) }} </span></li>
 							    	 	</ul>
 							    	 	<span>Thái độ dạy </span>
 						    	 	</div>
 
-						    	 	<div class="content-teach col-md-2">
+						    	 	<div class="content-teach col-md-2 pr0">
 							    	 	<ul class="user-rating">
-							    	 		<li><i class="fa fa-star" aria-hidden="true"><span @if(round(($connect/$count_id),2) >= 6 ) style="color: #43A047" @else style="color: #e53935" @endif>{{ round(($connect/$count_id),2) }} </span></i></li>
+							    	 		<li><img src="img/icon/shooting-star.png" ><span>{{ round(($value_get/$count_id),2) }} </span></li>
 							    	 	</ul>
 							    	 	<span>Tiến bộ </span>
 						    	 	</div>
@@ -253,21 +257,19 @@
 					    	 </div>
 					    	 </div>
 					    	 <div class="col-md-12 top20">
-							<a class="btn btn-info btn-xs text-right" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample ">
-							  Viết đánh giá
-							</a>
-							</div>
+									<p class="text-center top15"><i> Bạn đã học qua gia sư này rồi, hãy đánh giá ngay nhá! </i></p>
+									<a class="btn btn-sm write-ratings" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample ">
+									  Viết đánh giá
+									</a>
+								</div>
 							<div class="collapse top15 col-md-12" id="collapseExample">
-								<div class="col-md-12 well">
-								<form class="col-md-12 pd0" method="POST" action="{{ url('/review-teacher') }}-{{ $id_user[0]->id }}">
+								<div class="col-md-12 wel">
+								<form class="col-md-12 pd0 form-ratings" method="POST" action="{{ url('/review-teacher') }}-{{ $id_user[0]->id }}" enctype='multipart/form-data'>
 					  				{{ csrf_field() }}
-								  <label>
-								  <input type="text" class="form-control" name="titleReview" placeholder="Tiêu đề"></label>
 								  <input type="hidden" class="id_user" name="id_user" value="{{ $id_user[0]->id }}">
-								  <textarea rows="5" name="contentReview" class="form-control"> Nội dung đánh giá</textarea>
+									<br>
 									<div class="col-md-4 pl0">
 									<p class="text-center">Nội dung dạy</p>
-										<input type="hidden" name="js-score1" class="score-rating js-score">
 										<div class="rating" data-vote="0">
 											  <div class="star hidden">
 											    <span class="full"data-value="0"></span>
@@ -307,16 +309,16 @@
 											  </div>
 
 											  <div class="star">
-
 											    <span class="full" data-value="10"></span>
 											    <span class="selected"></span>
-
 											  </div>
+												<div class="score hidden">
+													<input type="text" name="js-score1" class="score-rating js-score">
+												</div>
 											</div>
 									</div>
-									<div class="col-md-4 pl0">
-										<p class="text-center">Học phí</p>
-											<input type="hidden" name="js-score2" class="score-rating js-score">
+									<div class="col-md-4 pl0 ">
+											<p class="text-center">Học phí</p>
 											<div class="rating" data-vote="0">
 												  <div class="star hidden">
 												    <span class="full"data-value="0"></span>
@@ -361,13 +363,13 @@
 												    <span class="selected"></span>
 
 												  </div>
-
-
+													<div class="score hidden">
+														<input type="text" name="js-score2" class="score-rating js-score">
+													</div>
 												</div>
 									</div>
-									<div class="col-md-4 pl0">
+									<div class="col-md-4 pl0 form-ratings--none-border">
 										<p class="text-center">Thái độ dạy</p>
-										<input type="hidden" name="js-score3" class="score-rating js-score">
 											<div class="rating" data-vote="0">
 												  <div class="star hidden">
 												    <span class="full"data-value="0"></span>
@@ -412,13 +414,13 @@
 												    <span class="selected"></span>
 
 												  </div>
-
-
+													<div class="score hidden">
+														<input type="text" name="js-score3" class="score-rating js-score">
+													</div>
 												</div>
 									</div>
-									<div class="col-md-offset-2 col-md-4 pl0">
+									<div class="col-md-offset-2 col-md-4 pl0 top15">
 										<p class="text-center">Tiến bộ</p>
-											<input type="hidden" name="js-score4" class="score-rating js-score">
 											<div class="rating" data-vote="0">
 												  <div class="star hidden">
 												    <span class="full"data-value="0"></span>
@@ -463,13 +465,13 @@
 												    <span class="selected"></span>
 
 												  </div>
-
-
+													<div class="score hidden">
+														<input type="text" name="js-score4" class="score-rating js-score">
+													</div>
 												</div>
 									</div>
-									<div class="col-md-4 pl0">
+									<div class="col-md-4 pl0 top15 form-ratings--none-border">
 									<p class="text-center">Phương pháp dạy</p>
-									<input type="hidden" name="js-score5" class="score-rating js-score">
 										<div class="rating" data-vote="0">
 											  <div class="star hidden">
 											    <span class="full"data-value="0"></span>
@@ -514,62 +516,69 @@
 											    <span class="selected"></span>
 
 											  </div>
-
-
+												<div class="score hidden">
+													<input type="text" name="js-score5" class="score-rating js-score">
+												</div>
 											</div>
 									</div>
 									<input type="hidden" name="score-average" class=" score-average js-average">
+									<div class="col-md-12 pd0 top30">
+										<div class="col-md-2">
+											<img src="{{ URL::to('img/avatar')}}/{{ $id_user[0]->avatar}}" alt="..." class="img-circle" height="70" width="70">
+										</div>
+										<div class="col-md-10 form-ratings__write">
+											<textarea rows="5" name="contentReview" class="form-control" placeholder="Nội dung đánh giá"></textarea>
+											<input class="multiple-flie" type="file" name="imgRatings" >
+										</div>
+									</div>
 									<div class="col-md-12">
 										<div class="text-right">
-										<button type="submit" class="btn btn-info up-review ">Đăng</button>
+										<button type="submit" class="btn btn-origan2 up-review ">Đăng</button>
 										</div>
 									</div>
 								</form>
-								</div>
-
+							</div>
 							</div>
 					    	 <div class="col-md-12 clear feedbacks">
-						    	  <div class="col-md-12 pd0 content-feedback">
-						    	 @foreach($feedbacks as $value)
-						    	 <div class="col-md-2">
-						    	 	<img src="{{ URL::to('img/avatar')}}/{{ $value->avatar}}" class="img-circle" height="90">
-						    	 </div>
 
-						    	 <div class="col-md-7">
-						    	 	<div class="content-cmt col-md-12">
-						    	 		<p><strong>{!! $value->title !!}</strong></p>
+						    	 @foreach($ratings as $value)
+									 <div class="col-md-12 pd0 content-feedback" style="border-bottom: 1px solid #eeeeee; margint-bottom: 15px;">
+							    	 <div class="col-md-2">
+							    	 	<img src="{{ URL::to('img/avatar')}}/{{ $value->avatar}}" alt="..." class="img-circle" height="70" width="70">
+							    	 </div>
+							    	 <div class="col-md-10">
+											 	<div class="col-md-12 pd0">
+													<p class="col-md-6 pd0"><strong>{{$value->name}}</strong></p>
+													<p class="col-md-6">{{$value->created_at}}</p>
+													@if($value->img_ratings != null)
+													<div class="col-md-6">
+														<div class="col-md-12"><img src="{{ URL::to('img/avatar')}}/{{ $value->avatar}}" alt="..." width="100%"></div>
+													</div>
+													<div class="col-md-6">
+													@else
+													<div class="col-md-12">
+													@endif
+														<p>{{$value->feebacks}}</p>
+													</div>
 
-						    	 		<p>{{ $value->content_feed }}</p>
-
-						    	 		<p>{{ $value->name }}</p>
+													<a role="button" data-toggle="collapse" href="#collapseExample1" aria-expanded="false" aria-controls="collapseExample "> Trả lời </a>
+													<div class="collapse top15 col-md-12" id="collapseExample1">
+													<div class="col-md-12 pd0 top30">
+														<div class="col-md-2">
+															<img src="" alt="..." class="img-circle" height="70" width="70">
+														</div>
+														<div class="col-md-10 form-ratings__write">
+															<textarea rows="5" name="contentReview" class="form-control" placeholder="Nội dung đánh giá"></textarea>
+															<input class="multiple-flie" type="file" name="imgRatings" >
+														</div>
+														</div>
+													</div>
+												</div>
 						    	 	</div>
-						    	 </div>
-						    	 <div class="col-md-3">
-						    	 	<ul class="user-rating">
-						    	 	@if( $value->ratings %3 == 0)
-					    	 			@for($i=1 ; $i <=  $value->ratings - 0.5 ; $i++)
-					    	 			<li><i class="fa fa-star" aria-hidden="true"></i></li>
-					    	 			@endfor
-					    	 			@if($value->ratings != null))
-					    	 				<li><i class="fa fa-star-half" aria-hidden="true"></i></li>
-					    	 			@endif
-					    	 		@else
-					    	 			@for($i=1 ; $i <=  $value->ratings; $i++)
-					    	 			<li><i class="fa fa-star" aria-hidden="true"></i></li>
-					    	 			@endfor
-					    	 		@endif
-					    	 		</ul>
-					    	 		<ul class="default-start">
-						    	 		<li><i class="fa fa-star" aria-hidden="true"></i></li>
-						    	 		<li><i class="fa fa-star" aria-hidden="true"></i></li>
-						    	 		<li><i class="fa fa-star" aria-hidden="true"></i></li>
-						    	 		<li><i class="fa fa-star" aria-hidden="true"></i></li>
-						    	 		<li><i class="fa fa-star" aria-hidden="true"></i></li>
-						    	 	</ul>
-					    	 		<p class="price-feedback">{{ number_format($value->price) }} VNĐ </p>
-						    	 </div>
+									 </div>
+									 <br>
 						    	 @endforeach
-						    	  </div>
+
 					    	  </div>
 					    </div>
 					  </div>
@@ -648,13 +657,16 @@ box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.5);padding-top: 15px;">
 			<div class="col-md-2 pd0">
 				<img src="{{ URL::to('img/avatar')}}/{{ $id_user[0]->avatar}}" alt="..." class="img-circle" height="50" width="50">
 			</div>
-			<div class="col-md-9 pd0">
+			<div class="col-md-10 pd0">
 				<h5 class="name-user col-md-7"><?php $str = explode(' ', $id_user[0]->name); ?>{{end($str)}} {{reset($str)}} </h5>
 				<div class="col-md-5 pd0">
-						<div class="start-view">
-					 		<img src="img/icon/shooting-star.png" ><span >{{ $id_user[0]->sumRatings }}</span>
-							<p><span> 34 </span> đánh giá</p>
-					 	</div>
+					<ul class="user-rating">
+					 <li>
+					 		<img src="img/icon/shooting-star.png" >
+							<span >{{ $id_user[0]->sumRatings }}</span>
+							<p>34 đánh giá</p>
+					 </li>
+				 </ul>
 				</div>
 			</div>
 			<form class="col-md-12 pd0 form-register-couser" method="get" enctype="multiple/part" action="{{ url('/couser/register')}}">
