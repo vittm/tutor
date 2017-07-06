@@ -11,6 +11,7 @@
 		@include('modal.detail-course')
 	@endforeach
 @endif
+
 	<div class="container pd0" style="margin-top: -10rem;background: #f7f7f7	">
 		<div class="cover-profile" >
 		@if($id_user[0]->cover != null)
@@ -209,7 +210,7 @@
 											 <ul class="user-rating">
 							 					<li>
 													<img src="img/icon/shooting-star.png" >
-													<span >{{ $ratings[0]->sumRatings }}</span>
+													<span >{{ $id_user[0]->sumRatings }}</span>
 													<p class="top10">34 đánh giá</p>
 												</li>
 											</ul>
@@ -540,7 +541,7 @@
 							</div>
 							</div>
 					    	 <div class="col-md-12 clear feedbacks">
-
+									 	@include ('ratings.ratings');
 					    	 </div>
 					    </div>
 					  </div>
@@ -662,4 +663,5 @@ box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.5);padding-top: 15px;">
 	@endif
 	</div>
 	@include('modal.congratulationregistercourse')
+
 @stop

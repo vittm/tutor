@@ -88,6 +88,7 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::post('/pay-online', 'WidgetController@bank');
 		Route::post('/voucher-{id}', 'WidgetController@voucher');
 		Route::post('/review-teacher-{id}', 'WidgetController@review');
+		Route::post('/review-teacher/reply-{id}', 'WidgetController@reviewReply');
 
 		Route::get('/admin/detail-user-{id}', 'WidgetController@detail_user');
 		Route::get('/admin/add-voucher', 'WidgetController@add_voucher');

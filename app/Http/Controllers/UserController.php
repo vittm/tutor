@@ -40,7 +40,7 @@ class UserController extends Controller
         $feeling = DB::table('ratings')->where('id_user', '=', $id)->sum('feeling');
         $question = DB::table('comments')->where('id_user', '=', $id)->orderBy('id', 'desc')->get();
         $cmt = DB::table('cmtprofiles')->join('users','cmtprofiles.id_user','=','users.id')->where('cmtprofiles.id_user', '=', $id)->get();
-        $ratings = DB::table('ratings')->join('users','ratings.id_post','=','users.id')->where('ratings.id_user', '=', $id)->get();
+        $ratings = DB::table('ratings')->join('users','ratings.id_post','=','users.id')->where([['ratings.id_user', '=', $id],['id_child','==',0]])->select('ratings.*','users.name','users.avatar')->get();
 
         if($count_id === 0){
             $rating = 0;

@@ -234,6 +234,7 @@ class WidgetController extends Controller
     public function review($id, Request $request) {
         $value= $request->all();
         $db = new Ratings;
+        $zDB= new User;
         if($request->hasFile('imgRatings')){
             $file = $value['imgRatings'];
             $filename = $file->getClientOriginalName();
@@ -251,12 +252,23 @@ class WidgetController extends Controller
         $db->learn = $value['js-score5'];
         $db->feebacks = $value['contentReview'];
         $db->price = $value['js-score2'];
-        $db->sumRatings = $value['score-average'];
+        $zDB->sumRatings = $value['score-average'];
         $db->save();
-
+        $zDB->save();
         return redirect('/trang-ca-nhan-'.$id.'-'.User::convert_string(Auth::user()->name).'?tab=messages');
     }
-
+    public function reviewReply($id, Request $request) {
+        $value= $request->all();
+        $db = new Ratings;
+        $zDB= new User;
+        $db->id_user = $id;
+        $db->id_post = Auth::user()->id;
+        $db->id_child = $value['id_child'];
+        $db->feebacks = $value['contentReview'];
+        $db->save();
+        $zDB->save();
+        return redirect('/trang-ca-nhan-'.$id.'-'.User::convert_string(Auth::user()->name).'?tab=messages');
+    }
     //search users
     public function result_user(Request $request) {
       $value= $request->all();
