@@ -99,19 +99,7 @@
       </button>
       <div class="col-md-5 list-couser__name wel "> <h5 style="margin-top:10px"><i class="pe-7s-user"></i> {{$value ->name }} </h5> </div>
       <div class="col-md-6 list-couser__name wel"><h5 style="margin-top:10px"> <i class="pe-7s-call"></i> {{ $value->phone }}</h5> </div>
-      <?php
-      $daym =  $value -> created_at;
-      $sepparator = '-';
-      $partsExp = explode($sepparator, $daym);
-      $d=cal_days_in_month(CAL_GREGORIAN,$partsExp[1],$partsExp[0]);
-      $date_exp= $d - (strtotime(date('Y-m-d')) - strtotime($value -> created_at)) / (60 * 60 * 24);
-      $date= date( 'Y-m-d');
-      $new_date = strtotime ( '+'.$date_exp.'day' , strtotime ( $date ) ) ;
-      $new_date = date ( 'd-m-Y' , $new_date );
-      $parts = explode($sepparator, $new_date);
-      $dayForDate = date("w", mktime(0, 0, 0, $parts[1], $parts[2], $parts[0]));
-    ?>
-    <div class="col-md-9 list-couser__name wel top10"> <strong><h5>Hạn phí khoá học {{$date_exp}} ngày, Thứ @if($dayForDate == 0) {{ 'CN' }} @endif  @if ($dayForDate == 6) {{'Bảy'}} @endif  @if($dayForDate!= 0 && $dayForDate !=6) {{ $dayForDate }} @endif , {{$new_date}}</h5></strong> </div>
+    <div class="col-md-9 list-couser__name wel top10"> <strong><h5>{{App\Cousers::calculateDate($value->created_at)}}</h5></strong> </div>
     <div class="col-md-12"> <h5> Tổng tiền thanh toán: {{number_format($value->pay)}} đ </h5> </div>
     <div class="col-md-offset-5 col-md-6 pd0 list-couser__images">
       <!-- Button trigger modal -->

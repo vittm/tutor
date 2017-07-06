@@ -211,7 +211,7 @@
 							 					<li>
 													<img src="img/icon/shooting-star.png" >
 													<span >{{ $id_user[0]->sumRatings }}</span>
-													<p class="top10">34 đánh giá</p>
+													<p class="top10">{{$count_id}} đánh giá</p>
 												</li>
 											</ul>
 										 </div>
@@ -525,7 +525,7 @@
 									<input type="hidden" name="score-average" class=" score-average js-average">
 									<div class="col-md-12 pd0 top30">
 										<div class="col-md-2">
-											<img src="{{ URL::to('img/avatar')}}/{{ $id_user[0]->avatar}}" alt="..." class="img-circle" height="70" width="70">
+											<img src="{{ URL::to('img/avatar')}}/{{ Auth::user()->avatar}}" alt="..." class="img-circle" height="70" width="70">
 										</div>
 										<div class="col-md-10 form-ratings__write">
 											<textarea rows="5" name="contentReview" class="form-control" placeholder="Nội dung đánh giá"></textarea>
@@ -541,7 +541,7 @@
 							</div>
 							</div>
 					    	 <div class="col-md-12 clear feedbacks">
-									 	@include ('ratings.ratings');
+									 	@include ('ratings.ratings')
 					    	 </div>
 					    </div>
 					  </div>
@@ -627,7 +627,7 @@ box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.5);padding-top: 15px;">
 					 <li>
 					 		<img src="img/icon/shooting-star.png" >
 							<span >{{ $id_user[0]->sumRatings }}</span>
-							<p>34 đánh giá</p>
+							<p>{{$count_id}} đánh giá</p>
 					 </li>
 				 </ul>
 				</div>
@@ -643,7 +643,7 @@ box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.5);padding-top: 15px;">
 							<option value="{{ $value->id }}" data-price="{{$value->price}}" data-type="{{$value->typeCouser}}"  >{{ $value->name_couser}}</option>
 						@endforeach
 				</select>
-				<p>Dự kiến số ngày học/tuần</p>
+				<p>Dự kiến số giờ học/ngày</p>
 				<input class="form-control" type="number" placeholder="3 ngày"name="planmoment">
 				<p>Dự kiến số buổi giờ/ngày</p>
 				<input class="form-control" type="number" placeholder="3 giờ"name="plantime">

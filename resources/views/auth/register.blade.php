@@ -114,10 +114,6 @@
 
                             <div class="col-md-12 form-signup">
                                 <div class="form-group">
-                                      <div class="col-md-12 pd0">
-                                        <h5>Ảnh đại diện </h5>
-                                        <input class="multiple-flie" type="file" name="avatar" >
-                                      </div>
                                       <div class="col-xs-4 pd0 top15">
                                         <select class="form-control">
                                         <option value="" disabled selected hidden>Ngày</option>

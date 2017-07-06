@@ -29,19 +29,7 @@
     <div class="col-md-6 list-couser__name wel "><h5 style="margin-top:10px"><span style="font-size:13px;">Giáo viên: </span> {{$value ->name }} </h5> </div>
     <div class="col-md-6 list-couser__name wel"> <h5 style="margin-top:10px"><span style="font-size:13px;">SĐT:</span> {{$value ->phone }} </h5> </div>
     <div class="col-md-12"> <h5> <span style="font-size:13px;">Tổng tiền thanh toán:</span> {{number_format($value->pay)}} Đ </h5>  </div>
-    <?php
-    $daym =  $value -> created_at;
-    $sepparator = '-';
-    $partsExp = explode($sepparator, $daym);
-    $d=cal_days_in_month(CAL_GREGORIAN,$partsExp[1],$partsExp[0]);
-    $date_exp= $d - (strtotime(date('Y-m-d')) - strtotime($value -> created_at)) / (60 * 60 * 24);
-    $date= date( 'Y-m-d');
-    $new_date = strtotime ( '+'.$date_exp.'day' , strtotime ( $date ) ) ;
-    $new_date = date ( 'd-m-Y' , $new_date );
-    $parts = explode($sepparator, $new_date);
-    $dayForDate = date("w", mktime(0, 0, 0, $parts[1], $parts[2], $parts[0]));
-    ?>
-    <div class="col-md-12 list-couser__name wel"> <h6>Hạn phí khoá học {{$date_exp}} ngày, Thứ @if($dayForDate == 0) {{ 'CN' }} @endif  @if ($dayForDate == 6) {{'Bảy'}} @endif  @if($dayForDate!= 0 && $dayForDate !=6) {{ $dayForDate }} @endif , {{$new_date}}</h6> </div>
+    <div class="col-md-12 list-couser__name wel"> <h6>{{App\Cousers::calculateDate($value->created_at)}}</h6> </div>
 </form>
 </div>
 </a>

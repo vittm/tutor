@@ -29,6 +29,9 @@
 					 <div class="col-md-3 "> Họ và Tên</div>
 					 <div class="col-md-8"><input type="text" name="name" value="{{ $id_user[0]->name}}"><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"></div>
 				</div>
+				@if($id_user[0]->active != 2)
+					<input type="hidden" name="title-profile" value="null">
+				@endif
 				@if($id_user[0]->active == 2)
 				<div class="col-md-12 pd0 top10">
 					 <div class="col-md-3 "> Lời chào</div>
@@ -74,12 +77,18 @@
 				</div>
 				<div class="col-md-12 pd0 top10">
 					<div class="col-md-3"> Hiện là</div>
-					<div class="col-md-8"><input type="text" name="edit-profile__jobs" value="{!!  $id_user[0]->jobs !!}"><img src="{{ URL::to('img/icon/inclined-pencil.png')}}">
-			 </div>
-				</div>
-				<div class="col-md-12 pd0 top10">
-					<div class="col-md-3"> Lĩnh vực giảng dạy</div>
-					<div class="col-md-8"><input type="text" name="edit-profile__field" value="{!! $id_user[0]->field !!}"><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"></div>
+					<div class="col-md-3">
+						<select class="form-control" name="edit-profile__jobs" style="border:none;">
+							<option value="1" @if($id_user[0]->jobs == '1') selected @endif>Sinh Viên</option>
+							<option value="2" @if($id_user[0]->jobs == '2') selected @endif>Giáo Viên</option>
+							<option value="1" @if($id_user[0]->jobs == '5') selected @endif>Giảng Viên</option>
+							<option value="3" @if($id_user[0]->jobs == '3') selected @endif>Học Sinh</option>
+							<option value="4" @if($id_user[0]->jobs == '4') selected @endif>Khác</option>
+						</select>
+			 		</div>
+					<div class="col-md-2">
+						<img src="{{ URL::to('img/icon/inclined-pencil.png')}}" style="position:relative;top:12px;">
+					</div>
 				</div>
 				<div class="col-md-12 pd0 top10">
 					<div class="col-md-3"> Môn học</div>
@@ -88,7 +97,7 @@
 				</div>
 				<div class="col-md-12 pd0 top10">
 					<div class="col-md-3"> Kinh nghiệm </div>
-					<div class="col-md-8"><input type="text" name="edit-profile__experience" value="{{ $id_user[0]->experience}}"><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"></div>
+					<div class="col-md-8"><input type="number" name="edit-profile__experience" value="{{ $id_user[0]->experience}}"><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"></div>
 				</div>
 				@endif
 				<div class="col-md-12 pd0 top10">

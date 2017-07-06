@@ -23,7 +23,7 @@
               <img src="{{ URL::to('/img/couser')}}/{{$value->picture_couser}}" style="width:100%;">
             </div>
             <div class="col-md-6">
-              <h5><strong>GIỚI THIỆU TỔNG QUÁT</strong> </h5>
+              <h5><strong>Số lượng học viên</strong> </h5>
               <p>{{$value->information}}</p>
             </div>
             <div class="col-md-12 top15">

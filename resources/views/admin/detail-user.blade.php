@@ -33,19 +33,7 @@
                                             <td class="td-name">
                                                 {{  $value-> name_couser}}
                                             </td>
-                                            <?php
-                                            $daym =  $value -> created_at;
-                                            $sepparator = '-';
-                                            $partsExp = explode($sepparator, $daym);
-                                            $d=cal_days_in_month(CAL_GREGORIAN,$partsExp[1],$partsExp[0]);
-                                            $date_exp= $d - (strtotime(date('Y-m-d')) - strtotime($value -> created_at)) / (60 * 60 * 24);
-                                            $date= date( 'Y-m-d');
-                                            $new_date = strtotime ( '+'.$date_exp.'day' , strtotime ( $date ) ) ;
-                                            $new_date = date ( 'd-m-Y' , $new_date );
-                                            $parts = explode($sepparator, $new_date);
-                                            $dayForDate = date("w", mktime(0, 0, 0, $parts[1], $parts[2], $parts[0]));
-                                            ?>
-                                            <td class="td-number">Hạn phí khoá học {{$date_exp}} ngày, Thứ @if($dayForDate == 0) {{ 'CN' }} @endif  @if ($dayForDate == 6) {{'Bảy'}} @endif  @if($dayForDate!= 0 && $dayForDate !=6) {{ $dayForDate }} @endif , {{$new_date}}</td>
+                                            <td class="td-number">{{App\Cousers::calculateDate($value->created_at)}}</td>
                                             <td class="td-name">
                                                 {{ number_format($value->price)}} đ
                                             </td>

@@ -6,7 +6,7 @@
 <!-- Nav tabs -->
 <div class="col-md-3">
 <ul class="col-md-12 nav nav-tabs tab-edit-profile" role="tablist">
-  <li role="presentation" class="active"><a href="#add" aria-controls="home" role="tab" data-toggle="tab">Đăng khoá học mới</a></li>
+  <li role="presentation" class="active"><a href="#add" aria-controls="home" role="tab" data-toggle="tab">Đăng lớp gia sư 1+1</a></li>
   <li role="presentation"><a href="#adding_opening" aria-controls="home" role="tab" data-toggle="tab"> Đăng lớp học sắp khai giảng </a></li>
   <li role="presentation"><a href="#student" aria-controls="home" role="tab" data-toggle="tab"> Danh sách khóa học</a></li>
 </ul>
@@ -23,7 +23,7 @@
             <div class="col-md-6"><h4 class="modal-title" id="myModalLabel">BỔ SUNG THÔNG TIN CÁ NHÂN</h4></div>
           </div>
 
-          <div class="col-md-12 top15">
+          <a href="{{ url('/chinh-sua-ca-nhan')}}-{{ Auth::user()->id }}" class="col-md-12 top15">
             @if(Auth::user()->code_user == null)
               <div class="notice notice-danger top10">
                   <i class="fa fa-times" style="color:#d73814;" aria-hidden="true"></i> <strong> Thiếu CMND</strong> <i style="font-size: 13px;">(sẽ được bảo mật)</i>
@@ -66,6 +66,7 @@
   </div>
 @endif
 <div class="tab-content edit-profile edit-couser">
+  <h3 class="text-center">Lớp gia sư 1+1 </h3>
   <div role="tabpanel" id="add" class="tab-pane active @if(Auth::user()->code_user == null || Auth::user()->info == null || Auth::user()->city == null || Auth::user()->educational == null ||Auth::user()->jobs == null || Auth::user()->picture == null) close @endif">
     <form class="form-horizontal  edit-profile__form col-md-offset-1 col-md-11 pd0" role="form" method="POST"
     action="{{ url('/couser/adding') }}-{{ $id_user[0]->id }}" enctype='multipart/form-data' >
@@ -88,9 +89,9 @@
            </ul>
          </div>
       </div>
-      <div class="col-md-12 pd0 top15">
-         <div class="col-md-3 "> Giới thiệu tổng quát</div>
-         <div class="col-md-8"> <textarea class="form-control" name="information" value=""></textarea> </div>
+      <div class="col-md-12 pd0 top10">
+        <div class="col-md-3">Môn dạy</div>
+        <div class="col-md-8"><input type="text" class="form-control" name="subjects"></div>
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3">Bạn sẽ học được gì</div>
@@ -112,7 +113,7 @@
      </div>
       </div>
       <div class="col-md-12 pd0 top10">
-        <div class="col-md-3 top15"> Thời gian học</div>
+        <div class="col-md-3 top15"> Thời gian bạn có thể dạy</div>
         <div class="col-md-8">
           <div class="col-md-12 pd0 top15">
             <div class="col-md-3">
@@ -152,7 +153,7 @@
         </div>
       </div>
       <div class="col-md-12 pd0 top30">
-        <div class="col-md-3">Học phí</div>
+        <div class="col-md-3">Học phí mong muốn/giờ</div>
         <div class="col-md-8"><textarea class="form-control" name="price" value=""></textarea></div>
       </div>
     <div class="col-md-offset-6 col-md-4 pd0 top30">
@@ -166,6 +167,7 @@
     </form>
   </div>
   <div role="tabpanel" class="tab-pane @if(Auth::user()->code_user == null || Auth::user()->info == null || Auth::user()->city == null || Auth::user()->educational == null ||Auth::user()->jobs == null || Auth::user()->picture == null) close @endif" id="adding_opening">
+    <h3 class="text-center">Đăng lớp học trên 2 học viên </h3>
     <form class="form-horizontal  edit-profile__form col-md-offset-1 col-md-11 pd0" role="form" method="POST" action="{{ url('/couser/opening') }}-{{ $id_user[0]->id }}" enctype='multipart/form-data'>
                       {{ csrf_field() }}
       <input type="hidden" name="id_user" value="{{ $id_user[0]->id}}">
@@ -181,8 +183,18 @@
          </div>
       </div>
       <div class="col-md-12 pd0">
-         <div class="col-md-3 "> Giới thiệu tổng quát</div>
-         <div class="col-md-8"> <textarea class="form-control" name="information" value=""></textarea> </div>
+         <div class="col-md-3 "> Số lượng</div>
+         <div class="col-md-4">
+           <select class="form-control" name="information">
+              <option value="1">2 - 10 người</option>
+              <option value="2">10 - 20 người</option>
+              <option value="3">trên 20 người</option>
+           </select>
+         </div>
+      </div>
+      <div class="col-md-12 pd0 top10">
+        <div class="col-md-3">Môn dạy</div>
+        <div class="col-md-8"><input type="text" class="form-control" name="subjects"></div>
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3">Bạn sẽ học được gì</div>
@@ -219,7 +231,7 @@
         </div>
       </div>
       <div class="col-md-12 pd0 top30">
-        <div class="col-md-3">Học phí</div>
+        <div class="col-md-3">Học phí mong muốn/tháng</div>
         <div class="col-md-8"><textarea class="form-control" name="price" value=""></textarea></div>
       </div>
     <div class="col-md-offset-6 col-md-4 pd0 top30">

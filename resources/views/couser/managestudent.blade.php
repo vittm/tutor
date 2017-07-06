@@ -29,7 +29,7 @@
                 {{ number_format($value->price)}} <sup>đ </sup>
               </p></div>
           </div>
-          <div class="col-md-6 pd0"><p>Học phí dự tính</p></div><div class="col-md-6"><p style="font-weight:500;color: #161542">
+          <div class="col-md-6 pd0"><p>@if($value -> typeclass == '1') Học phí dự tính/giờ @else Học phí dự tính/tháng @endif</p></div><div class="col-md-6"><p style="font-weight:500;color: #161542">
             @if($value -> typeclass == '1')
             {{ number_format(((($value->planmoment * 5 ) * $value->plantime) * $value->price )) }} <sup>đ </sup>
             @endif
@@ -42,20 +42,8 @@
           </div>
           <button class="btn btn-origan col-md-offset-8 col-md-4 pd0" @if($value->action != 0) {{'disabled="disabled"'}} @endif" data-toggle="modal" data-target="#myModal{{$key}}">
             @if($value->action == 0) {{'Thanh Toán'}} @else {{ 'Đã Thanh Toán' }} @endif</button>
-          <?php
-            $daym =  $value -> created_at;
-            $sepparator = '-';
-            $partsExp = explode($sepparator, $daym);
-            $d=cal_days_in_month(CAL_GREGORIAN,$partsExp[1],$partsExp[0]);
-            $date_exp= $d - (strtotime(date('Y-m-d')) - strtotime($value -> created_at)) / (60 * 60 * 24);
-            $date= date( 'Y-m-d');
-            $new_date = strtotime ( '+'.$date_exp.'day' , strtotime ( $date ) ) ;
-            $new_date = date ( 'd-m-Y' , $new_date );
-            $parts = explode($sepparator, $new_date);
-            $dayForDate = date("w", mktime(0, 0, 0, $parts[1], $parts[2], $parts[0]));
-          ?>
           @if($value->action != 1)
-          <div class="col-md-offset-6 col-md-6 list-couser__name text-right pd0 wel"><br> <h6>Hạn phí khoá học {{$date_exp}} ngày, Thứ @if($dayForDate == 0) {{ 'CN' }} @endif  @if ($dayForDate == 6) {{'Bảy'}} @endif  @if($dayForDate!= 0 && $dayForDate !=6) {{ $dayForDate }} @endif , {{$new_date}}</h6> </div>
+          <div class="col-md-offset-6 col-md-6 list-couser__name text-right pd0 wel"><br> <h6>{{App\Cousers::calculateDate($value->created_at)}}</h6> </div>
           @endif
           <!-- Modal -->
             <div class="modal fade" id="myModal{{$key}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -108,19 +96,7 @@
                           <i> ( 30% * {{number_format($value ->price)}} = {{number_format($value->pay)}} <sup> đ</sup> )</i>
                           @endif
                         </div>
-                        <?php
-                        $daym =  $value -> created_at;
-                        $sepparator = '-';
-                        $partsExp = explode($sepparator, $daym);
-                        $d=cal_days_in_month(CAL_GREGORIAN,$partsExp[1],$partsExp[0]);
-                        $date_exp= $d - (strtotime(date('Y-m-d')) - strtotime($value -> created_at)) / (60 * 60 * 24);
-                        $date= date( 'Y-m-d');
-                        $new_date = strtotime ( '+'.$date_exp.'day' , strtotime ( $date ) ) ;
-                        $new_date = date ( 'd-m-Y' , $new_date );
-                        $parts = explode($sepparator, $new_date);
-                        $dayForDate = date("w", mktime(0, 0, 0, $parts[1], $parts[2], $parts[0]));
-                        ?>
-                        <div class="col-md-12 list-couser__name wel"> <h5>Hạn phí thanh toán: <strong style="color:#fcaf00;"> {{$date_exp}} ngày, Thứ @if($dayForDate == 0) {{ 'CN' }} @endif  @if ($dayForDate == 6) {{'Bảy'}} @endif  @if($dayForDate!= 0 && $dayForDate !=6) {{ $dayForDate }} @endif , {{$new_date}}</strong></h5> </div>
+                        <div class="col-md-12 list-couser__name wel"> <h5>{{App\Cousers::calculateDate($value->created_at)}}</strong></h5> </div>
                         <hr>
                         <div class="col-md-12">
                           <h3><strong> Hình Thức Thanh Toán </strong> </h3>

@@ -24,7 +24,11 @@
 					<p class="action-menu__counter text-center">{{$count_course}} Nội dung dạy</p>
 				</div>
 				<div class="col-md-12">
-					@if($value-> jobs != null)<button class="btn btn-origan" style="float: left!important;">{{ $value-> jobs }} </button>@endif
+					@if($value-> jobs != null)<button class="btn btn-origan" style="float: left!important;">@if($value->jobs == '1') Sinh Viên @endif
+			    @if($value->jobs == '2') Giáo Viên @endif
+			    @if($value->jobs == '5') Giảng Viên @endif
+			    @if($value->jobs == '3') Học Sinh @endif
+			    @if($value->jobs == '4') Khác @endif </button>@endif
 				</div>
 			</div>
 		</div>

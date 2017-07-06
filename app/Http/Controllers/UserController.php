@@ -293,7 +293,6 @@ class UserController extends Controller
         $profile= ([
             'name' => $input['name'],
             'title' => $input['title-profile'],
-            'field' => $input['edit-profile__field'],
             'subjects' => $input['filed-subject'],
             'date' => $input['edit-profile__date'],
             'gender' => $input['gender'],

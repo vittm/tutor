@@ -41,6 +41,8 @@
         <li><a href="{{ URL('tim-kiem-gia-su') }}" class="menu__item">Tìm Giáo Viên</a></li>
         @if (Auth::guest())
                             <li><a href="{{ url('login') }}" class="menu__item">Đăng nhập</a></li>
+                            <li><a href="{{ url('/register') }}" class="menu__item">Đăng Ký</a></li>
+                            <li><a href="0868505523" class="menu__item">0868 505 523</a></li>
                         @else
 
                             <li class="global-header__login log--active">

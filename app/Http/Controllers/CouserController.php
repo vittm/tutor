@@ -47,6 +47,7 @@ class CouserController extends Controller
           $db->picture_couser = $nameConvert;
           $db->name_couser = $input['title'];
           $db->who = $input['who'];
+          $db->subjects= $input['subjects'];
           $db->information = $input['information'];
           $db->study = $input['study'];
           $db->type = $input['type'];

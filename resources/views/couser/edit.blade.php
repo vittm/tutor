@@ -46,10 +46,7 @@
            @endif
          </div>
       </div>
-      <div class="col-md-12 pd0 top10">
-         <div class="col-md-3 "> Giới thiệu tổng quát</div>
-         <div class="col-md-8"> <textarea class="form-control" name="information" >{{$couser[0]->information}}</textarea><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"> </div>
-      </div>
+
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3">Bạn sẽ học được gì</div>
         <div class="col-md-8"><textarea class="form-control" name="study">{{$couser[0]->study}}</textarea><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"></div>
@@ -124,6 +121,17 @@
       @endif
 
       @if($couser[0]->typeCouser == '2')
+          <div class="col-md-12 pd0 top10">
+          <select class="form-control col-md-4" name="information">
+             <option value="1" @if($couser[0]->information == 1) selected @endif>2 - 10 người</option>
+             <option value="2" @if($couser[0]->information == 2) selected @endif>10 - 20 người</option>
+             <option value="3" @if($couser[0]->information == 3) selected @endif>trên 20 người</option>
+          </select>
+        </div>
+        <div class="col-md-12 pd0 top10">
+          <div class="col-md-3">Môn dạy</div>
+          <div class="col-md-8"><input type="text" value="{{$couser[0]->subjects}}" class="form-control" name="subjects"></div>
+        </div>
         <div class="col-md-12 pd0 top10">
           <div class="col-md-3">Thời gian bắt đầu</div>
           <div class="col-md-8"><input type="date" class="form-control" name="opentime" value="{{$couser[0]->opentime}}"></input>
