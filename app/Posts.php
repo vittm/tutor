@@ -10,7 +10,7 @@ class Posts extends Authenticatable
 
 	public function scopefilterClass($query)
     {
-        
+
         if(Input::get('valueSubject'))
         {
             $query->where('subject', 'like', "%".Input::get('valueSubject')."%");
@@ -19,7 +19,7 @@ class Posts extends Authenticatable
         {
             $query->orwhere('grade', 'like', "%".Input::get('levle-find')."%");
         }
-    
+
         if(Input::get('address'))
         {
             $query->where('location', 'like', "%".Input::get('address-find')."%");
@@ -38,5 +38,5 @@ class Posts extends Authenticatable
         }
         return $query;
     }
-    
+
 }

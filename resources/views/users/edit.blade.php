@@ -66,7 +66,7 @@
 					<div class="col-md-8 address-form">
 							<input class="col-md-4" type="text" name="ward" placeholder="Số nhà, tên đường, phường" value="{{ $id_user[0]->ward }}">
 							<input class="col-md-4" type="text" name="distric" placeholder="Quận" value="{{ $id_user[0]->district }}">
-							<input class="col-md-4" type="text" name="city" placeholder="Thành Phố" value="{{ $id_user[0]->city }}">
+							<input class="col-md-4" type="text" id="address-find" name="city" placeholder="Thành Phố" value="{{ $id_user[0]->city }}">
 					</div>
 				</div>
 				@if($id_user[0]->active == 2)
@@ -92,7 +92,7 @@
 				</div>
 				<div class="col-md-12 pd0 top10">
 					<div class="col-md-3"> Môn học</div>
-					<div class="col-md-8"><input type="text" name="filed-subject" value="{{ $id_user[0]->subjects }}"><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"></div>
+					<div class="col-md-8"><input type="text" id="subject-find" name="filed-subject" value="{{ $id_user[0]->subjects }}"><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"></div>
 					<div class="col-md-offset-3 col-md-8"> <p  style="font-size: 13px; font-style: italic; color: rgb(176, 176, 176);">Nếu có nhiều dữ liệu phân cách bằng dấu phẩy nhé! </p></div>
 				</div>
 				<div class="col-md-12 pd0 top10">

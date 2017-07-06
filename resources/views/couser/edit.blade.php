@@ -130,7 +130,7 @@
         </div>
         <div class="col-md-12 pd0 top10">
           <div class="col-md-3">Môn dạy</div>
-          <div class="col-md-8"><input type="text" value="{{$couser[0]->subjects}}" class="form-control" name="subjects"></div>
+          <div class="col-md-8"><input type="text" value="{{$couser[0]->subjects}}" class="form-control" id="subject-find" name="subjects"></div>
         </div>
         <div class="col-md-12 pd0 top10">
           <div class="col-md-3">Thời gian bắt đầu</div>

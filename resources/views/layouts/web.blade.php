@@ -76,7 +76,7 @@
                         </li>
                         @endif
 
-                        <li><a  data-toggle="dropdown" id="notification" role="button" aria-expanded="false" @if (Auth::check()) href="{{ url('/') }}" @else href="{{ url('#') }}" @endif class="menu__item" style="position:realative;"><img src="{{ URL::to('/img/icon/earth.svg')}}" alt="..." class="img-circle" height="20"><span class="notify">@if(Auth::check()){{$quanlityNotify}}@else 1 @endif</span></a>
+                        <li><a  data-toggle="dropdown" id="notification" role="button" aria-expanded="false" @if (Auth::check()) href="{{ url('/profile/notification')}}" @else href="{{ url('/register') }}" @endif class="menu__item" style="position:realative;"><img src="{{ URL::to('/img/icon/earth.svg')}}" alt="..." class="img-circle" height="20"><span class="notify">@if(Auth::check()){{$quanlityNotify}}@else 1 @endif</span></a>
                           @if (Auth::check())
                             <ul class="dropdown-menu notificationn" role="menu" aria-labelledby="notification"style="float:right">
                               <a class="list-group-item active" style="padding:5px;border-radius: 0;text-align: left;background:#fdb000;border-color: #fdb000;"> Thông báo </a>
@@ -112,8 +112,8 @@
      <script type="text/javascript" src="{{ URL::to('js/jquery.slidizle.js') }}"></script> <!-- Link thư viện jquery -->
 
     <script type="text/javascript" src="{{ URL::to('js/angular.min.js') }}"></script>
-     <script type="text/javascript" src="js/jquery.autocomplete.min.js"></script>
-      <script type="text/javascript" src="js/currency-autocomplete.js"></script>
+     <script type="text/javascript" src="{{ URL::to('js/jquery.autocomplete.min.js') }}"></script>
+      <script type="text/javascript" src="{{ URL::to('js/currency-autocomplete.js') }}"></script>
      <script type="text/javascript" src="{{ URL::to('js/kendo.all.min.js') }}"></script> <!-- Link thư viện jquery -->
 
     <script type="text/javascript" src="{{ URL::to('js/scripts.js') }}"></script>   <!--- Link jquery tự viết-->

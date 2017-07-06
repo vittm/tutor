@@ -48,7 +48,7 @@ class CouserController extends Controller
           $db->name_couser = $input['title'];
           $db->who = $input['who'];
           $db->subjects= $input['subjects'];
-          $db->information = $input['information'];
+          $db->information = 0;
           $db->study = $input['study'];
           $db->type = $input['type'];
           $db->program = $input['program'];

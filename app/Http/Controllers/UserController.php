@@ -34,13 +34,18 @@ class UserController extends Controller
         $content_teach = DB::table('ratings')->where('id_user', '=', $id)->sum('content_teach');
         $value_get = DB::table('ratings')->where('id_user', '=', $id)->sum('value_get');
         $price = DB::table('ratings')->where('id_user', '=', $id)->sum('price');
-        $count_id = DB::table('ratings')->where('id_user', '=', $id)->count();
+
         $count_student = DB::table('registercousers')->where('id_teacher', '=', $id)->count();
         $learn_teach = DB::table('ratings')->where('id_user', '=', $id)->sum('learn');
         $feeling = DB::table('ratings')->where('id_user', '=', $id)->sum('feeling');
         $question = DB::table('comments')->where('id_user', '=', $id)->orderBy('id', 'desc')->get();
         $cmt = DB::table('cmtprofiles')->join('users','cmtprofiles.id_user','=','users.id')->where('cmtprofiles.id_user', '=', $id)->get();
         $ratings = DB::table('ratings')->join('users','ratings.id_post','=','users.id')->where([['ratings.id_user', '=', $id],['id_child','==',0]])->select('ratings.*','users.name','users.avatar')->get();
+        $count_id = DB::table('ratings')->where('id_user', '=', $id)->count();
+        $view= $id_user[0]->viewed + 1;
+        //Rating
+        $ratingsuser =  round(($content_teach+ $value_get + $price + $feeling + $learn_teach)/($count_id*5),2);
+
 
         if($count_id === 0){
             $rating = 0;
@@ -51,14 +56,17 @@ class UserController extends Controller
             $feeling = 0;
             $count_id= 1;
         }else{
-            $rating =DB::table('ratings')->where('id_user', '=', $id)->get();
-            $content_teach = DB::table('ratings')->where('id_user', '=', $id)->sum('content_teach');
-            $value_get = DB::table('ratings')->where('id_user', '=', $id)->sum('value_get');
-            $price = DB::table('ratings')->where('id_user', '=', $id)->sum('price');
-            $count_id = DB::table('ratings')->where('id_user', '=', $id)->count();
-            $learn_teach = DB::table('ratings')->where('id_user', '=', $id)->sum('learn');
-            $feeling = DB::table('ratings')->where('id_user', '=', $id)->sum('feeling');
+            $rating =DB::table('ratings')->where([['id_user', '=', $id],['id_child','==',0]])->get();
+            $content_teach = DB::table('ratings')->where([['id_user', '=', $id],['id_child','==',0]])->sum('content_teach');
+            $value_get = DB::table('ratings')->where([['id_user', '=', $id],['id_child','==',0]])->sum('value_get');
+            $price = DB::table('ratings')->where([['id_user', '=', $id],['id_child','==',0]])->sum('price');
+            $count_id = DB::table('ratings')->where([['id_user', '=', $id],['id_child','==',0]])->count();
+            $learn_teach = DB::table('ratings')->where([['id_user', '=', $id],['id_child','==',0]])->sum('learn');
+            $feeling = DB::table('ratings')->where([['id_user', '=', $id],['id_child','==',0]])->sum('feeling');
         }
+
+        $ratingsuser =  round(($content_teach+ $value_get + $price + $feeling + $learn_teach)/($count_id*5),2);
+        DB::table('users')->where('id', $id)->update(['sumRatings' => $ratingsuser , 'countRatings' => $count_id,'viewed' => $view ]);
         if(Auth::check()){
             $idAuth= Auth::user()->id;
         }
@@ -67,7 +75,7 @@ class UserController extends Controller
         }
         $id_student = DB::table('registercousers')->join('cousers', 'cousers.id', '=', 'registercousers.id_course')->join('users', 'users.id', '=', 'cousers.id_user')->where([['registercousers.user', '=', $id]])->get();
         $list_cousers = DB::table('cousers')->join('users', 'users.id', '=', 'cousers.id_user')->where([['cousers.id_user', '=', $id_user[0]->id]])->get();
-        $view= $id_user[0]->viewed + 1;
+
 
         //user_id là trang cá nhân của người khác
         //follower_id là của user
@@ -75,8 +83,6 @@ class UserController extends Controller
         $zfollowers= DB::table('followers')->where([['follower_id','=',$id_user[0]->id]])->count(); //đang follow người ta
         $kfollowers= DB::table('followers')->where([['user_id','=',$id_user[0]->id]])->count(); // người ta theo dõi
         $listfollowers= DB::table('followers')->join('users', 'users.id', '=', 'followers.user_id')->where([['follower_id','=',$id]])->get();
-        $ratingsuser =  round(($content_teach+ $value_get + $price + $feeling + $learn_teach)/($count_id*5),2);
-        DB::table('users')->where('id', $id)->update(['sumRatings' => $ratingsuser , 'countRatings' => $count_id,'viewed' => $view ]);
 
         $job= json_decode($id_user[0]->job,JSON_BIGINT_AS_STRING);
         $status =  DB::table('users')->where('id', $idAuth )->select('id')->first();
@@ -92,10 +98,9 @@ class UserController extends Controller
     public function edit(Request $request, $id) {
         $id_user = DB::table('users')->where('id', '=', $id)->get();
         $time = json_decode($id_user[0]->time_learn,JSON_BIGINT_AS_STRING);
-        $learn = DB::table('learns')->where('id_user', '=', $id)->get();
         $job= json_decode($id_user[0]->job,JSON_BIGINT_AS_STRING);
         $subject= explode(',', $id_user[0]->subjects);
-        return view('users.edit', ['id_user' => $id_user,'subject' => $subject, 'learn' => $learn,'time'=> $time,'job' => $job ]);
+        return view('users.edit', ['id_user' => $id_user]);
     }
     public function editing_style(Request $request, $id){
       $input = $request->all();

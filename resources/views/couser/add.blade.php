@@ -91,7 +91,7 @@
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3">Môn dạy</div>
-        <div class="col-md-8"><input type="text" class="form-control" name="subjects"></div>
+        <div class="col-md-8"><input type="text" class="form-control" name="subjects" id="subject-find"></div>
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3">Bạn sẽ học được gì</div>
@@ -194,7 +194,7 @@
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3">Môn dạy</div>
-        <div class="col-md-8"><input type="text" class="form-control" name="subjects"></div>
+        <div class="col-md-8"><input type="text" class="form-control" name="subjects" id="subject-find2"></div>
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3">Bạn sẽ học được gì</div>

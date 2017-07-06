@@ -11,7 +11,6 @@
 		@include('modal.detail-course')
 	@endforeach
 @endif
-
 	<div class="container pd0" style="margin-top: -10rem;background: #f7f7f7	">
 		<div class="cover-profile" >
 		@if($id_user[0]->cover != null)
@@ -265,6 +264,7 @@
 								</div>
 							<div class="collapse top15 col-md-12" id="collapseExample">
 								<div class="col-md-12 wel">
+								@if(Auth::check())
 								<form class="col-md-12 pd0 form-ratings" method="POST" action="{{ url('/review-teacher') }}-{{ $id_user[0]->id }}" enctype='multipart/form-data'>
 					  				{{ csrf_field() }}
 								  <input type="hidden" class="id_user" name="id_user" value="{{ $id_user[0]->id }}">
@@ -538,6 +538,9 @@
 										</div>
 									</div>
 								</form>
+								@else
+									<p>Bạn hãy đăng nhập để viết đánh giá </p>
+								@endif
 							</div>
 							</div>
 					    	 <div class="col-md-12 clear feedbacks">

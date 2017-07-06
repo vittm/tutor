@@ -64,6 +64,11 @@ class User extends Authenticatable
 
             $query->where('city','like' ,"%".$address."%");
         }
+        if(Input::get('course'))
+        {
+            $course= Input::get('coursehidden');
+            $query->join('cousers','users.id','cousers.id_user')->where([['cousers.information','like' ,"%".$course."%"],['users.active','=','2']]);
+        }
         if(Input::get('valueoraddress')){
              $query->where('address', 'like', "%".Input::get('valueoraddress')."%")->orWhere('field', 'like', "%".Input::get('valueoraddress')."%");
         }
