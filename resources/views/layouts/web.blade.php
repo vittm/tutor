@@ -104,7 +104,64 @@
 
 </main>
 
-    <div class="footer-home"></div>
+    <div class="container footer-home">
+        <div class="col-md-3 top15">
+          <a href="{{ url('/') }}" class="col-md-12 logo">
+            <img  src="{{ url('img/logo.png')}}" alt="">
+          </a>
+        </div>
+        <div class="col-md-5">
+          <h3 style="text-align: right;"><i> Nơi kết nối học viên và gia sư </i> </h3>
+        </div>
+        <div class="col-md-4">
+          <a href="{{ url('login') }}" class="btn btn-origan btn-sm top15" style="float: right;">
+              Đăng nhập
+          </a>
+        </div>
+        <div  class="col-md-12" ng-controller="menuCtrl">
+
+          <div class="container footer-general">
+                <div class="container">
+                    <div class="top">
+                        <div class="col-md-3 float-left">
+                            <a href="">
+                                <h5 >GIỚI THIỆU </h5>
+                            </a>
+                            <a href="#"> Về chúng tôi </a> <br>
+                            <a href="#"> Cách thức hoạt động </a><br>
+                            <a href="#"> Điều khoản sử dụng </a><br>
+                        </div>
+                        <div class="col-md-3 float-left">
+                            <a href="">
+                                <h5 >HỖ TRỢ </h5>
+                            </a>
+                            <a href="#"> Hướng dẫn giáo viên </a> <br>
+                            <a href="#"> Hướng dẫn học viên </a><br>
+                            <a href="#"> Những câu hỏi thường gặp </a><br>
+                        </div>
+                        <div class="col-md-3 float-left">
+                          <a href="">
+                              <h5>KẾT NỐI QUA FANPAGE: </h5>
+                          </a>
+
+                        </div>
+
+                        <div class="col-md-3 text-center float-left">
+                              <a href="">
+                                  <h5>LIÊN HỆ</h5>
+                              </a>
+                              <p>
+                                  Email: <a onclick="GA('Footter', 'ClickEmail', window.pageName);" href="" class="link green">hi@wiis.edu.vn</a>
+                              </p>
+                              <p>
+                                  Hotline: <a onclick="GA('Footter', 'ClickHotline', window.pageName);" href="" class="link green"> 0868 505 523</a>
+                              </p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+    </div>
 
 </div>
     <script type="text/javascript" src="{{ URL::to('js/jquery-1.10.2.js') }}"></script> <!-- Link thư viện jquery -->

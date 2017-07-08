@@ -63,7 +63,6 @@
 			</div>
 			<span class="clearfix borda"></span>
 		</article>
-
     @endforeach
 </form>
 @endif

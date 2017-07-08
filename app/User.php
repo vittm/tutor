@@ -45,7 +45,7 @@ class User extends Authenticatable
     {
         if(Input::get('valueSubject'))
         {
-            $query->where('subjects', 'like', "%".Input::get('valueSubject')."%");
+            $query->join('cousers','users.id','cousers.id_user')->where([['cousers.subjects','like' ,"%".$course."%"],['users.active','=','2']])->groupBy('users.id');
         }
         if(Input::get('levle-find'))
         {
@@ -67,18 +67,10 @@ class User extends Authenticatable
         if(Input::get('course'))
         {
             $course= Input::get('coursehidden');
-            $query->join('cousers','users.id','cousers.id_user')->where([['cousers.information','like' ,"%".$course."%"],['users.active','=','2']]);
+            $query->join('cousers','users.id','cousers.id_user')->where([['cousers.information','like' ,"%".$course."%"],['users.active','=','2']])->groupBy('users.id');
         }
         if(Input::get('valueoraddress')){
              $query->where('address', 'like', "%".Input::get('valueoraddress')."%")->orWhere('field', 'like', "%".Input::get('valueoraddress')."%");
-        }
-        if(Input::get('rating'))
-        {
-            $query->orderBy('sumRatings','desc');
-        }
-        if(Input::get('like'))
-        {
-            $query->orderBy('like_blog','desc');
         }
         if(Input::get('lowestPrice'))
         {

@@ -1323,6 +1323,12 @@ body .pl0 {
 }
 .footer-general {
     margin-top: 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background: #f5f5f5;
+}
+div.footer-general h3, div.footer-general a {
+  color: #000000;
 }
 .content-feedback {
     margin-top: 30px;
