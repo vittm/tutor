@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ URL::to('css/desktop.css') }}" >
 
 
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700" rel="stylesheet">
 </head>
 
 

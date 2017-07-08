@@ -17,12 +17,12 @@
 @if($id_user[0]->active == 2)
 <div class="col-md-12 pd0 top15">
 <div class="col-md-4"> Học vấn</div>
-<div class="col-md-8"><strong>{!!  $id_user[0]->educational !!}</strong></div>
+<div class="col-md-8"><strong style="color: #222086;">{!!  $id_user[0]->educational !!}</strong></div>
 </div>
 <div class="col-md-12 pd0 top15">
 <div class="col-md-4"> Hiện là</div>
 <div class="col-md-8">
-  <strong>
+  <strong style="color: #222086;">
     @if($id_user[0]->jobs == '1') Sinh Viên @endif
     @if($id_user[0]->jobs == '2') Giáo Viên @endif
     @if($id_user[0]->jobs == '5') Giảng Viên @endif
@@ -31,15 +31,11 @@
   </strong>
 </div>
 </div>
-<div class="col-md-12 pd0 top15">
-<div class="col-md-4"> Xác nhận hồ sơ vào ngày</div>
-<div class="col-md-8"><strong>{!! Carbon\Carbon::parse($id_user[0]->created_at)->format('m/d/Y')  !!}</strong></div>
-</div>
 @endif
 <div class="col-md-12 pd0 top15">
   <div class="col-md-4"> Cập nhập lần cuối</div>
   <div class="col-md-8"><strong>{!! Carbon\Carbon::parse($id_user[0]->updated_at)->format('m/d/Y')  !!}</strong></div>
 </div>
-<div class="col-md-12 top15">
+<div class="col-md-12 top15 info-profile" >
   <p>{!! $id_user[0]->info !!}</p>
 </div>

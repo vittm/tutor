@@ -1,18 +1,18 @@
 @font-face {
     font-family: 'Roboto';
-    src: url("../fonts/roboto/Roboto-Regular.ttf") format("truetype");
+    src: url("../fonts/roboto/OpenSans-Regular.ttf") format("truetype");
     font-weight: 300;
     font-style: normal;
 }
 @font-face {
     font-family: 'Roboto';
-    src: url("../fonts/roboto/Roboto-Medium.ttf") format("truetype");
+    src: url("../fonts/roboto/OpenSans-SemiBold.ttf") format("truetype");
     font-weight: 500;
     font-style: normal;
 }
 @font-face {
     font-family: 'Roboto';
-    src: url("../fonts/roboto/Roboto-Bold.ttf") format("truetype");
+    src: url("../fonts/roboto/OpenSans-Bold.ttf") format("truetype");
     font-weight: 700;
     font-style: normal;
 }
@@ -20,7 +20,7 @@
     font-family: 'Roboto', sans-serif;
 }
 body {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: #161542;
 }
 body p, body h3, body span, body h4 {
@@ -11820,6 +11820,10 @@ body .action-menu__left__share .col-md-6 p {
 .list-information .col-md-4 > span {
   position: relative;
   top: 5px;
+  font-size: 14px;
+}
+.list-information .col-md-8 > strong {
+  font-size: 14px;
 }
 .list-couser {
   position: relative;
@@ -12126,7 +12130,11 @@ application_ltr-7274c7e….css:1
   position: relative;
   font-size: 150%;
 }
-
+.info-profile > p{
+  word-spacing: 5px;
+  font-weight: 300;
+  font-size: 14px;
+}
 .total {
   vertical-align: sub;
   top: 0px;
