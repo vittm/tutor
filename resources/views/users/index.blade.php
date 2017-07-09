@@ -121,7 +121,7 @@
 				<h3 style="color: #ffffff;"><?php $str = explode(' ', $id_user[0]->name); ?>{{end($str)}} {{reset($str)}} @if($id_user[0]->active == 2 ) <img class="sticker-verify" src="{{ URL::to('img/icon/VectorSmartObjectcop.png')}}" alt="">@endif</h3>
 				@if($id_user[0]->district != null)<span style="color: #ffffff;font-weight: 500;"> Giáo viên từ Quận {{ $id_user[0]->district }}, {{ $id_user[0]->city }}</span> @endif
 				@if($id_user[0]->active == 2)
-				<h3 style="margin-top: 3.3rem; padding-left: 5px;">{{ $id_user[0] -> title }} </h3>
+				<h3 style="margin-top: 4.7rem; padding-left: 5px;">{{ $id_user[0] -> title }} </h3>
 				@endif
 				@if($id_user[0]->active !=2)
 				<div class="col-md-12 pdl" style="margin-top: 40px;">

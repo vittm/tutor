@@ -209,119 +209,58 @@
     <div class="container @if($show[2]->value != '1') hidden @endif">
         <h3 class="text-center"> CÁC MÔN HỌC NỔI BẬT </h3>
 				<br>
+		<?php $list_subject = App\Cousers::list_subject(
+			'Tiếng Anh','smiling-boy-visiting-the-big-ben_1147-46.jpg',
+			'Tiếng Nhật','417f3401d01f4b6675405371a3b59970.jpg',
+			'Toán','back-to-school-child-plus-arms-crossed-notepad_1134-1297.jpg',
+			'Sinh Học','d8e44f8bd7b9f033668b4e4d5c06792e.jpg',
+			'Tiếng Hàn','6bca77ca810486af8e63b3908575d735.jpg',
+			'Tiếng Trung','chinese-calligraphy-scene-text-chinese-ancient-prose_1387-76.jpg'
+		);
+		$list_subject1 = App\Cousers::list_subject(
+			'Hoá Học','young-researchers-experimenting-with-substances_1098-2319.jpg',
+			'Vật Lý','de-thi-thu-vat-ly-vao-10-thpt-cua-chuyen-dai-hoc-su-pham-hn-hinh-anh-3.jpg',
+			' ', ' ',
+			' ', ' ',
+			' ', ' ',
+			' ', ' '
+		);
+		?>
+
     <ul class="listing-subject-hot top30">
+
+				@foreach($list_subject as $sb)
         <li class="col-md-4">
-            <a href="{{ url('/tim-kiem-gia-su?address-find=&valueSubject=Tiếng+Anh')}}"class="thumbnail col-md-12">
-                <img src="img/subject/smiling-boy-visiting-the-big-ben_1147-46.jpg" alt="...">
+            <a href="{{ url('/tim-kiem-gia-su?address-find=&valueSubject=')}}{{$sb['name']}}"class="thumbnail col-md-12">
+								<img src="{{ URL::to('img/subject')}}/{{$sb['img']}}" alt="...">
                 <div class="caption">
-                    <h3> Tiếng Anh</h3>
+                    <h3> {{ $sb['name'] }}</h3>
                     <ul>
-                        <li> <span>14 </span> Lớp học</li>
-                        <li> <span>10 </span> Gia sư </li>
-                        <li> <span>32 </span> Học viên</li>
+                        <li> <span>{{$sb['course']}} </span> Lớp học</li>
+                        <li> <span>{{$sb['teacher']}} </span> Gia sư </li>
+                        <li> <span>{{$sb['student']}} </span> Học viên</li>
                     </ul>
                 </div>
 
             </a>
         </li>
-        <li class="col-md-4">
-              <a href="{{ url('/tim-kiem-gia-su?address-find=&valueSubject=Tiếng+Nhật')}}"class="thumbnail col-md-12">
-                <img src="img/subject/417f3401d01f4b6675405371a3b59970.jpg" alt="...">
-                <div class="caption">
-                    <h3> Tiếng Nhật</h3>
-                    <ul>
-                        <li> <span>14 </span> Lớp học</li>
-                        <li> <span>10 </span> Gia sư </li>
-                        <li> <span>32 </span> Học viên</li>
-                    </ul>
-                </div>
-
-            </a>
-        </li>
-        <li class="col-md-4">
-            <a href="{{ url('/tim-kiem-gia-su?address-find=&valueSubject=Toán+Học')}}"class="thumbnail col-md-12">
-                <img src="img/subject/back-to-school-child-plus-arms-crossed-notepad_1134-1297.jpg" alt="...">
-                <div class="caption">
-                    <h3> Toán</h3>
-                    <ul>
-                        <li> <span>14 </span> Lớp học</li>
-                        <li> <span>10 </span> Gia sư </li>
-                        <li> <span>32 </span> Học viên</li>
-                    </ul>
-                </div>
-
-            </a>
-        </li>
-        <li class="col-md-4">
-            <a href="{{ url('/tim-kiem-gia-su?address-find=&valueSubject=Sinh+Học')}}"class="thumbnail col-md-12">
-                <img src="img/subject/d8e44f8bd7b9f033668b4e4d5c06792e.jpg" alt="...">
-                <div class="caption">
-                    <h3> Sinh Học</h3>
-                    <ul>
-                        <li> <span>14 </span> Lớp học</li>
-                        <li> <span>10 </span> Gia sư </li>
-                        <li> <span>32 </span> Học viên</li>
-                    </ul>
-                </div>
-
-            </a>
-        </li>
-        <li class="col-md-4">
-            <a href="{{ url('/tim-kiem-gia-su?address-find=&valueSubject=Tiếng+Hàn')}}"class="thumbnail col-md-12">
-                <img src="img/subject/6bca77ca810486af8e63b3908575d735.jpg" alt="...">
-                <div class="caption">
-                    <h3> Tiếng Hàn</h3>
-                    <ul>
-                        <li> <span>14 </span> Lớp học</li>
-                        <li> <span>10 </span> Gia sư </li>
-                        <li> <span>32 </span> Học viên</li>
-                    </ul>
-                </div>
-
-            </a>
-        </li>
-        <li class="col-md-4">
-            <a href="{{ url('/tim-kiem-gia-su?address-find=&valueSubject=Tiếng+Trung')}}"class="thumbnail col-md-12">
-                <img src="img/subject/chinese-calligraphy-scene-text-chinese-ancient-prose_1387-76.jpg" alt="...">
-                <div class="caption">
-                    <h3> Tiếng Trung</h3>
-                    <ul>
-                        <li> <span>14 </span> Lớp học</li>
-                        <li> <span>10 </span> Gia sư </li>
-                        <li> <span>32 </span> Học viên</li>
-                    </ul>
-                </div>
-
-            </a>
-        </li>
+				@endforeach
+				@foreach($list_subject1 as $sb)
         <li class="col-md-6">
-            <a href="{{ url('/tim-kiem-gia-su?address-find=&valueSubject=Hoá+Học')}}"class="thumbnail col-md-12">
-                <img src="img/subject/young-researchers-experimenting-with-substances_1098-2319.jpg" alt="...">
+            <a href="{{ url('/tim-kiem-gia-su?address-find=&valueSubject=')}}{{$sb['name']}}"class="thumbnail col-md-12">
+								<img src="{{ URL::to('img/subject')}}/{{$sb['img']}}" alt="...">
                 <div class="caption">
-                    <h3> Hoá Học </h3>
+                    <h3> {{ $sb['name'] }}</h3>
                     <ul>
-                        <li> 14 Lớp học</li>
-                        <li> 10 Gia sư</li>
-                        <li> 32 Học viên</li>
+                        <li> <span>{{$sb['course']}} </span> Lớp học</li>
+                        <li> <span>{{$sb['teacher']}} </span> Gia sư </li>
+                        <li> <span>{{$sb['student']}} </span> Học viên</li>
                     </ul>
                 </div>
 
             </a>
         </li>
-        <li class="col-md-6">
-            <a href="{{ url('/tim-kiem-gia-su?address-find=&valueSubject=Vật+Lý')}}"class="thumbnail col-md-12">
-                <img src="img/subject/de-thi-thu-vat-ly-vao-10-thpt-cua-chuyen-dai-hoc-su-pham-hn-hinh-anh-3.jpg" alt="...">
-                <div class="caption">
-                    <h3> VẬT LÝ </h3>
-                    <ul>
-                        <li> 14 Lớp học</li>
-                        <li> 10 Gia sư</li>
-                        <li> 32 Học viên</li>
-                    </ul>
-                </div>
-
-            </a>
-        </li>
+				@endforeach
     </ul>
     </div>
 

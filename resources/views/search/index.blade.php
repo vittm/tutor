@@ -46,8 +46,9 @@
 
 	<h3 style="font-size: 21px; font-weight: 700;"> TOP GIA SƯ CỦA THÁNG </h3>
 	<div class="border-origran" style="margin: 15px auto; display:block; width: 150px;"></div>
+
 @foreach($top_teacher as $value)
-	<div class="col-md-12 pd0 top15" style="border-bottom: 1px solid #ccc">
+	<a href="{{ url('/trang-ca-nhan')}}-{{$value->id_uni}}-{{App\User::convert_string($value->name)}}" class="col-md-12 pd0 top15" style="border-bottom: 1px solid #ccc">
 		<div class="col-md-4" style="padding-left:0;">
 				<img src="{{ URL::to('img/avatar')}}/{{$value->avatar}}" alt="..." class="img-circle" height="60" width="60">
 		</div>
@@ -57,7 +58,7 @@
 			<p style="font-weight: 500;">@if($value->jobs != null){{App\User::jobs($value->jobs)}},@endif @if($value->city != null) {{$value->city}} @endif</p>
 		</p>
 		</div>
-	</div>
+	</a>
 @endforeach
 </div>
 </div>
