@@ -66,8 +66,9 @@
   </div>
 @endif
 <div class="tab-content edit-profile edit-couser">
-  <h3 class="text-center">Lớp gia sư 1+1 </h3>
   <div role="tabpanel" id="add" class="tab-pane active @if(Auth::user()->code_user == null || Auth::user()->info == null || Auth::user()->city == null || Auth::user()->educational == null ||Auth::user()->jobs == null || Auth::user()->picture == null) close @endif">
+      <h3 class="text-center">Lớp gia sư 1+1 </h3>
+      <br>
     <form class="form-horizontal  edit-profile__form col-md-offset-1 col-md-11 pd0" role="form" method="POST"
     action="{{ url('/couser/adding') }}-{{ $id_user[0]->id }}" enctype='multipart/form-data' >
                       {{ csrf_field() }}
@@ -81,7 +82,7 @@
          <div class="col-md-3 "> Hình ảnh</div>
          <div class="col-md-7">
            <input class="multiple-flie" type="file" name="imgCouser" >
-           <ul class="col-md-offset-2 col-md-9 gender__edit">
+           <ul class="col-md-offset-1 col-md-10 gender__edit">
  						 <li>
                <input type="hidden" name="typeclass" type="radio" id="boy" value="1">
  							 <label for="boy">Khoá học có cung cấp <strong> Lớp học 1 + 1 </strong></label>
@@ -168,6 +169,7 @@
   </div>
   <div role="tabpanel" class="tab-pane @if(Auth::user()->code_user == null || Auth::user()->info == null || Auth::user()->city == null || Auth::user()->educational == null ||Auth::user()->jobs == null || Auth::user()->picture == null) close @endif" id="adding_opening">
     <h3 class="text-center">Đăng lớp học trên 2 học viên </h3>
+    <br>
     <form class="form-horizontal  edit-profile__form col-md-offset-1 col-md-11 pd0" role="form" method="POST" action="{{ url('/couser/opening') }}-{{ $id_user[0]->id }}" enctype='multipart/form-data'>
                       {{ csrf_field() }}
       <input type="hidden" name="id_user" value="{{ $id_user[0]->id}}">

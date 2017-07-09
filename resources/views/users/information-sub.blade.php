@@ -23,11 +23,7 @@
 <div class="col-md-4"> Hiện là</div>
 <div class="col-md-8">
   <strong style="color: #222086;">
-    @if($id_user[0]->jobs == '1') Sinh Viên @endif
-    @if($id_user[0]->jobs == '2') Giáo Viên @endif
-    @if($id_user[0]->jobs == '5') Giảng Viên @endif
-    @if($id_user[0]->jobs == '3') Học Sinh @endif
-    @if($id_user[0]->jobs == '4') Khác @endif
+    {{App\User::jobs($id_user[0]->jobs)}}
   </strong>
 </div>
 </div>

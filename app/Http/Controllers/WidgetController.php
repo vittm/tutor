@@ -25,7 +25,8 @@ class WidgetController extends Controller
       }else {
         $search = DB::table('users')->where('active','=','2')->get();
       }
-        return view('search.index',['search'=>$search]);
+      $top_teacher = DB::table('users')->where('top_teacher','=','1')->orderBy('sumRatings','dess')->get();
+        return view('search.index',['search'=>$search,'top_teacher'=>$top_teacher]);
     }
 
     public function adding_slider(Request $request){
@@ -173,11 +174,11 @@ class WidgetController extends Controller
         $text= $request->get('text_value');
         $active= $request->get('active');
         $email= $request->get('email_value');
-        $pay= $request->get('pay');
+        $top_teacher = $request->get('top_teacher');
         foreach ( $id as $key =>$value)
         {
             DB::table('users')->where('id', $id[ $key ])->update([
-                        'name' => $text[$key], 'active' => $active[$key],'email' =>$email[$key],'pay' => $pay[$key]
+                        'name' => $text[$key], 'active' => $active[$key],'email' =>$email[$key],'top_teacher' => $top_teacher[$key]
                     ]);
         }
         return redirect('/admin/search');
@@ -239,7 +240,7 @@ class WidgetController extends Controller
             $filename = $file->getClientOriginalName();
             $file->move(public_path().'/img/ratings', $filename);
         }else{
-            $filename=" ";
+            $filename="NULL";
         }
 
         $db->img_ratings = $filename;
@@ -252,6 +253,29 @@ class WidgetController extends Controller
         $db->feebacks = $value['contentReview'];
         $db->price = $value['js-score2'];
         $db->save();
+
+        $count_id = DB::table('ratings')->where([['id_user', '=', $id],['id_child','==',0]])->count();
+        if($count_id === 0){
+            $rating = 0;
+            $content_teach = 0;
+            $value_get = 0;
+            $price = 0;
+            $learn_teach = 0;
+            $feeling = 0;
+            $count_id= 0;
+            $ratingsuser = 0;
+        }else{
+            $content_teach = DB::table('ratings')->where([['id_user', '=', $id],['id_child','==',0]])->sum('content_teach');
+            $value_get = DB::table('ratings')->where([['id_user', '=', $id],['id_child','==',0]])->sum('value_get');
+            $price = DB::table('ratings')->where([['id_user', '=', $id],['id_child','==',0]])->sum('price');
+            $count_id = DB::table('ratings')->where([['id_user', '=', $id],['id_child','==',0]])->count();
+            $learn_teach = DB::table('ratings')->where([['id_user', '=', $id],['id_child','==',0]])->sum('learn');
+            $feeling = DB::table('ratings')->where([['id_user', '=', $id],['id_child','==',0]])->sum('feeling');
+            $ratingsuser =  round(($content_teach+ $value_get + $price + $feeling + $learn_teach)/($count_id*5),2);
+        }
+
+
+        DB::table('users')->where('id', $id)->update(['sumRatings' => $ratingsuser]);
         return redirect('/trang-ca-nhan-'.$id.'-'.User::convert_string(Auth::user()->name).'?tab=messages');
     }
     public function reviewReply($id, Request $request) {

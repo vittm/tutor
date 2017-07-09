@@ -51,11 +51,11 @@
 								</div>
 								@endforeach
 							</div>
-							<div class="col-md-12 wel top30">
+							<div class="col-md-12 pd0 wel top30">
 								<h4> Hình Ảnh </h4>
 								@if(json_decode($id_user[0]->picture) != null)
 									@foreach( json_decode($id_user[0]->picture) as $value )
-									<div class="col-md-6">
+									<div class="col-md-12 pd0 img-w">
 										<img class="col-md-12 pd0 top10" src="{{ URL::to('/img/picture')}}/{{$value}}" alt="..." class="img-thumbnail">
 									</div>
 									@endforeach
@@ -210,13 +210,13 @@
 							 					<li>
 													<img src="img/icon/shooting-star.png" >
 													<span >{{ $id_user[0]->sumRatings }}</span>
-													<p class="top10">{{$count_id}} đánh giá</p>
+													<p class="top10">@if($count_id == 0) 0 @else {{$count_id}} @endif đánh giá</p>
 												</li>
 											</ul>
 										 </div>
 						    	 	<div class="content-teach col-md-2 pr0">
 						    	 	<ul class="user-rating">
-								    	<li><img src="img/icon/shooting-star.png" ><span>{{ round(($content_teach/$count_id),2) }} </span></li>
+								    	<li><img src="img/icon/shooting-star.png" ><span> @if($count_id == 0) 0 @else {{ round(($content_teach/$count_id),2) }} @endif</span></li>
 							    	 	</ul>
 						    	 	<span>Nội dung dạy</span>
 						    	 	</div>
@@ -224,7 +224,7 @@
 						    	 	<div class="content-teach col-md-2 pr0">
 						    	 		<ul class="user-rating">
 							    	 		<li>
-							    	 			<img src="img/icon/shooting-star.png" ><span>{{ round(($learn_teach/$count_id),2) }} </span>
+							    	 			<img src="img/icon/shooting-star.png" ><span>@if($count_id == 0) 0 @else {{ round(($learn_teach/$count_id),2) }} @endif</span>
 							    	 		</li>
 							    	 	</ul>
 						    	 		<span>Phương pháp</span>
@@ -233,7 +233,7 @@
 						    	 	<div class="content-teach col-md-2 pr0">
 							    	 	<ul class="user-rating">
 							    	 		<li>
-							    	 			<img src="img/icon/shooting-star.png" ><span>{{ round(($price/$count_id),2) }} </span>
+							    	 			<img src="img/icon/shooting-star.png" ><span>@if($count_id == 0) 0 @else {{ round(($price/$count_id),2) }} @endif</span>
 							    	 		</li>
 
 							    	 	</ul>
@@ -242,14 +242,14 @@
 
 						    	 	<div class="content-teach col-md-2 pr0">
 							    	 	<ul class="user-rating">
-							    	 		<li><img src="img/icon/shooting-star.png" ><span>{{ round(($feeling/$count_id),2) }} </span></li>
+							    	 		<li><img src="img/icon/shooting-star.png" ><span>@if($count_id == 0) 0 @else {{ round(($feeling/$count_id),2) }} @endif</span></li>
 							    	 	</ul>
 							    	 	<span>Thái độ dạy </span>
 						    	 	</div>
 
 						    	 	<div class="content-teach col-md-2 pr0">
 							    	 	<ul class="user-rating">
-							    	 		<li><img src="img/icon/shooting-star.png" ><span>{{ round(($value_get/$count_id),2) }} </span></li>
+							    	 		<li><img src="img/icon/shooting-star.png" ><span>@if($count_id == 0) 0 @else {{ round(($value_get/$count_id),2) }} @endif</span></li>
 							    	 	</ul>
 							    	 	<span>Tiến bộ </span>
 						    	 	</div>
@@ -630,7 +630,7 @@ box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.5);padding-top: 15px;">
 					 <li>
 					 		<img src="img/icon/shooting-star.png" >
 							<span >{{ $id_user[0]->sumRatings }}</span>
-							<p>{{$count_id}} đánh giá</p>
+							<p>@if($count_id == 0) 0 @else {{$count_id}} @endif  đánh giá</p>
 					 </li>
 				 </ul>
 				</div>
@@ -659,7 +659,7 @@ box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.5);padding-top: 15px;">
 					</button>
 			</div>
 			<hr>
-			<p class="col-md-12 pd0" style="font-size: 12px; margin-top: 20px;">  Nếu gặp sự cố gì, anh/ chị vui lòng thông báo lại cho <span style="color:#fcaf00;font-weight:600">Wiis</span> theo hotline 0868. 505.523 để WiiS giúp anh/chị.</p>
+			<p class="col-md-12 pd0" style="font-size: 12px; margin-top: 20px;">  Nếu gặp sự cố gì, anh/ chị vui lòng thông báo lại cho <span style="color:#fcaf00;font-weight:600">Wiis</span> theo hotline <u>0868. 505.523</u> để <span style="color:#fcaf00;font-weight:600">Wiis</span> giúp anh/chị.</p>
 		</form>
 		</div>
 		</div>

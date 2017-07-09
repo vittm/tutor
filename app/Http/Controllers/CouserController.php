@@ -151,10 +151,12 @@ class CouserController extends Controller
         $db = new Registercousers;
         $nDb = new Notifications;
         $couser = DB::table('cousers')->leftJoin('users','users.id','=','cousers.id_user')->select('users.name','cousers.*')->where('cousers.id', '=', $input['selectCouser'])->get();
-        $typeClass= (((($input['planmoment'] * 5 ) * $input['plantime']) * $couser[0]->price ) * 30)/100;
+        $typeClass= (((($input['planmoment'] * 4 ) * $input['plantime']) * $couser[0]->price ) * 30)/100;
         $typeCouser = ($couser[0]->price * 30)/100;
-        if($couser[0] -> typeclass == '1') $priceofclass = $typeClass;
+
+        if($couser[0] -> typeCouser == '1') $priceofclass = $typeClass;
         if($couser[0] -> typeCouser == '2') $priceofclass = $typeCouser;
+
         $db->pay = $priceofclass;
         $db->user = $id;
         $db->id_teacher = $input['id_teacher'];

@@ -13,20 +13,22 @@
           <div class="col-md-6"><div class="btn btn-origan2" style="border-color: #000000;color: #000;position:relative;top: 5px;">{{number_format($value->price)}}<sup>Đ/@if($value -> typeCouser == '2') Khoá @else Giờ @endif </sup></div></div>
           <div class="col-md-12">
             <h3 class="couser-header__title">{{$value ->name_couser }}</h3>
-            <h5 class="couser-header__name">{{ $value->name }}</h5>
-            <i>{{ $value->jobs }} </i>
+            <h5 class="couser-header__name" style="margin-bottom:0;">{{ $value->name }}</h5>
+            <span style="font-size:13px;">{{App\User::jobs($value->jobs)}}</span>
          </div>
         </div>
         <div class="col-md-12 wel">
             <h4 class="col-md-12 top30" style="color:#fcaf00;text-transform: uppercase;"><strong> NỘI DUNG KHÓA HỌC </strong> </h4>
-            <div class="col-md-6">
+            <div class="@if($value -> typeCouser != '2') col-md-offset-3 @endif col-md-6 top15">
               <img src="{{ URL::to('/img/couser')}}/{{$value->picture_couser}}" style="width:100%;">
             </div>
-            <div class="col-md-6">
+            @if($value -> typeCouser == '2')
+            <div class="col-md-6 top15">
               <h5><strong>Số lượng học viên</strong> </h5>
-              <p>{{$value->information}}</p>
+              <p>{{App\User::quanlity($value->information)}} </p>
             </div>
-            <div class="col-md-12 top15">
+            @endif
+            <div class="col-md-12 top30">
                 <p><strong><i class="fa fa-circle" aria-hidden="true" style="font-size:8px;position:relative;top:-2px;"></i> Bạn sẽ học được gì? </strong> </p>
                 {{ $value->study }}
             </div>

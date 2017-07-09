@@ -35,7 +35,7 @@
            <input class="multiple-flie" type="file" name="imgCouser" >
            @if($couser[0]->typeCouser == '2')
            @else
-            <ul class="col-md-offset-2 col-md-9 gender__edit">
+            <ul class="col-md-offset-1 col-md-10 gender__edit">
  						 <li>
                <input type="hidden" name="typeclass" type="radio" id="boy" value="0">
  							 <input name="typeclass" type="radio" @if($couser[0]->typeclass == '1') checked @endif id="boy" value="1">
@@ -46,7 +46,6 @@
            @endif
          </div>
       </div>
-
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3">Bạn sẽ học được gì</div>
         <div class="col-md-8"><textarea class="form-control" name="study">{{$couser[0]->study}}</textarea><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"></div>
@@ -122,11 +121,14 @@
 
       @if($couser[0]->typeCouser == '2')
           <div class="col-md-12 pd0 top10">
-          <select class="form-control col-md-4" name="information">
-             <option value="1" @if($couser[0]->information == 1) selected @endif>2 - 10 người</option>
-             <option value="2" @if($couser[0]->information == 2) selected @endif>10 - 20 người</option>
-             <option value="3" @if($couser[0]->information == 3) selected @endif>trên 20 người</option>
-          </select>
+          <div class="col-md-3">Số lượng học viên</div>
+          <div class=" col-md-4">
+            <select class="form-control" name="information">
+               <option value="1" @if($couser[0]->information == 1) selected @endif>2 - 10 người</option>
+               <option value="2" @if($couser[0]->information == 2) selected @endif>10 - 20 người</option>
+               <option value="3" @if($couser[0]->information == 3) selected @endif>trên 20 người</option>
+            </select>
+          </div>
         </div>
         <div class="col-md-12 pd0 top10">
           <div class="col-md-3">Môn dạy</div>

@@ -45,6 +45,7 @@ class User extends Authenticatable
     {
         if(Input::get('valueSubject'))
         {
+            $course=Input::get('valueSubject');
             $query->join('cousers','users.id','cousers.id_user')->where([['cousers.subjects','like' ,"%".$course."%"],['users.active','=','2']])->groupBy('users.id');
         }
         if(Input::get('levle-find'))
@@ -64,7 +65,7 @@ class User extends Authenticatable
 
             $query->where('city','like' ,"%".$address."%");
         }
-        if(Input::get('course'))
+        if(Input::get('coursehidden'))
         {
             $course= Input::get('coursehidden');
             $query->join('cousers','users.id','cousers.id_user')->where([['cousers.information','like' ,"%".$course."%"],['users.active','=','2']])->groupBy('users.id');
@@ -74,7 +75,7 @@ class User extends Authenticatable
         }
         if(Input::get('lowestPrice'))
         {
-            $query->orderBy('money_time','asc');
+            $query->join('cousers','users.id','cousers.id_user')->orderBy('courses.price','asc')->orderBy('users.ratings','asc')->groupBy('users.id');
         }
         if(Input::get('highestPrice'))
         {
@@ -82,4 +83,22 @@ class User extends Authenticatable
         }
         return $query;
     }
+  public static function jobs($query) {
+    $querys = [
+  		'1' => 'Sinh Viên',
+  		'2' => 'Giáo Viên',
+  		'5' => 'Giảng Viên',
+      '3' => 'Học Sinh',
+      '4' => 'Khác'
+	   ];
+	  echo $querys[$query] ?? $querys['4'];
+  }
+  public static function quanlity($quanlity) {
+    $querys = [
+  		'1' => '2 - 10 người',
+  		'2' => '10 - 20 người',
+  		'3' => 'trên 20 người',
+	   ];
+	  echo $querys[$quanlity] ?? $querys['4'];
+  }
 }

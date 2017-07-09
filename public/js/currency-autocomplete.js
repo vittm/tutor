@@ -70,22 +70,22 @@ $(function(){
     value: "Ukulele"
     },
     {
-    value: "Toán học"
+    value: "Toán Học"
     },
     {
-    value: "Vật lý"
+    value: "Vật Lý"
     },
     {
-    value: "Hoá học"
+    value: "Hoá Học"
     },
     {
-    value: "Tiếng Anh"
+    value: "Ngữ Văn"
     },
     {
-    value: "Ngữ văn"
+    value: "Sinh Học"
     },
     {
-    value: "Sinh học"
+    value: "Kiến Trúc"
     },
     {
     value: "Luyện chữ đẹp"

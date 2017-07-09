@@ -39,7 +39,6 @@
         <ul class="col-md-offset-2 col-md-10 search">
 						<li><input type="text" placeholder="Địa điểm" name="address-find" id="address-find"><img src="img/icon/placeholder.png"></li>
 						<li><input type="text" placeholder="Môn học" name="valueSubject"  id="subject-find" ><img src="img/icon/open-book.png" aria-describedby="inputSuccess2Status">
-								<input type="hidden" name="valueSubject" id="field" >
 						</li>
 						<li><input type="text" placeholder="Hình thức họcc" name="course" id="course"><img src="img/icon/bar-chart.png">
 							<input type="hidden"  name="coursehidden" class="coursehidden">
@@ -49,12 +48,10 @@
         </ul>
     </form>
 		<br>
-
-    <div class="container ">
-        <div class="why-select top30">VÌ SAO GIA SƯ CHỌN <img src="img/logo.png" style="position:relative; top: -9px;"></div>
-    </div>
-		<div class="container ">
-    <div class="col-md-offset-2 col-md-8" style="background:url({{ url('img/bg_why.png')}})">
+		<div class="container @if($show[3]->value != '1') hidden @endif">
+	        <div class="why-select top30">VÌ SAO GIA SƯ CHỌN <img src="img/logo.png" style="position:relative; top: -9px;"></div>
+			<div class="col-md-12 pd0 why-wiis top30"  style="background:url({{ url('img/bg_why.png')}})">
+		<div class="col-md-offset-2 col-md-8">
         <ul class="timeline">
             <li class="timeline-item">
                 <figure class="timeline-icon">
@@ -87,12 +84,13 @@
         </ul>
     </div>
 	</div>
+	</div>
 	<br>
 	<br>
-    <div class="container">
+    <div class="container @if($show[1]->value != '1') hidden @endif">
         <div class="why-select top30"> CÂU HỎI VỚI <img src="img/logo.png" style="position:relative; top: -9px;"></div>
     </div>
-    <div class="container social">
+    <div class="container @if($show[1]->value != '1') hidden @endif social">
     <!-- <div class="col-md-6 line-straight col-one">
         <h3 class="u-text-right">News</h3>
         <a href="#" class="col-sm-6 col-md-6 u-padding-rt2p5">
@@ -208,13 +206,13 @@
     </div>
 </section>
 <br>
-<br>
     <div class="container @if($show[2]->value != '1') hidden @endif">
         <h3 class="text-center"> CÁC MÔN HỌC NỔI BẬT </h3>
+				<br>
     <ul class="listing-subject-hot top30">
         <li class="col-md-4">
-            <a href="{{ url('/find-teach?valueField=&valueSubject=english')}}"class="thumbnail col-md-12">
-                <img src="img/Layer3.png" alt="...">
+            <a href="{{ url('/tim-kiem-gia-su?address-find=&valueSubject=Tiếng+Anh')}}"class="thumbnail col-md-12">
+                <img src="img/subject/smiling-boy-visiting-the-big-ben_1147-46.jpg" alt="...">
                 <div class="caption">
                     <h3> Tiếng Anh</h3>
                     <ul>
@@ -227,10 +225,10 @@
             </a>
         </li>
         <li class="col-md-4">
-            <a class="thumbnail col-md-12">
-                <img src="img/Layer3.png" alt="...">
+              <a href="{{ url('/tim-kiem-gia-su?address-find=&valueSubject=Tiếng+Nhật')}}"class="thumbnail col-md-12">
+                <img src="img/subject/417f3401d01f4b6675405371a3b59970.jpg" alt="...">
                 <div class="caption">
-                    <h3> Tiếng Anh</h3>
+                    <h3> Tiếng Nhật</h3>
                     <ul>
                         <li> <span>14 </span> Lớp học</li>
                         <li> <span>10 </span> Gia sư </li>
@@ -241,10 +239,10 @@
             </a>
         </li>
         <li class="col-md-4">
-            <div class="thumbnail">
-                <img src="img/Layer3.png" alt="...">
+            <a href="{{ url('/tim-kiem-gia-su?address-find=&valueSubject=Toán+Học')}}"class="thumbnail col-md-12">
+                <img src="img/subject/back-to-school-child-plus-arms-crossed-notepad_1134-1297.jpg" alt="...">
                 <div class="caption">
-                    <h3> Tiếng Anh</h3>
+                    <h3> Toán</h3>
                     <ul>
                         <li> <span>14 </span> Lớp học</li>
                         <li> <span>10 </span> Gia sư </li>
@@ -252,13 +250,13 @@
                     </ul>
                 </div>
 
-            </div>
+            </a>
         </li>
         <li class="col-md-4">
-            <div class="thumbnail">
-                <img src="img/mathematics702x336.png" alt="...">
+            <a href="{{ url('/tim-kiem-gia-su?address-find=&valueSubject=Sinh+Học')}}"class="thumbnail col-md-12">
+                <img src="img/subject/d8e44f8bd7b9f033668b4e4d5c06792e.jpg" alt="...">
                 <div class="caption">
-                    <h3> Tiếng Anh</h3>
+                    <h3> Sinh Học</h3>
                     <ul>
                         <li> <span>14 </span> Lớp học</li>
                         <li> <span>10 </span> Gia sư </li>
@@ -266,13 +264,13 @@
                     </ul>
                 </div>
 
-            </div>
+            </a>
         </li>
         <li class="col-md-4">
-            <div class="thumbnail">
-                <img src="img/researchlab2.png" alt="...">
+            <a href="{{ url('/tim-kiem-gia-su?address-find=&valueSubject=Tiếng+Hàn')}}"class="thumbnail col-md-12">
+                <img src="img/subject/6bca77ca810486af8e63b3908575d735.jpg" alt="...">
                 <div class="caption">
-                    <h3> Tiếng Anh</h3>
+                    <h3> Tiếng Hàn</h3>
                     <ul>
                         <li> <span>14 </span> Lớp học</li>
                         <li> <span>10 </span> Gia sư </li>
@@ -280,13 +278,13 @@
                     </ul>
                 </div>
 
-            </div>
+            </a>
         </li>
         <li class="col-md-4">
-            <div class="thumbnail">
-                <img src="img/PitchDropMarch2013cr.png" alt="...">
+            <a href="{{ url('/tim-kiem-gia-su?address-find=&valueSubject=Tiếng+Trung')}}"class="thumbnail col-md-12">
+                <img src="img/subject/chinese-calligraphy-scene-text-chinese-ancient-prose_1387-76.jpg" alt="...">
                 <div class="caption">
-                    <h3> Tiếng Anh</h3>
+                    <h3> Tiếng Trung</h3>
                     <ul>
                         <li> <span>14 </span> Lớp học</li>
                         <li> <span>10 </span> Gia sư </li>
@@ -294,13 +292,13 @@
                     </ul>
                 </div>
 
-            </div>
+            </a>
         </li>
         <li class="col-md-6">
-            <div class="thumbnail">
-                <img src="img/accountantcopy.png" alt="...">
+            <a href="{{ url('/tim-kiem-gia-su?address-find=&valueSubject=Hoá+Học')}}"class="thumbnail col-md-12">
+                <img src="img/subject/young-researchers-experimenting-with-substances_1098-2319.jpg" alt="...">
                 <div class="caption">
-                    <h3> TIẾNG ANH </h3>
+                    <h3> Hoá Học </h3>
                     <ul>
                         <li> 14 Lớp học</li>
                         <li> 10 Gia sư</li>
@@ -308,13 +306,13 @@
                     </ul>
                 </div>
 
-            </div>
+            </a>
         </li>
         <li class="col-md-6">
-            <div class="thumbnail">
-                <img src="img/manreadingwebprogram.png" alt="...">
+            <a href="{{ url('/tim-kiem-gia-su?address-find=&valueSubject=Vật+Lý')}}"class="thumbnail col-md-12">
+                <img src="img/subject/de-thi-thu-vat-ly-vao-10-thpt-cua-chuyen-dai-hoc-su-pham-hn-hinh-anh-3.jpg" alt="...">
                 <div class="caption">
-                    <h3> TIẾNG ANH </h3>
+                    <h3> VẬT LÝ </h3>
                     <ul>
                         <li> 14 Lớp học</li>
                         <li> 10 Gia sư</li>
@@ -322,7 +320,7 @@
                     </ul>
                 </div>
 
-            </div>
+            </a>
         </li>
     </ul>
     </div>

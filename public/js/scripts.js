@@ -288,16 +288,11 @@ $(function() {
   })
 
   $('.half').hover(function() {
-    if (starClicked == false) {
       setHalfStarState(this)
-    }
-
   })
 
   $('.full').hover(function() {
-    if (starClicked == false) {
       setFullStarState(this)
-    }
   })
 
 })
@@ -333,3 +328,35 @@ function calculateAverage() {
 
   $('.js-average').val((average/ $('.rating').length).toFixed(1))
 }
+$(function() {
+  $(".img-w").each(function() {
+    $(this).wrap("<div class='col-md-6 img-c'></div>")
+  })
+
+
+  $(".img-c").click(function() {
+    let w = $(this).outerWidth()
+    let h = $(this).outerHeight()
+    let x = $(this).offset().left
+    let y = $(this).offset().top
+
+
+    $(".active").not($(this)).remove()
+    let copy = $(this).clone();
+    copy.insertAfter($(this)).height(h).width(w).delay(500).addClass("active")
+    $(".active").css('top', y - 8);
+    $(".active").css('left', x - 8);
+
+      setTimeout(function() {
+    copy.addClass("positioned")
+  }, 0)
+
+  })
+})
+
+$(document).on('click', function () {
+    $('.img-c').removeClass("positioned active").addClass("postactive");
+});
+$('.img-w, .img-c, img').on('click', function (e) {
+    e.stopPropagation();
+});

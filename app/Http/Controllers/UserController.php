@@ -31,21 +31,12 @@ class UserController extends Controller
         $post= DB::table('posts')->where('id_user', '=', $id)->get();
         $contact= explode(',', $id_user[0]->field);
         $subject= explode(',', $id_user[0]->subjects);
-        $content_teach = DB::table('ratings')->where('id_user', '=', $id)->sum('content_teach');
-        $value_get = DB::table('ratings')->where('id_user', '=', $id)->sum('value_get');
-        $price = DB::table('ratings')->where('id_user', '=', $id)->sum('price');
-
         $count_student = DB::table('registercousers')->where('id_teacher', '=', $id)->count();
-        $learn_teach = DB::table('ratings')->where('id_user', '=', $id)->sum('learn');
-        $feeling = DB::table('ratings')->where('id_user', '=', $id)->sum('feeling');
         $question = DB::table('comments')->where('id_user', '=', $id)->orderBy('id', 'desc')->get();
         $cmt = DB::table('cmtprofiles')->join('users','cmtprofiles.id_user','=','users.id')->where('cmtprofiles.id_user', '=', $id)->get();
         $ratings = DB::table('ratings')->join('users','ratings.id_post','=','users.id')->where([['ratings.id_user', '=', $id],['id_child','==',0]])->select('ratings.*','users.name','users.avatar')->get();
-        $count_id = DB::table('ratings')->where('id_user', '=', $id)->count();
-        $view= $id_user[0]->viewed + 1;
-        //Rating
-        $ratingsuser =  round(($content_teach+ $value_get + $price + $feeling + $learn_teach)/($count_id*5),2);
 
+        $count_id = DB::table('ratings')->where([['id_user', '=', $id],['id_child','==',0]])->count();
 
         if($count_id === 0){
             $rating = 0;
@@ -54,19 +45,21 @@ class UserController extends Controller
             $price = 0;
             $learn_teach = 0;
             $feeling = 0;
-            $count_id= 1;
+            $count_id= 0;
+            $ratingsuser = 0;
         }else{
-            $rating =DB::table('ratings')->where([['id_user', '=', $id],['id_child','==',0]])->get();
             $content_teach = DB::table('ratings')->where([['id_user', '=', $id],['id_child','==',0]])->sum('content_teach');
             $value_get = DB::table('ratings')->where([['id_user', '=', $id],['id_child','==',0]])->sum('value_get');
             $price = DB::table('ratings')->where([['id_user', '=', $id],['id_child','==',0]])->sum('price');
             $count_id = DB::table('ratings')->where([['id_user', '=', $id],['id_child','==',0]])->count();
             $learn_teach = DB::table('ratings')->where([['id_user', '=', $id],['id_child','==',0]])->sum('learn');
             $feeling = DB::table('ratings')->where([['id_user', '=', $id],['id_child','==',0]])->sum('feeling');
+            $ratingsuser =  round(($content_teach+ $value_get + $price + $feeling + $learn_teach)/($count_id*5),2);
         }
 
-        $ratingsuser =  round(($content_teach+ $value_get + $price + $feeling + $learn_teach)/($count_id*5),2);
-        DB::table('users')->where('id', $id)->update(['sumRatings' => $ratingsuser , 'countRatings' => $count_id,'viewed' => $view ]);
+
+        DB::table('users')->where('id', $id)->update(['sumRatings' => $ratingsuser]);
+
         if(Auth::check()){
             $idAuth= Auth::user()->id;
         }
@@ -83,12 +76,9 @@ class UserController extends Controller
         $zfollowers= DB::table('followers')->where([['follower_id','=',$id_user[0]->id]])->count(); //đang follow người ta
         $kfollowers= DB::table('followers')->where([['user_id','=',$id_user[0]->id]])->count(); // người ta theo dõi
         $listfollowers= DB::table('followers')->join('users', 'users.id', '=', 'followers.user_id')->where([['follower_id','=',$id]])->get();
-
-        $job= json_decode($id_user[0]->job,JSON_BIGINT_AS_STRING);
         $status =  DB::table('users')->where('id', $idAuth )->select('id')->first();
-        DB::table('users')->where('id', $id)->update(['level_user'=>'1']);
         return view('users.index', ['id_user' => $id_user,'ratings' => $ratings,'question'=>$question,'count_student'=>$count_student,'listfollowers'=>$listfollowers,'kkfollowers'=>$kkfollowers,'kfollowers'=>$kfollowers,'zfollowers'=>$zfollowers,'list_cousers'=>$list_cousers,'student'=>$id_student,'couser'=>$couser,'contact'=>$contact,'subject' => $subject,
-         'content_teach' => $content_teach,'value_get' => $value_get, 'price' => $price, 'learn_teach' => $learn_teach, 'feeling' => $feeling, 'count_id' => $count_id, 'cmtprofiles' => $cmt,'status' => $status,'post'=>$post,'job' => $job ]);
+         'content_teach' => $content_teach,'value_get' => $value_get, 'price' => $price, 'learn_teach' => $learn_teach, 'feeling' => $feeling, 'count_id' => $count_id, 'cmtprofiles' => $cmt,'status' => $status,'post'=>$post]);
     }
     public function tab_pay()
     {

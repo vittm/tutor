@@ -12,7 +12,7 @@
           <img  src="{{ url('img/logo.png')}}" alt="" height="120" class="logo-congratulation logo-congratulation--couser">
           <br>
           <p>Cám ơn @if(Auth::check()) @if(Auth::user()->active == 3)phụ huynh @else bạn @endif {{Auth::user()->name}} @endif đã cho <span style="color:#fcaf00;font-weight:600">Wiis</span> cơ hội được phục vụ.</p>
-          <p><strong>Sau 1h nữa, Gia sư sẽ gọi điện thoại xác nhận việc đăng ký học thử của anh/chị ạ.</strong> Nếu sau thời gian này không nhận được điện thoại từ gia sư, anh/ chị vui lòng thông báo lại cho WiiS theo hotline 0868. 505.523 để WiiS giúp anh/chị liên lạc với gia sư.</p>
+          <p><strong>Sau 1h nữa, Gia sư sẽ gọi điện thoại xác nhận việc đăng ký học thử của anh/chị ạ.</strong> Nếu sau thời gian này không nhận được điện thoại từ gia sư, anh/ chị vui lòng thông báo lại cho <span style="color:#fcaf00;font-weight:600">Wiis</span> theo hotline <u>0868. 505.523</u> để <span style="color:#fcaf00;font-weight:600">Wiis</span> giúp anh/chị liên lạc với gia sư.</p>
           <h5><strong>THÔNG TIN ĐĂNG KÝ HỌC THỬ</strong></h5>
 
           <p>⦁	Lớp học: <strong> {{Session::get('name_couser')}}</strong></p>

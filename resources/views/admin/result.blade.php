@@ -29,37 +29,57 @@
         <div class="col-md-4 top15">
            <input type="text" class="form-control" name="text_value[]" value="{{ $value->name }}">
            <input type="text" class="form-control top15" name="email_value[]" value="{{ $value->email }}">
-           <div class="col-md-12 pd0 top15">
-                 <span class="style-input">
-                    <select class="form-control" name="active[]">
-                       <option> Loại thành viên </option>
-                       <option @if( $value->active == 1 ) selected @endif value="1">
-                          Học Viên
-                       </option>
-                       <option @if( $value->active == 2 ) selected @endif value="2">
-                          Gia Sư
-                       </option>
-                       <option @if( $value->active == 0 ) selected @endif value="0">
-                          Admin
-                       </option>
-                       <option @if( $value->active == 3 ) selected @endif value="1">
-                          Phụ Huynh
-                       </option>
-                   </select>
-               </span>
-           </div>
         </div>
+        <div class="col-md-3 pd0 top15">
+            @if( $value->active == 2 )
+              <span class="style-input">
+                 <select class="form-control" name="top_teacher[]">
+                    <option value="0"> Lựa chọn top gia sư </option>
+                    <option @if( $value->top_teacher == 1 ) selected @endif value="1">
+                       Top gia sư
+                    </option>
+                </select>
+            </span>
+            @endif
+            @if( $value->active != 2 )
+              <span class="style-input hidden">
+                 <select class="form-control" name="top_teacher[]">
+                    <option selected value="0"> Lựa chọn top gia sư </option>
+
+                </select>
+            </span>
+            @endif
+            <div class="col-md-12 pd0 @if( $value->active == 2 )top15 @endif">
+                  <span class="style-input">
+                     <select class="form-control" name="active[]">
+                        <option> Loại thành viên </option>
+                        <option @if( $value->active == 1 ) selected @endif value="1">
+                           Học Viên
+                        </option>
+                        <option @if( $value->active == 2 ) selected @endif value="2">
+                           Gia Sư
+                        </option>
+                        <option @if( $value->active == 0 ) selected @endif value="0">
+                           Admin
+                        </option>
+                        <option @if( $value->active == 3 ) selected @endif value="1">
+                           Phụ Huynh
+                        </option>
+                    </select>
+                </span>
+            </div>
+        </div>
+        @if($value->active == 2 )
+        <div class="col-md-4 top15">
+           <a href="{{ url('/admin/detail-user')}}-{{$value->id}}" class="btn" type="submit"> Chi Tiết Khoá Học </a>
+        </div>
+        @endif
         <div class="col-md-2 top15">
            <button href="{{ url('/admin/update-user')}}" class="btn" type="submit"> Cập Nhập </button>
         </div>
         <div class="col-md-2 top15">
            <a href="{{ url('/admin/delete-user')}}-{{ $value->id }}" class="btn" type="submit"> Xóa </a>
         </div>
-        @if($value->active == 2 )
-        <div class="col-md-2 top15">
-           <a href="{{ url('/admin/detail-user')}}-{{$value->id}}" class="btn" type="submit"> Chi Tiết Khoá Học </a>
-        </div>
-        @endif
 			</div>
 			<span class="clearfix borda"></span>
 		</article>

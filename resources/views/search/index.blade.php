@@ -46,40 +46,19 @@
 
 	<h3 style="font-size: 21px; font-weight: 700;"> TOP GIA SƯ CỦA THÁNG </h3>
 	<div class="border-origran" style="margin: 15px auto; display:block; width: 150px;"></div>
-
+@foreach($top_teacher as $value)
 	<div class="col-md-12 pd0 top15" style="border-bottom: 1px solid #ccc">
 		<div class="col-md-4" style="padding-left:0;">
-				<img src="{{ URL::to('img/avatar/04-23-252017060549c8d33637cb126c6c0745ddf6f5f03e.jpg')}}" alt="..." class="img-circle" height="60" width="60">
+				<img src="{{ URL::to('img/avatar')}}/{{$value->avatar}}" alt="..." class="img-circle" height="60" width="60">
 		</div>
 		<div class="col-md-8 pd0" style="text-align: left">
-			<p style="font-weight: 500;">Toán học </p>
-			<p style="font-size: 16px; font-weight: 500; color: #fcaf00;"> Lê Quý Nam </p>
-			<p style="font-weight: 500;">Giáo viên, Hồ Chí Minh</p>
+			<p style="font-weight: 500;">{{$value->subjects}}</p>
+			<p style="font-size: 16px; font-weight: 500; color: #fcaf00;"> <?php $str = explode(' ', $value->name); ?>{{end($str)}} {{reset($str)}} </p>
+			<p style="font-weight: 500;">@if($value->jobs != null){{App\User::jobs($value->jobs)}},@endif @if($value->city != null) {{$value->city}} @endif</p>
 		</p>
+		</div>
 	</div>
-</div>
-<div class="col-md-12 pd0 top15" style="border-bottom: 1px solid #ccc">
-	<div class="col-md-4" style="padding-left:0;">
-			<img src="{{ URL::to('img/avatar/04-23-252017060549c8d33637cb126c6c0745ddf6f5f03e.jpg')}}" alt="..." class="img-circle" height="60" width="60">
-	</div>
-	<div class="col-md-8 pd0" style="text-align: left">
-		<p style="font-weight: 500;">Toán học </p>
-		<p style="font-size: 16px; font-weight: 500; color: #fcaf00;"> Lê Quý Nam </p>
-		<p style="font-weight: 500;">Giáo viên, Hồ Chí Minh</p>
-	</p>
-</div>
-</div>
-<div class="col-md-12 pd0 top15" style="border-bottom: 1px solid #ccc">
-	<div class="col-md-4" style="padding-left:0;">
-			<img src="{{ URL::to('img/avatar/04-23-252017060549c8d33637cb126c6c0745ddf6f5f03e.jpg')}}" alt="..." class="img-circle" height="60" width="60">
-	</div>
-	<div class="col-md-8 pd0" style="text-align: left">
-		<p style="font-weight: 500;">Toán học </p>
-		<p style="font-size: 16px; font-weight: 500; color: #fcaf00;"> Lê Quý Nam </p>
-		<p style="font-weight: 500;">Giáo viên, Hồ Chí Minh</p>
-	</p>
-</div>
-</div>
+@endforeach
 </div>
 </div>
 

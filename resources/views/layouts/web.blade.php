@@ -15,8 +15,6 @@
     <link rel="stylesheet" href="{{ URL::to('css/tablet.css') }}">
     <link rel="stylesheet" href="{{ URL::to('css/desktop.css') }}" >
 
-
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700" rel="stylesheet">
 </head>
 
 
@@ -42,7 +40,7 @@
         @if (Auth::guest())
                             <li><a href="{{ url('login') }}" class="menu__item">Đăng nhập</a></li>
                             <li><a href="{{ url('/register') }}" class="menu__item">Đăng Ký</a></li>
-                            <li><a href="0868505523" class="menu__item">0868 505 523</a></li>
+                            <li><a href="0868505523" class="menu__item" style="color:#3f51b5;">0868 505 523</a></li>
                         @else
 
                             <li class="global-header__login log--active">
@@ -68,7 +66,6 @@
                                     @endif
                                     @if(Auth::user()->active == 0)
                                     <li><a href="{{ url('/admin/text') }}"></i>Admin</a></li>
-                                     <li><a href="{{ url('/thanh-toan')}}"></i>Thanh Toán</a></li>
                                     @endif
                                     <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Đăng Xuất</a></li>
                                 </ul>
@@ -100,23 +97,26 @@
 <!-- style="background: #f7f7f7;" -->
 <main class="col-md-12 pd0 main" >
         @yield('content')
-
-
 </main>
 
-    <div class="container footer-home">
-        <div class="col-md-3 top15">
-          <a href="{{ url('/') }}" class="col-md-12 logo">
-            <img  src="{{ url('img/logo.png')}}" alt="">
-          </a>
-        </div>
-        <div class="col-md-5">
-          <h3 style="text-align: right;"><i> Nơi kết nối học viên và gia sư </i> </h3>
-        </div>
-        <div class="col-md-4">
-          <a href="{{ url('login') }}" class="btn btn-origan btn-sm top15" style="float: right;">
-              Đăng nhập
-          </a>
+    <div class="col-md-12 footer-home">
+        <div class="col-md-12 pd0">
+          <div class="container pd0">
+            <div class="col-md-3 top15 pd0">
+              <a href="{{ url('/') }}" class="col-md-12 logo">
+                <img  src="{{ url('img/logo.png')}}" alt="">
+                <p>Tìm giáo viên, gia sư miễn phí </p>
+              </a>
+            </div>
+            <div class="col-md-6">
+              <h3 style="text-align: right;position:relative;top:24px;"><i> Nơi kết nối học viên và gia sư </i> </h3>
+            </div>
+            <div class="col-md-3">
+              <a href="{{ url('login') }}" class="btn btn-origan btn-sm top15" style="float: right;position:relative;top:24px;">
+                  Đăng nhập
+              </a>
+            </div>
+          </div>
         </div>
         <div  class="col-md-12" ng-controller="menuCtrl">
 
