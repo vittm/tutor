@@ -87,9 +87,6 @@ class UserController extends Controller
 
     public function edit(Request $request, $id) {
         $id_user = DB::table('users')->where('id', '=', $id)->get();
-        $time = json_decode($id_user[0]->time_learn,JSON_BIGINT_AS_STRING);
-        $job= json_decode($id_user[0]->job,JSON_BIGINT_AS_STRING);
-        $subject= explode(',', $id_user[0]->subjects);
         return view('users.edit', ['id_user' => $id_user]);
     }
     public function editing_style(Request $request, $id){

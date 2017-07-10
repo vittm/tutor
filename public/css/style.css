@@ -23,7 +23,7 @@ body {
     font-size: 1.2rem;
     color: #161542;
 }
-body p, body h3, body span, body h4 {
+body p, body h3, body h4 {
   color: #161542;
 }
 body a:hover {

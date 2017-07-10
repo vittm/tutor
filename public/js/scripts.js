@@ -14,7 +14,7 @@ $('.global-header__toggle').click(function(){
 	alert('message');
 });
 
-$(".time-post").kendoDateTimePicker({animation: false});
+
 
 $('.message a').click(function(){
    $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
@@ -45,14 +45,6 @@ function addTarget() {
 	$('.target-checkbox').append(s);
 }
 
-$('.time_working').click(function(){
-	var i = $('.count_time-working').length;
-	var id= 'iad'+ i;
-	var a='<script>$(".'+ id +'").kendoDateTimePicker({animation: false});</script><div class="panel col-md-6 pd0"><label class="col-md-6"><img src="img/icon/pilot-of-airplane.png"> Thời gian: <input class="count_time-working '+ id +'" name="time_working[]"  /></label></div>';
-	$('.time-working').append(a);
-});
-
-
 
 $(window).scroll(function() {
 
@@ -63,7 +55,7 @@ $(window).scroll(function() {
 			$('.fix-title').removeClass('sticky');
 		}
 	});
-$(".iad").kendoDateTimePicker({animation: false});
+
 $(function(){
 	$('.more-read').click(function(){
 		$('.content-info').css({'height':'100%','-webkit-transition':'height 0.5s ease-out'}).fadeIn();
@@ -91,45 +83,7 @@ $(".detail_email #close").click(function() {
   $(".detail_email #modal").toggleClass("hidden").toggle();
 });
 
-function showMyImage(fileInput) {
-		var files = fileInput.files;
-		for (var i = 0; i < files.length; i++) {
-			var file = files[i];
-			var imageType = /image.*/;
-			if (!file.type.match(imageType)) {
-				continue;
-			}
-			var img=document.getElementById("thumbnil");
-			img.file = file;
-			var reader = new FileReader();
-			reader.onload = (function(aImg) {
-				return function(e) {
-					aImg.src = e.target.result;
-				};
-			})(img);
-			reader.readAsDataURL(file);
-		}
-	}
 
-	function showMyImage(fileInput) {
-			var files = fileInput.files;
-			for (var i = 0; i < files.length; i++) {
-				var file = files[i];
-				var imageType = /image.*/;
-				if (!file.type.match(imageType)) {
-					continue;
-				}
-				var img=document.getElementById("edit_img_profile");
-				img.file = file;
-				var reader = new FileReader();
-				reader.onload = (function(aImg) {
-					return function(e) {
-						aImg.src = e.target.result;
-					};
-				})(img);
-				reader.readAsDataURL(file);
-			}
-		}
 $('.list-profile').click(function(){
 	var url= $(this).attr('data-href');
 	location.replace(url);
@@ -197,14 +151,11 @@ function clickdesktop( button, content) {
 		e.stopPropagation();
 	});
 }
-
-
 /*clickdesktop('dropdown--post-dropdown', 'dropdown__menu');
 $('.counter').counterUp({
 			delay: 10,
 			time: 1000
 		});*/
-
 
 (function($, window, document, undefined) {
 $(window).on('scroll', function(){
@@ -358,5 +309,22 @@ $(document).on('click', function () {
     $('.img-c').removeClass("positioned active").addClass("postactive");
 });
 $('.img-w, .img-c, img').on('click', function (e) {
+    e.stopPropagation();
+});
+
+
+$('.course-search').focus(function(){
+	$('.select-course').show();
+})
+$('.select-course li').click(function(){
+	var text = $(this).text();
+	var value= $(this).attr('value');
+	$('.course-search').val(text);
+	$('.course-value').val(value);
+});
+$(document).on('click', function () {
+    $('.select-course').hide();
+});
+$('.course-search').on('click', function (e) {
     e.stopPropagation();
 });

@@ -4,17 +4,14 @@
     <meta charset="utf-8">
     <title>Wiis</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
     <link rel="stylesheet" type="text/css" href="{{ URL::to('css/style.css') }}">  <!-- Link css tự style -->
     <link rel="stylesheet" type="text/css" href="{{ URL::to('css/font-awesome.css') }}"> <!-- link css font-face -->
-    <link rel="stylesheet" type="text/css" href="{{ URL::to('css/time.css') }}">  <!-- Link css tự style -->
     <link rel="stylesheet" href="{{ URL::to('css\bootstrap.css') }}">
     <link rel="stylesheet" href="{{ URL::to('css/test.css') }}">
     <!-- <link rel="stylesheet" href="css/main.css"> -->
     <!--[if gt IE 8]><!-->
     <link rel="stylesheet" href="{{ URL::to('css/tablet.css') }}">
     <link rel="stylesheet" href="{{ URL::to('css/desktop.css') }}" >
-
 </head>
 
 
@@ -168,10 +165,8 @@
 
      <script type="text/javascript" src="{{ URL::to('js/jquery.slidizle.js') }}"></script> <!-- Link thư viện jquery -->
 
-    <script type="text/javascript" src="{{ URL::to('js/angular.min.js') }}"></script>
      <script type="text/javascript" src="{{ URL::to('js/jquery.autocomplete.min.js') }}"></script>
       <script type="text/javascript" src="{{ URL::to('js/currency-autocomplete.js') }}"></script>
-     <script type="text/javascript" src="{{ URL::to('js/kendo.all.min.js') }}"></script> <!-- Link thư viện jquery -->
 
     <script type="text/javascript" src="{{ URL::to('js/scripts.js') }}"></script>   <!--- Link jquery tự viết-->
     <script type="text/javascript" src="{{ URL::to('js/bootstrap.js') }}"></script>   <!--- Link jquery tự viết-->

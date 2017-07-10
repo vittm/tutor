@@ -5,23 +5,24 @@
   </div>
   <div class="col-md-10">
      <div class="col-md-12 pd0">
-       <p class="col-md-4 pd0"><strong><?php $str = explode(' ', $value->name); ?>{{end($str)}} {{reset($str)}}</strong></p>
+       <a href="{{ url('/trang-ca-nhan')}}-{{$value->id_post}}-{{App\User::convert_string($value->name)}}"><p class="col-md-4 pd0"><strong><?php $str = explode(' ', $value->name); ?>{{end($str)}} {{reset($str)}}</strong></p></a>
        <h6 class="col-md-8 pd0 text-right" style="margin-top: 5px;"><i>{{Carbon\Carbon::parse($value->created_at)->format('m/d/Y')}}</i></h6>
-
-       @if($value->img_ratings == 'NULL')
        <div class="col-md-12 pd0">
+       @if($value->img_ratings == 'NULL')
+       <div class="col-md-12 pd0 top15">
        @endif
        @if($value->img_ratings != 'NULL')
 
        <div class="col-md-6 pdl">
-         <div class="col-md-12 pd0"><img src="{{ URL::to('img/ratings')}}/{{ $value->img_ratings}}" alt="..." width="100%"></div>
+         <div class="col-md-12 pd0"><img src="{{ URL::to('img/ratings')}}/{{ $value->img_ratings}}" alt="..." width="100%" style="height: 150px;object-fit: cover;border-radius:6px;"></div>
        </div>
-       <div class="col-md-6">
+       <div class="col-md-6 pdl">
        @endif
          <p>{{$value->feebacks}}</p>
        </div>
+     </div>
 
-       <a class="col-md-12 pd0 top15"role="button" data-toggle="collapse" href="#collapseExample{{$key}}" aria-expanded="false" aria-controls="collapseExample "> Trả lời </a>
+       <a class="col-md-12 pd0 top15 text-right"role="button" data-toggle="collapse" href="#collapseExample{{$key}}" aria-expanded="false" aria-controls="collapseExample "> Trả lời </a>
      </div>
     </div>
   </div>

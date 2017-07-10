@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Auth;
+use DB;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Input;
 
@@ -46,18 +48,7 @@ class User extends Authenticatable
         if(Input::get('valueSubject'))
         {
             $course=Input::get('valueSubject');
-            $query->join('cousers','users.id','cousers.id_user')->where([['cousers.subjects','like' ,"%".$course."%"],['users.active','=','2']])->groupBy('users.id');
-        }
-        if(Input::get('levle-find'))
-        {
-            $userModel = new User;
-            $working = $userModel->ham_loc_dau(Input::get('levle-find'));
-            $query->orwhere('working_uni', 'like', "%".$working."%");
-            echo json_encode(Input::get('levle-find'));
-        }
-        if(Input::get('type_learn'))
-        {
-            $query->where('type_learn', 'like', "%".Input::get('type-learn-find')."%");
+            $query->join('cousers','users.id','cousers.id_user')->where([['cousers.subjects','like' ,"%".$course."%"],['users.active','=','2']])->groupBy('users.id')->select('users.*');
         }
         if(Input::get('address-find'))
         {
@@ -65,11 +56,17 @@ class User extends Authenticatable
 
             $query->where('city','like' ,"%".$address."%");
         }
+
         if(Input::get('coursehidden'))
         {
             $course= Input::get('coursehidden');
-            $query->join('cousers','users.id','cousers.id_user')->where([['cousers.information','like' ,"%".$course."%"],['users.active','=','2']])->groupBy('users.id');
+            $query->join('cousers','users.id','cousers.id_user')->where([['cousers.information','=',$course],['users.active','=','2']])->groupBy('users.id')->select('users.*');
         }
+        if(Input::get('rating'))
+        {
+            $query->orderBy('sumRatings','desc')->where([['users.active','=','2']]);
+        }
+
         if(Input::get('valueoraddress')){
              $query->where('address', 'like', "%".Input::get('valueoraddress')."%")->orWhere('field', 'like', "%".Input::get('valueoraddress')."%");
         }
@@ -77,28 +74,51 @@ class User extends Authenticatable
         {
             $query->join('cousers','users.id','cousers.id_user')->orderBy('courses.price','asc')->orderBy('users.ratings','asc')->groupBy('users.id');
         }
-        if(Input::get('highestPrice'))
-        {
-            $query->orderBy('money_time','desc');
-        }
         return $query;
     }
   public static function jobs($query) {
-    $querys = [
-  		'1' => 'Sinh Viên',
-  		'2' => 'Giáo Viên',
-  		'5' => 'Giảng Viên',
-      '3' => 'Học Sinh',
-      '4' => 'Khác'
-	   ];
-	  echo $querys[$query] ?? $querys['4'];
+    switch ($query) {
+      case '1':
+        $querys = 'Sinh Viên';
+      break;
+      case '2':
+        $querys = 'Giáo Viên';
+      break;
+      case '3':
+      $querys = 'Học Sinh';
+      break;
+      case '4':
+        $querys = 'Khác';
+      break;
+      case '5':
+      $querys = 'Giảng Viên';
+      break;
+      default:
+      $querys = 'Khác';
+      break;
+    }
+	  echo $querys;
   }
   public static function quanlity($quanlity) {
-    $querys = [
-  		'1' => '2 - 10 người',
-  		'2' => '10 - 20 người',
-  		'3' => 'trên 20 người',
-	   ];
-	  echo $querys[$quanlity] ?? $querys['4'];
+    switch ($quanlity) {
+      case '1':
+        $querys = '2 - 10 người';
+      break;
+      case '2':
+        $querys = '10 - 20 người';
+      break;
+      case '3':
+      $querys = 'trên 20 người';
+      break;
+      default:
+        break;
+    }
+	  echo $querys;
+  }
+  public static function checkOnline(){
+    if(Auth::check()){
+      $query = DB::table('users')->where([['id', Auth::user()->id],['level_user','=','1']])->count();
+      return $query;
+    }
   }
 }

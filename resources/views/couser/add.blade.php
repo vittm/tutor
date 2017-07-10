@@ -187,7 +187,7 @@
       <div class="col-md-12 pd0">
          <div class="col-md-3 "> Số lượng</div>
          <div class="col-md-4">
-           <select class="form-control" name="information">
+           <select class="form-control" name="information" style="border:none;">
               <option value="1">2 - 10 người</option>
               <option value="2">10 - 20 người</option>
               <option value="3">trên 20 người</option>

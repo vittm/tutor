@@ -40,8 +40,15 @@
 						<li><input type="text" placeholder="Địa điểm" name="address-find" id="address-find"><img src="img/icon/placeholder.png"></li>
 						<li><input type="text" placeholder="Môn học" name="valueSubject"  id="subject-find" ><img src="img/icon/open-book.png" aria-describedby="inputSuccess2Status">
 						</li>
-						<li><input type="text" placeholder="Hình thức họcc" name="course" id="course"><img src="img/icon/bar-chart.png">
-							<input type="hidden"  name="coursehidden" class="coursehidden">
+						<li><img src="img/icon/bar-chart.png">
+							<input type="text" placeholder="Hình thức học" class="course-search">
+							<ul class="select-course">
+									<li value="0">Gia sư 1+1 </li>
+									<li value="1">2 - 10 người</li>
+									<li value="2">10 - 20 người</li>
+									<li value="3">Trên 20 người</li>
+							</ul>
+							<input type="hidden" class="course-value" name="coursehidden">
 						</li>
             <li class="icon-search submit_search">
             <button type="submit" name="academic" placeholder=""><img src="img/icon/search.png"></button></li>

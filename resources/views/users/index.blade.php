@@ -566,7 +566,11 @@
 										<div class="optionsBar-option optionsBar-online">
 											<span class="statusLabel">Hiển thị trạng thái</span>
 											<span class="afm-popover-container">
-										    <a class="icon-caret-up online" data-action="PopoverOpen" data-class="online" data-text="Ẩn" href="#">Trực tuyến</a>
+												@if(App\User::checkOnline() == '1')
+											    <a class="icon-caret-up online" href="#">Trực tuyến</a>
+													@else
+													<a class="icon-caret-up offline" href="#">Ngoại Tuyến</a>
+												@endif
 										  </span>
 										</div>
 										<button name="button" type="submit" class="btn btn-origan" data-action="QuestionSave">Hỏi</button>

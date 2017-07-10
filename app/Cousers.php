@@ -30,7 +30,7 @@ class Cousers extends Authenticatable
       return $query;
     }
     public static function findTeacher($sb) {
-      $query = DB::table('users')->join('cousers','cousers.id_user','users.id')->where('cousers.subjects','like','%'.$sb.'%');
+      $query = DB::table('users')->join('cousers','cousers.id_user','users.id')->where('cousers.subjects','like','%'.$sb.'%')->groupBy('users.id');
       return $query;
     }
     public static function findStudent($sb) {

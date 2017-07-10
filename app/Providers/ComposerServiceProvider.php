@@ -23,6 +23,7 @@ class ComposerServiceProvider extends ServiceProvider
             $mess= DB::table('messages')->where([['id_user','=',$id], ['watch','=','0' ]])->count();
             $quanlityNotify= DB::table('notifications')->where([['id_user',$id],['nRead','0']])->count();
             $Notify= DB::table('notifications')->where([['id_user',$id],['nRead','0']])->limit(5)->orderBy('id', 'desc')->get();
+            DB::table('users')->where('id', $id)->update(['level_user' => '1']);
             view()->share(['mess'=>$mess,'quanlityNotify'=>$quanlityNotify,'notify'=>$Notify]);
         }
         });

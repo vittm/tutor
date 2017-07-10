@@ -21,12 +21,12 @@ class WidgetController extends Controller
     public function index(Request $request)
     {
       if (isset($_GET['address-find'])){
-          $search = User::filterByRequest($request)->get();
+        $search = User::filterByRequest($request)->get();
       }else {
         $search = DB::table('users')->where('active','=','2')->get();
       }
       $top_teacher = DB::table('users')->where('top_teacher','=','1')->orderBy('sumRatings','dess')->get();
-        return view('search.index',['search'=>$search,'top_teacher'=>$top_teacher]);
+      return view('search.index',['search'=>$search,'top_teacher'=>$top_teacher]);
     }
 
     public function adding_slider(Request $request){
@@ -273,9 +273,17 @@ class WidgetController extends Controller
             $feeling = DB::table('ratings')->where([['id_user', '=', $id],['id_child','==',0]])->sum('feeling');
             $ratingsuser =  round(($content_teach+ $value_get + $price + $feeling + $learn_teach)/($count_id*5),2);
         }
-
-
         DB::table('users')->where('id', $id)->update(['sumRatings' => $ratingsuser]);
+          $name = DB::table('users')->where('id',$id)->first();
+        $nDb = new Notifications;
+        $nDb->id_user = $id ;
+        $nDb->name_notification = 'Bạn có một đánh giá mới';
+        $nDb->content_notification = '
+          <p> Bạn hãy xem đánh giá của mình trong <a href="'.url('/trang-ca-nhan-'.$id.'-'.User::convert_string($name->name).'?tab=messages').'">phần đánh giá nhé </a> nhé.</p>
+          '
+        ;
+        $nDb->save();
+
         return redirect('/trang-ca-nhan-'.$id.'-'.User::convert_string(Auth::user()->name).'?tab=messages');
     }
     public function reviewReply($id, Request $request) {
@@ -283,11 +291,22 @@ class WidgetController extends Controller
         $db = new Ratings;
         $zDB= new User;
         $db->id_user = $id;
+        $db->img_ratings ="NULL";
         $db->id_post = Auth::user()->id;
         $db->id_child = $value['id_child'];
         $db->feebacks = $value['contentReview'];
         $db->save();
         $zDB->save();
+        $name = DB::table('ratings')->join('users','users.id','ratings.id_post')->where('ratings.id',$value['id_child'])->first();
+        $nDb = new Notifications;
+        $nDb->id_user = $name->id_post;
+        $nDb->name_notification = 'Bạn có một phản hồi từ đánh giá của bạn';
+        $nDb->content_notification = '
+          <p> Bạn hãy xem phản hồi đánh giá của mình trong <a href="'.url('/trang-ca-nhan-'.$id.'-'.User::convert_string($name->name).'?tab=messages').'">phần đánh giá </a> nhé.</p>
+          '
+        ;
+        $nDb->save();
+
         return redirect('/trang-ca-nhan-'.$id.'-'.User::convert_string(Auth::user()->name).'?tab=messages');
     }
     //search users

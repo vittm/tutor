@@ -333,24 +333,6 @@ var addressFind = [
     value: "Khác"
   }
 ];
-var course = [
-  {
-    id:'0',
-    value: "Gia sư 1+1"
-  },
-  {
-    id:'1',
-    value: "Lớp 2-10 người"
-  },
-  {
-    id:'2',
-    value: "Lớp 10-20 người"
-  },
-  {
-    id:'3',
-    value: "Lớp > 20 người"
-  }
-];
   // setup autocomplete function pulling from currencies[] array
   $('#subject-find').autocomplete({
     lookup: currencies,
@@ -371,15 +353,6 @@ var course = [
     onSelect: function (suggestion) {
       var thehtml = suggestion.value;
       $('#address-find').attr('value',thehtml);
-    }
-  });
-  $('#course').autocomplete({
-    lookup: course,
-    onSelect: function (suggestion) {
-      var thehtml = suggestion.value;
-      var idhtml = suggestion.id;
-      $('#course').attr('value',thehtml);
-      $('.coursehidden').attr('value',idhtml);
     }
   });
 $.urlParam = function(name){
