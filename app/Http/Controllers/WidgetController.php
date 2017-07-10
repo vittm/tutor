@@ -21,7 +21,7 @@ class WidgetController extends Controller
     public function index(Request $request)
     {
       if (isset($_GET['address-find'])){
-        $search = User::filterByRequest($request)->get();
+        $search = User::filterByRequest($request)->join('cousers','users.id','cousers.id_user')->where([['users.active','=','2']])->groupBy('users.id')->select('users.*')->get();
       }else {
         $search = DB::table('users')->where('active','=','2')->get();
       }

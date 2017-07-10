@@ -51,7 +51,7 @@
 							<input type="hidden" class="course-value" name="coursehidden">
 						</li>
             <li class="icon-search submit_search">
-            <button type="submit" name="academic" placeholder=""><img src="img/icon/search.png"></button></li>
+            <button type="submit" placeholder=""><img src="img/icon/search.png"></button></li>
         </ul>
     </form>
 		<br>

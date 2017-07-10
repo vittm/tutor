@@ -45,22 +45,21 @@ class User extends Authenticatable
 
     public function scopeFilterByRequest($query)
     {
+        if(Input::get('coursehidden'))
+        {
+            $course= Input::get('coursehidden');
+            $query->where([['cousers.information','=',$course]]);
+        }
         if(Input::get('valueSubject'))
         {
             $course=Input::get('valueSubject');
-            $query->join('cousers','users.id','cousers.id_user')->where([['cousers.subjects','like' ,"%".$course."%"],['users.active','=','2']])->groupBy('users.id')->select('users.*');
+            $query->where([['cousers.subjects','like' ,"%".$course."%"]]);
         }
         if(Input::get('address-find'))
         {
             $address= Input::get('address-find');
 
             $query->where('city','like' ,"%".$address."%");
-        }
-
-        if(Input::get('coursehidden'))
-        {
-            $course= Input::get('coursehidden');
-            $query->join('cousers','users.id','cousers.id_user')->where([['cousers.information','=',$course],['users.active','=','2']])->groupBy('users.id')->select('users.*');
         }
         if(Input::get('rating'))
         {
