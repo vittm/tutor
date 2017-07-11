@@ -652,9 +652,9 @@ box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.5);padding-top: 15px;">
 				</select>
 				<div class="detail-register">
 					<p>Dự kiến số giờ học/ngày</p>
-					<input class="form-control planmoment" type="number" placeholder="3 ngày"name="planmoment">
-					<p>Dự kiến số buổi giờ/ngày</p>
 					<input class="form-control plantime" type="number" placeholder="3 giờ"name="plantime">
+					<p>Dự kiến số ngày học/tuần</p>
+					<input class="form-control planmoment" type="number" placeholder="3 ngày"name="planmoment">
 				</div>
 				<p>Học Phí <span class="planprice"></span></p>
 				<input class="form-control price-register" type="text" disabled name="price">

@@ -146,11 +146,11 @@ $('.selectCouser').click(function(){
 		var val = selected.attr('data-price');
 		var type = selected.attr('data-type');
 		if( type == '2') {
-				$('.planprice').text('/tháng');
+				$('.planprice').text('/Tháng');
 				$('.detail-register').hide();
 				$('.price-register').val(addCommas(val));
 		}else {
-				$('.planprice').text('/giờ');
+				$('.planprice').text('/Tháng');
 				$('.detail-register').show();
 		}
   }

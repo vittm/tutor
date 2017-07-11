@@ -12485,7 +12485,7 @@ application_ltr-7274c7e….css:1
   font-size: 150%;
 }
 .info-profile > p{
-  word-spacing: 5px;
+  word-spacing: 2px;
   font-weight: 300;
   font-size: 14px;
 }
@@ -12631,4 +12631,6 @@ application_ltr-7274c7e….css:1
   left: 0;
   right: 0;
   margin: auto;
+  height: 400px;
+  overflow-y: scroll;
 }
