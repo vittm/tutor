@@ -308,7 +308,7 @@ $(function() {
 $(document).on('click', function () {
     $('.img-c').removeClass("positioned active").addClass("postactive");
 });
-$('.img-w, .img-c, img').on('click', function (e) {
+$('.img-c').on('click', function (e) {
     e.stopPropagation();
 });
 
