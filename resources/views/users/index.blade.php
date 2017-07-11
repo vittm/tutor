@@ -51,13 +51,11 @@
 								</div>
 								@endforeach
 							</div>
-							<div class="col-md-12 pd0 wel top30">
+							<div class="col-md-12 pd0 wel list-picture top30">
 								<h4> Hình Ảnh </h4>
 								@if(json_decode($id_user[0]->picture) != null)
 									@foreach( json_decode($id_user[0]->picture) as $value )
-									<div class="col-md-12 pd0 img-w">
-										<img class="col-md-12 pd0 top10" src="{{ URL::to('/img/picture')}}/{{$value}}" alt="..." class="img-thumbnail">
-									</div>
+										<img class="col-md-6 top10 img-c" src="{{ URL::to('/img/picture')}}/{{$value}}" alt="..." class="img-thumbnail">
 									@endforeach
 								@endif
 							</div>
@@ -127,7 +125,7 @@
 				<div class="col-md-12 pdl" style="margin-top: 40px;">
 					<div class="col-md-12 wel list-information" style=" padding-top: 15px;">
 					 <h3>{!! $id_user[0]->title !!}</h3>
-					 @include('users.information-sub')
+					 @include('users.subview-user.information-sub')
 				</div>
 					<div class="col-md-12 wel top30">
 						<h4 class="top15"><strong>Lớp học tham gia </strong></h4>
@@ -539,7 +537,7 @@
 									</div>
 								</form>
 								@else
-									<p>Bạn hãy đăng nhập để viết đánh giá </p>
+									<a href="{{ url('login') }}"><p class="text-center"><u>Bạn hãy đăng nhập để viết đánh giá</u></p></a>
 								@endif
 							</div>
 							</div>
@@ -573,7 +571,7 @@
 												@endif
 										  </span>
 										</div>
-										<button name="button" type="submit" class="btn btn-origan" data-action="QuestionSave">Hỏi</button>
+										<button name="button" type="submit" class="btn btn-origan" data-action="QuestionSave" @if(!Auth::check()) disabled @endif>Hỏi</button>
 									</div>
 
 								</div>
@@ -660,7 +658,7 @@ box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.5);padding-top: 15px;">
 				<input class="form-control price-register" type="text" disabled name="price">
 			<div class="col-md-12 pd0">
 				<!-- Button trigger modal -->
-					<button type="submit" class="btn btn-origan btn-lg contact-user">
+					<button type="submit" class="btn btn-origan btn-lg contact-user @if(!Auth::check()) disabled @endif">
 						Đăng ký học thử
 					</button>
 			</div>

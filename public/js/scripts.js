@@ -142,6 +142,7 @@ $('.price-add-course').keydown(function(){
 });
 $('.selectCouser').click(function(){
 	var selected = $('.selectCouser option:selected');
+	$('.price-register').val(' ');
 	if (selected.length) {
 		var val = selected.attr('data-price');
 		var type = selected.attr('data-type');
@@ -249,38 +250,6 @@ function calculateAverage() {
 
   $('.js-average').val((average/ $('.rating').length).toFixed(1))
 }
-$(function() {
-  $(".img-w").each(function() {
-    $(this).wrap("<div class='col-md-6 img-c'></div>")
-  })
-
-
-  $(".img-c").click(function() {
-    let w = $(this).outerWidth()
-    let h = $(this).outerHeight()
-    let x = $(this).offset().left
-    let y = $(this).offset().top
-
-
-    $(".active").not($(this)).remove()
-    let copy = $(this).clone();
-    copy.insertAfter($(this)).height(h).width(w).delay(500).addClass("active")
-    $(".active").css('top', y - 8);
-    $(".active").css('left', x - 8);
-
-      setTimeout(function() {
-    copy.addClass("positioned")
-  }, 0)
-
-  })
-})
-
-$(document).on('click', function () {
-    $('.img-c').removeClass("positioned active").addClass("postactive");
-});
-$('.img-c').on('click', function (e) {
-    e.stopPropagation();
-});
 
 $('.course-search').focus(function(){
 	$('.select-course').show();
@@ -313,4 +282,20 @@ $('INPUT[type="file"]').change(function () {
     if($.inArray(ext, ['gif','png','jpg','jpeg','mp4','avi','mov','flv']) == -1) {
       $('.btn').attr('disabled',true)
     }
+});
+
+$('.img-c').click(function(){
+	var clone = $(this).clone();
+	$('.zoom-picture').remove();
+	$('body').append('<div class="col-md-12 zoom-picture"><div class="zoom-picture__content"></div></div>');
+	$('.zoom-picture__content').append(clone);
+	$('.zoom-picture .img-c').removeClass('col-md-6');
+	$('html').css('overflow-y','hidden');
+})
+$(document).on('click', function () {
+    $('.zoom-picture').remove();
+		$('html').css('overflow-y','auto');
+});
+$('.img-c').on('click', function (e) {
+    e.stopPropagation();
 });

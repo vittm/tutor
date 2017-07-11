@@ -40,7 +40,7 @@
     @if(Auth::check())
     <img src="{{ URL::to('img/avatar')}}/{{ Auth::user()->avatar}}" alt="..." class="img-circle" height="70" width="70">
     @else
-    <img src="{{ URL::to('img/logo.png')}}" alt="..." class="img-circle" height="70" width="70">
+    <img src="{{ URL::to('img/logo.png')}}" alt="..." class="img-circle" height="70" width="70" style="object-fit: contain">
     @endif
   </div>
   <div class="col-md-10 form-ratings__write">
@@ -49,7 +49,7 @@
   </div>
   <div class="col-md-12">
     <div class="text-right">
-    <button type="submit" class="btn btn-origan2 up-review ">Đăng</button>
+    <button type="submit" class="btn btn-origan2 up-review @if(!Auth::check()) disabled @endif">Đăng</button>
     </div>
   </div>
 </div>

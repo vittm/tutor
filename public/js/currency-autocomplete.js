@@ -1215,7 +1215,8 @@ var addressFind =[
 
 
   $('.distric-edit').append("<ul class='select-course'></ul>");
-    $('#district').click(function(){
+  $('#district').on('click keyup',function(e){
+    if (e.type == "click" || event.which == 9) {
       var _this = $(this);
       var _ul = $('.distric-edit .select-course');
       var district = "";
@@ -1234,5 +1235,6 @@ var addressFind =[
         _this.val($(this).text());
         $(this).parent().hide();
       });
+    }
     });
 });

@@ -10,7 +10,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <!-- <link rel="stylesheet" href="css/main.css"> -->
     <!--[if gt IE 8]><!-->
-    <link rel="stylesheet" href="{{ URL::to('css/desktop.css') }}" >
 </head>
 
 
