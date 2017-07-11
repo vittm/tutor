@@ -22,7 +22,7 @@
        </div>
      </div>
 
-       <a class="col-md-12 pd0 top15 text-right"role="button" data-toggle="collapse" href="#collapseExample{{$key}}" aria-expanded="false" aria-controls="collapseExample "> Trả lời </a>
+       <a class="col-md-12 pd0 top15 text-right"role="button" data-toggle="collapse" href="#collapseEx{{$key}}" aria-expanded="false" aria-controls="collapseExample "> Trả lời </a>
      </div>
     </div>
   </div>
@@ -34,7 +34,7 @@
 <form class="col-md-12 pd0 form-ratings" method="POST" action="{{ url('/review-teacher/reply') }}-{{ $id_user[0]->id }}" enctype='multipart/form-data'>
     {{ csrf_field() }}
 <input type="hidden" class="id_child" name="id_child" value="{{ $value->id }}">
-<div class="collapse top15 col-md-12" id="collapseExample{{$key}}">
+<div class="collapse top15 col-md-12" id="collapseEx{{$key}}">
 <div class="col-md-12 pd0 top30">
   <div class="col-md-2">
     @if(Auth::check())

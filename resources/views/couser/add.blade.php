@@ -110,7 +110,7 @@
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3">Chương trình học</div>
-        <div class="col-md-8"><textarea class="form-control" name="program" ></textarea>
+        <div class="col-md-8"><textarea class="ckeditor col-md-12" id="editor1" name="program"></textarea></textarea>
      </div>
       </div>
       <div class="col-md-12 pd0 top10">
@@ -214,7 +214,8 @@
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3">Chương trình học</div>
-        <div class="col-md-8"><textarea class="form-control" name="program" ></textarea>
+        <div class="col-md-8">
+          <textarea class="ckeditor col-md-12" id="editor1" name="program"></textarea>
         </div>
       </div>
       <div class="col-md-12 pd0 top10">
