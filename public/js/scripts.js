@@ -185,14 +185,22 @@ $('.selectCouser').click(function(){
 		var type = selected.attr('data-type');
 		if( type == '2') {
 				$('.planprice').text('/tháng');
+				$('.detail-register').hide();
+				$('.price-register').val(addCommas(val));
 		}else {
 				$('.planprice').text('/giờ');
+				$('.detail-register').show();
 		}
-    $('.price-register').val(addCommas(val));
-
   }
 });
-
+$('.plantime, .planmoment').keyup(function(){
+	var selected = $('.selectCouser option:selected');
+	var val = selected.attr('data-price');
+	var planmoment = $('.planmoment').val();
+	var plantime = $('.plantime').val();
+	var calculate = (((planmoment  * 4) * plantime * val ) * 30 )/100;
+	$('.price-register').val(addCommas(calculate));
+});
 var starClicked = false;
 
 $(function() {

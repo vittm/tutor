@@ -62,7 +62,9 @@
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3">Chương trình học</div>
-        <div class="col-md-8"><textarea class="form-control" name="program" >{{$couser[0]->program}}</textarea><img src="{{ URL::to('img/icon/inclined-pencil.png')}}">
+        <div class="col-md-8">
+          <textarea class="ckeditor col-md-12" id="editor1" name="program">{!! $couser[0]->program !!}</textarea>
+          <img src="{{ URL::to('img/icon/inclined-pencil.png')}}">
      </div>
       </div>
       @if($couser[0]->typeCouser == '1')

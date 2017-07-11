@@ -650,10 +650,12 @@ box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.5);padding-top: 15px;">
 							<option value="{{ $value->id }}" data-price="{{$value->price}}" data-type="{{$value->typeCouser}}"  >{{ $value->name_couser}}</option>
 						@endforeach
 				</select>
-				<p>Dự kiến số giờ học/ngày</p>
-				<input class="form-control" type="number" placeholder="3 ngày"name="planmoment">
-				<p>Dự kiến số buổi giờ/ngày</p>
-				<input class="form-control" type="number" placeholder="3 giờ"name="plantime">
+				<div class="detail-register">
+					<p>Dự kiến số giờ học/ngày</p>
+					<input class="form-control planmoment" type="number" placeholder="3 ngày"name="planmoment">
+					<p>Dự kiến số buổi giờ/ngày</p>
+					<input class="form-control plantime" type="number" placeholder="3 giờ"name="plantime">
+				</div>
 				<p>Dự kiến học phí <span class="planprice"></span></p>
 				<input class="form-control price-register" type="text" disabled name="price">
 			<div class="col-md-12 pd0">
