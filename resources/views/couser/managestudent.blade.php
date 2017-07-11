@@ -16,7 +16,7 @@
     <div class="col-md-12 pd0 list-student wel">
       <div class="col-md-1 top15"><img src="{{ URL::to('img/avatar')}}/{{ $value->avatar}}" alt="..." class="img-circle dl" height="60" width="60"></div>
       <div class="col-md-11">
-          <div class="col-md-7 pd0"><h3>{{ $value->name }}</h3><p><i>Quận {{ $value->district}}, TP {{ $value->city}}</i></p></div>
+          <div class="col-md-7 pd0"><h3>{{ $value->name }}</h3><p><i>{{ $value->district}}, TP {{ $value->city}}</i></p></div>
           <div class="col-md-5"><button class="btn btn-origan2" style="border-radius: 8px; padding-top: 3px; padding-bottom: 3px;border-width: 2px;"><img src="{{ URL::to('img/icon/iconphone.png')}}" height="40"><span style="font-weight: 700;color: #161542; font-size: 15px;"> {{ $value->phone }}</span></button></div>
           <div class="col-md-12 pd0" style="border-bottom: 1px solid #eeeeee;padding-bottm:15px;margin-bottom:5px;">
             <p style="margin-bottom: 0;color: #161542"> Khóa học </p>
@@ -76,7 +76,7 @@
                         <div class="col-md-6">
                           {{number_format($value ->price)}}<sup> đ</sup>
                         </div>
-                        <div class="col-md-6">Học phí dự tính:</div><div class="col-md-6">
+                        <div class="col-md-6">@if($value->typeCouser == '2') Học phí/Học Viên/Khóa (VNĐ) @else Học phí/Học Viên/Giờ (VNĐ) @endif:</div><div class="col-md-6">
                           @if($value -> typeclass == '1')
                           {{ number_format(((($value->planmoment * 5 ) * $value->plantime) * $value->price )) }} <sup>đ </sup>
                           @endif

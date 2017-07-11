@@ -119,7 +119,7 @@
 
 			<div class=" @if($id_user[0]->id == current($status) ) col-md-8 @else col-md-8  @endif information-profile pd0">
 				<h3 style="color: #ffffff;"><?php $str = explode(' ', $id_user[0]->name); ?>{{end($str)}} {{reset($str)}} @if($id_user[0]->active == 2 ) <img class="sticker-verify" src="{{ URL::to('img/icon/VectorSmartObjectcop.png')}}" alt="">@endif</h3>
-				@if($id_user[0]->district != null)<span style="color: #ffffff;font-weight: 500;"> Giáo viên từ Quận {{ $id_user[0]->district }}, {{ $id_user[0]->city }}</span> @endif
+				@if($id_user[0]->district != null)<span style="color: #ffffff;font-weight: 500;"> Giáo viên từ {{ $id_user[0]->district }}, {{ $id_user[0]->city }}</span> @endif
 				@if($id_user[0]->active == 2)
 				<h3 style="margin-top: 4.7rem; padding-left: 5px;">{{ $id_user[0] -> title }} </h3>
 				@endif
@@ -168,7 +168,7 @@
 					    <div role="tabpanel" class="tab-pane active" id="home">
 					    	<h4 class="title-profile"> GIỚI THIỆU </h4>
 					    	 <div class="col-md-12 list-information">
-										@include('users.information-sub')
+										@include('users.subview-user.information-sub')
 								</div>
 					    	 <br>
 					    </div>
@@ -529,7 +529,7 @@
 										</div>
 										<div class="col-md-10 form-ratings__write">
 											<textarea rows="5" name="contentReview" class="form-control" placeholder="Nội dung đánh giá"></textarea>
-											<input class="multiple-flie" type="file" name="imgRatings" >
+											<input class="multiple-flie" type="file" name="imgRatings" accept="image/*">
 										</div>
 									</div>
 									<div class="col-md-12">
@@ -656,7 +656,7 @@ box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.5);padding-top: 15px;">
 					<p>Dự kiến số buổi giờ/ngày</p>
 					<input class="form-control plantime" type="number" placeholder="3 giờ"name="plantime">
 				</div>
-				<p>Dự kiến học phí <span class="planprice"></span></p>
+				<p>Học Phí <span class="planprice"></span></p>
 				<input class="form-control price-register" type="text" disabled name="price">
 			<div class="col-md-12 pd0">
 				<!-- Button trigger modal -->
@@ -665,7 +665,8 @@ box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.5);padding-top: 15px;">
 					</button>
 			</div>
 			<hr>
-			<p class="col-md-12 pd0" style="font-size: 12px; margin-top: 20px;">  Nếu gặp sự cố gì, anh/ chị vui lòng thông báo lại cho <span style="color:#fcaf00;font-weight:600">Wiis</span> theo hotline <u>0868. 505.523</u> để <span style="color:#fcaf00;font-weight:600">Wiis</span> giúp anh/chị.</p>
+			<p class="col-md-12 pd0" style="font-size: 12px; margin-top: 20px;">
+				Nếu gặp sự cố hay vấn đề khi đăng ký học, bạn vui lòng gọi đến hotline <span style="color:#fcaf00;font-weight:600">0868.505.523</span> để được hướng dẫn và hỗ trợ </p>
 		</form>
 		</div>
 		</div>

@@ -3,7 +3,7 @@
 			<div class="col-md-4">
 				<img src="{{ URL::to('img/avatar')}}/{{ $value->avatar}}" alt="..." class="img-circle dl" height="120" width="120">
 				<h4 class="text-center"><?php $str = explode(' ', $value->name); ?>{{end($str)}} {{reset($str)}} <img class="sticker-verify" src="{{ URL::to('img/icon/VectorSmartObjectcop.png')}}" alt=""></h4>
-				<p  class="text-center">@if($value->ward != "") Quận {{ $value->district }}, @endif @if($value->city != " ") {{ $value->city }} @endif</p>
+				<p  class="text-center">@if($value->ward != "") {{ $value->district }}, @endif @if($value->city != " ") {{ $value->city }} @endif</p>
 		    </div>
 			<div class="col-md-8">
 				<h4>{{ $value-> title }} </h4>

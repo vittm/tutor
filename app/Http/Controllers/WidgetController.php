@@ -95,6 +95,11 @@ class WidgetController extends Controller
     public function editing_slide(Request $request, $id){
         $value= $request->all();
         if($request->hasFile('images_slide')){
+            $id_user = DB::table('slides')->where('id', '=', $id)->get();
+            if($id_user[0]->images_slide != null) {
+                $file = public_path('img\slider\\'.$id_user[0]->images_slide);
+                $result= File::delete($file);
+            }
             $file = $value['images_slide'];
             $filename = $file->getClientOriginalName();
             $file->move(public_path().'/img/slider', $filename);

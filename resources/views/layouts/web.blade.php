@@ -7,10 +7,9 @@
     <link rel="stylesheet" type="text/css" href="{{ URL::to('css/style.css') }}">  <!-- Link css tự style -->
     <link rel="stylesheet" type="text/css" href="{{ URL::to('css/font-awesome.css') }}"> <!-- link css font-face -->
     <link rel="stylesheet" href="{{ URL::to('css\bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ URL::to('css/test.css') }}">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <!-- <link rel="stylesheet" href="css/main.css"> -->
     <!--[if gt IE 8]><!-->
-    <link rel="stylesheet" href="{{ URL::to('css/tablet.css') }}">
     <link rel="stylesheet" href="{{ URL::to('css/desktop.css') }}" >
 </head>
 
@@ -31,7 +30,7 @@
       <img  src="{{ url('img/logo.png')}}" alt="">
       <p>Tìm giáo viên, gia sư miễn phí </p>
     </a>
-    <div class="col-md-offset-3 col-md-6">
+    <div class="col-md-offset-2 col-md-7">
       <ul class="menu" style="margin-top: @if (Auth::guest()) 3rem @else 1rem @endif">
         <li><a href="{{ URL('tim-kiem-gia-su') }}" class="menu__item">Tìm Giáo Viên</a></li>
         @if (Auth::guest())
@@ -106,7 +105,7 @@
               </a>
             </div>
             <div class="col-md-6">
-              <h3 style="text-align: right;position:relative;top:24px;"><i> Nơi kết nối học viên và gia sư </i> </h3>
+
             </div>
             <div class="col-md-3">
               <a href="{{ url('login') }}" class="btn btn-origan btn-sm top15" style="float: right;position:relative;top:24px;">
@@ -116,7 +115,6 @@
           </div>
         </div>
         <div  class="col-md-12" ng-controller="menuCtrl">
-
           <div class="container footer-general">
                 <div class="container">
                     <div class="top">

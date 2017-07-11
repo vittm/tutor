@@ -102,15 +102,6 @@
             @if($value->typeCouser == '2')
             <div class="col-md-12 pd0 top15">
                 <div class="col-md-6">
-                  <p><strong><i class="fa fa-circle" aria-hidden="true" style="font-size:8px;position:relative;top:-2px;"></i> Lớp học kéo dài</strong></p>
-                </div>
-
-                <div class="col-md-6">
-                  {{ $value->closetime }}
-                </div>
-            </div>
-            <div class="col-md-12 pd0 top15">
-                <div class="col-md-6">
                   <p><strong><i class="fa fa-circle" aria-hidden="true" style="font-size:8px;position:relative;top:-2px;"></i> Ngày khai giảng:</strong></p>
                 </div>
 

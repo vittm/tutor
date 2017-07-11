@@ -66,8 +66,6 @@ class CouserController extends Controller
       if($files=$request->file('imgCouser')){
           $file = $input['imgCouser'];
           $filename = $file->getClientOriginalName();
-          $nameConvert = date('H-i-sYmd').$filename;
-          $file->move(public_path().'/img/couser', $nameConvert);
       }else{
           $nameConvert= 'couser.jpg';
       }
@@ -80,7 +78,6 @@ class CouserController extends Controller
           $db->type = $input['type'];
           $db->program = $input['program'];
           $db->opentime =  $input['opentime'];
-          $db->closetime =  $input['closetime'];
           $db->timeplan = $input['timeplan'];
           $db->typeCouser = '2';
           $db->price = $input['price'];
@@ -90,6 +87,11 @@ class CouserController extends Controller
       public function editing_couser(Request $request, $couserid){
         $input = $request->all();
         if($files=$request->file('imgCouser')){
+            $id_course = DB::table('couser')->where('id', '=', $id)->get();
+            if($id_user[0]->picture_couser != null) {
+                $file = public_path('img\couser\\'.$id_course[0]->picture_couser);
+                $result= File::delete($file);
+            }
             $file = $input['imgCouser'];
             $filename = $file->getClientOriginalName();
             $nameConvert = date('H-i-sYmd').$filename;
@@ -122,8 +124,7 @@ class CouserController extends Controller
               'program' => $input['program'],
               'opentime' =>  $input['opentime'],
               'timeplan' => $input['timeplan'],
-              'price' =>  $input['price'],
-              'closetime' => $input['closetime']
+              'price' =>  $input['price']
           ]);
         }
 
@@ -151,11 +152,31 @@ class CouserController extends Controller
         $db = new Registercousers;
         $nDb = new Notifications;
         $couser = DB::table('cousers')->leftJoin('users','users.id','=','cousers.id_user')->select('users.name','cousers.*')->where('cousers.id', '=', $input['selectCouser'])->get();
+
+        //price for teacher
         $typeClass= (((($input['planmoment'] * 4 ) * $input['plantime']) * $couser[0]->price ) * 30)/100;
         $typeCouser = ($couser[0]->price * 30)/100;
 
-        if($couser[0] -> typeCouser == '1') $priceofclass = $typeClass;
-        if($couser[0] -> typeCouser == '2') $priceofclass = $typeCouser;
+        // price session for user
+        $StypeClass= (($input['planmoment'] * 4 ) * $input['plantime']) * $couser[0]->price;
+
+        if($couser[0] -> typeCouser == '1'){
+            $priceofclass = $typeClass;
+            $Spriceofclass = $StypeClass;
+        }
+        if($couser[0] -> typeCouser == '2'){
+          $priceofclass = $typeCouser;
+          $Spriceofclass = $couser[0]->price;
+        }
+
+        Session::put('pricecourse', $Spriceofclass);
+        $couserNotify = DB::table('cousers')->leftJoin('users','users.id','=','cousers.id_user')->select('users.name','cousers.*')->where([['cousers.id', '=', $input['selectCouser']],['users.id','=',$input['id_teacher']]])->get();
+        $gift_code= self::random_numbers('MSDT','registercousers','giftcode');
+        Session::put('name_user', $couser[0]->name);
+        Session::put('name_couser', $couserNotify[0]->name_couser);
+        Session::put('giftcode', $gift_code);
+        Session::put('teacher', $couserNotify[0]->name);
+
 
         $db->pay = $priceofclass;
         $db->user = $id;
@@ -165,8 +186,6 @@ class CouserController extends Controller
         $db->id_course = $input['selectCouser'];
         $db->price = $couser[0]->price;
         $db->code = self::random_numbers('Wiis','registercousers','code');
-
-
         $nDb->id_user = $input['id_teacher'];
         $nDb->name_notification = 'Học viên đăng ký khoá học '. $couser[0]->name_couser .'';
         $nDb->content_notification = '
@@ -174,14 +193,6 @@ class CouserController extends Controller
           <p> Hệ thống thông báo bạn học viên <a href="'.url('/trang-ca-nhan').'-'.$couser[0]->id_user.'-'.User::convert_string($couser[0]->name).'">'. $couser[0]->name .'</a> đã đăng ký khoá học <strong>'. $couser[0]->name_couser .'</strong> của bạn. Bạn hãy vào trang <a href='.url('/quan-ly-hoc-vien').'>Quản lý học viên </a> của mình để xem chi tiết hơn.</p>
           '
         ;
-
-        $couserNotify = DB::table('cousers')->leftJoin('users','users.id','=','cousers.id_user')->select('users.name','cousers.*')->where([['cousers.id', '=', $input['selectCouser']],['users.id','=',$input['id_teacher']]])->get();
-        $gift_code= self::random_numbers('MSDT','registercousers','giftcode');
-        Session::put('name_user', $couser[0]->name);
-        Session::put('name_couser', $couserNotify[0]->name_couser);
-        Session::put('giftcode', $gift_code);
-        Session::put('teacher', $couserNotify[0]->name);
-        Session::put('pricecourse', $priceofclass);
         $db->giftcode = $gift_code;
         $nDb->save();
         $db->save();

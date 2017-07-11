@@ -81,7 +81,7 @@
       <div class="col-md-12 pd0">
          <div class="col-md-3 "> Hình ảnh</div>
          <div class="col-md-7">
-           <input class="multiple-flie" type="file" name="imgCouser" >
+           <input class="multiple-flie" type="file" name="imgCouser" accept="image/*">
            <ul class="col-md-offset-1 col-md-10 gender__edit">
  						 <li>
                <input type="hidden" name="typeclass" type="radio" id="boy" value="1">
@@ -154,8 +154,8 @@
         </div>
       </div>
       <div class="col-md-12 pd0 top30">
-        <div class="col-md-3">Học phí mong muốn/giờ</div>
-        <div class="col-md-8"><textarea class="form-control" name="price" value=""></textarea></div>
+        <div class="col-md-3">Học phí/Học Viên/Giờ (VNĐ)</div>
+        <div class="col-md-8"><input type="number" class="form-control price-add-course" name="price" value=""></div>
       </div>
     <div class="col-md-offset-6 col-md-4 pd0 top30">
         <div class="col-md-8 pd0 btn-edit save_edit-profile">
@@ -175,17 +175,17 @@
       <input type="hidden" name="id_user" value="{{ $id_user[0]->id}}">
       <input type="hidden" name="picture" value="{{ $id_user[0]->avatar}}">
       <div class="col-md-12 pd0 top10">
-         <div class="col-md-3 "> Tiêu đề</div>
+         <div class="col-md-3 "> Tiêu đề khóa học</div>
          <div class="col-md-8"><textarea class="form-control" type="text" name="title" value=""></textarea></div>
       </div>
       <div class="col-md-12 pd0">
          <div class="col-md-3 "> Hình ảnh</div>
          <div class="col-md-7">
-           <input class="multiple-flie" type="file" name="imgCouser" >
+           <input class="multiple-flie" type="file" name="imgCouser" accept="image/*">
          </div>
       </div>
       <div class="col-md-12 pd0">
-         <div class="col-md-3 "> Số lượng</div>
+         <div class="col-md-3 "> Tiêu đề khóa học </div>
          <div class="col-md-4">
            <select class="form-control" name="information" style="border:none;">
               <option value="1">2 - 10 người</option>
@@ -195,8 +195,9 @@
          </div>
       </div>
       <div class="col-md-12 pd0 top10">
-        <div class="col-md-3">Môn dạy</div>
-        <div class="col-md-8"><input type="text" class="form-control" name="subjects" id="subject-find2"></div>
+        <div class="col-md-3">Ngày khai giảng</div>
+        <div class="col-md-8"><input type="date" class="form-control" name="opentime" ></input>
+        </div>
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3">Bạn sẽ học được gì</div>
@@ -209,7 +210,7 @@
         </div>
       </div>
       <div class="col-md-12 pd0 top10">
-        <div class="col-md-3"> Phương pháp giảng</div>
+        <div class="col-md-3">Phương pháp giảng dạy</div>
         <div class="col-md-8"><textarea class="form-control" name="type"></textarea></div>
       </div>
       <div class="col-md-12 pd0 top10">
@@ -219,23 +220,17 @@
         </div>
       </div>
       <div class="col-md-12 pd0 top10">
-        <div class="col-md-3">Thời gian bắt đầu</div>
-        <div class="col-md-8"><input type="date" class="form-control" name="opentime" ></input>
-        </div>
+        <div class="col-md-3">Môn dạy</div>
+        <div class="col-md-8"><input type="text" class="form-control" name="subjects" id="subject-find2"></div>
       </div>
       <div class="col-md-12 pd0 top10">
-        <div class="col-md-3">Dự kiến thời gian</div>
+        <div class="col-md-3">Thời lượng khóa học (Tháng)</div>
         <div class="col-md-8"><input type="text" class="form-control" name="timeplan" ></input>
         </div>
       </div>
-      <div class="col-md-12 pd0 top10">
-        <div class="col-md-3">Thời gian kết thúc</div>
-        <div class="col-md-8"><input type="date" class="form-control" name="closetime" ></input>
-        </div>
-      </div>
       <div class="col-md-12 pd0 top30">
-        <div class="col-md-3">Học phí mong muốn/tháng</div>
-        <div class="col-md-8"><textarea class="form-control" name="price" value=""></textarea></div>
+        <div class="col-md-3">Học phí/Học Viên/Khóa (VNĐ)</div>
+        <div class="col-md-8"><input type="number" class="form-control price-add-course" name="price" value=""></div>
       </div>
     <div class="col-md-offset-6 col-md-4 pd0 top30">
         <div class="col-md-8 pd0 btn-edit save_edit-profile">

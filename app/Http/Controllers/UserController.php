@@ -94,6 +94,11 @@ class UserController extends Controller
       $id = $input['id_user'];
 
       if($files=$request->file('coverMain')){
+          $id_user = DB::table('users')->where('id', '=', $id)->get();
+          if($id_user[0]->cover != null) {
+              $file = public_path('img\cover\\'.$id_user[0]->cover);
+              $result= File::delete($file);
+          }
           $file = $input['coverMain'];
           $filename = $file->getClientOriginalName();
           $nameConvert = date('H-i-sYmd').$filename;
@@ -102,6 +107,11 @@ class UserController extends Controller
           $nameConvert=$input['cover'];
       }
       if($files1=$request->file('avatarMain')){
+          $id_user = DB::table('users')->where('id', '=', $id)->get();
+          if($id_user[0]->picture != null) {
+              $file = public_path('img\avatar\\'.$id_user[0]->avatar);
+              $result= File::delete($file);
+          }
           $file1 = $input['avatarMain'];
           $filename1 = $file1->getClientOriginalName();
           $nameConvert1 = date('H-i-sYmd').$filename1;

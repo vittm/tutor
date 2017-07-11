@@ -61,12 +61,12 @@
 					</ul>
 				</div>
 				</div>
-				<div class="col-md-12 pd0 top10">
+				<div class="col-md-12 pd0 top10 search ">
 					<div class="col-md-3">Địa chỉ</div>
-					<div class="col-md-8 address-form">
-							<input class="col-md-4" type="text" name="ward" placeholder="Số nhà, tên đường, phường" value="{{ $id_user[0]->ward }}">
-							<input class="col-md-4" type="text" name="distric" placeholder="Quận" value="{{ $id_user[0]->district }}">
+					<div class="col-md-8 address-form distric-edit">
 							<input class="col-md-4" type="text" id="address-find" name="city" placeholder="Thành Phố" value="{{ $id_user[0]->city }}">
+							<input class="col-md-4" type="text" name="distric" id="district" placeholder="Quận" value="{{ $id_user[0]->district }}">
+							<input class="col-md-4" type="text" name="ward" id="ward" placeholder="Số nhà, tên đường, phường" value="{{ $id_user[0]->ward }}">
 					</div>
 				</div>
 				@if($id_user[0]->active == 2)
@@ -124,19 +124,6 @@
         <input type="hidden" name="id_user" value="{{ $id_user[0]->id}}">
         <input type="hidden" name="avatar" value="{{ $id_user[0]->avatar}}">
 				<input type="hidden" name="cover" value="{{ $id_user[0]->cover}}">
-
-			<div class="col-md-8 top30">
-					@if($id_user[0]->cover != null)
-						<img class="col-md-12 top30" src="{{ URL::to('/img/cover')}}/{{ $id_user[0]->cover}}" alt="..." class="img-thumbnail">
-					@endif
-					<input class="multiple-flie" name="coverMain" type="file">
-			</div>
-			<div class="col-md-4 top30">
-					@if($id_user[0]->avatar != null)
-						<img class="col-md-12 top30 img-reg" src="{{ URL::to('/img/avatar')}}/{{ $id_user[0]->avatar}}" alt="..." class="img-thumbnail">
-					@endif
-					<input class="multiple-flie" type="file" name="avatarMain" >
-			</div>
 			<div class="col-md-offset-8 col-md-4 pd0 top30">
           <div class="col-md-8 pd0 btn-edit save_edit-profile">
               <button class="btn btn-5 btn-5a fa icon-right"><span>Lưu lại</span></button>
@@ -145,6 +132,18 @@
 						<button href=" " class="btn fa icon-right"><span> Hủy</span></button>
 					</div>
       </div>
+			<div class="col-md-8 top30">
+					@if($id_user[0]->cover != null)
+						<img class="col-md-12 top30" src="{{ URL::to('/img/cover')}}/{{ $id_user[0]->cover}}" alt="..." class="img-thumbnail">
+					@endif
+					<input class="multiple-flie" name="coverMain" type="file" accept="image/*">
+			</div>
+			<div class="col-md-4 top30">
+					@if($id_user[0]->avatar != null)
+						<img class="col-md-12 top30 img-reg" src="{{ URL::to('/img/avatar')}}/{{ $id_user[0]->avatar}}" alt="..." class="img-thumbnail">
+					@endif
+					<input class="multiple-flie" type="file" name="avatarMain" accept="image/*">
+			</div>
 		</form>
 		</div>
 		<div class="tab-pane" id="picture">
@@ -153,7 +152,7 @@
 				<input type="hidden" name="id_user" value="{{ $id_user[0]->id}}">
 				<input type="hidden" name="picture" value="{{ $id_user[0]->picture}}">
 
-					<input class="multiple-flie" type="file" name="images[]" multiple>
+					<input class="multiple-flie" type="file" name="images[]" multiple accept="image/*">
 					<div class="col-md-offset-8 col-md-4 pd0 top30">
 		          <div class="col-md-8 pd0 btn-edit save_edit-profile">
 		              <button class="btn btn-5 btn-5a fa icon-right"><span>Lưu lại</span></button>
@@ -177,7 +176,7 @@
 				<input type="hidden" name="id_user" value="{{ $id_user[0]->id}}">
 				<input type="hidden" name="video" value="{{ $id_user[0]->video}}">
 
-					<input class="multiple-flie" type="file" name="video[]" multiple>
+					<input class="multiple-flie" type="file" name="video[]" multiple accept="video/*">
 					<div class="col-md-offset-8 col-md-4 pd0 top30">
 		          <div class="col-md-8 pd0 btn-edit save_edit-profile">
 		              <button class="btn btn-5 btn-5a fa icon-right"><span>Lưu lại</span></button>
@@ -209,7 +208,7 @@
 				<input type="hidden" name="id_user" value="{{ $id_user[0]->id}}">
 				<input type="hidden" name="level" value="{{ $id_user[0]->level}}">
 
-					<input class="multiple-flie" type="file" name="level[]" multiple>
+					<input class="multiple-flie" type="file" name="level[]" multiple accept="image/*">
 					<div class="col-md-offset-8 col-md-4 pd0 top30">
 		          <div class="col-md-8 pd0 btn-edit save_edit-profile">
 		              <button class="btn btn-5 btn-5a fa icon-right"><span>Lưu lại</span></button>
@@ -263,7 +262,7 @@
 				<h4> Mặt trước và mặt sau của CMND </h4>
 				<input type="hidden" name="id_user" value="{{ $id_user[0]->id}}">
 				<input type="hidden" name="level" value="{{ $id_user[0]->level}}">
-					<input class="multiple-flie" type="file" name="images[]" multiple>
+					<input class="multiple-flie" type="file" name="images[]" multiple accept="image/*">
 					<div class="col-md-offset-8 col-md-4 pd0 top30">
 		          <div class="col-md-8 pd0 btn-edit save_edit-profile">
 		              <button class="btn btn-5 btn-5a fa icon-right"><span>Lưu lại</span></button>
