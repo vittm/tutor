@@ -81,7 +81,6 @@ class AuthController extends Controller
         }
 
         $user = array('email' => Input::get('email'),'name' => Input::get('name'));
-
         Mail::send('auth.emails.welcome', ['user' => $user], function ($m) use ($user) {
             $m->to($user['email'], $user['name'])->subject('Chào mừng bạn đến với Wiis');
         });

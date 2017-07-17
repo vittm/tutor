@@ -12555,6 +12555,7 @@ img.img-w {
   background-position: center;
   cursor: pointer;
   transition: transform ease-in-out 300ms;
+  transition: width ease 400ms, height ease 350ms, left cubic-bezier(0.4, 0, 0.2, 1) 420ms, top cubic-bezier(0.4, 0, 0.2, 1) 420ms;
 }
 
 
@@ -12616,4 +12617,5 @@ body div.zoom-picture {
   z-index: 5;
   margin: 86px auto 0;
   display: block;
+  transition: width ease 400ms, height ease 350ms, left cubic-bezier(0.4, 0, 0.2, 1) 420ms, top cubic-bezier(0.4, 0, 0.2, 1) 420ms;
 }

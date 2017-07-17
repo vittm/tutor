@@ -42,10 +42,7 @@
 
                             <li>
                                 <a class="avatar" href="{{ url('/trang-ca-nhan')}}-{{ Auth::user()->id }}-{{App\User::convert_string(Auth::user()->name)}}"><img src="{{ URL::to('/img/avatar')}}/{{ Auth::user()->avatar }}" alt="..." class="img-circle" height="50"></a>
-                            @if($mess > 0)
-                            <a class="notification_mess" href="{{url('/danh-sach-tin-nhan')}}-{{Auth::user()->id}}"><img src="{{ URL::to('/img/icon')}}/speech-bubble.png"><span>{{ $mess }} </span>
-                            </a>
-                            @endif</li>
+                            </li>
                             <li class="dropdown">
                                 <span class="user-name hidden">{{ Auth::user()->name }}</span>
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
