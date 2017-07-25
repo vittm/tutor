@@ -127,7 +127,7 @@
 					<div class="col-md-12 top15 list-picture wel" style="padding-top:15px;">
 						@if(json_decode($id_user[0]->picture) != null)
 							@foreach( json_decode($id_user[0]->picture) as $value )
-								<img class="col-md-6 top10 img-c" src="{{ URL::to('/img/picture')}}/{{$value}}" alt="..." class="img-thumbnail">
+								<img class="col-md-6 top10 img-c pl0" src="{{ URL::to('/img/picture')}}/{{$value}}" alt="..." class="img-thumbnail">
 							@endforeach
 						@endif
 					</div>

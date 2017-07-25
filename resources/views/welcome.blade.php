@@ -1,7 +1,7 @@
 @extends('layouts.web')
 
 @section('content')
-<section>
+<section style="height: 520px;">
 <!-- progressbar -->
 		<section id="progressbar-slider" class="sample slider--animated @if($show[0]->value != '1') hidden @endif" data-slidizle data-slidizle-loop="true" data-slidizle-timeout="3000" data-slidizle-pause-on-hover="true">
 
