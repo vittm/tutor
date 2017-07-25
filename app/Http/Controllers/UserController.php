@@ -424,7 +424,7 @@ class UserController extends Controller
       $reply = ([
           'reply' => $value['reply'],
       ]);
-      $find = DB::table('comments')->join('users','userd.id','=','comments.id_user')->where('id', $id)->get();
+      $find = DB::table('comments')->join('users','users.id','=','comments.id_user')->where('comments.id', $id)->get();
       $nDb->id_user = $find[0]->id_post ;
       $nDb->name_notification = 'Bạn có một phản hồi từ phần hỏi đáp';
       $nDb->content_notification = '

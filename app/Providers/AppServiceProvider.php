@@ -38,6 +38,15 @@ class AppServiceProvider extends ServiceProvider
         // $idCouser = deteleCouserExp();
         // DB::table('cousers')->where('id', $idCouser)->delete();
         // DB::table('registercousers')->where('id_couser', $idCouser)->delete();
+
+        function getMeta() {
+          
+          echo '<meta property="og:url"     content="<?php ?>" />';
+          echo '<meta property="og:type"          content="website" />';
+          echo '<meta property="og:title"         content="Your Website Title" />';
+          echo '<meta property="og:description"   content="Your description" />';
+          echo '<meta property="og:image"         content="http://localhost:8081/hia/public/img/logo.png" />';
+        }
         $text= DB::table('texts')->get();
         $sleft= DB::table('blogposts')->join('users','users.id','=','blogposts.by')->select('blogposts.*','users.name','users.avatar','users.level_user')->orderBy('viewed','desc')->get();
         $sright= DB::table('users')->get();

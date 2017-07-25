@@ -48,23 +48,23 @@
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3">Bạn sẽ học được gì</div>
-        <div class="col-md-8"><textarea class="form-control" name="study">{{$couser[0]->study}}</textarea><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"></div>
+        <div class="col-md-8"><textarea class="ckeditor form-control" name="study">{{$couser[0]->study}}</textarea></div>
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3">Ai nên tham gia</div>
         <div class="col-md-8">
-            <textarea class="col-md-4" type="text" name="who" >{{$couser[0]->who}}</textarea>
+            <textarea class="ckeditor col-md-4" type="text" name="who" >{{$couser[0]->who}}</textarea>
         </div>
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3"> Phương pháp giảng dạy</div>
-        <div class="col-md-8"><textarea class="form-control" name="type">{{$couser[0]->type}}</textarea><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"></div>
+        <div class="col-md-8"><textarea class="ckeditor form-control" name="type">{{$couser[0]->type}}</textarea></div>
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3">Chương trình học</div>
         <div class="col-md-8">
           <textarea class="ckeditor col-md-12" id="editor1" name="program">{!! $couser[0]->program !!}</textarea>
-          <img src="{{ URL::to('img/icon/inclined-pencil.png')}}">
+
      </div>
       </div>
       @if($couser[0]->typeCouser == '1')
@@ -149,7 +149,7 @@
       @endif
       <div class="col-md-12 pd0 top30">
         <div class="col-md-3">  @if($couser[0]->typeCouser == '2') Học phí/Học Viên/Khóa (VNĐ) @else Học phí/Học Viên/Giờ (VNĐ) @endif </div>
-        <div class="col-md-8"><input type="number" class="form-control price-add-course" name="price" value="{{$couser[0]->price}}"><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"></div>
+        <div class="col-md-8"><input type="text" class="form-control price-add-course" name="price" value="{{$couser[0]->price}}"><img src="{{ URL::to('img/icon/inclined-pencil.png')}}"></div>
       </div>
     <div class="col-md-offset-6 col-md-4 pd0 top30">
         <div class="col-md-8 pd0 btn-edit save_edit-profile">

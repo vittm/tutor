@@ -38,7 +38,7 @@
             @endif
             </p></div>
           <div class="col-md-12 pd0">
-            <div class="col-md-6 pd0"><p>Ngày đăng ký</p></div><div class="col-md-6">{{ $value->created_at }} <p style="font-size:12px;font-style:italic;color: #161542"> Bạn nên gọi điện thoại cho học viên trong vòng 24h để xác nhận nhu cầu học của học viên. Nếu không nhận được lớp bạn vui lòng gọi vào hottline <span style="color: #fcaf00;"> 012345566 </span> của chúng tôi.</div>
+            <div class="col-md-6 pd0"><p>Ngày đăng ký</p></div><div class="col-md-6">{!! Carbon\Carbon::parse($value->created_at)->format('m/d/Y')  !!}<p style="font-size:12px;font-style:italic;color: #161542"> Bạn nên gọi điện thoại cho học viên trong vòng 24h để xác nhận nhu cầu học của học viên. Nếu không nhận được lớp bạn vui lòng gọi vào hottline <span style="color: #fcaf00;"> 0868.505.523 </span> của chúng tôi.</div>
           </div>
           <button class="btn btn-origan col-md-offset-8 col-md-4 pd0" @if($value->action != 0) {{'disabled="disabled"'}} @endif" data-toggle="modal" data-target="#myModal{{$key}}">
             @if($value->action == 0) {{'Thanh Toán'}} @else {{ 'Đã Thanh Toán' }} @endif</button>

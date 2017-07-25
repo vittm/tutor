@@ -30,7 +30,7 @@
                             <td class="td-name">
                                 <span>{{  $value->name_notification}}</spa>
                             </td>
-                            <td class="td-number"><span>{{date('d-m-y',strtotime($value->created_at))}}</span></td>
+                            <td class="td-number"><span>{!! Carbon\Carbon::parse($value->created_at)->format('m/d/Y')  !!}</span></td>
                             <td class="td-number">
                               <a class="btn" href="{{ url('/profile/notification/details')}}-{{$value->id}}">Xem chi tiết</a>
                             </td>

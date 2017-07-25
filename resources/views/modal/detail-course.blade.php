@@ -10,17 +10,35 @@
                       <strong>Lớp học sắp khai </strong>
                     @endif</p>
           </div>
-          <div class="col-md-6"><div class="btn btn-origan2" style="border-color: #000000;color: #000;position:relative;top: 5px;">{{number_format($value->price)}}<sup>Đ/@if($value -> typeCouser == '2') Khoá @else Giờ @endif </sup></div></div>
-          <div class="col-md-12">
-            <h3 class="couser-header__title">{{$value ->name_couser }}</h3>
-            <h5 class="couser-header__name" style="margin-bottom:0;">{{ $value->name }}</h5>
-            <span style="font-size:13px;">{{App\User::jobs($value->jobs)}}</span>
+          <div class="col-md-6">
+            <div class="btn btn-origan2" style="border-color: #000000;color: #000;position:relative;top: 5px;">{{number_format($value->price)}}<sup>Đ/@if($value -> typeCouser == '2') Khoá @else Giờ @endif </sup></div></div>
+            <div class="col-md-12 pd0">
+              <div class="col-md-10 pd0">
+              <h3 class="couser-header__title">{{$value ->name_couser }}</h3>
+              </div>
+              <div class="col-md-2 pd0 pdr share">
+                  <img class="action-menu__icon " src="{{ URL::to('img/icon/VectorSmartObject_3.png')}}" alt=""><span>Chia sẽ khoá học với bạn bè</span>
+                  <div class="col-md-12 share_hidden animated fadeIn" style="border: 1px soild #eeeeee">
+										<div class="col-md-12 fb-share-button"
+										data-href="{{url('/trang-ca-nhan')}}-{{$id_user[0]->id}}-{{App\User::convert_string($id_user[0]->name)}}?tab=info&khoa-hoc=couser{{$key}}&user={{$id_user[0]->name}}&title={{$value->name_couser}}&images={{ URL::to('/img/couser')}}/{{$value->picture_couser}}"
+										data-size="large"
+										data-layout="button"
+										data-mobile-iframe="true">
+												<a class="fb-xfbml-parse-ignore"
+												target="_blank" ></a>
+										</div>
+									</div>
+              </div>
+            <div class="col-md-12 pd0">
+              <h5 class="couser-header__name" style="margin-bottom:0;">{{ $value->name }}</h5>
+              <span style="font-size:13px;">{{App\User::jobs($value->jobs)}}</span>
+            </div>
          </div>
         </div>
         <div class="col-md-12 wel">
             <h4 class="col-md-12 top30" style="color:#fcaf00;text-transform: uppercase;"><strong> NỘI DUNG KHÓA HỌC </strong> </h4>
             <div class="@if($value -> typeCouser != '2') col-md-offset-3 @endif col-md-6 top15">
-              <img src="{{ URL::to('/img/couser')}}/{{$value->picture_couser}}" style="width:100%;">
+              <img class="couser-header__images" src="{{ URL::to('/img/couser')}}/{{$value->picture_couser}}" style="width:100%;">
             </div>
             @if($value -> typeCouser == '2')
             <div class="col-md-6 top15">
@@ -30,20 +48,20 @@
             @endif
             <div class="col-md-12 top30">
                 <p><strong><i class="fa fa-circle" aria-hidden="true" style="font-size:8px;position:relative;top:-2px;"></i> Bạn sẽ học được gì? </strong> </p>
-                {{ $value->study }}
+                {!! $value->study !!}
             </div>
 
             <div class="col-md-6 top15">
                 <p><strong> <i class="fa fa-circle" aria-hidden="true" style="font-size:8px;position:relative;top:-2px;"></i> Ai nên tham gia ? </strong></p>
-                {{$value->who}}
+                {!!$value->who!!}
             </div>
             <div class="col-md-6 top15">
                 <p><strong> <i class="fa fa-circle" aria-hidden="true" style="font-size:8px;position:relative;top:-2px;"></i> Phương pháp giảng dạy ? </strong></p>
-                {{$value->type}}
+                {!!$value->type !!}
             </div>
             <div class="col-md-12 top15">
                 <p><strong> <i class="fa fa-circle" aria-hidden="true" style="font-size:8px;position:relative;top:-2px;"></i> Chương trình học ? </strong></p>
-                {{$value->program}}
+                <span class="couser-header__program">{!!$value->program!!}</span>
             </div>
             @if($value->typeCouser == '1')
             <div class="col-md-12 pd0 top10">

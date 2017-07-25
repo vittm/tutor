@@ -12,7 +12,7 @@
 
 			<div class="col-md-9 information-profile">
 				<h3>{{ $post[0]->name }}</h3>
-				<p><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $post[0]->created_at }}</p>
+				<p><i class="fa fa-clock-o" aria-hidden="true"></i>{!! Carbon\Carbon::parse($post[0]->created_at)->format('m/d/Y')  !!}</p>
 			</div>
 	  </div>
 	  <div class="col-md-4	">
@@ -28,7 +28,7 @@
 				<!-- Button trigger modal -->
 				@if (Auth::check())
 					<button type="button" class="btn btn-primary btn-lg contact-user" data-toggle="modal" data-target="#contact-teach">
-					  Liên hệ 
+					  Liên hệ
 					</button>
 				@else
 					<button type="button" class="btn btn-primary btn-lg contact-user">
@@ -47,26 +47,26 @@
 				<h4 class="top30">Thông tin cơ bản</h4>
 				<li><strong>Môn học:</strong> {{ $post[0]->subject }} </li>
 				<li><strong>Trình độ:</strong> {{ $post[0]->grade }}</li>
-		<br>	
+		<br>
 				<h4>Thông tin lớp học</h4>
 				<li><strong>Địa điểm học:</strong> {{ $post[0]->location }} </li>
 				@if($target['0'] != null)
 				<li><strong>Mục tiêu học:</strong> <ul class="list-target" >@foreach($target['0'] as $key => $valueTarget) <li>{{ $valueTarget }}<li>@endforeach  </ul>
-				@else 
+				@else
 					{{ " " }}
-				@endif	
+				@endif
 				</li>
 				@if($time['0'] != null)
 				<li><strong>Thời gian mong muốn bắt đầu học:</strong> <ul class="list-target" >@foreach($time['0'] as $key => $valueTime) <li>{{ $valueTime }}<li>@endforeach  </ul>
-				@else 
+				@else
 					{{ " " }}
-				@endif	
+				@endif
 				</li>
 				<li><strong>Số giờ học/buổi:</strong> {{ $post[0]->timeHouse }} giờ/ buổi <br>
 				    <strong>Số buổi học/tuần:</strong> {{ $post[0]->timeWeek }} buổi/ tuần</li>
 
 			</ul>
-		</div>	
+		</div>
 	 </div>
 
 	<!-- Modal -->
@@ -92,7 +92,7 @@
 					</div>
 				</div>
 	    	</div>
-	    
+
 	      </div>
 	      <div class="modal-footer col-md-12">
 	        <button type="button" class="btn btn-default btn-5" data-dismiss="modal">Thoát</button>

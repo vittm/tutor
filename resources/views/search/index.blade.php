@@ -35,6 +35,7 @@
 	<div class="container" style="border-bottom: 1px solid #161542;">
 		<div class="sortby">
 			<ul><li>Sắp sếp theo: </li>
+				<input type="hidden" name="address-find">
 				<li><button type="submit" name="rating" value="rating">Đánh giá cao nhất</button></li>
 				<li><button type="submit" name="lowestPrice" value="lowestPrice">Học phí tốt nhất</button></li>
 			</ul>

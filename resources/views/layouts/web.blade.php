@@ -10,6 +10,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <!-- <link rel="stylesheet" href="css/main.css"> -->
     <!--[if gt IE 8]><!-->
+    @yield('facebook_meta')
 </head>
 
 
@@ -57,7 +58,7 @@
                                     <li><a href="{{ url('/chinh-sua-ca-nhan')}}-{{ Auth::user()->id }}"></i>Chỉnh sửa hồ sơ</a></li>
                                     @if(Auth::user()->active == 2 )
                                     <li><a href="{{ url('/couser/add')}}-{{ Auth::user()->id }}">Quản lý khóa học</a></li>
-                                    <li><a href="{{ url('/quan-ly-hoc-vien')}}"></i>Quản lý thông tin học viên</a></li>
+                                    <li><a href="{{ url('/quan-ly-hoc-vien')}}"></i>Học viên đăng ký học</a></li>
                                     @endif
                                     @if(Auth::user()->active == 0)
                                     <li><a href="{{ url('/admin/text') }}"></i>Admin</a></li>
@@ -68,7 +69,7 @@
                         </li>
                         @endif
 
-                        <li><a  data-toggle="dropdown" id="notification" role="button" aria-expanded="false" @if (Auth::check()) href="{{ url('/profile/notification')}}" @else href="{{ url('/register') }}" @endif class="menu__item" style="position:realative;"><img src="{{ URL::to('/img/icon/earth.svg')}}" alt="..." class="img-circle" height="20"><span class="notify">@if(Auth::check()){{$quanlityNotify}}@else 1 @endif</span></a>
+                        <li><a  @if (Auth::check()) data-toggle="dropdown" id="notification" role="button" aria-expanded="false"  href="{{ url('/profile/notification')}}"  @else href="{{ url('/login') }}" @endif class="menu__item" style="position:realative;"><img src="{{ URL::to('/img/icon/earth.svg')}}" alt="..." class="img-circle" height="20"><span class="notify">@if(Auth::check()){{$quanlityNotify}}@else 1 @endif</span></a>
                           @if (Auth::check())
                             <ul class="dropdown-menu notificationn" role="menu" aria-labelledby="notification"style="float:right">
                               <a class="list-group-item active" style="padding:5px;border-radius: 0;text-align: left;background:#fdb000;border-color: #fdb000;"> Thông báo </a>
@@ -93,7 +94,6 @@
 <main class="col-md-12 pd0 main" >
         @yield('content')
 </main>
-
     <div class="col-md-12 footer-home">
         <div class="col-md-12 pd0">
           <div class="container pd0">
@@ -156,7 +156,6 @@
                 </div>
             </div>
     </div>
-
 </div>
     <script type="text/javascript" src="{{ URL::to('js/jquery-1.10.2.js') }}"></script> <!-- Link thư viện jquery -->
 
@@ -204,6 +203,25 @@
         $('#register-finish').modal('show');
       @endif
     @endif
+    @if(isset($_GET['khoa-hoc']))
+      var course = $_GET('khoa-hoc');
+      $('#'+course).modal('show');
+      var title = $('#'+course+' .couser-header__title').text();
+      var des = $('#'+course+' .couser-header__program').text();
+      var img = $('#'+course+' .couser-header__images').attr('src');
+      $("meta[property='og:title']").attr("content",title);
+      $("meta[property='og:description']").attr("content",des);
+      $("meta[property='og:image']").attr("content",img);
+    @endif
+    $('.list-couser').click(function(){
+      var course = $(this).attr('data-target');
+      var title = $(course+' .couser-header__title').text();
+      var des = $(course+' .couser-header__program').text();
+      var img = $(course+' .couser-header__images').attr('src');
+      $("meta[property='og:title']").attr("content",title);
+      $("meta[property='og:description']").attr("content",des);
+      $("meta[property='og:image']").attr("content",img);
+    });
     @if(Session::has('form-' . $msg))
       $('#congratulationsignup').modal('show');
     @endif
@@ -293,6 +311,24 @@
             });
         return false;
     });
+    </script>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '240802339771076',
+          xfbml      : true,
+          version    : 'v2.9'
+        });
+        FB.AppEvents.logPageView();
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
     </script>
 </body>
 

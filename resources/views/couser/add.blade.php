@@ -96,21 +96,21 @@
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3">Bạn sẽ học được gì</div>
-        <div class="col-md-8"><textarea class="form-control" name="study" value=""></textarea></div>
+        <div class="col-md-8"><textarea row="20" class="ckeditor form-control" name="study" value=""></textarea></div>
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3">Ai nên tham gia</div>
         <div class="col-md-8">
-            <input class="col-md-4" type="text" name="who" value="">
+          <textarea class="ckeditor form-control" id="editor1" name="who"></textarea>
         </div>
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3"> Phương pháp giảng</div>
-        <div class="col-md-8"><textarea class="form-control" name="type"></textarea></div>
+        <div class="col-md-8"><textarea class="ckeditor form-control" id="editor1" name="type"></textarea></div>
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3">Chương trình học</div>
-        <div class="col-md-8"><textarea class="ckeditor col-md-12" id="editor1" name="program"></textarea></textarea>
+        <div class="col-md-8"><textarea class="ckeditor col-md-12" id="editor1" name="program"></textarea>
      </div>
       </div>
       <div class="col-md-12 pd0 top10">
@@ -155,7 +155,7 @@
       </div>
       <div class="col-md-12 pd0 top30">
         <div class="col-md-3">Học phí/Học Viên/Giờ (VNĐ)</div>
-        <div class="col-md-8"><input type="number" class="form-control price-add-course" name="price" value=""></div>
+        <div class="col-md-8"><input type="text" class="form-control price-add-course" name="price" value=""></div>
       </div>
     <div class="col-md-offset-6 col-md-4 pd0 top30">
         <div class="col-md-8 pd0 btn-edit save_edit-profile">
@@ -201,17 +201,17 @@
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3">Bạn sẽ học được gì</div>
-        <div class="col-md-8"><textarea class="form-control" name="study" value=""></textarea></div>
+        <div class="col-md-8"><textarea class="ckeditor form-control" name="study" value=""></textarea></div>
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3">Ai nên tham gia</div>
         <div class="col-md-8">
-            <input class="col-md-4" type="text" name="who" value="">
+            <textarea class="ckeditor form-control" name="who" value=""></textarea>
         </div>
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3">Phương pháp giảng dạy</div>
-        <div class="col-md-8"><textarea class="form-control" name="type"></textarea></div>
+        <div class="col-md-8"><textarea class="ckeditor form-control" name="type"></textarea></div>
       </div>
       <div class="col-md-12 pd0 top10">
         <div class="col-md-3">Chương trình học</div>
@@ -230,7 +230,7 @@
       </div>
       <div class="col-md-12 pd0 top30">
         <div class="col-md-3">Học phí/Học Viên/Khóa (VNĐ)</div>
-        <div class="col-md-8"><input type="number" class="form-control price-add-course" name="price" value=""></div>
+        <div class="col-md-8"><input type="text" class="form-control price-add-course" name="price" value=""></div>
       </div>
     <div class="col-md-offset-6 col-md-4 pd0 top30">
         <div class="col-md-8 pd0 btn-edit save_edit-profile">
@@ -263,9 +263,9 @@
         </div>
           <div class="col-md-12 list-couser__name wel"> <h3> {{$value ->name_couser }} </h3></div>
           <div class="col-md-12 pd0">
+            <a class="col-md-4"></a>
             <a href="{{ URL::to('/couser/edit')}}-{{$value ->id}}" class="col-md-4 list-couser__config pd10 wel"><img src="{{ URL::to('/img/icon/inclined-pencil.png')}}" width="20px"><span> Chỉnh sửa </span></a>
-            <a class="col-md-4 list-couser__config pd10 wel"> <img src="{{ URL::to('/img/icon/VectorSmartObject_3.png')}}"><span> Chia sẻ </span></a>
-            <a href="{{ URL::to('/couser/delete')}}-{{$value ->id}}" class="col-md-4 list-couser__config pd10 wel"><img src="{{ URL::to('/img/icon/inclined-pencil.png')}}" width="20"><span> Xoá</span></a>
+            <a href="{{ URL::to('/course/delete')}}-{{$value ->id}}" class="col-md-4 list-couser__config pd10 wel"><img src="{{ URL::to('/img/icon/inclined-pencil.png')}}" width="20"><span> Xoá</span></a>
           </div>
             </div>
             </div>

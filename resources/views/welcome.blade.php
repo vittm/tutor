@@ -11,7 +11,6 @@
 					<header>
 						<h2 class="title-slider">{{ $value->title_big }}</h2>
 						<h3 class="title-slider">{{ $value->title_small }}</h3>
-						<a class="section__btn" href="" target="_blank">{{ $value->name_button }}</a>
 					</header>
 				</li>
 			@endforeach
@@ -57,7 +56,8 @@
 		<br>
 		<div class="container @if($show[3]->value != '1') hidden @endif">
 	        <div class="why-select top30">VÌ SAO GIA SƯ CHỌN <img src="img/logo.png" style="position:relative; top: -9px;"></div>
-			<div class="col-md-12 pd0 why-wiis top30"  style="background:url({{ url('img/bg_why.png')}})">
+					<br>
+			<div class="col-md-12 pd0 why-wiis top30"  style="background:url({{ url('img/bg_why.png')}});">
 		<div class="col-md-offset-2 col-md-8">
         <ul class="timeline">
             <li class="timeline-item">
@@ -65,8 +65,8 @@
                     <img src="img/VectorSmartObject_1.png" alt="timeline" />
                 </figure>
                 <div class="dir-l radius-3">
-                        <h1>Chi phí thấp</h1>
-                        <p> Phasellus dapibus pulvinar venenatis. Suspendisse turpis ipsum, venenatis in ipsum id, viverra ultricies quam. </p>
+                        <h1>Mức phí thấp</h1>
+                        <p>Cam kết mức phí kết nối với học viên thấp hơn 5% - 10% so với các trung tâm khác.</p>
                 </div>
             </li>
 
@@ -75,8 +75,8 @@
                     <img src="img/VectorSmartObject.png" alt="course" />
                 </figure>
                 <div class="dir-r radius-3">
-                        <h1 style="text-align: left;">Tối đa hóa thu nhập</h1>
-                        <p> Phasellus dapibus pulvinar venenatis. </p>
+                        <h1 style="text-align: left;">Thanh toán trả sau</h1>
+                        <p>Gia sư có thể thanh toán phí nhận lớp sau khi đã nhận lớp 7 ngày, điều này đảm bảo chắc chắn gia sư đã có lớp rồi mới thanh toán phí. </p>
                 </div>
             </li>
             <li class="timeline-item">
@@ -84,8 +84,8 @@
                     <img src="img/VectorSmartObject_0.png" alt="course" />
                 </figure>
                 <div class="dir-l radius-3">
-                        <h1> Nhanh chóng </h1>
-                        <p> Phasellus dapibus pulvinar venenatis. Suspendisse turpis ipsum, venenatis in ipsum id, viverra ultricies quam.</p>
+                        <h1> Hiệu quả</h1>
+                        <p>Quảng bá, nâng cao hình ảnh của gia sư đến các học viên trên cả nước qua các kênh truyền thông đa dạng.</p>
                 </div>
             </li>
         </ul>

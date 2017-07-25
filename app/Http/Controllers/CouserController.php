@@ -35,6 +35,7 @@ class CouserController extends Controller
       $input = $request->all();
       $id = $input['id_user'];
       $db = new Cousers;
+      $nDb = new Notifications;
       if($files=$request->file('imgCouser')){
           $file = $input['imgCouser'];
           $filename = $file->getClientOriginalName();
@@ -53,10 +54,26 @@ class CouserController extends Controller
           $db->type = $input['type'];
           $db->program = $input['program'];
           $db->timetype1 = json_encode($input['morning']);
-          $db->price = $input['price'];
+          $db->price = str_replace(",",'', $input['price']);
           $db->typeCouser = '1';
           $db->typeclass = $input['typeclass'];
           $db->save();
+
+          $id_user = DB::table('followers')->where('follower_id', '=', $id)->count();
+          $get = DB::table('followers')->where('follower_id', '=', $id)->get();
+          $data = [];
+          if($id_user > 0){
+            foreach ($get as $key => $value) {
+              $teacher = DB::table('users')->where('id', '=', $value->follower_id)->first();
+              $data[] = [
+                'id_user'=> $value->user_id,
+                'name_notification' => $teacher->name.' có một khoá học mới',
+                'content_notification' => '<p> Bạn hãy vào trang cá nhân của '.$teacher->name.' <a href="'.url('/trang-ca-nhan-'.$teacher->id.'-'.User::convert_string($teacher->name).'?tab=info').'"> để xem chi tiết khoá học </a> nhé.</p>',
+                'created_at' =>date( 'Y-m-d')
+              ];
+            }
+          Notifications::insert($data);
+          }
         return redirect('/trang-ca-nhan-'.$id.'-'.User::convert_string(Auth::user()->name).'?tab=info');
     }
     public function adding_opening(Request $request, $id){
@@ -69,6 +86,7 @@ class CouserController extends Controller
       }else{
           $nameConvert= 'couser.jpg';
       }
+          $sepparator = ',';
           $db->id_user = $id;
           $db->picture_couser = $nameConvert;
           $db->name_couser = $input['title'];
@@ -80,15 +98,15 @@ class CouserController extends Controller
           $db->opentime =  $input['opentime'];
           $db->timeplan = $input['timeplan'];
           $db->typeCouser = '2';
-          $db->price = $input['price'];
+          $db->price = str_replace(",",'', $input['price']);
           $db->save();
           return redirect('/trang-ca-nhan-'.$id.'-'.User::convert_string(Auth::user()->name).'?tab=info');
       }
       public function editing_couser(Request $request, $couserid){
         $input = $request->all();
         if($files=$request->file('imgCouser')){
-            $id_course = DB::table('couser')->where('id', '=', $id)->get();
-            if($id_user[0]->picture_couser != null) {
+            $id_course = DB::table('cousers')->where('id', '=', $couserid)->get();
+            if($id_course[0]->picture_couser != null) {
                 $file = public_path('img\couser\\'.$id_course[0]->picture_couser);
                 $result= File::delete($file);
             }
@@ -105,12 +123,11 @@ class CouserController extends Controller
               'picture_couser' => $nameConvert,
               'name_couser' => $input['title'],
               'who' => $input['who'],
-              'information' => $input['information'],
               'study' => $input['study'],
               'type' => $input['type'],
               'program' => $input['program'],
               'timetype1' => json_encode($input['morning']),
-              'price' =>  $input['price'],
+              'price' =>  str_replace(",",'', $input['price']),
               'typeclass' => $input['typeclass']
           ]);
         }else if($input['cousertype'] == '2') {
@@ -124,7 +141,7 @@ class CouserController extends Controller
               'program' => $input['program'],
               'opentime' =>  $input['opentime'],
               'timeplan' => $input['timeplan'],
-              'price' =>  $input['price']
+              'price' =>  str_replace(",",'', $input['price'])
           ]);
         }
 
@@ -135,6 +152,11 @@ class CouserController extends Controller
       public function edit_couser($couserid){
           $couser = DB::table('cousers')->where('cousers.id', '=', $couserid)->get();
           return view('couser.edit', ['couser' => $couser ]);
+      }
+      public function delete_couser($id){
+          $couser = DB::table('cousers')->where('cousers.id', '=', $id)->delete();
+          DB::table('registercousers')->where('id_course', '=', $id)->delete();
+          return redirect('/couser/add-'.Auth::user()->id.'');
       }
       function random_numbers($char,$table,$find){
         $random_code= $char.rand(1, 900000000);
@@ -151,6 +173,7 @@ class CouserController extends Controller
         $id = $input['user_login'];
         $db = new Registercousers;
         $nDb = new Notifications;
+        $zDb = new Notifications;
         $couser = DB::table('cousers')->leftJoin('users','users.id','=','cousers.id_user')->select('users.name','cousers.*')->where('cousers.id', '=', $input['selectCouser'])->get();
 
         //price for teacher
@@ -186,6 +209,8 @@ class CouserController extends Controller
         $db->id_course = $input['selectCouser'];
         $db->price = $couser[0]->price;
         $db->code = self::random_numbers('Wiis','registercousers','code');
+        $db->giftcode = $gift_code;
+
         $nDb->id_user = $input['id_teacher'];
         $nDb->name_notification = 'Học viên đăng ký khoá học '. $couser[0]->name_couser .'';
         $nDb->content_notification = '
@@ -193,15 +218,27 @@ class CouserController extends Controller
           <p> Hệ thống thông báo bạn học viên <a href="'.url('/trang-ca-nhan').'-'.$couser[0]->id_user.'-'.User::convert_string($couser[0]->name).'">'. $couser[0]->name .'</a> đã đăng ký khoá học <strong>'. $couser[0]->name_couser .'</strong> của bạn. Bạn hãy vào trang <a href='.url('/quan-ly-hoc-vien').'>Quản lý học viên </a> của mình để xem chi tiết hơn.</p>
           '
         ;
-        $db->giftcode = $gift_code;
         $nDb->save();
+
+        $zDb->id_user = $id;
+        $zDb->name_notification = 'Bạn đã đăng ký khoá học '. $couser[0]->name_couser .' thành công.';
+        $zDb->content_notification = '
+          <p> Chào '.Auth::user()->name .'</p>
+          <p> Hệ thống thông báo bạn đã đăng ký thành công khoá học '.$couser[0]->name_couser.'</p>
+          <p> Khoá chọc của Gia sư '.$couser[0]->name.' </p>
+          <p> Học Phí <strong>'.number_format($Spriceofclass).'</strong> </p>
+          <p> Mã số may mắn của bạn là <strong>'.$gift_code.'</strong> </p>
+          '
+        ;
+
+        $zDb->save();
         $db->save();
         return redirect('/trang-ca-nhan-'.$id.'-'.User::convert_string(Auth::user()->name).'?register=true');
       }
 
       public function mange_student() {
         $id = Auth::id();
-        $id_student = DB::table('registercousers')->join('users', 'users.id', '=', 'registercousers.user')->leftjoin('cousers','cousers.id','registercousers.id_course')->select('users.name','users.avatar','users.district','users.city','users.phone','cousers.name_couser','cousers.typeclass','cousers.typeCouser','cousers.picture_couser','registercousers.*')->where('registercousers.id_teacher', '=', $id)->get();
+        $id_student = DB::table('registercousers')->join('users', 'users.id', '=', 'registercousers.user')->leftjoin('cousers','cousers.id','registercousers.id_course')->select('users.name','users.avatar','users.district','users.city','users.phone','cousers.name_couser','cousers.typeclass','cousers.typeCouser','cousers.picture_couser','registercousers.*')->where('registercousers.id_teacher', '=', $id)->orderBy('registercousers.id','desc')->get();
         return view('couser.managestudent', ['student' => $id_student ]);
       }
 }

@@ -16,7 +16,7 @@
           <ul class="item-list item-list--secondary item-list--medium-compressed item-list--with-top-border">
           @foreach($sleft as $value )
               <li>
-                
+
       <div class="post-snippet post-snippet--small">
 
     <div class="post-snippet__details">
@@ -27,7 +27,7 @@
 
           <span class="dot dot--secondary"></span>
 
-          <span class="muted">{{ $value->created_at }}</span>
+          <span class="muted">{!! Carbon\Carbon::parse($value->created_at)->format('m/d/Y')  !!}</span>
         </div>
 
     </div>
@@ -40,6 +40,6 @@
         </div>
       </section>
 
-      
+
     </div>
 </div>

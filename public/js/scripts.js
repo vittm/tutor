@@ -19,7 +19,6 @@ $(document).ready( function ()
 {
 	$('.location-class ').change(function()
 	{
-
 		if($('.athome').prop('selected') === true){
 			$('.select-athome').show();
 		}else{
@@ -71,7 +70,10 @@ $('.list-profile').click(function(){
 	var url= $(this).attr('data-href');
 	location.replace(url);
 });
-
+$('.list-couser').click(function(e){
+	var url= $(this).attr('data-href');
+	window.history.pushState("object or string", "Title", url);
+});
 // setup slidizle
 $('[data-slidizle]').slidizle({
 	beforeChange : function(api) {
@@ -128,17 +130,12 @@ function addCommas(nStr) {
     }
     return x1 + x2;
 }
-$('.price-add-course').keydown(function(){
-	// skip for arrow keys
-	if(event.which >= 37 && event.which <= 40) return;
 
-	// format number
-	$(this).val(function(index, value) {
-		return value
-		.replace(/\D/g, "")
-		.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-		;
-	});
+$('.price-add-course').keyup(function(){
+  if (event.which >= 37 && event.which <= 40) return;
+
+  this.value = this.value.replace(/\D/g, '')
+                         .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 });
 $('.selectCouser').click(function(){
 	var selected = $('.selectCouser option:selected');
@@ -147,7 +144,7 @@ $('.selectCouser').click(function(){
 		var val = selected.attr('data-price');
 		var type = selected.attr('data-type');
 		if( type == '2') {
-				$('.planprice').text('/Tháng');
+				$('.planprice').text('/Khóa');
 				$('.detail-register').hide();
 				$('.price-register').val(addCommas(val));
 		}else {
@@ -278,16 +275,16 @@ $('.course-search, .distric-edit').on('click', function (e) {
 });
 
 $('INPUT[type="file"]').change(function () {
-    var ext = $('.multiple-flie').val().split('.').pop().toLowerCase();
+    var ext = $(this).val().split('.').pop().toLowerCase();
     if($.inArray(ext, ['gif','png','jpg','jpeg','mp4','avi','mov','flv']) == -1) {
-      $('.btn').attr('disabled',true)
+      $('.btn').attr('disabled',true);
     }
 });
 
 $('.img-c').click(function(){
 	var clone = $(this).clone();
 	$('.zoom-picture').remove();
-	$('body').append('<div class="col-md-12 zoom-picture"><div class="zoom-picture__content"></div></div>');
+	$('body').append('<div class="col-md-12 zoom-picture"><div class="zoom-picture__content animated slideInUp"></div></div>');
 	$('.zoom-picture__content').append(clone);
 	$('.zoom-picture .img-c').removeClass('col-md-6');
 	$('html').css('overflow-y','hidden');
@@ -299,3 +296,16 @@ $(document).on('click', function () {
 $('.img-c').on('click', function (e) {
     e.stopPropagation();
 });
+function $_GET(param) {
+	var vars = {};
+	window.location.href.replace( location.hash, '' ).replace(
+		/[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+		function( m, key, value ) { // callback
+			vars[key] = value !== undefined ? value : '';
+		}
+	);
+	if ( param ) {
+		return vars[param] ? vars[param] : null;
+	}
+	return vars;
+}

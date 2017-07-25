@@ -1,5 +1,17 @@
 @extends('layouts.web')
-
+@section('facebook_meta')
+	@if(isset($_GET['khoa-hoc']))
+	<meta property="og:type"          content="website" />
+	<meta property="og:title"         content="{{$_GET['title']}}" />
+	<meta property="og:description"   content="{{$_GET['user']}}" />
+	<meta property="og:image"         content="{{$_GET['images']}}" />
+	@else
+	<meta property="og:type"          content="website" />
+	<meta property="og:title"         content="{{$id_user[0]->name}}" />
+	<meta property="og:description"   content="{{$id_user[0]->title}}" />
+	<meta property="og:image"         content="{{ URL::to('img/avatar')}}/{{ $id_user[0]->avatar}}" />
+	@endif
+@endsection
 @section('content')
 @if($id_user[0]->active !=2)
 	@foreach($student as $key => $value)
@@ -29,8 +41,18 @@
 									<img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_4.png')}}" alt=""><p>Lưu hồ sơ</p>
 							</div>
 
-							<div class="col-md-6 pdr">
+							<div class="col-md-6 pdr share" style="margin-top:0;">
 									<img class="action-menu__icon " src="{{ URL::to('img/icon/VectorSmartObject_3.png')}}" alt=""><p>Chia sẻ hồ sơ</p>
+									<div class="col-md-12 share_hidden animated fadeIn" style="border: 1px soild #eeeeee">
+										<div class="col-md-12 fb-share-button"
+										data-href="{{ url('/trang-ca-nhan')}}-{{ $id_user[0]->id }}-{{App\User::convert_string($id_user[0]->name)}}"
+										data-size="large"
+										data-layout="button"
+										data-mobile-iframe="true">
+												<a class="fb-xfbml-parse-ignore"
+												target="_blank" ></a>
+										</div>
+									</div>
 							</div>
 							<input type="hidden" class="user_id_follow" value="@if(Auth::check()){{ Auth::user()->id }} @endif">
 							<input type="hidden" class="id_follow" value="{{ $id_user[0] -> id }}">
@@ -69,7 +91,7 @@
 								<img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_2.png')}}" alt="">
 							</div>
 							<div class="col-md-4">
-								<p class="action-menu__counter">{{ $zfollowers }}</p>
+								<p class="action-menu__counter">{{ $kfollowers }}</p>
 							</div>
 							<div class="col-md-6 pd0"><p class="text-left">Người theo dõi</p></div>
 						</div>
@@ -93,19 +115,19 @@
 
 					@endif
 					@if($id_user[0]->active == 2)
-					<div class="col-md-12 top15 wel" style="padding-top:15px;">
+					<div class="col-md-12 top15 wel pd0" style="padding-top:15px;">
 						@if(json_decode($id_user[0]->video) != null)
 						 @foreach( json_decode($id_user[0]->video) as $value )
-							 <video class="col-md-offset-1 col-md-10"  controls>
+							 <video class="col-md-offset-1 col-md-10 pd0"  controls>
 								 <source src="{{ URL::to('/video')}}/{{$value}}">
 							 </video>
 						 @endforeach
 					 @endif
 					</div>
-					<div class="col-md-12 top15 wel" style="padding-top:15px;">
+					<div class="col-md-12 top15 list-picture wel" style="padding-top:15px;">
 						@if(json_decode($id_user[0]->picture) != null)
 							@foreach( json_decode($id_user[0]->picture) as $value )
-								<img class="col-md-12 top10" src="{{ URL::to('/img/picture')}}/{{$value}}" alt="..." class="img-thumbnail">
+								<img class="col-md-6 top10 img-c" src="{{ URL::to('/img/picture')}}/{{$value}}" alt="..." class="img-thumbnail">
 							@endforeach
 						@endif
 					</div>
@@ -131,7 +153,7 @@
 						<h4 class="top15"><strong>Lớp học tham gia </strong></h4>
 						@foreach($student as $key => $value)
 						<div class="col-md-6 list-couser-main top15">
-						<a data-toggle="modal" data-target="#couser{{$key}}" class="col-md-12 pd0 list-couser wel">
+						<a data-href="{{url('/trang-ca-nhan')}}-{{$id_user[0]->id}}-{{App\User::convert_string($id_user[0]->name)}}?tab=info&khoa-hoc=couser{{$key}}&user={{$id_user[0]->name}}&title={{$value ->name_couser }}&images={{ URL::to('/img/couser')}}/{{$value->picture_couser}}" data-toggle="modal" data-target="#couser{{$key}}" class="col-md-12 pd0 list-couser wel">
 							<div class="col-md-12 pd0 list-couser__images">
 								@if($value -> typeclass == '1')
 								<div class="list-couser__typeCourse">
@@ -176,7 +198,7 @@
 									<div class="col-md-12 wel">
 										@foreach($list_cousers as $key => $value)
 										<div class="col-md-6 list-couser-main top15" style="height:280px;">
-										<a  data-toggle="modal" data-target="#couser{{$key}}" class="col-md-12 pd0 list-couser wel">
+										<a data-href="{{url('/trang-ca-nhan')}}-{{$id_user[0]->id}}-{{App\User::convert_string($id_user[0]->name)}}?tab=info&khoa-hoc=couser{{$key}}&user={{$id_user[0]->name}}&title={{$value ->name_couser }}&images={{ URL::to('/img/couser')}}/{{$value->picture_couser}}" data-toggle="modal" data-target="#couser{{$key}}" class="col-md-12 pd0 list-couser wel">
 											<div class="col-md-12 pd0 list-couser__images">
 												@if($value -> typeclass == '1')
 												<div class="list-couser__typeCourse">
@@ -194,13 +216,11 @@
 												<div class="col-md-12 list-couser__name wel top10"> <h4> {{$value ->name_couser }} </h4> </div>
 										</a>
 									</div>
-										@include('modal.detail-course')
 										@endforeach
 									</div>
 					    </div>
 					    <div role="tabpanel" class="tab-pane" id="messages">
 					    	<div class="col-md-12 clear pd0">
-
 					    	 <div class="col-md-12 pd0">
 						    	 <div class="rating-show">
 										 <div class="col-md-2 pr0 ">
@@ -586,7 +606,7 @@ box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.5);padding-top: 15px;">
 							<h4><strong>{!! $value->content !!}</strong></h4>
 
 							<h5><?php $str = explode(' ', $id_user[0]->name); ?>{{end($str)}} {{reset($str)}} trả lời: {{ $value -> reply}}</h5>
-							<span style="font-size: 11px;">{{$value->created_at}}</span>
+							<span style="font-size: 11px;">{!! Carbon\Carbon::parse($value->created_at)->format('m/d/Y')  !!}</span>
 							<div class="col-md-12 pd0" style="border-top: 1px solid #eeeeee;margin-top:10px;padding-top: 10px;padding-bottom: 10px;">
 								<div class="col-md-5"><i class="fa fa-heart click-heart" id="{{$key}}" value="{{$value->id}}" aria-hidden="true"><span style="padding-left:5px">{{$value->vote}}</span></i></div>
 								<i class="fa fa-share-square-o" aria-hidden="true" style="float:right"></i>
@@ -620,7 +640,7 @@ box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.5);padding-top: 15px;">
 			</div>
 	  </div>
 		@if($id_user[0]->active == 2)
-	  <div class="col-md-3 wel">
+	  <div class="col-md-3 wel pr0">
 	  	<div class="col-md-12 fix-title wel">
 			<div class="col-md-2 pd0">
 				<img src="{{ URL::to('img/avatar')}}/{{ $id_user[0]->avatar}}" alt="..." class="img-circle" height="50" width="50">

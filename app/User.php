@@ -71,7 +71,7 @@ class User extends Authenticatable
         }
         if(Input::get('lowestPrice'))
         {
-            $query->join('cousers','users.id','cousers.id_user')->orderBy('courses.price','asc')->orderBy('users.ratings','asc')->groupBy('users.id');
+            $query->orderBy('cousers.price','asc')->orderBy('users.sumRatings','asc')->groupBy('users.id');
         }
         return $query;
     }

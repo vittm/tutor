@@ -112,6 +112,7 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::post('couser/opening-{id}', 'CouserController@adding_opening');
 		Route::post('couser/editing-{couserid}', 'CouserController@editing_couser');
 		Route::get('couser/edit-{couserid}', 'CouserController@edit_couser');
+		Route::get('course/delete-{id}', 'CouserController@delete_couser');
 		Route::get('couser/register', 'CouserController@register_couser');
 		Route::get('quan-ly-hoc-vien', 'CouserController@mange_student');
 

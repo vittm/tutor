@@ -17,11 +17,11 @@
 				</div>
 				<div class="col-md-4  top15">
 					<img class="action-menu__icon dl" src="{{ URL::to('img/icon/VectorSmartObject.png')}}" alt="">
-					<p class="action-menu__counter text-center">{{$count_course}} Lớp dạy</p>
+					<p class="action-menu__counter text-center" style="margin-top: 9px;">{{$count_course}} Lớp dạy</p>
 				</div>
 				<div class="col-md-4 pd0 top15">
 					<img class="action-menu__icon dl" src="{{ URL::to('img/icon/VectorSmartObject_0.png')}}" alt="">
-					<p class="action-menu__counter text-center">{{$count_course}} Nội dung dạy</p>
+					<p class="action-menu__counter text-center" style="margin-top: 9px;">{{$count_course}} Nội dung dạy</p>
 				</div>
 				<div class="col-md-12">
 					@if($value-> jobs != null)<button class="btn btn-origan" style="float: left!important;">

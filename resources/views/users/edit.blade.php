@@ -201,7 +201,7 @@
 			<p><i><strong>⦁	Nếu bạn là sinh viên thì cần cung cấp thẻ sinh viên <br>
 					⦁	Nếu bạn là giáo viên thì cần cung cấp bằng sư phạm </strong><br>
 					<br></i>
-					- Ngoài ra, WiiS khuyến khích bạn up những hình ảnh về bằng cấp, chứng chỉ liên quan đến lĩnh vực giảng dạy của bạn. Việc này sẽ giúp bạn củng cố niềm tin từ phía phụ huynh, học viên. Bên cạnh đó, khi có lớp cần gia sư, WiiS sẽ ưu tiên cho những bạn có hồ sơ cung cấp đầy đủ hình ảnh bằng cấp, chứng chỉ”.
+					- Ngoài ra, <strong style="color:#fcaf00;">WiiS</strong> khuyến khích bạn up những hình ảnh về bằng cấp, chứng chỉ liên quan đến lĩnh vực giảng dạy của bạn. Việc này sẽ giúp bạn củng cố niềm tin từ phía phụ huynh, học viên. Bên cạnh đó, khi có lớp cần gia sư, <strong style="color:#fcaf00;">WiiS</strong> sẽ ưu tiên cho những bạn có hồ sơ cung cấp đầy đủ hình ảnh bằng cấp, chứng chỉ”.
 			</p>
 			<form class="col-md-12" method="POST" enctype="multipart/form-data" action="{{ url('/editing/level') }}-{{ $id_user[0]->id }}">
 												{{ csrf_field() }}
