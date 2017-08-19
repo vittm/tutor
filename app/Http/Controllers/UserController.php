@@ -305,7 +305,8 @@ class UserController extends Controller
             'jobs' => $input['edit-profile__jobs'],
             'subjects' => $input['filed-subject'],
             'info' => $input['edit-profile__info'],
-            'experience' => $input['edit-profile__experience']
+            'experience' => $input['edit-profile__experience'],
+            'personalities' => $input['personalities']
         ]);
 
         DB::table('users')->where('id', $id)->update($profile);

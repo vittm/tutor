@@ -101,6 +101,12 @@
 				</div>
 				@endif
 				<div class="col-md-12 pd0 top10">
+					<div class="col-md-3"> Tính Cách </div>
+					<div class="col-md-8">
+							<input type="text" id="user_skills" name="personalities" data-role="tagsinput" placeholder="Tính cách" class="form-control" />
+					</div>
+				</div>
+				<div class="col-md-12 pd0 top10">
 					<div class="col-md-3"> Tự giới thiệu </div>
 					<div class="col-md-9">
 						<textarea rows="20" cols="70" class="ckeditor" id="editor1" name="edit-profile__info">{!! $id_user[0]->info !!}</textarea>
@@ -284,6 +290,20 @@
   </div>
 </div>
 </div>
+<script type="text/javascript" src="{{ URL::to('js/jquery-1.10.2.js') }}"></script> <!-- Link thư viện jquery -->
+<script type="text/javascript" src="{{ URL::to('js/bootstrap-tagsinput.min.js') }}"></script>
+<script type="text/javascript">
+		var tagField = $('input#user_skills');
+					tagField.tagsinput({
+					tagClass: 'label label-default',
+					trimValue: true,
+				});
+		$('input#user_skills').tagsinput({
+			typeahead: {
+				 source: ['Amsterdam', 'Washington', 'Sydney', 'Beijing', 'Cairo']
+			 }
+		});
+</script>
 @else
 <?php return redirect()->to('/chinh-sua-ca-nhan-'.Auth::user()->id)->send();?>
 @endif

@@ -25,7 +25,19 @@
 				</ul>
       </h4>
 			</div>
-			<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+      <div class="col-md-2">
+        <div class="col-md-12 pd0 top15">
+              <span class="style-input">
+                 <select class="form-control" name="top_teacher[]">
+                    <option> Lựa chọn gia sư nổi bật </option>
+                    <option @if( $value->top_teacher == 1 ) selected @endif value="1">
+                       Gia sư nổi bật
+                    </option>
+                </select>
+            </span>
+        </div>
+      </div>
+			<div class="col-xs-12 col-sm-12 col-md-5 excerpet">
         <div class="col-md-4 top15">
            <input type="text" class="form-control" name="text_value[]" value="{{ $value->name }}">
            <input type="text" class="form-control top15" name="email_value[]" value="{{ $value->email }}">

@@ -7,12 +7,12 @@
     <link rel="stylesheet" type="text/css" href="{{ URL::to('css/style.css') }}">  <!-- Link css tự style -->
     <link rel="stylesheet" type="text/css" href="{{ URL::to('css/font-awesome.css') }}"> <!-- link css font-face -->
     <link rel="stylesheet" href="{{ URL::to('css\bootstrap.css') }}">
+    <link rel="stylesheet" href="/css/master.css">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <!-- <link rel="stylesheet" href="css/main.css"> -->
     <!--[if gt IE 8]><!-->
     @yield('facebook_meta')
 </head>
-
 
 <body>
 @foreach (['success'] as $msg)
@@ -28,7 +28,7 @@
   <nav class="container">
     <a href="{{ url('/') }}" class="col-md-3 logo">
       <img  src="{{ url('img/logo.png')}}" alt="">
-      <p>Tìm giáo viên, gia sư miễn phí </p>
+      <p>tìm giáo viên, gia sư nhanh chóng </p>
     </a>
     <div class="col-md-offset-2 col-md-7">
       <ul class="menu" style="margin-top: @if (Auth::guest()) 3rem @else 1rem @endif">
@@ -97,7 +97,7 @@
             <div class="col-md-3 top15 pd0">
               <a href="{{ url('/') }}" class="col-md-12 logo">
                 <img  src="{{ url('img/logo.png')}}" alt="">
-                <p>Tìm giáo viên, gia sư miễn phí </p>
+                <p>tìm giáo viên, gia sư nhanh chóng </p>
               </a>
             </div>
             <div class="col-md-6">
@@ -159,8 +159,7 @@
      <script type="text/javascript" src="{{ URL::to('js/jquery.slidizle.js') }}"></script> <!-- Link thư viện jquery -->
 
      <script type="text/javascript" src="{{ URL::to('js/jquery.autocomplete.min.js') }}"></script>
-      <script type="text/javascript" src="{{ URL::to('js/currency-autocomplete.js') }}"></script>
-
+    <script type="text/javascript" src="{{ URL::to('js/currency-autocomplete.js') }}"></script>
     <script type="text/javascript" src="{{ URL::to('js/scripts.js') }}"></script>   <!--- Link jquery tự viết-->
     <script type="text/javascript" src="{{ URL::to('js/bootstrap.js') }}"></script>   <!--- Link jquery tự viết-->
     <script src="{{ URL::to('js/drop_uploader.js') }}"></script>
@@ -327,6 +326,7 @@
          fjs.parentNode.insertBefore(js, fjs);
        }(document, 'script', 'facebook-jssdk'));
     </script>
+
 </body>
 
 </html>
