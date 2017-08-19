@@ -298,11 +298,13 @@
 					tagClass: 'label label-default',
 					trimValue: true,
 				});
-		$('input#user_skills').tagsinput({
-			typeahead: {
-				 source: ['Amsterdam', 'Washington', 'Sydney', 'Beijing', 'Cairo']
-			 }
-		});
+		var obj = {!! $id_user[0]->personalities !!} ;
+		if(obj.length != 0) {
+			$.each(obj, function(index, value) {
+			    $('input#user_skills').tagsinput('add', value);
+			    console.log(value);
+			});
+		}
 </script>
 @else
 <?php return redirect()->to('/chinh-sua-ca-nhan-'.Auth::user()->id)->send();?>
