@@ -16,7 +16,7 @@
           <h5><strong>THÔNG TIN ĐĂNG KÝ HỌC THỬ</strong></h5>
 
           <p>⦁	Lớp học: <strong> {{Session::get('name_couser')}}</strong></p>
-          <p>⦁	Gia sư: <strong>{{Session::get('teacher')}}</strong></p>
+          <p>⦁	Gia sư: <strong>{{Session::get('teacher')}}</strong> <sub>vnđ</sub></p>
           <p>⦁	Học phí dự kiến/tháng: <strong>{{number_format(Session::get('pricecourse'))}} <sup>đ</sup></strong></p>
 
           <p>Mã số may mắn của anh/chị là <strong>{{Session::get('giftcode')}}</strong></p>

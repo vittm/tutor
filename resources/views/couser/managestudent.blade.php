@@ -89,11 +89,12 @@
                         </div>
                         <div class="col-md-12">
                           <h4><span style='font-weight:500;font-size:14px'>Tổng số tiền: </span><strong> {{number_format($value->pay)}} <sup> đ</sup> </strong></h4>
+                          <i>Giảm 15% cho Gia sư</i> <br>
                           @if($value -> typeclass == '1')
-                          <i> ( 30% * {{ number_format(((($value->planmoment * 5 ) * $value->plantime) * $value->price )) }} <sup> đ</sup>  = {{number_format($value->pay)}} <sup> đ</sup> )</i>
+                          <i> ( 30% - 15% * {{ number_format(((($value->planmoment * 5 ) * $value->plantime) * $value->price )) }} <sup> đ</sup>  = {{number_format($value->pay)}} <sup> đ</sup> )</i>
                           @endif
                           @if($value -> typeCouser == '2')
-                          <i> ( 30% * {{number_format($value ->price)}} = {{number_format($value->pay)}} <sup> đ</sup> )</i>
+                          <i> ( 30% - 15% * {{number_format($value ->price)}} = {{number_format($value->pay)}} <sup> đ</sup> )</i>
                           @endif
                         </div>
                         <div class="col-md-12 list-couser__name wel"> <h5>{{App\Cousers::calculateDate($value->created_at)}}</strong></h5> </div>

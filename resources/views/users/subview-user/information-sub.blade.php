@@ -27,6 +27,12 @@
 <div class="col-md-4"> Học vấn</div>
 <div class="col-md-8"><strong style="color: #222086;">{!!  $id_user[0]->educational !!}</strong></div>
 </div>
+<div class="col-md-12 pd0 top15">
+  <div class="col-md-4"> Tính cách</div>
+  <div class="col-md-8"><strong style="color: #222086;"><?php if($id_user[0]->personalities != null) {foreach (json_decode($id_user[0]->personalities) as $key => $value) {
+    echo substr_replace($value, ', ', strlen($value), 0);
+  }}?></strong></div>
+  </div>
 @endif
 <div class="col-md-12 pd0 top15">
   <div class="col-md-4"> Cập nhập lần cuối</div>

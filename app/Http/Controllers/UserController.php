@@ -306,7 +306,7 @@ class UserController extends Controller
             'subjects' => $input['filed-subject'],
             'info' => $input['edit-profile__info'],
             'experience' => $input['edit-profile__experience'],
-            'personalities' => json_decode($input['personalities'])
+            'personalities' => json_encode(explode(',',$input['personalities']))
         ]);
 
         DB::table('users')->where('id', $id)->update($profile);

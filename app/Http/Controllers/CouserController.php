@@ -176,18 +176,16 @@ class CouserController extends Controller
         $zDb = new Notifications;
         $couser = DB::table('cousers')->leftJoin('users','users.id','=','cousers.id_user')->select('users.name','cousers.*')->where('cousers.id', '=', $input['selectCouser'])->get();
 
-        //price for teacher
-        $typeClass= (((($input['planmoment'] * 4 ) * $input['plantime']) * $couser[0]->price ) * 30)/100;
-        $typeCouser = ($couser[0]->price * 30)/100;
-
         // price session for user
-        $StypeClass= (($input['planmoment'] * 4 ) * $input['plantime']) * $couser[0]->price;
 
         if($couser[0] -> typeCouser == '1'){
+            $StypeClass= (($input['planmoment'] * 4 ) * $input['plantime']) * $couser[0]->price;
+            $typeClass= (((($input['planmoment'] * 4 ) * $input['plantime']) * $couser[0]->price ) * 15)/100;
             $priceofclass = $typeClass;
             $Spriceofclass = $StypeClass;
         }
         if($couser[0] -> typeCouser == '2'){
+          $typeCouser = ($couser[0]->price * 15)/100;
           $priceofclass = $typeCouser;
           $Spriceofclass = $couser[0]->price;
         }
@@ -226,8 +224,8 @@ class CouserController extends Controller
           <p> Chào '.Auth::user()->name .'</p>
           <p> Hệ thống thông báo bạn đã đăng ký thành công khoá học '.$couser[0]->name_couser.'</p>
           <p> Khoá chọc của Gia sư '.$couser[0]->name.' </p>
-          <p> Học Phí <strong>'.number_format($Spriceofclass).'</strong> </p>
-          <p> Mã số may mắn của bạn là <strong>'.$gift_code.'</strong> </p>
+          <p> Học Phí: <strong>'.number_format($Spriceofclass).'</strong> </p>
+          <p> Mã số may mắn của bạn là: <strong>'.$gift_code.'</strong> </p>
           '
         ;
 
