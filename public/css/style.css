@@ -12766,4 +12766,22 @@ div.share_hidden {
       border-radius: 7px;
       float: right;
     }
+    .cover-search__title {
+      top: 24%;
+    }
+    .search_teach {
+      padding-bottom: 0;
+    }
+    .information-profile--title {
+      text-align: center;
+    }
+    .col-md-2.user-rating--main {
+      position: absolute;
+      right: 0;
+    }
+    .btn-jobs {
+      position: absolute;
+      right: 0;
+      top: -43px;
+    }
 }

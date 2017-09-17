@@ -34,64 +34,6 @@
 
 			<div class="slidizle-loading"> </div>
 		</section>
-    <form class="container" action="{{ url('/tim-kiem-gia-su') }}" role="form" method="GET" enctype='multipart/form-data'>
-        <ul class="col-md-offset-2 col-md-10 search">
-						<li><input type="text" placeholder="Địa điểm" name="address-find" id="address-find"><img src="img/icon/placeholder.png"></li>
-						<li><input type="text" placeholder="Môn học" name="valueSubject"  id="subject-find" ><img src="img/icon/open-book.png" aria-describedby="inputSuccess2Status">
-						</li>
-						<li><img src="img/icon/bar-chart.png">
-							<input type="text" placeholder="Hình thức học" class="course-search">
-							<ul class="select-course">
-									<li value="0">Gia sư 1+1 </li>
-									<li value="1">2 - 10 người</li>
-									<li value="2">10 - 20 người</li>
-									<li value="3">Trên 20 người</li>
-							</ul>
-							<input type="hidden" class="course-value" name="coursehidden">
-						</li>
-            <li class="icon-search submit_search">
-            <button type="submit" placeholder=""><img src="img/icon/search.png"></button></li>
-        </ul>
-    </form>
-		<br>
-		<div class="container @if($show[3]->value != '1') hidden @endif">
-	        <div class="why-select top30">VÌ SAO GIA SƯ CHỌN <img src="img/logo.png" style="position:relative; top: -9px;"></div>
-					<br>
-			<div class="col-xs-12 col-sm-12 col-md-12 pd0 why-wiis top30"  style="background:url({{ url('img/bg_why.png')}});">
-		<div class="col-md-offset-2 col-md-8">
-        <ul class="timeline">
-            <li class="timeline-item">
-                <figure class="timeline-icon">
-                    <img src="img/VectorSmartObject_1.png" alt="timeline" />
-                </figure>
-                <div class="dir-l radius-3">
-                        <h1>Mức phí thấp</h1>
-                        <p>Cam kết mức phí kết nối với học viên thấp hơn 5% - 10% so với các trung tâm khác.</p>
-                </div>
-            </li>
-
-            <li class="timeline-item">
-                <figure class="timeline-icon">
-                    <img src="img/VectorSmartObject.png" alt="course" />
-                </figure>
-                <div class="dir-r radius-3">
-                        <h1 style="text-align: left;">Thanh toán trả sau</h1>
-                        <p>Gia sư có thể thanh toán phí nhận lớp sau khi đã nhận lớp 7 ngày, điều này đảm bảo chắc chắn gia sư đã có lớp rồi mới thanh toán phí. </p>
-                </div>
-            </li>
-            <li class="timeline-item">
-                <figure class="timeline-icon">
-                    <img src="img/VectorSmartObject_0.png" alt="course" />
-                </figure>
-                <div class="dir-l radius-3">
-                        <h1> Hiệu quả</h1>
-                        <p>Quảng bá, nâng cao hình ảnh của gia sư đến các học viên trên cả nước qua các kênh truyền thông đa dạng.</p>
-                </div>
-            </li>
-        </ul>
-    </div>
-	</div>
-	</div>
 	<br>
 	<br>
     <div class="container @if($show[1]->value != '1') hidden @endif">
@@ -214,6 +156,66 @@
 </section>
 <br>
     <div class="container @if($show[2]->value != '1') hidden @endif">
+			<div class="container" >
+		    <form class="col-md-12 col-xs-12 col-sm-12" action="{{ url('/tim-kiem-gia-su') }}" role="form" method="GET" enctype='multipart/form-data'>
+		        <ul class="col-md-offset-2 col-md-10 search">
+								<li><input type="text" placeholder="Địa điểm" name="address-find" id="address-find"><img src="img/icon/placeholder.png"></li>
+								<li><input type="text" placeholder="Môn học" name="valueSubject"  id="subject-find" ><img src="img/icon/open-book.png" aria-describedby="inputSuccess2Status">
+								</li>
+								<li><img src="img/icon/bar-chart.png">
+									<input type="text" placeholder="Hình thức học" class="course-search">
+									<ul class="select-course">
+											<li value="0">Gia sư 1+1 </li>
+											<li value="1">2 - 10 người</li>
+											<li value="2">10 - 20 người</li>
+											<li value="3">Trên 20 người</li>
+									</ul>
+									<input type="hidden" class="course-value" name="coursehidden">
+								</li>
+		            <li class="icon-search submit_search">
+		            <button type="submit" placeholder=""><img src="img/icon/search.png"></button></li>
+		        </ul>
+		    </form>
+			</div>
+			<br>
+			<div class="container @if($show[3]->value != '1') hidden @endif">
+		        <div class="why-select top30">VÌ SAO GIA SƯ CHỌN <img src="img/logo.png" style="position:relative; top: -9px;"></div>
+						<br>
+				<div class="col-xs-12 col-sm-12 col-md-12 pd0 why-wiis top30"  style="background:url({{ url('img/bg_why.png')}});">
+			<div class="col-md-offset-2 col-md-8">
+	        <ul class="timeline">
+	            <li class="timeline-item">
+	                <figure class="timeline-icon">
+	                    <img src="img/VectorSmartObject_1.png" alt="timeline" />
+	                </figure>
+	                <div class="dir-l radius-3">
+	                        <h1>Mức phí thấp</h1>
+	                        <p>Cam kết mức phí kết nối với học viên thấp hơn 5% - 10% so với các trung tâm khác.</p>
+	                </div>
+	            </li>
+
+	            <li class="timeline-item">
+	                <figure class="timeline-icon">
+	                    <img src="img/VectorSmartObject.png" alt="course" />
+	                </figure>
+	                <div class="dir-r radius-3">
+	                        <h1 style="text-align: left;">Thanh toán trả sau</h1>
+	                        <p>Gia sư có thể thanh toán phí nhận lớp sau khi đã nhận lớp 7 ngày, điều này đảm bảo chắc chắn gia sư đã có lớp rồi mới thanh toán phí. </p>
+	                </div>
+	            </li>
+	            <li class="timeline-item">
+	                <figure class="timeline-icon">
+	                    <img src="img/VectorSmartObject_0.png" alt="course" />
+	                </figure>
+	                <div class="dir-l radius-3">
+	                        <h1> Hiệu quả</h1>
+	                        <p>Quảng bá, nâng cao hình ảnh của gia sư đến các học viên trên cả nước qua các kênh truyền thông đa dạng.</p>
+	                </div>
+	            </li>
+	        </ul>
+	    </div>
+		</div>
+		</div>   
         <h3 class="text-center"> CÁC MÔN HỌC NỔI BẬT </h3>
 				<br>
 		<?php $list_subject = App\Cousers::list_subject(
