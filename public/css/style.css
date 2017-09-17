@@ -12746,3 +12746,24 @@ div.share_hidden {
 .bootstrap-tagsinput .tag [data-role="remove"]:hover:active {
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
+
+/*Mobile*/
+@media(max-width:992px) {
+    .menu {
+      float: right;
+    }
+    .search > li {
+      margin-top: 5px;
+      display: block;
+    }
+    .search > li > input {
+      width: 100%;
+    }
+    .search > li > img {
+      top: 9px;
+    }
+    .search .icon-search button {
+      border-radius: 7px;
+      float: right;
+    }
+}

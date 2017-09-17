@@ -91,7 +91,7 @@
 <main class="col-md-12 pd0 main" >
         @yield('content')
 </main>
-    <div class="col-md-12 footer-home">
+    <div class="col-xs-12 col-sm-12 col-md-12 footer-home">
         <div class="col-md-12 pd0">
           <div class="container pd0">
             <div class="col-md-3 top15 pd0">

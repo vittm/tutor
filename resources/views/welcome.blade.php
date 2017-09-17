@@ -57,7 +57,7 @@
 		<div class="container @if($show[3]->value != '1') hidden @endif">
 	        <div class="why-select top30">VÌ SAO GIA SƯ CHỌN <img src="img/logo.png" style="position:relative; top: -9px;"></div>
 					<br>
-			<div class="col-md-12 pd0 why-wiis top30"  style="background:url({{ url('img/bg_why.png')}});">
+			<div class="col-xs-12 col-sm-12 col-md-12 pd0 why-wiis top30"  style="background:url({{ url('img/bg_why.png')}});">
 		<div class="col-md-offset-2 col-md-8">
         <ul class="timeline">
             <li class="timeline-item">
