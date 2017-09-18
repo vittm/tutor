@@ -12782,6 +12782,19 @@ div.share_hidden {
     .btn-jobs {
       position: absolute;
       right: 0;
-      top: -43px;
+      top: -113px;
+    }
+    .main .text-center--mobile {
+      text-align: center;
+    }
+    .information-profile {
+      margin-top: 15px;
+    }
+    .information-profile > h3, .information-profile > span {
+      background: #fcaf00;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      width: 100%;
+      display: block;
     }
 }

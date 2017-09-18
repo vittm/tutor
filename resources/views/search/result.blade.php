@@ -23,7 +23,7 @@
 					<img class="action-menu__icon dl" src="{{ URL::to('img/icon/VectorSmartObject_0.png')}}" alt="">
 					<p class="action-menu__counter text-center" style="margin-top: 9px;">{{$count_comments}} Hỏi đáp</p>
 				</div>
-				<div class="col-xs-5 col-md-12">
+				<div class="col-xs-12 col-md-12">
 					@if($value-> jobs != null)<button class="btn btn-origan btn-jobs" style="float: left!important;">
 						{{App\User::jobs($value->jobs)}}
 					</button>@endif

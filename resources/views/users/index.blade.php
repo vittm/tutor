@@ -37,11 +37,11 @@
 				<div class="@if($id_user[0]->active !=2) col-md-12 @else col-md-12 @endif action-menu profile-student pd0">
 					<div class="@if($id_user[0]->active !=2) col-md-12 @else col-md-12 @endif action-menu__left">
 						<div class="col-md-12 wel action-menu__left__share">
-							<div class="col-md-6 pdl">
+							<div class="col-xs-6 col-md-6 pdl">
 									<img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_4.png')}}" alt=""><p>Lưu hồ sơ</p>
 							</div>
 
-							<div class="col-md-6 pdr share" style="margin-top:0;">
+							<div class="col-xs-6 col-md-6 pdr share" style="margin-top:0;">
 									<img class="action-menu__icon " src="{{ URL::to('img/icon/VectorSmartObject_3.png')}}" alt=""><p>Chia sẻ hồ sơ</p>
 									<div class="col-md-12 share_hidden animated fadeIn" style="border: 1px soild #eeeeee">
 										<div class="col-md-12 fb-share-button"
@@ -93,7 +93,7 @@
 							<div class="col-md-4">
 								<p class="action-menu__counter">{{ $kfollowers }}</p>
 							</div>
-							<div class="col-md-6 pd0"><p class="text-left">Người theo dõi</p></div>
+							<div class="col-md-6 pd0"><p class="text-left text-center--mobile">Người theo dõi</p></div>
 						</div>
 					</div>
 					@endif
@@ -104,12 +104,12 @@
 								<div class="col-md-4">
 									<p class="action-menu__counter">{{ $count_student }}</p>
 								</div>
-								<div class="col-md-6 pd0"><p class="text-left">Học Viên</p></div>
+								<div class="col-md-6 pd0"><p class="text-left text-center--mobile">Học Viên</p></div>
 						</div>
 					</div>
 					<div class="col-md-12 top15 wel" style="padding-top:15px;">
 						<div class="col-md-12 pd0">
-							<div class="col-md-1"><img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_0.png')}}" alt="" style="top: -1px;"></div><div class="col-md-4"><p class="action-menu__counter">@if($id_user[0]->experience != 0){{ $id_user[0]->experience }}{{' năm'}} @else 0 @endif</p></div><div class="col-md-6 pd0"><p class="text-left">Kinh nghiệm</p></div>
+							<div class="col-md-1"><img class="action-menu__icon" src="{{ URL::to('img/icon/VectorSmartObject_0.png')}}" alt="" style="top: -1px;"></div><div class="col-md-4"><p class="action-menu__counter">@if($id_user[0]->experience != 0){{ $id_user[0]->experience }}{{' năm'}} @else 0 @endif</p></div><div class="col-md-6 pd0"><p class="text-left text-center--mobile">Kinh nghiệm</p></div>
 						</div>
 					</div>
 
