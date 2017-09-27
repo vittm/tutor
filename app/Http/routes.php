@@ -33,10 +33,21 @@ Route::post('/posting', 'PostsController@posting');
 Route::post('/sent-mess', 'PostsController@sentMess');
 
 Route::get('/dang-tin', function(){
-	return view('posts.createPosts');
+	return view('posts.createPost');
 });
 
-
+Route::get('/cau-hoi', function(){
+	return view('pages.question');
+});
+Route::get('/chinh-sach', function(){
+	return view('pages.chinh-sach');
+});
+Route::get('/dieu-khoan', function(){
+	return view('pages.condition');
+});
+Route::get('/ve-chung-toi', function(){
+	return view('pages.info');
+});
 Route::get('/thanh-toan-online', function(){
     return view('users.pay-online');
 });
