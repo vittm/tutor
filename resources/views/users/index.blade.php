@@ -232,14 +232,14 @@
 												</li>
 											</ul>
 										 </div>
-						    	 	<div class="content-teach col-md-2 pr0">
+						    	 	<div class="content-teach col-xs-4 col-md-2 pr0">
 						    	 	<ul class="user-rating">
 								    	<li><img src="img/icon/shooting-star.png" ><span> @if($count_id == 0) 0 @else {{ round(($content_teach/$count_id),2) }} @endif</span></li>
 							    	 	</ul>
 						    	 	<span>Nội dung dạy</span>
 						    	 	</div>
 
-						    	 	<div class="content-teach col-md-2 pr0">
+						    	 	<div class="content-teach col-xs-4 col-md-2 pr0">
 						    	 		<ul class="user-rating">
 							    	 		<li>
 							    	 			<img src="img/icon/shooting-star.png" ><span>@if($count_id == 0) 0 @else {{ round(($learn_teach/$count_id),2) }} @endif</span>
@@ -248,7 +248,7 @@
 						    	 		<span>Phương pháp</span>
 						    	 	</div>
 
-						    	 	<div class="content-teach col-md-2 pr0">
+						    	 	<div class="content-teach col-xs-4 col-md-2 pr0">
 							    	 	<ul class="user-rating">
 							    	 		<li>
 							    	 			<img src="img/icon/shooting-star.png" ><span>@if($count_id == 0) 0 @else {{ round(($price/$count_id),2) }} @endif</span>
@@ -258,14 +258,14 @@
 							    	 	<span>Giá cả </span>
 						    	 	</div>
 
-						    	 	<div class="content-teach col-md-2 pr0">
+						    	 	<div class="content-teach col-xs-4 col-md-2 pr0">
 							    	 	<ul class="user-rating">
 							    	 		<li><img src="img/icon/shooting-star.png" ><span>@if($count_id == 0) 0 @else {{ round(($feeling/$count_id),2) }} @endif</span></li>
 							    	 	</ul>
 							    	 	<span>Thái độ dạy </span>
 						    	 	</div>
 
-						    	 	<div class="content-teach col-md-2 pr0">
+						    	 	<div class="content-teach col-xs-4 col-md-2 pr0">
 							    	 	<ul class="user-rating">
 							    	 		<li><img src="img/icon/shooting-star.png" ><span>@if($count_id == 0) 0 @else {{ round(($value_get/$count_id),2) }} @endif</span></li>
 							    	 	</ul>
@@ -274,7 +274,7 @@
 
 					    	 </div>
 					    	 </div>
-					    	 <div class="col-md-12 top20">
+					    	 <div class="col-xs-12 col-md-12 top20">
 									<p class="text-center top15"><i> Bạn đã học qua gia sư này rồi, hãy đánh giá ngay nhá! </i></p>
 									<a class="btn btn-sm write-ratings" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample ">
 									  Viết đánh giá
@@ -607,7 +607,7 @@ box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.5);padding-top: 15px;">
 
 							<h5><?php $str = explode(' ', $id_user[0]->name); ?>{{end($str)}} {{reset($str)}} trả lời: {{ $value -> reply}}</h5>
 							<span style="font-size: 11px;">{!! Carbon\Carbon::parse($value->created_at)->format('m/d/Y')  !!}</span>
-							<div class="col-md-12 pd0" style="border-top: 1px solid #eeeeee;margin-top:10px;padding-top: 10px;padding-bottom: 10px;">
+							<div class="col-md-12 pd0 question-list" style="border-top: 1px solid #eeeeee;margin-top:10px;padding-top: 10px;padding-bottom: 10px;">
 								<div class="col-md-5"><i class="fa fa-heart click-heart" id="{{$key}}" value="{{$value->id}}" aria-hidden="true"><span style="padding-left:5px">{{$value->vote}}</span></i></div>
 								<i class="fa fa-share-square-o" aria-hidden="true" style="float:right"></i>
 								@if(Auth::check())
@@ -619,7 +619,7 @@ box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.5);padding-top: 15px;">
 
 							</div>
 							<form id="askForm" autocomplete="off" class="new_question" action="{{ url('/profile/comments/reply') }}-{{ $value->id }}" method="post">
-							<div class="collapse wel" id="collapseExample{{$key}}" style="margin-top: 60px;">
+							<div class="collapse wel" id="collapseExample{{$key}}">
 								<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							  <div class="well">
 									<div class="question old">

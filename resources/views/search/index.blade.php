@@ -5,7 +5,7 @@
 <div class="col-md-12 pd0 cover-search">
 	<img src="{{ url('img/cover1.png') }}" style="display:block;width:100%;margin: auto; height: 100%;">
 	<h3 class="cover-search__title"> Tìm ngay gia sư, thổi bay lo lắng </h3>
-	<form class="container" style="position:absolute;z-index: 1;top:15%;left:0;right:0;margin: auto;" action="{{ url('/tim-kiem-gia-su') }}" role="form" method="GET" enctype='multipart/form-data'>
+	<form class="container" style="position:absolute;z-index: 1;top:30%;left:-50px;right:0;margin: auto;" action="{{ url('/tim-kiem-gia-su') }}" role="form" method="GET" enctype='multipart/form-data'>
 	<div class="container search_teach">
 		<div class="col-md-12 col-xs-12 group_search_one pad0">
 					<ul class="col-md-offset-2 col-md-10 search">

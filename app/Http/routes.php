@@ -36,7 +36,7 @@ Route::get('/dang-tin', function(){
 	return view('posts.createPost');
 });
 
-Route::get('/cau-hoi', function(){
+Route::get('/cau-hoi-thuong-gap', function(){
 	return view('pages.question');
 });
 Route::get('/chinh-sach', function(){
@@ -51,7 +51,12 @@ Route::get('/ve-chung-toi', function(){
 Route::get('/thanh-toan-online', function(){
     return view('users.pay-online');
 });
-
+Route::get('/huong-dan-hoc-vien', function(){
+    return view('users.student');
+});
+Route::get('/huong-dan-giao-vien', function(){
+    return view('pages.teacher');
+});
 Route::get('follow-{id}-{user_id}', 'UserController@follow');
 
 Route::group(['middleware' => ['auth', 'admin']], function () {

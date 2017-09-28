@@ -118,17 +118,17 @@
                             <a href="">
                                 <h5 >GIỚI THIỆU </h5>
                             </a>
-                            <a href="#"> Về chúng tôi </a> <br>
-                            <a href="#"> Cách thức hoạt động </a><br>
-                            <a href="#"> Điều khoản sử dụng </a><br>
+                            <a href="{{url('/ve-chung-toi')}}"> Về chúng tôi </a> <br>
+                            <a href="{{url('/chinh-sach')}}"> Chính sách </a><br>
+                            <a href="{{url('/dieu-khoan')}}"> Điều khoản sử dụng </a><br>
                         </div>
                         <div class="col-md-3 float-left">
                             <a href="">
                                 <h5 >HỖ TRỢ </h5>
                             </a>
-                            <a href="#"> Hướng dẫn giáo viên </a> <br>
-                            <a href="#"> Hướng dẫn học viên </a><br>
-                            <a href="#"> Những câu hỏi thường gặp </a><br>
+                            <a href="{{url('/huong-dan-giao-vien')}}"> Hướng dẫn giáo viên </a> <br>
+                            <a href="{{url('/huong-dan-hoc-vien')}}"> Hướng dẫn học viên </a><br>
+                            <a href="{{url('/cau-hoi-thuong-gap')}}"> Những câu hỏi thường gặp </a><br>
                         </div>
                         <div class="col-md-3 float-left">
                           <a href="">

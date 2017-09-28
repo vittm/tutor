@@ -1,29 +1,33 @@
 @extends('layouts.web')
 
 @section('content')
-
+<div class="col-md-12 pd0 cover-search cover-pages">
+	<img src="{{ url('img/cover1.png') }}" style="display:block;width:100%;margin: auto; height: 100%;">
+	<h3 class="cover-search__title">Điều khoản và điều kiện</h3>
+</div>
+<div class="col-md-12 top30">
 <div class="container">
-  <p>Cảm ơn các bạn đã truy cập vào www.wiis.edu.vn</p>
+  <p>Cảm ơn các bạn đã truy cập vào <span style="color:#fcaf00;font-weight:600">www.wiis.edu.vn</span></p>
   <p>/// Xin vui lòng đọc kỹ Điều khoản và điều kiện giao dịch trước khi sử dụng dịch vụ của chúng tôi</p>
 
 
 
-  <p>Sau đây là những điều mà các bạn sẽ nhận được tại WiiS:</p>
+  <p>Sau đây là những điều mà các bạn sẽ nhận được tại <span style="color:#fcaf00;font-weight:600">WiiS</span>:</p>
 
 <ul class="policy">
   <li>
     <p><span class="number-main">1</span> Phạm vi áp dụng</p>
     <p>Điều khoản và Điều kiện sẽ được áp dụng cho Khách Hàng:<br>
-    (i) Đăng ký hồ sơ làm giáo viên, gia sư, chuyên gia (sau đây sẽ gọi chung là người dạy) trên WiiS; và<br>
-    (ii) Có nhu cầu tìm người dạy trên những lĩnh vực mà WiiS cung cấp.</p>
+    (i) Đăng ký hồ sơ làm giáo viên, gia sư, chuyên gia (sau đây sẽ gọi chung là người dạy) trên <span style="color:#fcaf00;font-weight:600">WiiS</span>; và<br>
+    (ii) Có nhu cầu tìm người dạy trên những lĩnh vực mà <span style="color:#fcaf00;font-weight:600">WiiS</span> cung cấp.</p>
   </li>
   <li>
     <p><span class="number-main">2</span> Quy định và trách nhiệm của cá nhân đăng ký dạy học (dưới đây gọi là “Người dạy”)</p>
-    <p>2.1. Tiêu chuẩn của người dạy khi đăng ký hồ sơ trên WiiS: <br>
+    <p>2.1. Tiêu chuẩn của người dạy khi đăng ký hồ sơ trên <span style="color:#fcaf00;font-weight:600">WiiS</span>: <br>
     (a) Mọi cá nhân có đầy đủ năng lực hành vi dân sự từ đủ 18 tuổi trở lên.<br>
     (b) Có đầy đủ kinh nghiệm, kỹ năng, kiến thức về khóa học mà người dạy cung cấp.<br>
     2.2. Trách nhiệm của người dạy<br>
-    (a) Tất cả những thông tin mà người dạy cung cấp trên WiiS đều phải đảm bảo chính xác và được cập nhật mới nhất, bao gồm, họ tên, địa chỉ, số điện thoại, địa chỉ email và trình độ, kinh nghiệm và kỹ năng.<br>
+    (a) Tất cả những thông tin mà người dạy cung cấp trên <span style="color:#fcaf00;font-weight:600">WiiS</span> đều phải đảm bảo chính xác và được cập nhật mới nhất, bao gồm, họ tên, địa chỉ, số điện thoại, địa chỉ email và trình độ, kinh nghiệm và kỹ năng.<br>
     (b) Người dạy chịu trách nhiệm toàn phần trong việc cung cấp thông tin trong phần hồ sơ người dạy trên website wiis.vn/wiis.edu.vn. Nếu chúng tôi phát hiện bất kỳ sự gian lận, thiếu trung thực hoặc minh bạch nào từ phía người dạy, chúng tôi có quyền đơn phương xóa hồ sơ của người dạy trên website của chúng tôi để đảm bảo quyền lợi cho học viên và những người dạy khác.<br>
     (c) Người dạy chịu trách nhiệm trong việc đưa ra mức học phí và thu học phí từ học viên. WiiS không có bất kỳ lợi ích cũng như trách nhiệm nào liên quan đến vấn đề học phí từ người dạy cũng như học viên. Tuy nhiên, nếu phát hiện bất kỳ sự gian lận nào từ phía người dạy liên quan đến vấn đề học phí, chúng tôi sẽ xóa hồ sơ của người dạy gian lận, cảnh báo đến toàn học viên trên hệ thống của WiiS, và sẽ nhờ đến pháp luật can thiệp trong trường hợp nghiêm trọng.<br>
     (d) Về vấn đề phí thành viên người dạy, WiiS chỉ thu phí thành viên và phí dịch vụ riêng lẻ dựa trên sự tự nguyện của người dạy. Phí thành viên sẽ được tính theo tháng hoặc theo năm, bắt đầu từ ngày người dạy đóng phí, không phải từ ngày người dạy đăng ký thành viên.</p>
@@ -61,6 +65,6 @@
   </li>
 </ul>
 </div>
-
+</div>
 
 @endsection

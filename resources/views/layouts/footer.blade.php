@@ -23,10 +23,10 @@
                         <p class="head">
                             GIÁO VIÊN
                         </p>
-                        <p><a href="">
+                        <p><a href="{{url('/ve-chung-toi')}}">
                             Danh sách giáo viên
                         </a></p>
-                        <p><a onclick="GA('Footter', 'ClickBecomATutorButton', window.pageName);" href="">
+                        <p><a href="{{url('/huong-dan-giao-vien')}}" onclick="GA('Footter', 'ClickBecomATutorButton', window.pageName);" href="">
                             Trở thành giáo viên
                         </a></p>
                         <p><a href="">
@@ -51,13 +51,13 @@
                         <p class="head">
                             VỀ CHÚNG TÔI
                         </p>
-                        <p><a href="">
+                        <p><a href="{{url('/ve-chung-toi')}}">
                             Về chúng tôi
                         </a></p>
-                        <p><a href="">
+                        <p><a href="{{url('/hoat-dong')}}">
                             Cách thức hoạt động
                         </a></p>
-                        <p><a href="">
+                        <p><a href="{{url('/dieu-khoan')}}">
                             Điều khoản sử dụng
                         </a></p>
                     </div>
@@ -94,11 +94,11 @@
 
         <script type="text/javascript" src="js/scripts.js"></script>
         <!--- Link jquery tự viết-->
-        
+
         <script type="text/javascript" src="{{ URL::to('/ckeditor/ckeditor.js')}}"></script>
 	<script type="text/javascript">
             $(function(){
-            $('.comment__information__reply').click(function(e){    
+            $('.comment__information__reply').click(function(e){
                   $(this).closest('.comment__body__actions').children('.comments__reply').show();
                   e.preventDefault();
               });
@@ -242,4 +242,3 @@
                     return false;
                 });
           </script>
-

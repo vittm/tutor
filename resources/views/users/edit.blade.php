@@ -2,7 +2,7 @@
 
 @section('content')
 @if(Auth::user()->id == $id_user[0]->id  )
-<div class="col-md-12 pd0" style="background: #f7f7f7; padding-top: 40px;">
+<div class="col-md-12 pd0 edit-profile--form" style="background: #f7f7f7; padding-top: 40px;">
   <!-- Nav tabs -->
   <div class="col-md-3">
   <ul class="col-md-12 nav nav-tabs tab-edit-profile" role="tablist">
