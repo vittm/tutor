@@ -3,7 +3,7 @@
 @section('content')
 <div class="col-md-12 pd0 cover-search cover-pages">
 	<img src="{{ url('img/cover1.png') }}" style="display:block;width:100%;margin: auto; height: 100%;">
-	<h3 class="cover-search__title">HƯỚNG DẪN CHO GIÁO VIÊN</h3>
+	<h3 class="cover-search__title">VỀ CHÚNG TÔI</h3>
 </div>
 <div class="col-md-12 top30">
 <div class="container">

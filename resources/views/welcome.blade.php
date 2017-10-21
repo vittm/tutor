@@ -190,7 +190,7 @@
 	                </figure>
 	                <div class="dir-l radius-3">
 	                        <h1>Mức phí thấp</h1>
-	                        <p>Cam kết mức phí kết nối với học viên thấp hơn 5% - 10% so với các trung tâm khác.</p>
+	                        <p>Phí nhận lớp siêu thấp: 15% học phí tháng đầu tiên. Mức phí trung bình trên thị trường của các trung tâm khác là 30-50%.</p>
 	                </div>
 	            </li>
 
@@ -200,7 +200,7 @@
 	                </figure>
 	                <div class="dir-r radius-3">
 	                        <h1 style="text-align: left;">Thanh toán trả sau</h1>
-	                        <p>Gia sư có thể thanh toán phí nhận lớp sau khi đã nhận lớp 7 ngày, điều này đảm bảo chắc chắn gia sư đã có lớp rồi mới thanh toán phí. </p>
+	                        <p>Cam kết trách nhiệm: Cam kết hoàn trả 100% phí nhận lớp cho bạn, nếu bạn đã đóng phí nhưng không nhận được lớp.</p>
 	                </div>
 	            </li>
 	            <li class="timeline-item">
@@ -209,7 +209,7 @@
 	                </figure>
 	                <div class="dir-l radius-3">
 	                        <h1> Hiệu quả</h1>
-	                        <p>Quảng bá, nâng cao hình ảnh của gia sư đến các học viên trên cả nước qua các kênh truyền thông đa dạng.</p>
+	                        <p>Cơ hội nhận lớp cao: Quảng bá, nâng cao hình ảnh của giáo viên, gia sư, chuyên gia đến nhiều học viên thông qua các kênh truyền thông sáng tạo và đa dạng.</p>
 	                </div>
 	            </li>
 	        </ul>

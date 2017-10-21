@@ -3,13 +3,13 @@
 @section('content')
 <div class="col-md-12 pd0 cover-search cover-pages">
 	<img src="{{ url('img/cover1.png') }}" style="display:block;width:100%;margin: auto; height: 100%;">
-	<h3 class="cover-search__title">CHÍNH SÁCH</h3>
+	<h3 class="cover-search__title">CHÍNH SÁCH BẢO MẬT</h3>
 </div>
 <div class="col-md-12 top30">
 <div class="container">
   <p>Cảm ơn các bạn đã truy cập vào <span style="color:#fcaf00;font-weight:600">www.wiis.edu.vn</span> </p>
   <p>Chúng tôi luôn tôn trọng và cam kết sẽ bảo mật những thông tin mang tính riêng tư của khách hàng. </p>
-  <p><i>/// Xin vui lòng đọc bản Chính sách bảo mật dưới đây để hiểu hơn những cam kết mà <span style="color:#fcaf00;font-weight:600">WiiS</span> thực hiện nhằm tôn trọng và bảo vệ quyền lợi của người truy cập.</i></p>
+  <p>Xin vui lòng đọc bản Chính sách bảo mật dưới đây để hiểu hơn những cam kết mà <span style="color:#fcaf00;font-weight:600">WiiS</span> thực hiện nhằm tôn trọng và bảo vệ quyền lợi của người truy cập.</p>
   <p>Sau đây là những điều mà các bạn sẽ nhận được tại WiiS: <br> </p>
 
 <ul class="policy">

@@ -13,10 +13,10 @@
           <div class="col-md-6">
             <div class="btn btn-origan2" style="border-color: #000000;color: #000;position:relative;top: 5px;">{{number_format($value->price)}}<sup>Đ/@if($value -> typeCouser == '2') Khoá @else Giờ @endif </sup></div></div>
             <div class="col-md-12 pd0">
-              <div class="col-md-10 pd0">
+              <div class="col-md-8 pd0">
               <h3 class="couser-header__title">{{$value ->name_couser }}</h3>
               </div>
-              <div class="col-md-2 pd0 pdr share">
+              <div class="col-md-4 pd0 pdr share">
                   <img class="action-menu__icon " src="{{ URL::to('img/icon/VectorSmartObject_3.png')}}" alt=""><span>Chia sẽ khoá học với bạn bè</span>
                   <div class="col-md-12 share_hidden animated fadeIn" style="border: 1px soild #eeeeee">
 										<div class="col-md-12 fb-share-button"
@@ -30,7 +30,7 @@
 									</div>
               </div>
             <div class="col-md-12 pd0">
-              <h5 class="couser-header__name" style="margin-bottom:0;">{{ $value->name }}</h5>
+              <h5 class="couser-header__name" style="margin-bottom:0;"><a href="{{ url('/trang-ca-nhan')}}-{{$value->id}}-{{App\User::convert_string($value->name)}}?tab=info">{{ $value->name }}</a></h5>
               <span style="font-size:13px;">{{App\User::jobs($value->jobs)}}</span>
             </div>
          </div>

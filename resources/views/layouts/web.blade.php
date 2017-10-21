@@ -132,7 +132,7 @@
                         </div>
                         <div class="col-md-3 float-left">
                           <a href="">
-                              <h5>KẾT NỐI QUA FANPAGE: </h5>
+                              <h5>KẾT NỐI FACEBOOK </h5>
                           </a>
 
                         </div>
@@ -142,7 +142,7 @@
                                   <h5>LIÊN HỆ</h5>
                               </a>
                               <p>
-                                  Email: <a onclick="GA('Footter', 'ClickEmail', window.pageName);" href="" class="link green">hi@wiis.edu.vn</a>
+                                  Email: <a onclick="GA('Footter', 'ClickEmail', window.pageName);" href="" class="link green">cskh@wiis.edu.vn</a>
                               </p>
                               <p>
                                   Hotline: <a onclick="GA('Footter', 'ClickHotline', window.pageName);" href="" class="link green"> 0868 505 523</a>

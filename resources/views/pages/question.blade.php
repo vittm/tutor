@@ -3,11 +3,16 @@
 @section('content')
 <div class="col-md-12 pd0 cover-search cover-pages">
 	<img src="{{ url('img/cover1.png') }}" style="display:block;width:100%;margin: auto; height: 100%;">
-	<h3 class="cover-search__title">HƯỚNG DẪN CHO GIÁO VIÊN</h3>
+	<h3 class="cover-search__title">CÁC CÂU HỎI THƯỜNG GẶP</h3>
 </div>
 <div class="col-md-12 top30">
   <div class="container">
-    <h5 class="title-pages">TÀI KHOẢN </h5>
+ 
+<ul class="policy">
+  <li>
+    <p><span class="number-main">1</span>TÀI KHOẢN </p>
+  <li>
+</ul>
     <ul class="list-text">
       <li> Làm sao để tạo tài khoản trên <span style="color:#fcaf00;font-weight:600">WiiS</span>?<br>
       Quý Khách di chuyển chuột lên phần “Đăng ký” ở góc phải màn hình và điền các thông tin theo yêu cầu.</li>
@@ -21,7 +26,11 @@
     </ul>
     <br>
     <hr>
-    <h5 class="title-pages">HỌC VIÊN </h5>
+    <ul class="policy">
+  <li>
+    <p><span class="number-main">2</span>HỌC VIÊN  </p>
+  <li>
+</ul>
     <ul class="list-text">
     <li>Làm thế nào để tìm và liên hệ với giáo viên tại <span style="color:#fcaf00;font-weight:600">WiiS</span>?<br>
       (a) Tìm kiếm giáo viên<br>
@@ -40,7 +49,11 @@
       . Trong trường hợp này, các bạn hãy nhấp vào dấu  (cảnh báo) bên cạnh lời bình luận, điền thông tin theo yêu cầu và gửi đến cho chúng tôi.</li>
     </ul>
     <hr>
-    <h5 class="title-pages">GIÁO VIÊN </h5>
+<ul class="policy">
+  <li>
+    <p><span class="number-main">3</span>GIÁO VIÊN </p>
+  <li>
+</ul>
     <ul class="list-text">
       <li>Phải làm gì nếu hồ sơ của tôi không được<span style="color:#fcaf00;font-weight:600">WiiS</span> xét duyệt?<br>
       Wiis sẽ gửi cho Quý khách những lý do mà hồ sơ của Quý khách chưa được duyệt. Trong một số trường hợp, sẽ có nhân viên của <span style="color:#fcaf00;font-weight:600">WiiS</span> gọi cho Quý khách để xác thực những thông tin cần thiết.</li>

@@ -139,12 +139,14 @@
 					</div>
       </div>
 			<div class="col-md-8 top30">
+					<h3> Thay đổi ảnh bìa </h3>
 					@if($id_user[0]->cover != null)
 						<img class="col-md-12 top30" src="{{ URL::to('/img/cover')}}/{{ $id_user[0]->cover}}" alt="..." class="img-thumbnail">
 					@endif
 					<input class="multiple-flie" name="coverMain" type="file" accept="image/*">
 			</div>
 			<div class="col-md-4 top30">
+					<h3> Thay đổi ảnh đại diện </h3>
 					@if($id_user[0]->avatar != null)
 						<img class="col-md-12 top30 img-reg" src="{{ URL::to('/img/avatar')}}/{{ $id_user[0]->avatar}}" alt="..." class="img-thumbnail">
 					@endif

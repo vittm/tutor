@@ -678,7 +678,7 @@ box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.5);padding-top: 15px;">
 				<input class="form-control price-register" type="text" disabled name="price">
 			<div class="col-md-12 pd0">
 				<!-- Button trigger modal -->
-					<button type="submit" class="btn btn-origan btn-lg contact-user @if(!Auth::check()) disabled @endif">
+					<button type="submit" disabled="@if(!Auth::check()) disabled @endif" class="btn btn-origan btn-lg contact-user @if(!Auth::check()) disabled @endif">
 						Đăng ký học thử
 					</button>
 			</div>

@@ -12438,10 +12438,17 @@ application_ltr-7274c7e….css:1
 }
 .couser-header__title {
   color: #ffffff;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  word-wrap: break-word;
 }
 .couser-header__name {
   margin-top: 0;
   margin-bottom: 0;
+}
+.couser-header__name > a {
+  color: #000000;
 }
 .rating {
   text-align: center;
@@ -12699,8 +12706,9 @@ div.share_hidden {
 }
 .share > span {
   position: relative;
-  top: 5px;
+  top: 2px;
   left: 5px;
+  font-size: 12px;
 }
 /*
  * bootstrap-tagsinput v0.8.0
