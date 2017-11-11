@@ -131,7 +131,6 @@ class UserController extends Controller
       $input = $request->all();
       $id = $input['id_user'];
       $id_user = DB::table('users')->where('id', '=', $id)->get();
-      $images=array();
       if($files=$request->file('images')){
           if(json_decode($id_user[0]->picture) != null) {
             foreach( json_decode($id_user[0]->picture) as $value ){
@@ -143,10 +142,10 @@ class UserController extends Controller
               $name=$file->getClientOriginalName();
               $nameConvert = date('H-i-s==Y-m-d==').'-'.$name;
               $file->move('img/picture',$nameConvert);
-              $images[]=$nameConvert;
+              $images=$nameConvert;
           }
       }else {
-        $images[] = $input['picture'];
+        $images = $input['picture'];
       }
         $profile= ([
           'picture' => json_encode($images)
@@ -160,7 +159,7 @@ class UserController extends Controller
       $id = $input['id_user'];
       $id_user = DB::table('users')->where('id', $id)->get();
       $images=array();
-      if($files=$request->file('images')){
+      if($files=$request->file('imagesbefore')){
           if(json_decode($id_user[0]->code_user) != null) {
             foreach( json_decode($id_user[0]->code_user) as $value ){
               $file = public_path('img\picture\\'.$value);
@@ -171,13 +170,30 @@ class UserController extends Controller
               $name=$file->getClientOriginalName();
               $nameConvert = date('H-i-s-Y-m-d-').'-'.$name;
               $file->move('img/picture',$nameConvert);
-              $images[]=$nameConvert;
+              $images=$nameConvert;
           }
       }else {
-        $images[] = $input['picture'];
+        $images = $input['picture'];
       }
+      if($files1=$request->file('imagesafter')){
+          if(json_decode($id_user[0]->code_user) != null) {
+            foreach( json_decode($id_user[0]->code_user) as $value ){
+              $file1 = public_path('img\picture\\'.$value);
+              $result1= File::delete( $file1 );
+            }
+          }
+          foreach($files1 as $file1){
+              $name1=$file1->getClientOriginalName();
+              $nameConvert1 = date('H-i-s-Y-m-d-').'-'.$name1;
+              $file1->move('img/picture',$nameConvert1);
+              $images1=$nameConvert1;
+          }
+      }else {
+        $images1 = $input['picture'];
+      }
+        $twoimages = array('imgbefore' => $images , 'imgafter' => $images1 );;
         $profile= ([
-          'code_user' => json_encode($images)
+          'code_user' => json_encode($twoimages)
         ]);
 
         DB::table('users')->where('id', $id)->update($profile);

@@ -46,16 +46,15 @@
 					<div class="col-md-3">Giới tính</div>
 					<div class="col-md-8">
 					<ul class="col-md-8 gender__edit">
-						 <li>
-							 <input name="gender" type="radio" @if($id_user[0]->gender == '1') checked @endif id="boy" value="1">
+						 <li class="col-md-6 select-a">
 							 <label for="boy">Nam</label>
-
+							 <input name="gender" type="radio" @if($id_user[0]->gender == '1') checked @endif id="boy" value="1">
 							 <div class="check"></div>
 						 </li>
 
-						 <li> <input name="gender" type="radio" @if($id_user[0]->gender == '0') checked @endif id="girl" value="0">
+						 <li class="col-md-6 select-a">
 							 <label for="girl">Nữ</label>
-
+							 <input name="gender" type="radio" @if($id_user[0]->gender == '0') checked @endif id="girl" value="0">
 							 <div class="check"><div class="inside"></div></div>
 						 </li>
 					</ul>
@@ -267,10 +266,16 @@
 
 			<form class="col-md-12" method="POST" enctype="multipart/form-data" action="{{ url('/editing/code_user')}}">
 												{{ csrf_field() }}
-				<h4> Mặt trước và mặt sau của CMND </h4>
 				<input type="hidden" name="id_user" value="{{ $id_user[0]->id}}">
 				<input type="hidden" name="level" value="{{ $id_user[0]->level}}">
-					<input class="multiple-flie" type="file" name="images[]" multiple accept="image/*">
+					<div class="col-md-6">
+							<h5> Mặt trước của CMND </h5>
+							<input class="multiple-flie" type="file" name="imagesbefore[]" multiple accept="image/*">
+					</div>
+					<div class="col-md-6">
+						<h5>Mặt sau của CMND</h5>
+						<input class="multiple-flie" type="file" name="imagesafter[]" multiple accept="image/*">
+					</div>
 					<div class="col-md-offset-8 col-md-4 pd0 top30">
 		          <div class="col-md-8 pd0 btn-edit save_edit-profile">
 		              <button class="btn btn-5 btn-5a fa icon-right"><span>Lưu lại</span></button>
